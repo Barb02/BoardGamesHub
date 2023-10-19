@@ -1,7 +1,13 @@
-# HowMuchTabletop
+# Project abstract
+* BGH - Board Games Hub
 
-# Roles:
+
+# Project team
 * Team Manager: Pedro Pinho
-* Product Owner: Bárbara Nóbrega Galiza
-* Architect: João Miguel Andrade
+* Product Owner: Bárbara Galiza
+* Architect: João Andrade
 * DevOps Master: Tomás Victal
+
+# Architecture Diagram
+
+# Bookmarks
