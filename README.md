@@ -1,6 +1,11 @@
 # Project abstract
-* BGH - Board Games Hub
+### Board Games Hub
+Web page with the intention of comparing board games prices across multiple web stores, providing their current price and showcase their historic lowest prices.
 
+Software used
+* ? - database
+* ? - API
+* ? - Portability
 
 # Project team
 * Team Manager: Pedro Pinho
