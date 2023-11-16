@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: boardgameshub-db
+    environment:
+      POSTGRES_DB: boardgameshub-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./boardgameshub/src/main/resources/db/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+  springboot:
+    depends_on:
+      - postgres
+    build:
+      context: ./boardgameshub
+      dockerfile: Dockerfile
+    volumes:
+      - ./boardgameshub:/app
+      - ./.m2:/root/.m2
+    working_dir: /app
+    command: sh run.sh
+    ports:
+      - 8080:8080
+      - 35729:35729
+      - 5005:5005
+volumes:
+  pgdata:
+    driver: local
