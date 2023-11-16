@@ -7,10 +7,9 @@ services:
     restart: unless-stopped
     volumes:
       - ".:/webApp"
-      - "/app/node_modules"
     ports:
       - 3000:3000
     command: >
-      bash -c "cp -rfu /cache/node_modules/. /app/node_modules/  
+      bash -c "cp -rfu /cache/node_modules/. /webApp/node_modules/  
       && npm start"
       
