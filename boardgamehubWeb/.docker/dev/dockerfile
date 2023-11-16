@@ -1,0 +1,14 @@
+FROM node:14
+
+WORKDIR /cache
+
+# install app dependencies
+COPY package.json .
+COPY package-lock.json .
+RUN npm install
+
+WORKDIR /webApp
+ENV PATH /webApp/node_modules/.bin:$PATH
+
+# copy source code for production
+COPY . .
