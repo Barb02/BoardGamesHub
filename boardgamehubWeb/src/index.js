@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Home from './pages/Home';
+import Layout from './pages/Layout';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,11 +11,12 @@ import reportWebVitals from './reportWebVitals';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
-  },
-  {
-    path: "/booga",
-    element: <div>booga</div>,
+    element: <Layout/>,
+    children: [
+      { path: "/", lazy: () => import("./pages/Homepage/Homepage")},
+      { path: "/search", lazy: () => import("./pages/Search/Search")},
+      { path: "/product", lazy: () => import("./pages/Product/Product")}
+    ]
   },
 ]);
 
