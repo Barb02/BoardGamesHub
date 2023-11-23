@@ -1,4 +1,4 @@
-import logo from "../static/logo.svg"
+import logo from "../../static/logo.svg"
 
 function Navbar() {
     return (

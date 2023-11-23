@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout/>,
     children: [
-      { path: "/", lazy: () => import("./pages/Homepage/Homepage")},
+      { path: "/", lazy: () => import("./pages/Homepage")},
       { path: "/search", lazy: () => import("./pages/Search/Search")},
       { path: "/product", lazy: () => import("./pages/Product/Product")}
     ]

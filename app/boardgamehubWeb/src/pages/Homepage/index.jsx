@@ -1,9 +1,7 @@
-import Layout from "../Layout"
-
 function Homepage() {
     return (
       <div>
-        <Layout/>
+        dadad
       </div>
     );
   }
