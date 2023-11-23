@@ -1,19 +1,19 @@
 package com.pt.ua.boardgameshub.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "designer")
-public class Designer {
+@Table(name = "category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,9 +21,6 @@ public class Designer {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private String image;
-
-    @ManyToMany(mappedBy = "designers")
-    Set<Game> games = new HashSet<>();
+    @OneToMany(mappedBy = "category")
+    private Set<Game> games = new HashSet<>();
 }
