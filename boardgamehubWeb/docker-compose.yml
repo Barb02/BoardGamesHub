@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./.docker/dev/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ".:/webApp"
+    ports:
+      - 3000:3000
+    command: >
+      bash -c "cp -rfu /cache/node_modules/. /webApp/node_modules/  
+      && npm start"
+      
