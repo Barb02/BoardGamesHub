@@ -12,9 +12,16 @@ services:
     ports:
       - "5433:5432"
     restart: unless-stopped
+  cassandra:
+    image: cassandra:4
+    ports:
+      - 9042:9042
+    volumes:
+      - ./resources:/resources
   springboot:
     depends_on:
       - postgres
+      - cassandra
     build:
       context: ./boardgameshub
       dockerfile: Dockerfile
