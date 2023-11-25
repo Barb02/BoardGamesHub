@@ -1,11 +1,12 @@
 import { Navbar,Footer } from "../../components";
+import { Outlet } from "react-router-dom";
 
 
-function Layout({children}) {
+function Layout() {
     return (
-      <div className="bg-red-400 w-full h-full">
+      <div className="w-full h-full">
         <Navbar/>
-          {children}
+        <Outlet/>
         <Footer/>
       </div>
     );

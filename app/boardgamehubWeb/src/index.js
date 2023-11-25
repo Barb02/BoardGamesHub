@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Layout from './pages/Layout';
+import Homepage from './pages/Homepage';
+import Search from './pages/Search';
+import Product from './pages/Product';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,9 +16,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout/>,
     children: [
-      { path: "/", lazy: () => import("./pages/Homepage")},
-      { path: "/search", lazy: () => import("./pages/Search/Search")},
-      { path: "/product", lazy: () => import("./pages/Product/Product")}
+      { path: "/", element:<Homepage/>},
+      { path: "/search", element:<Search/>},
+      { path: "/product", element:<Product/>}
     ]
   },
 ]);

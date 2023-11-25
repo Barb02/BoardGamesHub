@@ -1,6 +1,6 @@
 function Homepage() {
     return (
-      <div>
+      <div className="w-full h-[900px] bg-black">
         dadad
       </div>
     );
