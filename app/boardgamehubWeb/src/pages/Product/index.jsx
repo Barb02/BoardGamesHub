@@ -43,8 +43,17 @@ function Product() {
                             </div>
                         </div>
 
-                        <div>
-
+                        <div className="pt-[20%]">
+                            <div className="w-[50%] inline-block">
+                                <div className="text-center text-sm">score: 7.8</div>
+                                <div className="w-full rounded-full h-1.5 dark:bg-gray-700">
+                                    <div className="bg-primary h-1.5 rounded-full w-[calc(100%*0.78)]"></div>
+                                </div>
+                                <div className="text-center text-xs">35k ratings</div>
+                            </div>
+                            <div className="w-[50%] inline-block ">
+                                <div className="text-center text-sm">Complexity</div>
+                            </div>
                         </div>
                     </div>
                     
