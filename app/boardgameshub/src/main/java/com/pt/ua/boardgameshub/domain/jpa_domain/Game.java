@@ -1,14 +1,14 @@
 package com.pt.ua.boardgameshub.domain.jpa_domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,8 +40,12 @@ public class Game {
         inverseJoinColumns = @JoinColumn(name = "publisher_id"))
     private Set<Publisher> publishers = new HashSet<>();
 
-    @Column
-    private Set<String> artists;
+    @ManyToMany
+    @JoinTable(
+        name = "artBy", 
+        joinColumns = @JoinColumn(name = "game_id"), 
+        inverseJoinColumns = @JoinColumn(name = "artist_id"))
+    private Set<Artist> artists = new HashSet<>();
 
     @Column
     private double complexity;
@@ -117,11 +121,11 @@ public class Game {
         this.publishers = publishers;
     }
 
-    public Set<String> getArtists() {
+    public Set<Artist> getArtist() {
         return artists;
     }
 
-    public void setArtists(Set<String> artists) {
+    public void setArtists(Set<Artist> artists) {
         this.artists = artists;
     }
 

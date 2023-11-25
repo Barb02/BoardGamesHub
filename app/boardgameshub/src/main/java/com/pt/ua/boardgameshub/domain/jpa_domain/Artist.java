@@ -6,15 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-
 @Entity
-@Table(name = "publisher")
-public class Publisher {
+@Table(name = "artist")
+public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +21,7 @@ public class Publisher {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private String image;
-
-    @ManyToMany(mappedBy = "publishers")
+    @ManyToMany(mappedBy = "artists")
     private Set<Game> games = new HashSet<>();
 
     public Long getId(){
@@ -42,13 +38,5 @@ public class Publisher {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public String getImage(){
-        return image;
-    }
-
-    public void setImage(String image){
-        this.image = image;
     }
 }

@@ -3,13 +3,13 @@ package com.pt.ua.boardgameshub.domain.jpa_domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
@@ -21,7 +21,7 @@ public class Category {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "category")
+    @ManyToMany(mappedBy = "categories")
     private Set<Game> games = new HashSet<>();
 
     public Long getId(){

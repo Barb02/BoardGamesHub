@@ -5,5 +5,5 @@ import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 public interface GameService {
     public Game addGameManual(Game game);
     //public Game addGameAuto(Long id);
-    public Game getGame(Long id);
+    public Game getGameById(Long id);
 }
