@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.domain.jpa_entities;
+package com.pt.ua.boardgameshub.domain.jpa_domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 
@@ -71,9 +70,12 @@ public class Game {
     @Column
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+        name = "categories_games", 
+        joinColumns = @JoinColumn(name = "game_id"), 
+        inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -97,6 +99,22 @@ public class Game {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Designer> getDesigners() {
+        return designers;
+    }
+
+    public void setDesigners(Set<Designer> designers) {
+        this.designers = designers;
+    }
+
+    public Set<Publisher> getPublishers() {
+        return publishers;
+    }
+
+    public void setPublishers(Set<Publisher> publishers){
+        this.publishers = publishers;
     }
 
     public Set<String> getArtists() {
@@ -179,12 +197,12 @@ public class Game {
         this.image = image;
     }
 
-    public Category getCategory() {
-        return category;
+    public Set<Category> getCategories(){
+        return categories;
     }
 
-    public void setCategory(Category category){
-        this.category = category;
+    public void setCategories(Set<Category> categories){
+        this.categories = categories;
     }
 
 }

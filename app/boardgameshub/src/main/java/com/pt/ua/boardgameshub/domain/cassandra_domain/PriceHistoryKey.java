@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.domain.cassandra_entities;
+package com.pt.ua.boardgameshub.domain.cassandra_domain;
 
 import java.io.Serializable;
 import java.util.Date;

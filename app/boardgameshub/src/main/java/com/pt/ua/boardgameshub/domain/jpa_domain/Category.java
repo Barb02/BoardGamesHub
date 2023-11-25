@@ -1,5 +1,9 @@
-package com.pt.ua.boardgameshub.domain.jpa_entities;
+package com.pt.ua.boardgameshub.domain.jpa_domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,14 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import jakarta.persistence.Column;
-
 @Entity
-@Table(name = "publisher")
-public class Publisher {
+@Table(name = "category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,11 +21,8 @@ public class Publisher {
     @Column(nullable = false)
     private String name;
 
-    @Column
-    private String image;
-
-    @ManyToMany(mappedBy = "publishers")
-    Set<Game> games = new HashSet<>();
+    @ManyToMany(mappedBy = "category")
+    private Set<Game> games = new HashSet<>();
 
     public Long getId(){
         return id;
@@ -44,11 +40,4 @@ public class Publisher {
         this.name = name;
     }
 
-    public String getImage(){
-        return image;
-    }
-
-    public void setImage(String image){
-        this.image = image;
-    }
 }
