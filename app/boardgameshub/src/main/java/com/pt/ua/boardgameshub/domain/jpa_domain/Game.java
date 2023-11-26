@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import java.util.HashSet;
@@ -23,24 +24,24 @@ public class Game {
     @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(columnDefinition="text")
     private String description;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "designedBy", 
         joinColumns = @JoinColumn(name = "game_id"), 
         inverseJoinColumns = @JoinColumn(name = "designer_id"))
     private Set<Designer> designers = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "publsihedBy", 
         joinColumns = @JoinColumn(name = "game_id"), 
         inverseJoinColumns = @JoinColumn(name = "publisher_id"))
     private Set<Publisher> publishers = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "artBy", 
         joinColumns = @JoinColumn(name = "game_id"), 
@@ -51,19 +52,19 @@ public class Game {
     private double complexity;
 
     @Column
-    private double minPlayers;
+    private double minplayers;
 
     @Column
-    private double maxPlayers;
+    private double maxplayers;
 
     @Column
-    private int minAge;
+    private int minage;
 
     @Column
-    private int minPlaytime;
+    private int minplaytime;
 
     @Column
-    private int maxPlaytime;
+    private int maxplaytime;
     
     @Column
     private double score;
@@ -74,7 +75,7 @@ public class Game {
     @Column
     private String image;
 
-    @ManyToMany
+    @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "categories_games", 
         joinColumns = @JoinColumn(name = "game_id"), 
@@ -137,44 +138,44 @@ public class Game {
         this.complexity = complexity;
     }
 
-    public double getMinPlayers() {
-        return minPlayers;
+    public double getMinplayers() {
+        return minplayers;
     }
 
-    public void setMinPlayers(double minPlayers) {
-        this.minPlayers = minPlayers;
+    public void setMinplayers(double minPlayers) {
+        this.minplayers = minPlayers;
     }
 
-    public double getMaxPlayers() {
-        return maxPlayers;
+    public double getMaxplayers() {
+        return maxplayers;
     }
 
-    public void setMaxPlayers(double maxPlayers) {
-        this.maxPlayers = maxPlayers;
+    public void setMaxplayers(double maxPlayers) {
+        this.maxplayers = maxPlayers;
     }
 
-    public int getMinAge() {
-        return minAge;
+    public int getMinage() {
+        return minage;
     }
 
-    public void setMinAge(int minAge){
-        this.minAge = minAge;
+    public void setMinAge(int minage){
+        this.minage = minage;
     }
 
-    public int getMinPlaytime() {
-        return minPlaytime;
+    public int getMinplaytime() {
+        return minplaytime;
     }
 
-    public void setMinPlaytime(int minPlaytime) {
-        this.minPlaytime = minPlaytime;
+    public void setMinplaytime(int minplaytime) {
+        this.minplaytime = minplaytime;
     }
 
-    public int getMaxPlaytime() {
-        return maxPlaytime;
+    public int getMaxplaytime() {
+        return maxplaytime;
     }
 
-    public void setMaxPlaytime(int maxPlaytime) {
-        this.maxPlaytime = maxPlaytime;
+    public void setMaxplaytime(int maxplaytime) {
+        this.maxplaytime = maxplaytime;
     }
 
     public double getScore() {

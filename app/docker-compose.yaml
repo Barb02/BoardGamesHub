@@ -1,3 +1,4 @@
+version: '3'
 services:
   postgres:
     image: postgres:15-alpine
@@ -18,6 +19,7 @@ services:
       - 9042:9042
     volumes:
       - ./resources:/resources
+      - ./boardgameshub/src/main/resources/init_keyspace.sql:/docker-entrypoint-initdb.d/init_keyspace.sql
   springboot:
     depends_on:
       - postgres
@@ -29,7 +31,7 @@ services:
       - ./boardgameshub:/app
       - ./.m2:/root/.m2
     working_dir: /app
-    command: sh run.sh
+    command: sh -c "./wait-for-it.sh cassandra:9042 -t 70 && sh run.sh"
     ports:
       - 8080:8080
       - 35729:35729

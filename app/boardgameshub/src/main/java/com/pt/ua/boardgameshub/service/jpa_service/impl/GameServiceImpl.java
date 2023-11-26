@@ -31,7 +31,8 @@ public class GameServiceImpl implements GameService{
 
     @Override
     public Game addGameManual(Game game){
-        return gameRepository.save(game);
+        Game newgame = gameRepository.save(game);
+        return newgame;
     }
 
     @Override
