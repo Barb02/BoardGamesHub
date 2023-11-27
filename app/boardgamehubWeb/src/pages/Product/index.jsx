@@ -49,7 +49,7 @@ function Product() {
       }
 
       const ratings = abbrNum(data.numRatings, 0);
-      const scorePercentage = (data.score * 10) + "";
+      const scorePercentage = Math.round(3.3 * 10) + "%";
 
     return (
       <div className="w-full h-auto bg-background text-text font-text">
@@ -105,7 +105,7 @@ function Product() {
                             <div className="w-[50%] inline-block">
                                 <div className="text-center text-sm">score: {Math.round(data.score * 10) / 10}</div>
                                 <div id="percentagebar" className="w-full rounded-full h-1.5 dark:bg-gray-700">
-                                    <div id="percentage" className={`bg-primary h-1.5 rounded-full w-[${scorePercentage}%]`}></div>
+                                    <div id="percentage" className={`bg-primary h-1.5 rounded-full`} style={{width:scorePercentage}}></div>
                                 </div>
                                 <div className="text-center text-xs">{ratings} ratings</div>
                             </div>
