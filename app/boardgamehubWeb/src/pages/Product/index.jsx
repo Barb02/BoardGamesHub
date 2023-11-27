@@ -49,7 +49,7 @@ function Product() {
       }
 
       const ratings = abbrNum(data.numRatings, 0);
-      const scorePercentage = Math.round(3.3 * 10) + "%";
+      const scorePercentage = Math.round(data.score * 10) + "%";
 
     return (
       <div className="w-full h-auto bg-background text-text font-text">
@@ -113,7 +113,7 @@ function Product() {
                                 <div className="text-center text-sm">
                                     Complexity
                                     <div>
-                                        {Math.round(data.complexity * 10) / 10}/5
+                                        {Math.round(data.complexity)}/5
                                     </div>
                                 </div>
                                         
