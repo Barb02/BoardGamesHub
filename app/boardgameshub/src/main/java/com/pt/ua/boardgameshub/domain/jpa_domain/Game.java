@@ -25,6 +25,9 @@ public class Game {
     private String name;
 
     @Column(columnDefinition="text")
+    private String shortDescription;
+
+    @Column(columnDefinition="text")
     private String description;
 
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -75,6 +78,9 @@ public class Game {
     @Column
     private String image;
 
+    @Column
+    private String[] images;
+
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "categories_games", 
@@ -96,6 +102,14 @@ public class Game {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getShortDescription(){
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription){
+        this.shortDescription = shortDescription;
     }
 
     public String getDescription(){
@@ -200,6 +214,14 @@ public class Game {
 
     public void setImage(String image){
         this.image = image;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images){
+        this.images = images;
     }
 
     public Set<Category> getCategories(){

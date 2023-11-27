@@ -19,7 +19,7 @@ services:
       - 9042:9042
     volumes:
       - ./resources:/resources
-      - ./boardgameshub/src/main/resources/init_keyspace.sql:/docker-entrypoint-initdb.d/init_keyspace.sql
+      - ./boardgameshub/src/main/resources/init_keyspace.cql:/docker-entrypoint-initdb.d/init_keyspace.cql
   springboot:
     depends_on:
       - postgres
