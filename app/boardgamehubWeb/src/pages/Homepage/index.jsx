@@ -1,9 +1,7 @@
-import Layout from "../Layout"
-
 function Homepage() {
     return (
-      <div>
-        <Layout/>
+      <div className="w-full h-[900px] bg-black">
+        dadad
       </div>
     );
   }
