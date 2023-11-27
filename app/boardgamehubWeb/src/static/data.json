@@ -1,0 +1,87 @@
+
+{
+    "name": "El Grande",
+    "description": "In this award-winning game, players take on the roles of Grandes in medieval Spain.  The king's power is flagging, and these powerful lords are vying for control of the various regions.  To that end, you draft caballeros (knights in the form of colored cubes) into your court and subsequently move them onto the board to help seize control of regions.  After every third round, the regions are scored, and after the ninth round, the player with the most points is the winner.&#10;&#10;In each of the nine rounds, you select one of your 13 power cards to determine turn order as well as the number of caballeros you get to move from the provinces (general supply) into your court (personal supply).&#10;&#10;A turn then consists of selecting one of five action cards which allow variations to the rules and additional scoring opportunities in addition to determining how many caballeros to move from your court to one or more of the regions on the board (or into the castillo - a secretive tower). Normally, you may only place your caballeros into regions adjacent to the one containing the king pawn. The one hard and fast rule in El Grande is that nothing may move into or out of the king's region. One of the five action cards that is always available each round allows you to move the king to a new region. The other four action cards varying from round to round.&#10;&#10;The goal is to have a caballero majority in as many regions (and the castillo) as possible during a scoring round. Following the scoring of the castillo, you place any cubes you had stashed there into the region you had secretly indicated on your region dial. Each region is then scored individually according to a table printed in that region. Two-point bonuses are awarded for having sole majority in the region containing your Grande (large cube) and in the region containing the king.&#10;&#10;",
+    "designers": [
+        {
+            "name": "Wolfgang Kramer",
+            "image": "poggers"
+        },
+        {
+            "name": "Richard Ulrich",
+            "image": "poggers"
+        }
+    ],
+    "publishers": [
+        {
+            "name": "Hans im Glück",
+            "image": "poggers"
+        },
+        {
+            "name": "999 Games",
+            "image": "poggers"
+        },
+        {
+            "name": "Användbart Litet Företag",
+            "image": "poggers"
+        },
+        {
+            "name": "Descartes Editeur",
+            "image": "poggers"
+        },
+        {
+            "name": "Devir",
+            "image": "poggers"
+        },
+        {
+            "name": "Feelindigo",
+            "image": "poggers"
+        },
+        {
+            "name": "Filosofia Éditions",
+            "image": "poggers"
+        },
+        {
+            "name": "Gabinete Lúdico",
+            "image": "poggers"
+        },
+        {
+            "name": "Giochi Uniti",
+            "image": "poggers"
+        },
+        {
+            "name": "Lautapelit.fi",
+            "image": "poggers"
+        },
+        {
+            "name": "Lucky Duck Games",
+            "image": "poggers"
+        },
+        {
+            "name": "Rio Grande Games",
+            "image": "poggers"
+        }
+    ],
+    "artists": [
+        "Doris Matthäus",
+        "Stefan Sonnberger",
+        "Franz-Georg Stämmele"
+    ],
+    "complexity": 3.0339,
+    "minplayers": 2,
+    "maxplayers": 5,
+    "minage": 12,
+    "minplaytime": 60,
+    "maxplaytime": 120,
+    "score": 7.73298,
+    "numRatings": 27137,
+    "image": "https://cf.geekdo-images.com/GO282hlXR3RiknU5W4GZjg__original/img/TCTXvYRQGWMAngXuHZcIXRknfpc=/0x0/filters:format(png)/pic5373572.png",
+    "categories": [
+        {
+            "name": "Medieval"
+        },
+        {
+            "name": "Renaissance"
+        }
+    ]
+}
