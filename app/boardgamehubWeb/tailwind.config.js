@@ -11,7 +11,7 @@ module.exports = {
         'primary': '#3A786F',
         'secondary': '#AC3F4F',
         'accent': '#d82c2c',
-        'navbar': '#000000',
+        'navbar': '#1B1B1B',
         'designers': '#5C5657',
        },
        boxShadow: {
