@@ -13,17 +13,9 @@ services:
     ports:
       - "5433:5432"
     restart: unless-stopped
-  cassandra:
-    image: cassandra:4
-    ports:
-      - 9042:9042
-    volumes:
-      - ./resources:/resources
-      - ./boardgameshub/src/main/resources/init_keyspace.cql:/docker-entrypoint-initdb.d/init_keyspace.cql
   springboot:
     depends_on:
       - postgres
-      - cassandra
     build:
       context: ./boardgameshub
       dockerfile: Dockerfile
@@ -31,7 +23,7 @@ services:
       - ./boardgameshub:/app
       - ./.m2:/root/.m2
     working_dir: /app
-    command: sh -c "./wait-for-it.sh cassandra:9042 -t 70 && sh run.sh"
+    command: sh run.sh
     ports:
       - 8080:8080
       - 35729:35729

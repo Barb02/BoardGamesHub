@@ -1,10 +1,13 @@
 package com.pt.ua.boardgameshub.domain.jpa_domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,10 +23,12 @@ public class Price {
     @Column
     private double price;
 
-    private long game_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_id")
+    private Game game;
 
-    public long getGame() {
-        return game_id;
+    public Game getGame() {
+        return game;
     }
 
     public String getStore() {
@@ -34,8 +39,8 @@ public class Price {
         return price;
     }
 
-    public void setGame(long game_id) {
-        this.game_id = game_id;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public void setStore(String store) {

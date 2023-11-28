@@ -20,9 +20,9 @@ public class PriceController {
         this.priceService = priceService;
     }
 
-    @PutMapping("/price/{id}")
-    public Price updatePrice(@RequestBody Price price, @PathVariable long id){
-        Price newPrice = priceService.updatePrice(price, id);
+    @PutMapping("/price/{game_id}/{id}")
+    public Price updatePrice(@RequestBody Price price, @PathVariable long game_id, @PathVariable long id){
+        Price newPrice = priceService.updatePrice(price, game_id, id);
         if (newPrice != null) {
             return newPrice;
         }
