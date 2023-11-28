@@ -7,32 +7,22 @@ import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 import com.pt.ua.boardgameshub.service.jpa_service.PriceService;
 import com.pt.ua.boardgameshub.repository.jpa_repo.PriceRepository;
-import com.pt.ua.boardgameshub.repository.jpa_repo.GameRepository;
 
 @Service
 public class PriceServiceImpl implements PriceService{
     
     private final PriceRepository priceRepository;
-    private final GameRepository gameRepository;
 
     @Autowired
-    public PriceServiceImpl(PriceRepository priceRepository, GameRepository gameRepository) {
+    public PriceServiceImpl(PriceRepository priceRepository) {
         this.priceRepository = priceRepository;
-        this.gameRepository = gameRepository;
     }
 
     @Override
-    public Price updatePrice(Price newPrice, long game_id, long id) {
-        Game game = gameRepository.findById(game_id);
-        newPrice.setGame(game);
-        return priceRepository.findById(id)
-            .map(price -> {
-                price.setPrice(newPrice.getPrice());
-                return priceRepository.save(price);
-            })
-            .orElseGet(() -> {
-                return priceRepository.save(newPrice);
-            });
+    public Price addPrice(Price newPrice, Game game, long id) {
+        if (game != null) newPrice.setGame(game);
+        newPrice.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
+        return priceRepository.save(newPrice);
     }
 
     @Override

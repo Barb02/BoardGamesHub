@@ -1,5 +1,7 @@
 package com.pt.ua.boardgameshub.domain.jpa_domain;
 
+import java.sql.Timestamp;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +25,9 @@ public class Price {
     @Column
     private double price;
 
+    @Column
+    private Timestamp timestamp;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_id")
     private Game game;
@@ -39,6 +44,10 @@ public class Price {
         return price;
     }
 
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
     public void setGame(Game game) {
         this.game = game;
     }
@@ -49,5 +58,9 @@ public class Price {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 }

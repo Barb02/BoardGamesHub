@@ -3,9 +3,9 @@ package com.pt.ua.boardgameshub.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import com.pt.ua.boardgameshub.service.jpa_service.GameService;
@@ -32,8 +32,8 @@ public class GameController {
         }
     }
 
-    @GetMapping("/game")
-    public Game getGameById(@RequestParam(value = "id", defaultValue = "1") long id){
+    @GetMapping("/game/{id}")
+    public Game getGameById(@PathVariable long id){
         Game game = gameService.getGameById(id);
         if (game != null) {
             return game;
