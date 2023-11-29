@@ -1,6 +1,6 @@
 #!/bin/bash
 
-games_data=$(cat "src/main/resources/db/games_test.json")
+games_data=$(cat "src/main/resources/db/board_games.json")
 
 echo "$games_data" | jq -c '.[]' | while IFS= read -r game_object; do
     curl -X POST \
