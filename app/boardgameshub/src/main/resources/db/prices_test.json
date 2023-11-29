@@ -1,30 +1,58 @@
 [
     {
-        "store": "Worten",
+        "store":
+        {
+            "name": "Worten",
+            "id": 1
+        },
         "price": "149.00"
     },
     {
-        "store": "Fnac",
+        "store":
+        {
+            "name": "Fnac",
+            "id": 2
+        },
         "price": "85.00"
     },
     {
-        "store": "Amazon",
+        "store":
+        {
+            "name": "Amazon",
+            "id": 3
+        },
         "price": "40.00"
     },
     {
-        "store": "ZATU",
+        "store":
+        {
+            "name": "ZATU",
+            "id": 4
+        },
         "price": "70.00"
     },
     {
-        "store": "Worten",
+        "store":
+        {
+            "name": "Worten",
+            "id": 1
+        },
         "price": "49.00"
     },
     {
-        "store": "Fnac",
+        "store":
+        {
+            "name": "Fnac",
+            "id": 2
+        },
         "price": "18.00"
     },
     {
-        "store": "Amazon",
+        "store":
+        {
+            "name": "Amazon",
+            "id": 3
+        },
         "price": "39.95"
     }
 ]

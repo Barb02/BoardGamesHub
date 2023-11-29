@@ -1,6 +1,7 @@
 package com.pt.ua.boardgameshub.service.jpa_service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
@@ -19,7 +20,7 @@ public class PriceServiceImpl implements PriceService{
     }
 
     @Override
-    public Price addPrice(Price newPrice, Game game, long id) {
+    public Price addPrice(Price newPrice, Game game) {
         if (game != null) newPrice.setGame(game);
         newPrice.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
         return priceRepository.save(newPrice);
@@ -28,5 +29,10 @@ public class PriceServiceImpl implements PriceService{
     @Override
     public Price getPriceById(Long id) {
         return priceRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Price getPriceByStoreIdAndGameId(Long store_id, Long game_id) {
+        return priceRepository.findFirstByStoreIdAndGameId(store_id, game_id, Sort.by(Sort.Direction.DESC, "timestamp"));
     }
 }
