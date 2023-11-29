@@ -6,6 +6,13 @@ const gameService = {
     async getGame(id){
         return await client.get(`/game/${id}`)
     },
+<<<<<<< HEAD
+=======
+
+    async getLastPrices(id){
+        return await client.get(`/price/${id}`)
+    },
+>>>>>>> dev
 }
 
 export default gameService;

@@ -5,24 +5,32 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.pt.ua.boardgameshub.controller.request_body.CategoryRequest;
 
 @Entity
 @Table(name = "category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Game> games = new HashSet<>();
+
+    public Category(){
+
+    }
+
+    public Category(CategoryRequest cr){
+        this.id = cr.getId();        
+        this.name = cr.getName();
+    }
 
     public Long getId(){
         return id;

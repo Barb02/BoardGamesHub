@@ -1,5 +1,8 @@
 package com.pt.ua.boardgameshub.service.jpa_service;
 
-public class DesignerService {
-    
+import com.pt.ua.boardgameshub.domain.jpa_domain.Designer;
+
+public interface DesignerService {
+    public Designer getDesignerById(Long id);
+    public void addDesigner(Designer designer);
 }

@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./boardgameshub/src/main/resources/db/:/docker-entrypoint-initdb.d/
+      - ./boardgameshubSpring/src/main/resources/db/:/docker-entrypoint-initdb.d/
     ports:
       - "5433:5432"
     restart: unless-stopped
@@ -17,17 +17,33 @@ services:
     depends_on:
       - postgres
     build:
-      context: ./boardgameshub
+      context: ./boardgameshubSpring
       dockerfile: Dockerfile
     volumes:
-      - ./boardgameshub:/app
-      - ./.m2:/root/.m2
+      - ./boardgameshubSpring:/app
+      - ./boardgameshubSpring/.m2:/root/.m2
     working_dir: /app
     command: sh run.sh
     ports:
       - 8080:8080
       - 35729:35729
       - 5005:5005
+  web:
+    depends_on:
+        - postgres
+        - springboot
+    build:
+      context: ./boardgamehubWeb
+      dockerfile: .docker/dev/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - "./boardgamehubWeb/:/webApp"
+    ports:
+      - 3000:3000
+    command: >
+      bash -c "cp -rfu /cache/node_modules/. /webApp/node_modules/  
+      && npm start"
+
 volumes:
   pgdata:
     driver: local

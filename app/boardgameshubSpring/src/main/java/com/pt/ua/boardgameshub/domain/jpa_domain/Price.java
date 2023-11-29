@@ -17,10 +17,7 @@ import javax.persistence.Table;
 public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long store_id;
-
-    @Column
-    private String store;
+    private Long id;
 
     @Column
     private double price;
@@ -32,11 +29,19 @@ public class Price {
     @JoinColumn(name = "game_id")
     private Game game;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    public Long getId(){
+        return id;
+    }
+
     public Game getGame() {
         return game;
     }
 
-    public String getStore() {
+    public Store getStore() {
         return store;
     }
 
@@ -48,11 +53,15 @@ public class Price {
         return timestamp;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setGame(Game game) {
         this.game = game;
     }
 
-    public void setStore(String store) {
+    public void setStore(Store store) {
         this.store = store;
     }
 
