@@ -1,35 +1,15 @@
 
 [
     {
-        "store":
-        {
-            "name": "Worten",
-            "id": 1
-        },
         "price": "140.00"
     },
     {
-        "store":
-        {
-            "name": "Fnac",
-            "id": 2
-        },
         "price": "80.00"
     },
     {
-        "store":
-        {
-            "name": "Amazon",
-            "id": 3
-        },
         "price": "42.00"
     },
     {
-        "store":
-        {
-            "name": "ZATU",
-            "id": 4
-        },
         "price": "50.00"
     }
 ]

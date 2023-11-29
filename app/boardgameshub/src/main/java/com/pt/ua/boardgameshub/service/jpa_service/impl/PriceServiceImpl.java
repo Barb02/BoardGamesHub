@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
+import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
 import com.pt.ua.boardgameshub.service.jpa_service.PriceService;
 import com.pt.ua.boardgameshub.repository.jpa_repo.PriceRepository;
 
@@ -20,8 +21,9 @@ public class PriceServiceImpl implements PriceService{
     }
 
     @Override
-    public Price addPrice(Price newPrice, Game game) {
+    public Price addPrice(Price newPrice, Game game, Store store) {
         if (game != null) newPrice.setGame(game);
+        if (store != null) newPrice.setStore(store);
         newPrice.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
         return priceRepository.save(newPrice);
     }
