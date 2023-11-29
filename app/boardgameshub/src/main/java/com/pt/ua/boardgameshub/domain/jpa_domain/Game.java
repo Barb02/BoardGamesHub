@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.pt.ua.boardgameshub.controller.request_body.GameRequest;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
@@ -21,7 +24,7 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(columnDefinition="text")
@@ -30,21 +33,21 @@ public class Game {
     @Column(columnDefinition="text")
     private String description;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "designedBy", 
         joinColumns = @JoinColumn(name = "game_id"), 
         inverseJoinColumns = @JoinColumn(name = "designer_id"))
     private Set<Designer> designers = new HashSet<>();
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "publsihedBy", 
         joinColumns = @JoinColumn(name = "game_id"), 
         inverseJoinColumns = @JoinColumn(name = "publisher_id"))
     private Set<Publisher> publishers = new HashSet<>();
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "artBy", 
         joinColumns = @JoinColumn(name = "game_id"), 
@@ -81,12 +84,31 @@ public class Game {
     @Column
     private String[] images;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "categories_games", 
         joinColumns = @JoinColumn(name = "game_id"), 
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
+
+    public Game() {
+    }
+
+    public Game(GameRequest gamerequest) {
+        this.name = gamerequest.getName();
+        this.shortDescription = gamerequest.getShortDescription();
+        this.description = gamerequest.getDescription();
+        this.complexity = gamerequest.getComplexity();
+        this.minplayers = gamerequest.getMinplayers();
+        this.maxplayers = gamerequest.getMaxplayers();
+        this.minage = gamerequest.getMinage();
+        this.minplaytime = gamerequest.getMinplaytime();
+        this.maxplaytime = gamerequest.getMaxplaytime();
+        this.score = gamerequest.getScore();
+        this.numRatings = gamerequest.getNumRatings();
+        this.image = gamerequest.getImage();
+        this.images = gamerequest.getImages();
+    }
 
     public Long getId() {
         return id;

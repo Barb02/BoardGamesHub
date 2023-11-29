@@ -1,8 +1,6 @@
 package com.pt.ua.boardgameshub.domain.jpa_domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -11,14 +9,15 @@ import javax.persistence.Column;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.pt.ua.boardgameshub.controller.request_body.DeveloperRequest;
+
 @Entity
 @Table(name = "designer")
 public class Designer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column
@@ -26,6 +25,16 @@ public class Designer {
 
     @ManyToMany(mappedBy = "designers")
     private Set<Game> games = new HashSet<>();
+
+    public Designer(){
+
+    }
+
+    public Designer(DeveloperRequest dr){
+        this.id = dr.getId();        
+        this.name = dr.getName();
+        this.image = dr.getImage();
+    }
 
     public Long getId(){
         return id;
