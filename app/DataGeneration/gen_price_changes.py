@@ -2,6 +2,18 @@ import requests
 import random
 import json
 import time
+from confluent_kafka import Producer
+
+bootstrap_servers = 'localhost:9092'  # Replace with your Kafka broker's address
+producer = Producer({'bootstrap.servers': bootstrap_servers})
+topic = 'bgh'
+
+# Produce asynchronously
+def delivery_report(err, msg):
+    if err is not None:
+        print(f'Message delivery failed: {err}')
+    else:
+        print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
 
 NUM_GAMES = 2
 NUM_STORES = 4
@@ -15,6 +27,7 @@ while True:
     game_id = random.randint(1, NUM_GAMES)
     store_id = random.randint(1, NUM_STORES)
     r = requests.get("http://localhost:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
+    msg_json = "no message"
     if r.status_code == 200:
         change = random.choices(changes, weights=prob_weights, k=1)[0]
         print("Curr price:" + str(r.json()['price']))
@@ -26,6 +39,8 @@ while True:
         message['price'] = new_price
         msg_json = json.dumps(message)
         print(msg_json)
+
+    producer.produce(topic, value=msg_json, callback=delivery_report)
     time.sleep(DELAY)
 
 
