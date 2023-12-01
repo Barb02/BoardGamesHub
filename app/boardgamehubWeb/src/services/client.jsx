@@ -25,7 +25,6 @@ const client = axios.create({
 })
 
 client.interceptors.response.use(function (response){
-  
   return response.data; 
 
 }, function(error){

@@ -9,49 +9,34 @@ function Product() {
   const [showAllCats, setShowAllCats] = useState(false);
   const [showAllDes, setShowAllDes] = useState(false);
   const [showAllPubs, setShowAllPubs] = useState(false);
+  const [LowestPriceIndex,setLowestPriceIndex] = useState({});
 
   const [rdata, setRdata] = useState({});
-  const [prices,setPrice] = useState({});
-  const [dataload,setDataload] = useState(false);
-
-  const [visibleDesigners,setVisibleDesigners] = useState([]);
-  const [visiblePublishers,setVisiblePublishers] = useState([]);
-  const [visibleCategories,setVisibleCategories] = useState([]);
-  const [designers,setDesigners] = useState([]);
-  const [publishers,setPublishers] = useState([]);
-  const [categories,setCategories] = useState([]);
-  const [images,setImages] = useState([]);
-
-  const loadInfo = () =>{
-      setCategories(rdata.categories);
-      setDesigners(rdata.designers);
-      setPublishers(rdata.publishers);
-      setImages(rdata.images.slice(0, 4));
-      setVisibleCategories(showAllCats ? categories : categories.slice(0, 3));
-      setVisiblePublishers(showAllPubs ? publishers : publishers.slice(0, 3));
-      setVisibleDesigners(showAllDes ? designers : designers.slice(0, 3));
-  }
-  
+  const [rprices, setRprices] = useState([]);
+  const [dataload, setDataload] = useState(false);
+  const [priceload, setPriceload] = useState(false);
 
   useEffect(() => {
     gameService.getGame(id).then((data) => {
       setRdata(data || {});
       setDataload(true);
     });
-  },[]);
-
-  useEffect(() => {
-    gameService.getLastPrices(id).then((data) => {
-      console.log(data)
-      setRdata(data || []);
-    });
-  },[]);
+  }, []);
 
   useEffect(() =>{
-    if(dataload){
-      loadInfo();
-    }
-  },[showAllCats,showAllDes,showAllPubs,dataload]);
+    gameService.getLastPrices(id).then((data) => {
+      setRprices(data || []);
+      setPriceload(true);
+      var low = 0;
+      for (var index = 1; index < data.length; index++) {
+        if (parseInt(data[index].price) < parseInt(data[low].price)){
+          low = index;
+        }
+      }
+      setLowestPriceIndex(low)
+    });
+
+  },[])
 
   function abbrNum(number, decPlaces) {
     // 2 decimal places => 100, 3 => 1000, etc
@@ -70,7 +55,7 @@ function Product() {
         number = Math.round((number * decPlaces) / size) / decPlaces;
 
         // Handle special case where we round up to the next abbreviation
-        if (number == 1000 && i < abbrev.length - 1) {
+        if (number === 1000 && i < abbrev.length - 1) {
           number = 1;
           i++;
         }
@@ -89,7 +74,7 @@ function Product() {
   const scorePercentage = Math.round(rdata.score * 10) + "%";
 
   return (
-    <div className="w-full h-auto bg-background text-text font-text">
+    <div className="w-full h-auto text-text font-text">
       <div className="max-w-7xl mx-auto relative">
         {/* Product display area */}
         <div className="pt-[6%] flex">
@@ -108,16 +93,17 @@ function Product() {
             {/* Tags display area */}
             <h2 className="pt-[10%] text-lg mt-1 ml-1 mr-1">Tags</h2>
             <ul className="inline-block">
-              {visibleCategories.map((category, index) => (
-                <li
-                  key={index}
-                  className="bg-secondary inline-block w-auto mt-2 pr-1 pl-1 mr-2 rounded text-sm"
-                >
-                  {category.name}
-                </li>
-              ))}
+              {dataload &&
+                (showAllCats
+                  ? rdata.categories
+                  : rdata.categories.slice(0, 3)
+                ).map((category) => (
+                  <li className="bg-secondary inline-block w-auto mt-2 pr-1 pl-1 mr-2 rounded text-sm">
+                    {category.name}
+                  </li>
+                ))}
             </ul>
-            {categories.length > 3 && (
+            {dataload && rdata.categories.length > 3 && (
               <button
                 className="mt-2 text-text cursor-pointer text-xs"
                 onClick={() => setShowAllCats(!showAllCats)}
@@ -141,6 +127,7 @@ function Product() {
               <div className="inline-block pl-8 text-sm text-center">
                 Playtime
                 <p>
+                  {rdata.minplaytime}
                   {rdata.minplaytime}-{rdata.maxplaytime} min
                 </p>
               </div>
@@ -176,7 +163,7 @@ function Product() {
             <div className=" pb-[15%]">
               <h2 className="text-2xl">Current Lowest Price</h2>
               <div className="text-xl pt-[4%]">
-                10.99€{" "}
+                {priceload && rprices[LowestPriceIndex].price}
                 <img
                   className="inline-block rounded-3xl h-[36px] w-[84px]"
                   src={logo_worten}
@@ -188,17 +175,18 @@ function Product() {
               <h2 className="bg-designers pr-2 pl-2 inline-block rounded text-lg">
                 Designer
               </h2>
-              <ul className="inline-block">
-                {visibleDesigners.map((designer, index) => (
-                  <li
-                    key={index}
-                    className="inline-block w-auto pr-2 pl-2 mr-2 rounded text-sm"
-                  >
-                    {designer.name}
-                  </li>
-                ))}
+              <ul>
+                {dataload &&
+                  (showAllDes
+                    ? rdata.designers
+                    : rdata.designers.slice(0, 3)
+                  ).map((designer, index) => (
+                    <li className=" pt-2 w-auto pr-2 pl-2 mr-2 rounded text-sm">
+                      {designer.name}
+                    </li>
+                  ))}
               </ul>
-              {designers.length > 3 && (
+              {dataload && rdata.designers.length > 3 && (
                 <button
                   className="mt-2 pl-2 text-text cursor-pointer text-xs"
                   onClick={() => setShowAllDes(!showAllDes)}
@@ -213,16 +201,17 @@ function Product() {
                 Publisher
               </h2>
               <ul>
-                {visiblePublishers.map((publisher, index) => (
-                  <li
-                    key={index}
-                    className="w-auto ml-2 pt-[2%] rounded text-sm"
-                  >
-                    {publisher.name}
-                  </li>
-                ))}
+                {dataload &&
+                  (showAllPubs
+                    ? rdata.publishers
+                    : rdata.publishers.slice(0, 3)
+                  ).map((publisher, index) => (
+                    <li className="w-auto ml-2 pt-[2%] rounded text-sm">
+                      {publisher.name}
+                    </li>
+                  ))}
               </ul>
-              {publishers.length > 3 && (
+              {dataload && rdata.publishers.length > 3 && (
                 <button
                   className="mt-2 pl-2 text-text cursor-pointer text-xs"
                   onClick={() => setShowAllPubs(!showAllPubs)}
@@ -236,7 +225,7 @@ function Product() {
         {/* Product images display area */}
         <div className="w-full flex mt-[7%] pb-[10%] h-[300px]">
           <div className="flex justify-around ml-[1%] mr-[1%]">
-            {images.map((ik, index)=>(
+            {dataload && rdata.images.slice(0,4).map((ik, index) => (
               <img className="object-cover rounded-3xl w-[20%]" src={ik} />
             ))}
           </div>
