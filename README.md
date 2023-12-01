@@ -4,7 +4,7 @@ Web page with the intention of comparing board games prices across multiple web 
 
 Software used:
 * Frontend - Reactjs
-* API - python
+* API - SpringBoot
 * Backend - Postgresql
 * Repository - Github 
 * Backlog - Github
