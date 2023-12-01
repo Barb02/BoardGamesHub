@@ -4,9 +4,12 @@ import user_group_icon from "../../static/user_group_icon.svg";
 
 function ProductList() {
     function expandProductView(e) {
-        console.log(e.target.id);
-        e.target.style.display = 'none';
-        document.getElementById(e.target.id + "_hover").style.display = 'block';
+        let node = e.target;
+        while(node.id == ""){
+            node = node.parentNode;
+        }
+        node.style.display = 'none';
+        document.getElementById(node.id + "_hover").style.display = 'block';
       }
     
     const scorePercentage = Math.round(7.9 * 10) + "%";
