@@ -15,7 +15,7 @@ def delivery_report(err, msg):
     else:
         print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
 
-NUM_GAMES = 2
+NUM_GAMES = 1
 NUM_STORES = 4
 DELAY = 0.5 * 60
 
