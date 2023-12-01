@@ -22,7 +22,7 @@ echo "$prices_data" | jq -c '.[]' | while IFS= read -r price_object; do
     curl -X POST \
          -H "Content-Type: application/json" \
          -d "$price_object" \
-         "localhost:8080/api/v121/price/$gameid/$storeid"
+         "localhost:8080/api/v1/price/$gameid/$storeid"
 
     counter=$((counter + 1))
 done
