@@ -1,7 +1,6 @@
 function Homepage() {
     return (
-      <div className="w-full h-[900px] bg-black">
-        dadad
+      <div className="w-full h-auto">
       </div>
     );
   }
