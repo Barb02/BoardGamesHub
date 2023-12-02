@@ -2,11 +2,14 @@ import { CiSearch } from "react-icons/ci";
 import { TbFilterOff } from "react-icons/tb";
 import { IoIosArrowDown } from "react-icons/io";
 import { ProductList } from "../../components";
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 function Search() {
     const [search, setQuery] = useState("");
+    const [rquery, setRquery] = useState("");
+    const [rdataload, setDataLoad] = useState(false);
+    const navigate = useNavigate();
     
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
@@ -14,11 +17,21 @@ function Search() {
 
         if (query != null){
             setQuery(query || "");
+            setRquery(query || "");
+            setDataLoad(true);
         }
 
     }, []);
 
-    
+    const handleSearch = (e) => {
+        setQuery(e.target[0].value)
+        navigate(`/search?query=${encodeURI(search)}`);
+    }
+
+    const handleChange = (e) => {
+        setRquery(e.target.value || "");
+    }
+
     return (
       <div className="w-full h-auto text-text font-text">
         <div className="pt-[3%]">
@@ -27,8 +40,8 @@ function Search() {
             </div>
             <div className="max-w-5xl mx-auto">
                 <div className="bg-searchDivBackground h-14 rounded-t-xl flex items-center">
-                    <Form className="flex w-full h-full items-center" method="get" action="/search">
-                        <input value={ search } onChange={(e) => setQuery(e.target.value)} name="q" className="ml-5 mr-3 pl-4 text-xl text-black bg-searchBackground rounded-md w-[60%] h-[70%] outline-none shadow-innerSearch" autocomplete="off"></input>
+                    <Form className="flex w-full h-full items-center" method="get" action="/search" onSubmit={(e) => handleSearch(e)}>
+                        <input value={rquery} onChange={(e) => handleChange(e)} name="q" className="ml-5 mr-3 pl-4 text-xl text-black bg-searchBackground rounded-md w-[60%] h-[70%] outline-none shadow-innerSearch" autoComplete="off"></input>
                         <button className="flex rounded-xl p-4 pt-2 pb-2 bg-primary ">
                             Search
                             <span className="pl-1 self-center"><CiSearch /></span>

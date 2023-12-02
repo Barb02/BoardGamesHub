@@ -4,7 +4,7 @@ function Login() {
     return(
         <div className="w-full h-full text-text font-text">
             <div className="h-full w-full absolute z-0 opacity-5">
-                <img className="h-[50%] mx-auto mt-[3%]" src={logo}></img>
+                <img alt="background_logo" className="h-[50%] mx-auto mt-[3%]" src={logo}></img>
             </div>
             <div className="pt-[11%] text-xl max-w-md mx-auto flex flex-col">
                 <div className="flex flex-col z-10">
