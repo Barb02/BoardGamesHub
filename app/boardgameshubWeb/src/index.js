@@ -5,6 +5,7 @@ import Layout from './pages/Layout';
 import Homepage from './pages/Homepage';
 import Search from './pages/Search';
 import Product from './pages/Product';
+import Login from './pages/Login';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element:<Homepage/>},
       { path: "/search", element:<Search/>},
-      { path: "/product/:id", element:<Product/>}
+      { path: "/product/:id", element:<Product/>},
+      { path: "/login", element:<Login/>}
     ]
   },
 ]);
