@@ -1,5 +1,8 @@
 package com.pt.ua.boardgameshub.service.jpa_service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /* import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -38,6 +41,16 @@ public class GameServiceImpl implements GameService{
     @Override
     public Game getGameById(Long id){
         return gameRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Game> getFilterdGames(String filter){
+        List<Game> games = gameRepository.findAllByOrderByIdAsc();
+        List<Game> filteredGames = games
+        .stream()
+        .filter(p -> p.getName().contains(filter))
+        .collect(Collectors.toList());
+        return filteredGames;
     }
 
     /* @Override
