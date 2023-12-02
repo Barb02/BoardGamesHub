@@ -2,6 +2,7 @@ package com.pt.ua.boardgameshub.controller;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +12,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import com.pt.ua.boardgameshub.service.jpa_service.*;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.pt.ua.boardgameshub.controller.request_body.*;
 import com.pt.ua.boardgameshub.domain.jpa_domain.*;
+
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -38,6 +49,11 @@ public class GameController {
         this.categoryService = categoryService;
     }
 
+    @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Game was created",
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
+            @ApiResponse(responseCode = "500", description = "Couldn't add game (manual)", content = @Content)})
     @PostMapping("game/manual")
     public Game addGameManual(@RequestBody GameRequest gamerequest){
         Game game = new Game(gamerequest);
@@ -102,6 +118,11 @@ public class GameController {
         }
     }
 
+    @Operation(summary = "Get a game by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
+            @ApiResponse(responseCode = "404", description = "Game not found", content = @Content)})
     @GetMapping("game/{id}")
     public Game getGameById(@PathVariable long id){
         Game game = gameService.getGameById(id);
@@ -110,6 +131,22 @@ public class GameController {
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
+        }
+    }
+
+    @Operation(summary = "Get all games filtered by search query")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
+            @ApiResponse(responseCode = "404", description = "Games not found", content = @Content)})
+    @GetMapping("game")
+    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String filter){
+        List<Game> games = gameService.getFilterdGames(filter);
+        if (games != null) {
+            return games;
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
         }
     }
 

@@ -6,8 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 
+import java.util.List;
+
 @EnableJpaRepositories(basePackages = { "com.pt.ua.boardgameshub.repository.jpa_repo" })
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
     Game findById(long id);
+    List<Game> findAllByOrderByIdAsc();
 }

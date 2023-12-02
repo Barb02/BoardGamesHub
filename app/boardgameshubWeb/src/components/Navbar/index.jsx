@@ -23,7 +23,7 @@ const Navbar = () => {
                       <input onChange={(e) => setQuery(e.target.value)} name="q" type="text" className="ml-2 text-black w-auto outline-none" placeholder="Search..." autocomplete="off"></input>
                     </form>
                   </div>
-                  <button className="rounded-xl flex p-4 pt-2 pb-2 mr-4 justify-center items-center bg-primary text-text">Login</button>
+                  <Link to="/login"><button className="rounded-xl flex p-4 pt-2 pb-2 mr-4 justify-center items-center bg-primary text-text">Login</button></Link>
                   <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">Register</button>
                 </div>
             </div>

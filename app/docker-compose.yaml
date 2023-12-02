@@ -33,11 +33,11 @@ services:
         - postgres
         - springboot
     build:
-      context: ./boardgamehubWeb
+      context: ./boardgameshubWeb
       dockerfile: .docker/dev/Dockerfile
     restart: unless-stopped
     volumes:
-      - "./boardgamehubWeb/:/webApp"
+      - "./boardgameshubWeb/:/webApp"
     ports:
       - 3000:3000
     command: >
