@@ -13,10 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
 import com.pt.ua.boardgameshub.service.jpa_service.*;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.pt.ua.boardgameshub.controller.request_body.*;
 import com.pt.ua.boardgameshub.domain.jpa_domain.*;
+
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -38,6 +46,11 @@ public class GameController {
         this.categoryService = categoryService;
     }
 
+    @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Game was created",
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
+            @ApiResponse(responseCode = "500", description = "Couldn't add game (manual)", content = @Content)})
     @PostMapping("game/manual")
     public Game addGameManual(@RequestBody GameRequest gamerequest){
         Game game = new Game(gamerequest);
@@ -102,6 +115,11 @@ public class GameController {
         }
     }
 
+    @Operation(summary = "Get a game by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
+            @ApiResponse(responseCode = "404", description = "Game not found", content = @Content)})
     @GetMapping("game/{id}")
     public Game getGameById(@PathVariable long id){
         Game game = gameService.getGameById(id);
