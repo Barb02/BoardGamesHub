@@ -1,6 +1,6 @@
-import { createClient } from "./client";
+import client from "./client";
 
-const client = createClient("localhost:8080/api/v1")
+//const client = createClient("http://localhost:8080/api/v1/")
 
 const gameService = {
     async getGame(id){
