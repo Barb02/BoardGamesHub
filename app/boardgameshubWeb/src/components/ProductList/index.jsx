@@ -6,9 +6,11 @@ import { Link } from 'react-router-dom';
 
 function ProductList({ query }) {
     const [rdata, setRdata] = useState([]);
+    const [rprices, setRprices] = useState([]);
     const [rdataload, setDataLoad] = useState(false);
     const isFirstRun = useRef(true);
     const isSecondRun = useRef(true);
+    const dic = [];
 
     function expandProductView(e) {
         let node = e.target;
@@ -20,7 +22,6 @@ function ProductList({ query }) {
     }
 
     useEffect(() => {
-        const map = new Map();
         if (isFirstRun.current) {
             isFirstRun.current = false;
             return;
@@ -31,24 +32,20 @@ function ProductList({ query }) {
         }
         gameService.getGames(query).then((data) => {
             setRdata(data || []);
+            for (let index = 0; index < data.length; index++) {
+                gameService.getLowestPrice(data[index].id).then((data) => {
+                    dic[index] = data;
+                });
+            }
+            setRprices(dic || []);
             setDataLoad(true);
-            getAllPrices(data, map);
         });
     }, [query]);
 
-    function getAllPrices(data, map){
-        for (let index = 0; index < data.length; index++) {
-            gameService.getLastPrices(1).then((data) => {
-                map.set(index, data);
-            });
-            //map.set(data[index].id, gameService.getLastPrices(data[index].id).then((data)));
-            console.log(map);
-        }
-    }
 
     return (
         <div className="max-w-5xl mx-auto pt-5 pb-4">
-            {rdataload && rdata.map((game) => (
+            {rdataload && rdata.map((game, index) => (
                 <Link to={`/product/${game.id}`}>
                     <div id={game.id} className="flex rounded-xl w-full h-[80px] bg-searchProductBackground mb-4" onMouseOver={expandProductView}>
                         <img alt="boardgame_cover" className="object-cover self-center ml-3 rounded-lg h-[70%] w-[120px]" src={game.image} />
@@ -67,7 +64,7 @@ function ProductList({ query }) {
                                     <div className={`bg-primary h-1.5 rounded-full`} style={{ width: `${Math.round(game.score * 10) + "%"}` }}></div>
                                 </div>
                             </div>
-                            <span className="float-right text-2xl self-center ml-4 mr-5">54,99$</span>
+                            <span className="float-right text-2xl self-center ml-4 mr-5">{/* PRICES WOULD BE HERE IF I COULD BLOODY GET IT TO WORK */}</span>
                         </div>
                     </div>
                     
