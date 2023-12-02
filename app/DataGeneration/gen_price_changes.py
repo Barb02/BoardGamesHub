@@ -4,7 +4,20 @@ import json
 import time
 from confluent_kafka import Producer
 
-bootstrap_servers = 'localhost:9092'  # Replace with your Kafka broker's address
+def check_game_endpoint():
+    url = 'http://springboot:8080/api/v1/game/1'
+
+    while(True):
+        try:
+            response = requests.get(url)
+            break
+        except requests.RequestException as e:
+            print("Not Available")
+        time.sleep(10)
+
+check_game_endpoint()
+
+bootstrap_servers = 'kafka:29092'  # Replace with your Kafka broker's address
 producer = Producer({'bootstrap.servers': bootstrap_servers})
 topic = 'bgh'
 
@@ -15,9 +28,9 @@ def delivery_report(err, msg):
     else:
         print(f'Message delivered to {msg.topic()} [{msg.partition()}]')
 
-NUM_GAMES = 1
+NUM_GAMES = 50
 NUM_STORES = 4
-DELAY = 0.5 * 60
+DELAY = 30
 
 changes = [0.95, 1.005, 0.9, 1.1, 0.8, 1.2, 0.7, 1.3, 0.6, 1.4, 0.5, 1.5, 0.4, 1.6, 0.3, 1.7, 0.2, 1.8]
 prob_weights = [50, 50, 30, 30, 30, 30, 20, 20, 20, 20, 5, 5, 5, 5, 1, 1, 1, 1]
@@ -26,21 +39,18 @@ message = {}
 while True:
     game_id = random.randint(1, NUM_GAMES)
     store_id = random.randint(1, NUM_STORES)
-    r = requests.get("http://localhost:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
+    r = requests.get("http://springboot:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
     msg_json = "no message"
     if r.status_code == 200:
         change = random.choices(changes, weights=prob_weights, k=1)[0]
-        print("Curr price:" + str(r.json()['price']))
         new_price = r.json()['price'] * change
-        print("Change:" + str(change))
-        print("New price:" + str(new_price))
         message['game_id'] = game_id
         message['store_id'] = store_id
         message['price'] = new_price
         msg_json = json.dumps(message)
-        print(msg_json)
-
+        
     producer.produce(topic, value=msg_json, callback=delivery_report)
+    print("Price Change Sent",msg_json)
     time.sleep(DELAY)
 
 

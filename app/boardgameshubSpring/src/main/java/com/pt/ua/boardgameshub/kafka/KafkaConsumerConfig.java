@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.config;
+package com.pt.ua.boardgameshub.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

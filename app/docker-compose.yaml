@@ -48,7 +48,6 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka
-    container_name: boardgameshub-kafka
     ports:
       - "9092:9092"
       - "29092:29092"
@@ -64,12 +63,19 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper
-    container_name: boardgameshub-zookeeper
     ports:
       - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+
+  python_script:
+    image: python:3.9
+    volumes:
+      - ./DataGeneration:/app 
+    working_dir: /app
+    command: >
+      bash -c "pip install -r requirements.txt && python3 -u gen_price_changes.py"
 
 volumes:
   pgdata:
