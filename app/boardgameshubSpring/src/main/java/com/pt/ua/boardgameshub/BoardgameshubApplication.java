@@ -97,7 +97,7 @@ public class BoardgameshubApplication {
     public void loadPrices() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("db/prices_test.json");
+            InputStream inputStream = classLoader.getResourceAsStream("db/prices.json");
 
             if (inputStream != null) {
                 byte[] bytes = inputStream.readAllBytes();
