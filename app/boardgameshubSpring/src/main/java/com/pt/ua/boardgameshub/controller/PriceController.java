@@ -14,6 +14,12 @@ import org.springframework.web.server.ResponseStatusException;
 import com.pt.ua.boardgameshub.service.jpa_service.PriceService;
 import com.pt.ua.boardgameshub.service.jpa_service.GameService;
 import com.pt.ua.boardgameshub.service.jpa_service.StoreService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.*;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
@@ -37,25 +43,36 @@ public class PriceController {
         this.storeService = storeService;
     }
 
+    @Operation(summary = "Add a new price for a game in the specified store")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Created",
+            content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Price.class)))}),
+            @ApiResponse(responseCode = "404", description = "Game or store not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Couldn't add price", content = @Content)})
     @PostMapping("price/{game_id}/{store_id}")
     public Price addPrice(@RequestBody Price price, @PathVariable long game_id, @PathVariable long store_id){
         Game game = gameService.getGameById(game_id);
         Store store = storeService.getStoreById(store_id);
         if (game == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
         if (store == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
         }
         Price newPrice = priceService.addPrice(price, game, store);
         if (newPrice != null) {
             return newPrice;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't add price.");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't add game (manual)");
         }
     }
 
+    @Operation(summary = "Get current price for a game in the specified store")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Price.class))}),
+            @ApiResponse(responseCode = "404", description = "Price not found", content = @Content)})
     @GetMapping("price/{game_id}/{store_id}")
     public Price getCurrentPrice(@PathVariable long game_id, @PathVariable long store_id){
         Price price = priceService.getPriceByStoreIdAndGameId(store_id, game_id);
@@ -63,10 +80,15 @@ public class PriceController {
             return price;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found");
         }
     }
 
+    @Operation(summary = "Get current prices for a game in all stores")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+            content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Price.class)))}),
+            @ApiResponse(responseCode = "404", description = "Prices not found", content = @Content)})
     @GetMapping("price/{game_id}")
     public List<Price> getCurrentPrices(@PathVariable long game_id){
         List<Store> stores = storeService.getStores();
@@ -79,7 +101,7 @@ public class PriceController {
             return prices;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prices not found");
         }
     }
 }
