@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
+import com.pt.ua.boardgameshub.controller.response_body.PriceResponse;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
 
@@ -74,10 +75,11 @@ public class PriceController {
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Price.class))}),
             @ApiResponse(responseCode = "404", description = "Price not found", content = @Content)})
     @GetMapping("price/{game_id}/{store_id}")
-    public Price getCurrentPrice(@PathVariable long game_id, @PathVariable long store_id){
+    public PriceResponse getCurrentPrice(@PathVariable long game_id, @PathVariable long store_id){
         Price price = priceService.getPriceByStoreIdAndGameId(store_id, game_id);
+        PriceResponse priceResponse = new PriceResponse(price);
         if (price != null) {
-            return price;
+            return priceResponse;
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found");
@@ -90,12 +92,13 @@ public class PriceController {
             content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Price.class)))}),
             @ApiResponse(responseCode = "404", description = "Prices not found", content = @Content)})
     @GetMapping("price/{game_id}")
-    public List<Price> getCurrentPrices(@PathVariable long game_id){
+    public List<PriceResponse> getCurrentPrices(@PathVariable long game_id){
         List<Store> stores = storeService.getStores();
-        List<Price> prices = new ArrayList<>();
+        List<PriceResponse> prices = new ArrayList<>();
         for (Store store : stores) {
             Price price = priceService.getPriceByStoreIdAndGameId(store.getId(), game_id);
-            prices.add(price);
+            PriceResponse priceResponse = new PriceResponse(price);
+            prices.add(priceResponse);
         }
         if ( ! prices.isEmpty()) {
             return prices;
