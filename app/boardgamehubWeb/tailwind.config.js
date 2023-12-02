@@ -20,6 +20,7 @@ module.exports = {
         'searchProductBackground': '#2F0909', 
         'searchProductDefault': '#582C2C',
         'searchProductBackgroundHover': '#A10018',
+        'loginInput': '#D9D9D9',
        },
        boxShadow: {
         'image': '8px 14px 7px 5px rgba(0, 0, 0, 0.5)',
