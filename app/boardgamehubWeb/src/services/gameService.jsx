@@ -10,6 +10,10 @@ const gameService = {
     async getLastPrices(id){
         return await client.get(`/price/${id}`)
     },
+
+    async getGames(query){
+        return await client.get(`/game/${query}`)
+    }
 }
 
 export default gameService;
