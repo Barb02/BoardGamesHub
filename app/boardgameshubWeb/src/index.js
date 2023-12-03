@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import Search from './pages/Search';
 import Product from './pages/Product';
 import Login from './pages/Login';
+import Wishlist from './pages/Wishlist';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
       { path: "/", element:<Homepage/>},
       { path: "/search", element:<Search/>},
       { path: "/product/:id", element:<Product/>},
-      { path: "/login", element:<Login/>}
+      { path: "/login", element:<Login/>},
+      { path: "/wishlist", element:<Wishlist/>},
     ]
   },
 ]);
