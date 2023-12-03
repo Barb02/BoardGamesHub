@@ -1,16 +1,13 @@
 import user_group_icon from "../../static/user_group_icon.svg";
 import gameService from "../../services/gameService";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 
 function ProductList({ query }) {
     const [rdata, setRdata] = useState([]);
-    const [rprices, setRprices] = useState([]);
+    const [rprices, setRprices] = useState();
     const [rdataload, setDataLoad] = useState(false);
-    const isFirstRun = useRef(true);
-    const isSecondRun = useRef(true);
-    const dic = [];
 
     function expandProductView(e) {
         let node = e.target;
@@ -22,25 +19,25 @@ function ProductList({ query }) {
     }
 
     useEffect(() => {
-        if (isFirstRun.current) {
-            isFirstRun.current = false;
-            return;
+        if (query){
+            gameService.getGames(query).then((data) => {
+                setRdata(data || []);
+
+                const promises = data.map((game) => {
+                    return gameService.getLowestPrice(game.id).then((datas) => datas.price);
+                })
+
+                Promise.all(promises).then((prices) => {     
+                    setRprices(prices || []);
+                    setDataLoad(true);
+                }); 
+            });   
         }
-        if (isSecondRun.current) {
-            isSecondRun.current = false;
-            return;
-        }
-        gameService.getGames(query).then((data) => {
-            setRdata(data || []);
-            for (let index = 0; index < data.length; index++) {
-                gameService.getLowestPrice(data[index].id).then((data) => {
-                    dic[index] = data;
-                });
-            }
-            setRprices(dic || []);
-            setDataLoad(true);
-        });
     }, [query]);
+
+    function getPrice(index) {
+        return rprices[index];
+    }
 
 
     return (
@@ -64,7 +61,7 @@ function ProductList({ query }) {
                                     <div className={`bg-primary h-1.5 rounded-full`} style={{ width: `${Math.round(game.score * 10) + "%"}` }}></div>
                                 </div>
                             </div>
-                            <span className="float-right text-2xl self-center ml-4 mr-5">{/* PRICES WOULD BE HERE IF I COULD BLOODY GET IT TO WORK */}</span>
+                            <span className="float-right text-2xl self-center ml-4 mr-5">{ getPrice(index) }$</span>
                         </div>
                     </div>
                     
@@ -107,7 +104,7 @@ function ProductList({ query }) {
                                     <div className={`bg-primary h-1.5 rounded-full`} style={{ width: `${Math.round(game.score * 10) + "%"}` }}></div>
                                 </div>
                             </div>
-                            <span className="float-right text-2xl self-center ml-4 mr-5">54,99$</span>
+                            <span className="float-right text-2xl self-center ml-4 mr-5">{ getPrice(index) }$</span>
                         </div>
                     </div>
                     <div className="w-full h-[50%]">

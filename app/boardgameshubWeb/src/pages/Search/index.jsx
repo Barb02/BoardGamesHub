@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 function Search() {
     const [search, setQuery] = useState("");
     const [rquery, setRquery] = useState("");
-    const [rdataload, setDataLoad] = useState(false);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -18,7 +17,6 @@ function Search() {
         if (query != null){
             setQuery(query || "");
             setRquery(query || "");
-            setDataLoad(true);
         }
 
     }, []);
