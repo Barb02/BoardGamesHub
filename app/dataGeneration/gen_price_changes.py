@@ -5,7 +5,7 @@ import time
 from confluent_kafka import Producer
 
 def check_game_endpoint():
-    url = 'http://springboot:8080/api/v1/game/1'
+    url = 'http://springboot:8080/api/v1/price/1/1'
 
     while(True):
         try:
@@ -40,7 +40,6 @@ while True:
     game_id = random.randint(1, NUM_GAMES)
     store_id = random.randint(1, NUM_STORES)
     r = requests.get("http://springboot:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
-    msg_json = "no message"
     if r.status_code == 200:
         change = random.choices(changes, weights=prob_weights, k=1)[0]
         new_price = r.json()['price'] * change
@@ -49,8 +48,8 @@ while True:
         message['price'] = new_price
         msg_json = json.dumps(message)
         
-    producer.produce(topic, value=msg_json, callback=delivery_report)
-    print("Price Change Sent",msg_json)
+        producer.produce(topic, value=msg_json, callback=delivery_report)
+        print("Price Change Sent",msg_json)
     time.sleep(DELAY)
 
 

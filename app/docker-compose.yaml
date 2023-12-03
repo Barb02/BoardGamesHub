@@ -72,7 +72,7 @@ services:
   python_script:
     image: python:3.9
     volumes:
-      - ./DataGeneration:/app 
+      - ./dataGeneration:/app 
     working_dir: /app
     command: >
       bash -c "pip install -r requirements.txt && python3 -u gen_price_changes.py"
