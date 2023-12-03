@@ -48,7 +48,7 @@ public class GameServiceImpl implements GameService{
         List<Game> games = gameRepository.findAllByOrderByIdAsc();
         List<Game> filteredGames = games
         .stream()
-        .filter(p -> p.getName().contains(filter))
+        .filter(p -> p.getName().toLowerCase().contains(filter.toLowerCase()))
         .collect(Collectors.toList());
         return filteredGames;
     }
