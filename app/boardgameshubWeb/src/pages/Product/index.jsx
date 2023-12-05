@@ -251,17 +251,11 @@ function Product() {
         {/* Product images display area */}
         <div className="w-full flex mt-[7%] pb-[10%] h-[300px]">
           <div className="flex justify-around ml-[1%] mr-[1%]">
-            {dataload &&
-              rdata.images
-                .slice(0, 4)
-                .map((ik, index) => (
+            {dataload && rdata.images.slice(0, 4).map((ik, index) => (
                   <img className="object-cover rounded-3xl w-[20%]" src={ik} />
                 ))}
           </div>
         </div>
-
-        {/* Graph area */}
-        <div className=""></div>
       </div>
       {/* display bottom part */}
       <div className="flex max-w-7xl mx-auto">
