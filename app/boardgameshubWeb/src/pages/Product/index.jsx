@@ -77,7 +77,7 @@ function Product() {
 
   return (
     <div className=" relative w-full h-auto text-text font-text overflow-hidden">
-      {<Notification className={"transition absolute right-1 w-[20%]"} text={"woof Bogga doof"} time={2} closeFunct={()=>setNotification(false)} varg={noti}/>}
+      {<Notification className={"transition absolute right-1 w-[20%]"} text={"woof Bogga doof"} time={2} closeFunct={()=>setNotification(false)} boolToappear={noti}/>}
       <div className="max-w-7xl mx-auto relative">
         {/* Product display area */}
         <div className="pt-[6%] flex">
