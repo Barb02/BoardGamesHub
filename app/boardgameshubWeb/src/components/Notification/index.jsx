@@ -2,17 +2,17 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 
-function Notification({ className, text,time,closeFunct,varg }) {
+function Notification({ className, text,time,closeFunct,boolToappear }) {
 
     useEffect(()=>{
         const timer = setTimeout(()=>{closeFunct()},(time)*1000)
 
         return () => clearTimeout(timer);
-    },[varg])
+    },[boolToappear])
 
   return (
     <AnimatePresence>
-      {varg &&<motion.div className={className} 
+      {boolToappear &&<motion.div className={className} 
           initial={{x:900}}
           animate={{x:0}}
           exit={{x:900}}
