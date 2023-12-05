@@ -3,6 +3,7 @@ import logo_worten from "../../static/logo_worten.jpg";
 import React, { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
 import { useParams } from "react-router-dom";
+import { Notification } from "../../components";
 
 function Product() {
   let { id } = useParams();
@@ -10,6 +11,7 @@ function Product() {
   const [showAllDes, setShowAllDes] = useState(false);
   const [showAllPubs, setShowAllPubs] = useState(false);
   const [LowestPriceIndex,setLowestPriceIndex] = useState({});
+  const [noti,setNotification] = useState(false);
 
   const [rdata, setRdata] = useState({});
   const [rprices, setRprices] = useState([]);
@@ -74,7 +76,8 @@ function Product() {
   const scorePercentage = Math.round(rdata.score * 10) + "%";
 
   return (
-    <div className="w-full h-auto text-text font-text">
+    <div className=" relative w-full h-auto text-text font-text overflow-hidden">
+      {<Notification className={"transition absolute right-1 w-[20%]"} text={"woof Bogga doof"} time={2} closeFunct={()=>setNotification(false)} varg={noti}/>}
       <div className="max-w-7xl mx-auto relative">
         {/* Product display area */}
         <div className="pt-[6%] flex">
