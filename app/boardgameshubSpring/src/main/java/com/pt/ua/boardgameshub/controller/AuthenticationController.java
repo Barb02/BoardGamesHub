@@ -31,7 +31,7 @@ public class AuthenticationController {
     @Operation(summary = "Signup the given user to the website")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User was registered",
-            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ResponseEntity.class))}),
             @ApiResponse(responseCode = "500", description = "Couldn't register user", content = @Content)})
     @PostMapping("/signup")
     public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest request) {
@@ -41,7 +41,7 @@ public class AuthenticationController {
     @Operation(summary = "Signin to the website with the credentials provided")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User is signed in",
-            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ResponseEntity.class))}),
             @ApiResponse(responseCode = "500", description = "Couldn't sign-in user", content = @Content)})
     @PostMapping("/signin")
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SignInRequest request) {
