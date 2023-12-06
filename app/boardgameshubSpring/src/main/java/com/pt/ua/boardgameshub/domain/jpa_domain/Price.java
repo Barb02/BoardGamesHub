@@ -25,11 +25,11 @@ public class Price {
     @Column
     private Timestamp timestamp;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "game_id")
     private Game game;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "store_id")
     private Store store;
 
