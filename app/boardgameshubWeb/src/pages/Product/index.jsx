@@ -42,7 +42,7 @@ function Product() {
 
   const [rdata, setRdata] = useState({});
   const [rprices, setRprices] = useState([]);
-  const [lowesPrice,setLowestPrice] = useState({price:2});
+  const [lowesPrice,setLowestPrice] = useState({});
   const [dataload, setDataload] = useState(false);
   const [priceload, setPriceload] = useState(false);
   const [lowesPriceLoad,setLowestPriceLoad] = useState(false);
@@ -57,7 +57,7 @@ function Product() {
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
       console.log(data.price,lowesPrice.price)
-      if (checkUpdate && lowesPrice.price != data.price){
+      if (checkUpdate && (lowesPrice.price != data.price || lowesPrice.store.name != data.store.name)){
         setNotification(true);
       }
       setLowestPrice(data || {})
