@@ -30,14 +30,14 @@ def delivery_report(err, msg):
 
 NUM_GAMES = 50
 NUM_STORES = 4
-DELAY = 30
+DELAY = 5
 
 changes = [0.95, 1.005, 0.9, 1.1, 0.8, 1.2, 0.7, 1.3, 0.6, 1.4, 0.5, 1.5, 0.4, 1.6, 0.3, 1.7, 0.2, 1.8]
 prob_weights = [50, 50, 30, 30, 30, 30, 20, 20, 20, 20, 5, 5, 5, 5, 1, 1, 1, 1]
 message = {}
 
 while True:
-    game_id = random.randint(1, NUM_GAMES)
+    game_id = 1
     store_id = random.randint(1, NUM_STORES)
     r = requests.get("http://springboot:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
     if r.status_code == 200:
