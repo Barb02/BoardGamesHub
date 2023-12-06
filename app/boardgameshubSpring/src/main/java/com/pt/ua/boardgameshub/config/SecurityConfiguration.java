@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.pt.ua.boardgameshub.service.jpa_service.UserService;
+import com.pt.ua.boardgameshub.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 

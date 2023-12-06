@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.pt.ua.boardgameshub.service.jpa_service.*;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,8 +23,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+import com.pt.ua.boardgameshub.service.*;
 import com.pt.ua.boardgameshub.dao.request_body.*;
-import com.pt.ua.boardgameshub.domain.jpa_domain.*;
+import com.pt.ua.boardgameshub.domain.*;
 
 
 @CrossOrigin(maxAge = 3600)
@@ -84,8 +83,7 @@ public class GameController {
         Set<Artist> artists = new HashSet<>();
         for(ArtistRequest artist: gamerequest.getArtists()){
             if (artistService.getArtistById(artist.getId()) == null){
-                Artist newArtist = new Artist(artist);
-                artistService.addArtist(newArtist);
+                Artist newArtist = artistService.addArtist(artist);
                 artists.add(newArtist);
             }
             else{

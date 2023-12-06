@@ -12,8 +12,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.pt.ua.boardgameshub.service.jpa_service.JwtService;
-import com.pt.ua.boardgameshub.service.jpa_service.UserService;
+import com.pt.ua.boardgameshub.service.JwtService;
+import com.pt.ua.boardgameshub.service.UserService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
