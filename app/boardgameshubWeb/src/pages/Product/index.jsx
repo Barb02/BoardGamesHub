@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
 import { useParams } from "react-router-dom";
 import { Notification,PricesGraph } from "../../components";
+import { useInterval } from "../../hooks";
 
 function Product() {
   const data = [
@@ -36,14 +37,15 @@ function Product() {
   const [showAllDes, setShowAllDes] = useState(false);
   const [showAllPubs, setShowAllPubs] = useState(false);
 
-  const [LowestPriceIndex,setLowestPriceIndex] = useState({});
-  const [noti,setNotification] = useState(false);
+  const [notification,setNotification] = useState(false);
   const [extra, setExtra] = useState("Description");
 
   const [rdata, setRdata] = useState({});
   const [rprices, setRprices] = useState([]);
+  const [lowesPrice,setLowestPrice] = useState({});
   const [dataload, setDataload] = useState(false);
   const [priceload, setPriceload] = useState(false);
+  const [lowesPriceLoad,setLowestPriceLoad] = useState(false);
 
   useEffect(() => {
     gameService.getGame(id).then((data) => {
@@ -52,17 +54,31 @@ function Product() {
     });
   }, []);
 
+  const loadLowestPrice = (id,checkUpdate)=>{
+    gameService.getLowestPrice(id).then((data)=>{
+      console.log(data.price,lowesPrice.price)
+      if (checkUpdate && (lowesPrice.price != data.price || lowesPrice.store.name != data.store.name)){
+        setNotification(true);
+      }
+      setLowestPrice(data || {})
+      setLowestPriceLoad(true)
+    })
+  }
+
+  
+  useInterval(()=>{
+    if(lowesPriceLoad){
+      loadLowestPrice(id,true)
+    }else{
+      loadLowestPrice(id,false)
+    }
+  },2000)
+
+
   useEffect(() => {
     gameService.getLastPrices(id).then((data) => {
       setRprices(data || []);
       setPriceload(true);
-      var low = 0;
-      for (var index = 1; index < data.length; index++) {
-        if (parseInt(data[index].price) < parseInt(data[low].price)) {
-          low = index;
-        }
-      }
-      setLowestPriceIndex(low);
     });
   }, []);
 
@@ -103,7 +119,7 @@ function Product() {
 
   return (
     <div className=" relative w-full h-auto text-text font-text overflow-hidden">
-      {<Notification className={"transition absolute right-1 w-[20%]"} text={"woof Bogga doof"} time={2} closeFunct={()=>setNotification(false)} boolToappear={noti}/>}
+      {<Notification className={"transition absolute right-1 w-[20%]"} text={"Price of the item was updated!!"} time={5} closeFunct={()=>setNotification(false)} boolToappear={notification}/>}
       <div className="max-w-7xl mx-auto relative">
         {/* Product display area */}
         <div className="pt-[6%] flex">
@@ -190,13 +206,9 @@ function Product() {
 
           <div className="max-w-sm pt-[2%]">
             <div className=" pb-[15%]">
-              <h2 className="text-2xl">Current Lowest Price</h2>
-              <div className="text-xl pt-[4%]">
-                {priceload && rprices[LowestPriceIndex].price}
-                <img
-                  className="inline-block rounded-3xl h-[36px] w-[84px]"
-                  src={logo_worten}
-                />
+              <h2 className="text-2xl bg-designers rounded px-2">Current Lowest Price</h2>
+              <div className="text-xl mt-[4%] px-2">
+                {lowesPriceLoad && lowesPrice.price + " $ " + lowesPrice.store.name}
               </div>
             </div>
             {/* Designers display area */}
@@ -302,7 +314,7 @@ function Product() {
             <div className="bg-black w-[19%] bg-opacity-20 rounded-[30px] p-[25px] text-lg shadow-divDistact">
               {priceload &&
                 rprices.map((price, index) => (
-                  <div className="grid grid-cols-2 justify-items-start gap-[38%]">
+                  <div className="grid grid-cols-2 justify-items-start gap-[15%]">
                     <div className=" justify-self-end">{price.price} $</div>
                     <div className=" justify-self-end">{price.store.name}</div>
                   </div>
