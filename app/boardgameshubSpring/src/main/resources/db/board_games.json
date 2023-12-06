@@ -2,7 +2,7 @@
     {
         "name": "Crokinole",
         "description": "Crokinole is a traditional dexterity game.&#10;&#10;Crokinole is played on a circular wooden board, with wooden circular disks as playing pieces.&#10;&#10;Players take turns shooting disks across the circular wooden board by flicking the disks with their fingers.  Players try to land their disks in scoring regions on the board, with the highest scoring area the recessed hole in the very center of the board.  Each round, each player/side alternately shoots a set number of disks (usually 12 or 8), shooting one disk each turn.&#10;&#10;As a traditional game, there are often many variations played, but the following method is based on the National Crokinole Association's rules which also govern the World Crokinole Championship.&#10;&#10;Players must position their disk on the start of each of their turns in their quadrant in front of them, touching the outer scoring ring boundary.&#10;&#10;If there are no opponent's disks on the board, they must aim for the center of the board.&#10;&#10;If there is an opponent's disk on the board, they must aim and hit an opponent's piece first, either directly, or by a carrom shot.&#10;&#10;The center recessed hole is worth 20 points, and disks are removed and scored at the end of the round if they land in the center hole.&#10;&#10;Disks that are outside the outer scoring ring at the end of each shot, or are touching the outer scoring ring at the end of each shot, are removed from play for the round.&#10;&#10;Scoring is by cancellation scoring (e.g. Player/Side One scores 250, and Player/Side Two scores 225, Player/Side One scores 25.)&#10;&#10;It is usually played as a two-player game or as a four-player game with partners.&#10;&#10;Play is to a set score, usually the first player/side to 100.&#10;&#10;Alternately, play is set at &quot;Match Scoring&quot; where the winner of each round scores 2 points, and if a tie, each player scores 1 point. A &quot;game&quot; is usually played to four rounds, with the winner of each &quot;game&quot; being the one with the most points. The numbers of &quot;games&quot; in a match is set by the tournament.&#10;&#10;The World Crokinole Championship uses &quot;Match Scoring.&quot;&#10;&#10;",
-        "short_description": "Flick discs and make trick shots in this traditional Canadian dexterity game!",
+        "shortDescription": "Flick discs and make trick shots in this traditional Canadian dexterity game!",
         "designers": [],
         "publishers": [
             {
@@ -152,8 +152,8 @@
         "minage": 8,
         "minplaytime": 30,
         "maxplaytime": 30,
-        "score": 8.01629,
-        "numRatings": 17008,
+        "score": 8.01761,
+        "numRatings": 17022,
         "image": "https://cf.geekdo-images.com/7ejbxsn-UtLl3ehamuAEdw__original/img/HJOZG6y87_skppfIqX-voRlhNxE=/0x0/filters:format(jpeg)/pic79413.jpg",
         "images": [
             "https://cf.geekdo-images.com/UTpQlClX3aqY-mVV8nxMaw__original/img/y3u-cnPjV64iuEZeFTPrRIVUeec=/0x0/filters:format(jpeg)/pic7569199.jpg",
@@ -205,7 +205,7 @@
     {
         "name": "Puerto Rico",
         "description": "In Puerto Rico, players assume the roles of colonial governors on the island of Puerto Rico. The aim of the game is to amass victory points by shipping goods to Europe or by constructing buildings.&#10;&#10;Each player uses a separate small board with spaces for city buildings, plantations, and resources. Shared between the players are three ships, a trading house, and a supply of resources and doubloons.&#10;&#10;The resource cycle of the game is that players grow crops which they exchange for points or doubloons. Doubloons can then be used to buy buildings, which allow players to produce more crops or give them other abilities. Buildings and plantations do not work unless they are manned by colonists.&#10;&#10;During each round, players take turns selecting a role card from those on the table (such as &quot;Trader&quot; or &quot;Builder&quot;). When a role is chosen, every player gets to take the action appropriate to that role. The player that selected the role also receives a small privilege for doing so - for example, choosing the &quot;Builder&quot; role allows all players to construct a building, but the player who chose the role may do so at a discount on that turn. Unused roles gain a doubloon bonus at the end of each turn, so the next player who chooses that role gets to keep any doubloon bonus associated with it. This encourages players to make use of all the roles throughout a typical course of a game.&#10;&#10;Puerto Rico uses a variable phase order mechanism in which a &quot;governor&quot; token is passed clockwise to the next player at the conclusion of a turn. The player with the token begins the round by choosing a role and taking the first action.&#10;&#10;Players earn victory points for owning buildings, for shipping goods, and for manned &quot;large buildings.&quot; Each player's accumulated shipping chips are kept face down and come in denominations of one or five. This prevents other players from being able to determine the exact score of another player. Goods and doubloons are placed in clear view of other players and the totals of each can always be requested by a player. As the game enters its later stages, the unknown quantity of shipping tokens and its denominations require players to consider their options before choosing a role that can end the game.&#10;&#10;In 2011 and mostly afterwards, Puerto Rico was published to include both Puerto Rico: Expansion I &ndash; New Buildings and Puerto Rico: Expansion II &ndash; The Nobles. These versions are included in the other game entry Puerto Rico, not this regular game entry for Puerto Rico. Some editions of Puerto Rico list the player count as 2-5 instead of 3-5, and they include variant rules for games with only two players.&#10;&#10;",
-        "short_description": "Ship goods, construct buildings, and choose roles that benefit you more than others.",
+        "shortDescription": "Ship goods, construct buildings, and choose roles that benefit you more than others.",
         "designers": [
             {
                 "name": "Andreas Seyfarth",
@@ -301,8 +301,8 @@
         "minage": 12,
         "minplaytime": 90,
         "maxplaytime": 150,
-        "score": 7.92497,
-        "numRatings": 69918,
+        "score": 7.92493,
+        "numRatings": 69928,
         "image": "https://cf.geekdo-images.com/QFiIRd2kimaMqTyWsX0aUg__original/img/DOgIp57F7tKZvxeITGAd3e_Q9as=/0x0/filters:format(jpeg)/pic158548.jpg",
         "images": [
             "https://cf.geekdo-images.com/ScM70I77nestBYpPcGSOKg__original/img/2rpnrsqmnIjFskj9DZuKsdRq8Pg=/0x0/filters:format(jpeg)/pic5938567.jpg",
@@ -339,7 +339,7 @@
     {
         "name": "Twilight Struggle",
         "description": "&quot;Now the trumpet summons us again, not as a call to bear arms, though arms we need; not as a call to battle, though embattled we are &ndash; but a call to bear the burden of a long twilight struggle...&quot;&#10;&ndash; John F. Kennedy&#10;&#10;In 1945, unlikely allies toppled Hitler's war machine, while humanity's most devastating weapons forced the Japanese Empire to its knees in a storm of fire. Where once there stood many great powers, there then stood only two. The world had scant months to sigh its collective relief before a new conflict threatened. Unlike the titanic struggles of the preceding decades, this conflict would be waged not primarily by soldiers and tanks, but by spies and politicians, scientists and intellectuals, artists and traitors. Twilight Struggle is a two-player game simulating the forty-five year  dance of intrigue, prestige, and occasional flares of warfare between the Soviet Union and the United States. The entire world is the stage on which these two titans fight to make the world safe for their own ideologies and ways of life. The game begins amidst the ruins of Europe as the two new &quot;superpowers&quot; scramble over the wreckage of the Second World War, and ends in 1989, when only the United States remained standing.&#10;&#10;Twilight Struggle inherits its fundamental systems from the card-driven classics We the People and Hannibal: Rome vs. Carthage. It is a quick-playing, low-complexity game in that tradition. The game map is a world map of the period, whereon players move units and exert influence in attempts to gain allies and control for their superpower. As with GMT's other card-driven games, decision-making is a challenge; how to best use one's cards and units given consistently limited resources?&#10;&#10;Twilight Struggle's Event cards add detail and flavor to the game. They cover a vast array of historical happenings, from the Arab-Israeli conflicts of 1948 and 1967, to Vietnam and the U.S. peace movement, to the Cuban Missile Crisis and other such incidents that brought the world to the brink of nuclear annihilation. Subsystems capture the prestige-laden Space Race as well as nuclear tensions, with the possibility of game-ending nuclear war.&#10;&#10;Components (original edition):&#10;&#10;&#10;     228 full colour counters &#10;     22&quot;x34&quot; full colour map &#10;     103 event cards &#10;     2 six-sided dice&#10;     1 24-page rulebook&#10;     2 full colour player aid cards&#10;&#10;&#10;Components (2009 Deluxe edition and after)&#10;&#10;     260 full colour counters &#10;     22&quot;x34&quot; mounted map with revised graphics&#10;     110 event cards&#10;     2 six-sided dice&#10;     1 24-page rulebook&#10;     2 full colour player aid cards&#10;&#10;&#10;TIME SCALE:     approx. 3-5 years per turn&#10;MAP SCALE:     Point-to-point system&#10;UNIT SCALE:     Influence markers&#10;NUMBER OF PLAYERS:     2&#10;&#10;DESIGNER: Ananda Gupta &amp; Jason Matthews&#10;MAP, CARD, &amp; COUNTER ART: Mark Simonitch&#10;&#10;&#10;A deluxe edition, published in 2009 includes the following changes from the basic game:&#10;&#10;     Mounted map with revised graphics&#10;     Two double-thick counter sheets with 260 counters&#10;     Deck of 110 event cards (increased from 103)&#10;     Revised rules and player aid cards&#10;     Revised at start setup and text change for card #98 Aldrich Ames&#10;&#10;&#10;Upgrade kit for the owners of the previous version includes the following:&#10;&#10;     Mounted Map with revised graphics&#10;     New card decks&#10;     Updated Rules &amp; Charts&#10;&#10;&#10;",
-        "short_description": "Relive the Cold War and rewrite history in an epic clash between the USA and USSR.",
+        "shortDescription": "Relive the Cold War and rewrite history in an epic clash between the USA and USSR.",
         "designers": [
             {
                 "name": "Ananda Gupta",
@@ -436,14 +436,14 @@
                 "id": 9
             }
         ],
-        "complexity": 3.6054,
+        "complexity": 3.6052,
         "minplayers": 2,
         "maxplayers": 2,
         "minage": 13,
         "minplaytime": 120,
         "maxplaytime": 180,
-        "score": 8.25184,
-        "numRatings": 47605,
+        "score": 8.25161,
+        "numRatings": 47618,
         "image": "https://cf.geekdo-images.com/pNCiUUphnoeWOYfsWq0kng__original/img/Iae47UtAd_RXVd5tJ3YzbDHOv4E=/0x0/filters:format(jpeg)/pic3530661.jpg",
         "images": [
             "https://cf.geekdo-images.com/oZTfpNJNQPMWI7Iy2rwAkQ__original/img/wTO17HTeVewbCzwMDJS2AndTJO0=/0x0/filters:format(jpeg)/pic1109957.jpg",
@@ -494,7 +494,7 @@
     {
         "name": "Brass: Lancashire",
         "description": "Brass: Lancashire &mdash; first published as Brass &mdash; is an economic strategy game that tells the story of competing cotton entrepreneurs in Lancashire during the industrial revolution. You must develop, build, and establish your industries and network so that you can capitalize demand for iron, coal and cotton. The game is played over two halves: the canal phase and the rail phase. To win the game, score the most victory points (VPs), which are counted at the end of each half. VPs are gained from your canals, rails, and established (flipped) industry tiles. Each round, players take turns according to the turn order track, receiving two actions to perform any of the following:&#10;&#10;&#10;    Build an industry tile&#10;    Build a rail or canal&#10;    Develop an industry&#10;    Sell cotton&#10;    Take a loan&#10;&#10;&#10;At the end of a player's turn, they replace the two cards they played with two more from the deck. Turn order is determined by how much money a player spent on the previous turn, from lowest spent first to highest spent. This turn order mechanism opens some strategic options for players going later in the turn order, allowing for the possibility of back-to-back turns.&#10;&#10;After all the cards have been played the first time (with the deck size being adjusted for the number of players), the canal phase ends and a scoring round commences. After scoring, all canals and all of the lowest level industries are removed for the game, after which new cards are dealt and the rail phase begins. During this phase, players may now occupy more than one location in a city and a double-connection build (though expensive) is possible. At the end of the rail phase, another scoring round takes place, then a winner is crowned.&#10;&#10;The cards limit where you can build your industries, but any card can be used for the develop, sell cotton or build connections actions. This leads to a strategic timing/storing of cards. Resources are common so that if one player builds a rail line (which requires coal) they have to use the coal from the nearest source, which may be an opponent's coal mine, which in turn gets that coal mine closer to scoring (i.e., being utilized).&#10;&#10;Brass: Lancashire, the 2018 edition from Roxley Games, reboots the original Warfrog Games edition of Brass with new artwork and components, as well as a few rules changes:&#10;&#10;&#10;     The virtual link rules between Birkenhead have been made optional.&#10;     The three-player experience has been brought closer to the ideal experience of four players by shortening each half of the game by one round and tuning the deck and distant market tiles slightly to ensure a consistent experience.&#10;     Two-player rules have been created and are playable without the need for an alternate board.&#10;     The level 1 cotton mill is now worth 5 VP to make it slightly less terrible.&#10;&#10;&#10;",
-        "short_description": "Test your economic mettle as you build and network in the Industrial Revolution.",
+        "shortDescription": "Test your economic mettle as you build and network in the Industrial Revolution.",
         "designers": [
             {
                 "name": "Martin Wallace",
@@ -620,14 +620,14 @@
                 "id": 15
             }
         ],
-        "complexity": 3.8577,
+        "complexity": 3.8578,
         "minplayers": 2,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.18986,
-        "numRatings": 24141,
+        "score": 8.18995,
+        "numRatings": 24153,
         "image": "https://cf.geekdo-images.com/tHVtPzu82mBpeQbbZkV6EA__original/img/3ffdJj5Pz6HQrg09Kh8ecTen-TY=/0x0/filters:format(jpeg)/pic3469216.jpg",
         "images": [
             "https://cf.geekdo-images.com/K1PFx8FRRrkTk4Q4wHPR9g__original/img/ssCNULI9iphCvZnKeH9etsG6VxM=/0x0/filters:format(jpeg)/pic1303509.jpg",
@@ -666,7 +666,7 @@
     {
         "name": "Agricola",
         "description": "Description from BoardgameNews&#10;&#10;In Agricola, you're a farmer in a wooden shack with your spouse and little else. On a turn, you get to take only two actions, one for you and one for the spouse, from all the possibilities you'll find on a farm: collecting clay, wood, or stone; building fences; and so on. You might think about having kids in order to get more work accomplished, but first you need to expand your house. And what are you going to feed all the little rugrats?&#10;&#10;The game supports many levels of complexity, mainly through the use (or non-use) of two of its main types of cards, Minor Improvements and Occupations. In the beginner's version (called the Family Variant in the U.S. release), these cards are not used at all. For advanced play, the U.S. release includes three levels of both types of cards; Basic (E-deck), Interactive (I-deck), and Complex (K-deck), and the rulebook encourages players to experiment with the various decks and mixtures thereof. Aftermarket decks such as the Z-Deck and the L-Deck also exist.&#10;&#10;Agricola is a turn-based game. There are 14 game rounds occurring in 6 stages, with a Harvest at the end of each stage (after Rounds 4, 7, 9, 11, 13, and 14).&#10;Each player starts with two playing tokens (farmer and spouse) and thus can take two turns, or actions, per round. There are multiple options, and while the game progresses, you'll have more and more: first thing in a round, a new action card is flipped over.&#10;Problem: Each action can be taken by only one player each round, so it's important to do some things with high preference.&#10;Each player also starts with a hand of 7 Occupation cards (of more than 160 total) and 7 Minor Improvement cards (of more than 140 total) that he/she may use during the game if they fit in his/her strategy. Speaking of which, there are countless strategies, some depending on your card hand. Sometimes it's a good choice to stay on course, and sometimes it is better to react to your opponents' actions...&#10;&#10;",
-        "short_description": "Build your farmstead by sowing fields and raising livestock. But don't forget to eat!",
+        "shortDescription": "Build your farmstead by sowing fields and raising livestock. But don't forget to eat!",
         "designers": [
             {
                 "name": "Uwe Rosenberg",
@@ -778,8 +778,8 @@
         "minage": 12,
         "minplaytime": 30,
         "maxplaytime": 150,
-        "score": 7.88343,
-        "numRatings": 71433,
+        "score": 7.88323,
+        "numRatings": 71447,
         "image": "https://cf.geekdo-images.com/dDDo2Hexl80ucK1IlqTk-g__original/img/toobKoejPiHpfpHk4SYd1UAJafw=/0x0/filters:format(jpeg)/pic831744.jpg",
         "images": [
             "https://cf.geekdo-images.com/Vess4uicbB2JFQEa4NrF6A__original/img/1nw-7YWNVro-oAOeAYPWOF7VXD4=/0x0/filters:format(jpeg)/pic881417.jpg",
@@ -828,7 +828,7 @@
     {
         "name": "The Castles of Burgundy",
         "description": "The game is set in the Burgundy region of High Medieval France. Each player takes on the role of an aristocrat, originally controlling a small princedom. While playing they aim to build settlements and powerful castles, practice trade along the river, exploit silver mines, and use the knowledge of travelers.&#10;&#10;The game is about players taking settlement tiles from the game board and placing them into their princedom which is represented by the player board. Every tile has a function that starts when the tile is placed in the princedom. The princedom itself consists of several regions, each of which demands its own type of settlement tile.&#10;&#10;The game is played in five phases, each consisting of five rounds.  Each phase begins with the game board stocked with settlement tiles and goods tiles.  At the beginning of each round all players roll their two dice, and the player who is currently first in turn order rolls a goods placement die.  A goods tile is made available on the game board according to the roll of the goods die.  During each round players take their turns in the current turn order.  During his turn, a player may perform any two of the four possible types of actions: 1) take a settlement tile from the numbered depot on the game board corresponding to one of his dice and place it in the staging area on his player board, 2) take a settlement tile from the staging area of his player board to a space on his player board with a number matching one of his dice in the corresponding region for the type of tile and adjacent to a previously placed settlement tile, 3) deliver goods with a number matching one of his dice, or 4) take worker tokens which allow the player to adjust the roll of his dice.  In addition to these actions a player may buy a settlement tile from the central depot on the game board and place it in the staging area on his player board.  If an action triggers the award of victory points, those points are immediately recorded.  Each settlement tile offers a benefit, additional actions, additional money, advancement on the turn order track, more goods tiles, die roll adjustment or victory points.  Bonus victory points are awarded for filling a region with settlement tiles.&#10;&#10;The game ends after the fifth phase is played to completion.  Victory points are awarded for unused money and workers, and undelivered goods.  Bonus victory points from certain settlement tiles are awarded at the end of the game.&#10;&#10;The player with the most victory points wins.&#10;&#10;The rules include basic and advanced versions.&#10;&#10;This game is #14 in the Alea big box series.&#10;&#10;There is a separate BGG entry for the 2019 edition: The Castles of Burgundy.  The 2019 edition includes, alongside the base game, eight expansions, seven of which had already been released separately as promotional items and one new to the 2019 release.&#10;&#10;UPC 4005556812431&#10;&#10;",
-        "short_description": "Plan, trade, and build your Burgundian estate to prosperity and prominence.",
+        "shortDescription": "Plan, trade, and build your Burgundian estate to prosperity and prominence.",
         "designers": [
             {
                 "name": "Stefan Feld",
@@ -885,17 +885,17 @@
             },
             {
                 "name": "Harald Lieske",
-                "id": 18
+                "id": 3
             }
         ],
-        "complexity": 2.9863,
+        "complexity": 2.986,
         "minplayers": 2,
         "maxplayers": 4,
         "minage": 12,
         "minplaytime": 30,
         "maxplaytime": 90,
-        "score": 8.13304,
-        "numRatings": 59729,
+        "score": 8.13307,
+        "numRatings": 59763,
         "image": "https://cf.geekdo-images.com/5CFwjd8zTcGYVUnkXh04hw__original/img/N8btACZrnEYK1amBNk26VBdcGwc=/0x0/filters:format(jpeg)/pic1176894.jpg",
         "images": [
             "https://cf.geekdo-images.com/x049XeH7PBVQdKOrASVJLA__original/img/c9i9kmUJpdRXRXPb71Yd5ZgVAUU=/0x0/filters:format(png)/pic3087634.png",
@@ -925,7 +925,7 @@
     {
         "name": "Mage Knight Board Game",
         "description": "The Mage Knight board game puts you in control of one of four powerful Mage Knights as you explore (and conquer) a corner of the Mage Knight universe under the control of the Atlantean Empire. Build your army, fill your deck with powerful spells and actions, explore caves and dungeons, and eventually conquer powerful cities controlled by this once-great faction!  In competitive scenarios, opposing players may be powerful allies, but only one will be able to claim the land as their own.  In cooperative scenarios, the players win or lose as a group.  Solo rules are also included.&#10;&#10;Combining elements of RPGs, deck-building, and traditional board games the Mage Knight board game captures the rich history of the Mage Knight universe in a self-contained gaming experience.&#10;&#10;",
-        "short_description": "Build your hero’s spells, abilities, and artifacts as you explore & conquer cities.",
+        "shortDescription": "Build your hero’s spells, abilities, and artifacts as you explore & conquer cities.",
         "designers": [
             {
                 "name": "Vlaada Chvátil",
@@ -973,15 +973,15 @@
         "artists": [
             {
                 "name": "J. Lonnee",
-                "id": 19
+                "id": 18
             },
             {
                 "name": "Chris Raimo",
-                "id": 20
+                "id": 19
             },
             {
                 "name": "Milan Vavroň",
-                "id": 21
+                "id": 20
             }
         ],
         "complexity": 4.3556,
@@ -990,8 +990,8 @@
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 240,
-        "score": 8.08513,
-        "numRatings": 32586,
+        "score": 8.08545,
+        "numRatings": 32591,
         "image": "https://cf.geekdo-images.com/DUO2hz9AlLOH8p9ED-lCWg__original/img/PDDH38Vf9NEB_4ODURxcJKNBfVQ=/0x0/filters:format(jpeg)/pic1083380.jpg",
         "images": [
             "https://cf.geekdo-images.com/NHsrbx391tLMotNu5-wuAg__original/img/Qh1xW5t09xU41HnBmNY_7rmYGR4=/0x0/filters:format(jpeg)/pic1402083.jpg",
@@ -1028,7 +1028,7 @@
     {
         "name": "Caverna: The Cave Farmers",
         "description": "Following along the same lines as its predecessor (Agricola), Caverna: The Cave Farmers is a worker-placement game at heart, with a focus on farming. In the game, you are the bearded leader of a small dwarf family that lives in a little cave in the mountains. You begin the game with a farmer and his spouse, and each member of the farming family represents an action that the player can take each turn. Together, you cultivate the forest in front of your cave and dig deeper into the mountain. You furnish the caves as dwellings for your offspring as well as working spaces for small enterprises.&#10;&#10;It's up to you how much ore you want to mine. You will need it to forge weapons that allow you to go on expeditions to gain bonus items and actions. While digging through the mountain, you may come across water sources and find ore and ruby mines that help you increase your wealth. Right in front of your cave, you can increase your wealth even further with agriculture: You can cut down the forest to sow fields and fence in pastures to hold your animals. You can also expand your family while running your ever-growing farm. In the end, the player with the most efficiently developed home board wins.&#10;&#10;You can also play the solo variant of this game to familiarize yourself with the 48 different furnishing tiles for your cave.&#10;&#10;Caverna: The Cave Farmers, which has a playing time of roughly 30 minutes per player, is a complete redesign of Agricola that substitutes the card decks from the former game with a set of buildings while adding the ability to purchase weapons and send your farmers on quests to gain further resources. Designer Uwe Rosenberg says that the game includes parts of Agricola, but also has new ideas, especially the cave part of your game board, where you can build mines and search for rubies. The game also includes two new animals: dogs and donkeys.&#10;&#10;",
-        "short_description": "From a simple cave, expand your dwarven home through mining, agriculture, and more.",
+        "shortDescription": "From a simple cave, expand your dwarven home through mining, agriculture, and more.",
         "designers": [
             {
                 "name": "Uwe Rosenberg",
@@ -1126,11 +1126,11 @@
         "artists": [
             {
                 "name": "Javier González Cava",
-                "id": 22
+                "id": 21
             },
             {
                 "name": "Klemens Franz",
-                "id": 23
+                "id": 16
             }
         ],
         "complexity": 3.7807,
@@ -1139,8 +1139,8 @@
         "minage": 12,
         "minplaytime": 30,
         "maxplaytime": 210,
-        "score": 7.95496,
-        "numRatings": 33861,
+        "score": 7.95509,
+        "numRatings": 33869,
         "image": "https://cf.geekdo-images.com/rz22tqa5PCYvK9oDjIbvxg__original/img/h9il8XnFB0iqHNHsNTPNGxJZWdM=/0x0/filters:format(jpeg)/pic1790789.jpg",
         "images": [
             "https://cf.geekdo-images.com/KDhzjrTJoW-y2DemIwtgeA__original/img/WVsOTr5F8JHO-l2cYAb4JkXSLXI=/0x0/filters:format(jpeg)/pic3800048.jpg",
@@ -1189,7 +1189,7 @@
     {
         "name": "War of the Ring: Second Edition",
         "description": "In War of the Ring, one player takes control of the Free Peoples (FP), the other player controls Shadow Armies (SA). Initially, the Free People Nations are reluctant to take arms against Sauron, so they must be attacked by Sauron or persuaded by Gandalf or other Companions, before they start to fight properly: this is represented by the Political Track, which shows if a Nation is ready to fight in the War of the Ring or not.&#10;&#10;The game can be won by a military victory, if Sauron conquers a certain number of Free People cities and strongholds or vice versa. But the true hope of the Free Peoples lies with the quest of the Ringbearer: while the armies clash across Middle Earth, the Fellowship of the Ring is trying to get secretly to Mount Doom to destroy the One Ring. Sauron is not aware of the real intention of his enemies but is looking across Middle Earth for the precious Ring, so that the Fellowship is going to face numerous dangers, represented by the rules of The Hunt for the Ring. But the Companions can spur the Free Peoples to the fight against Sauron, so the Free People player must balance the need to protect the Ringbearer from harm, against the attempt to raise a proper defense against the armies of the Shadow, so that they do not overrun Middle Earth before the Ringbearer completes his quest.&#10;&#10;Each game turn revolves around the roll of Action Dice: each die corresponds to an action that a player can do during a turn. Depending on the face rolled on each die, different actions are possible (moving armies, characters, recruiting troops, advancing a Political Track).&#10;&#10;Action Dice can also be used to draw or play Event Cards. Event Cards are played to represent specific events from the story (or events that could possibly have happened) that cannot be portrayed through normal game-play. Each Event Card can also create an unexpected turn in the game, allowing special actions or altering the course of a battle.&#10;&#10;",
-        "short_description": "The Fellowship and the Free Peoples clash with Sauron over the fate of Middle-Earth.",
+        "shortDescription": "The Fellowship and the Free Peoples clash with Sauron over the fate of Middle-Earth.",
         "designers": [
             {
                 "name": "Roberto Di Meglio",
@@ -1282,15 +1282,15 @@
         "artists": [
             {
                 "name": "John Howe",
-                "id": 24
+                "id": 22
             },
             {
                 "name": "Fabio Maiorana",
-                "id": 25
+                "id": 23
             },
             {
                 "name": "Kristofer Bengtsson",
-                "id": 26
+                "id": 24
             }
         ],
         "complexity": 4.2113,
@@ -1299,8 +1299,8 @@
         "minage": 13,
         "minplaytime": 150,
         "maxplaytime": 180,
-        "score": 8.53438,
-        "numRatings": 20080,
+        "score": 8.5343,
+        "numRatings": 20094,
         "image": "https://cf.geekdo-images.com/ImPgGag98W6gpV1KV812aA__original/img/38jB7fN07DwlrGKYAf-J0vsNdgs=/0x0/filters:format(jpeg)/pic1215633.jpg",
         "images": [
             "https://cf.geekdo-images.com/ffVaDEN6KEG8Ree0di6RuA__original/img/pgrLSTPscmmJM9odeh2UKwiHmfA=/0x0/filters:format(jpeg)/pic2313734.jpg",
@@ -1349,7 +1349,7 @@
     {
         "name": "Terra Mystica",
         "description": "In the land of Terra Mystica dwell 14 different peoples in seven landscapes, and each group is bound to its own home environment, so to develop and grow, they must terraform neighboring landscapes into their home environments in competition with the other groups.&#10;&#10;Terra Mystica is a full information game, without any luck, that rewards strategic planning. Each player governs one of the 14 groups. With subtlety and craft, the player must attempt to rule as great an area as possible and to develop that group's skills. There are also four religious cults in which you can progress. To do all that, each group has special skills and abilities.&#10;&#10;Taking turns, the players execute their actions on the resources they have at their disposal. Different buildings allow players to develop different resources. Dwellings allow for more workers. Trading houses allow players to make money. Strongholds unlock a group's special ability, and temples allow you to develop religion and your terraforming and seafaring skills. Buildings can be upgraded: Dwellings can be developed into trading houses; trading houses can be developed into strongholds or temples; one temple can be upgraded to become a sanctuary. Each group must also develop its terraforming skill and its skill with boats to use the rivers. The groups in question, along with their home landscape, are:&#10;&#10;&#10;    Desert (Fakirs, Nomads)&#10;    Plains (Halflings, Cultists)&#10;    Swamp (Alchemists, Darklings)&#10;    Lake (Mermaids, Swarmlings)&#10;    Forest (Witches, Auren)&#10;    Mountain (Dwarves, Engineers)&#10;    Wasteland (Giants, Chaos Magicians)&#10;&#10;&#10;Proximity to other groups is a double-edged sword in Terra Mystica. Being close to other groups gives you extra power, but it also means that expanding is more difficult...&#10;&#10;Terra Mystica FAQ&#10;&#10;",
-        "short_description": "Play fantastical factions.  Expand your influence by terraforming and joining cults.",
+        "shortDescription": "Play fantastical factions.  Expand your influence by terraforming and joining cults.",
         "designers": [
             {
                 "name": "Jens Drögemüller",
@@ -1442,17 +1442,17 @@
         "artists": [
             {
                 "name": "Dennis Lohausen",
-                "id": 27
+                "id": 25
             }
         ],
-        "complexity": 3.973,
+        "complexity": 3.9731,
         "minplayers": 2,
         "maxplayers": 5,
         "minage": 12,
         "minplaytime": 60,
         "maxplaytime": 150,
-        "score": 8.07522,
-        "numRatings": 46842,
+        "score": 8.07503,
+        "numRatings": 46854,
         "image": "https://cf.geekdo-images.com/bre12I1YiXkZr7elvriz4A__original/img/_dZS7fVfdc4DhJPbqnDpwTT4uF0=/0x0/filters:format(jpeg)/pic5375624.jpg",
         "images": [
             "https://cf.geekdo-images.com/JFaVmlW4Rnp6tsa-FQx5Qw__original/img/JSqgXz0njeEILNrk9AY-RxPZQMs=/0x0/filters:format(png)/pic2376729.png",
@@ -1491,7 +1491,7 @@
     {
         "name": "Concordia",
         "description": "Two thousand years ago, the Roman Empire ruled the lands around the Mediterranean Sea. With peace at the borders, harmony inside the provinces, uniform law, and a common currency, the economy thrived and gave rise to mighty Roman dynasties as they expanded throughout the numerous cities. Guide one of these dynasties and send colonists to the remote realms of the Empire; develop your trade network; and appease the ancient gods for their favor &mdash; all to gain the chance to emerge victorious!&#10;&#10;Concordia is a peaceful strategy game of economic development in Roman times for 2-5 players aged 13 and up. Instead of looking to the luck of dice or cards, players must rely on their strategic abilities. Be sure to watch your rivals to determine which goals they are pursuing and where you can outpace them! In the game, colonists are sent out from Rome to settle down in cities that produce bricks, food, tools, wine, and cloth. Each player starts with an identical set of playing cards and acquires more cards during the game. These cards serve two purposes:&#10;&#10;&#10;    They allow a player to choose actions during the game.&#10;    They are worth victory points (VPs) at the end of the game. &#10;&#10;&#10;Concordia is a strategy game that requires advance planning and consideration of your opponent's moves. Every game is different, not only because of the sequence of new cards on sale but also due to the modular layout of cities. (One side of the game board shows the entire Roman Empire with 30 cities for 3-5 players, while the other shows Roman Italy with 25 cities for 2-4 players.) When all cards have been sold or after the first player builds his 15th house, the game ends. The player with the most VPs from the gods (Jupiter, Saturnus, Mercurius, Minerva, Vesta, etc.) wins the game.&#10;&#10;",
-        "short_description": "Merchants in the Roman Empire compete to amass the greatest amount of wealth.",
+        "shortDescription": "Merchants in the Roman Empire compete to amass the greatest amount of wealth.",
         "designers": [
             {
                 "name": "Mac Gerdts",
@@ -1574,15 +1574,15 @@
         "artists": [
             {
                 "name": "Marina Fahrenbach",
-                "id": 28
+                "id": 26
             },
             {
                 "name": "Mac Gerdts",
-                "id": 29
+                "id": 27
             },
             {
                 "name": "Dominik Mayer",
-                "id": 30
+                "id": 28
             }
         ],
         "complexity": 2.9942,
@@ -1591,8 +1591,8 @@
         "minage": 13,
         "minplaytime": 100,
         "maxplaytime": 100,
-        "score": 8.09813,
-        "numRatings": 38814,
+        "score": 8.09821,
+        "numRatings": 38835,
         "image": "https://cf.geekdo-images.com/CzwSm8i7tkLz6cBnrILZBg__original/img/BhJ3sB3uk-eSdR1iW4EP3cu0Wi0=/0x0/filters:format(jpeg)/pic3453267.jpg",
         "images": [
             "https://cf.geekdo-images.com/xU3qOz3pzSgHNTe2W6PjNw__original/img/qVkAJuh4uz_b_MKMKFri8aEoiHQ=/0x0/filters:format(jpeg)/pic4192802.jpg",
@@ -1637,7 +1637,7 @@
     {
         "name": "Pandemic Legacy: Season 1",
         "description": "Pandemic Legacy is a co-operative campaign game, with an overarching story-arc played through 12-24 sessions, depending on how well your group does at the game. At the beginning, the game starts very similar to basic Pandemic, in which your team of disease-fighting specialists races against the clock to travel around the world, treating disease hotspots while researching cures for each of four plagues before they get out of hand.&#10;&#10;During a player's turn, they have four actions available, with which they may travel around in the world in various ways (sometimes needing to discard a card), build structures like research stations, treat diseases (removing one cube from the board; if all cubes of a color have been removed, the disease has been eradicated), trade cards with other players, or find a cure for a disease (requiring five cards of the same color to be discarded while at a research station). Each player has a unique role with special abilities to help them at these actions.&#10;&#10;After a player has taken their actions, they draw two cards. These cards can include epidemic cards, which will place new disease cubes on the board, and can lead to an outbreak, spreading disease cubes even further. Outbreaks additionally increase the panic level of a city, making that city more expensive to travel to.&#10;&#10;Each month in the game, you have two chances to achieve that month's objectives. If you succeed, you win and immediately move on to the next month. If you fail, you have a second chance, with more funding for beneficial event cards.&#10;&#10;During the campaign, new rules and components will be introduced. These will sometimes require you to permanently alter the components of the game; this includes writing on cards, ripping up cards, and placing permanent stickers on components. Your characters can gain new skills, or detrimental effects. A character can even be lost entirely, at which point it's no longer available for play.&#10;&#10;Part of the Pandemic series&#10;&#10;",
-        "short_description": "Mutating diseases are spreading around the world - can your team save humanity?",
+        "shortDescription": "Mutating diseases are spreading around the world - can your team save humanity?",
         "designers": [
             {
                 "name": "Rob Daviau",
@@ -1715,7 +1715,7 @@
         "artists": [
             {
                 "name": "Chris Quilliams",
-                "id": 31
+                "id": 29
             }
         ],
         "complexity": 2.8335,
@@ -1724,8 +1724,8 @@
         "minage": 13,
         "minplaytime": 60,
         "maxplaytime": 60,
-        "score": 8.5324,
-        "numRatings": 51895,
+        "score": 8.53276,
+        "numRatings": 51901,
         "image": "https://cf.geekdo-images.com/-Qer2BBPG7qGGDu6KcVDIw__original/img/PlzAH7swN1nsFxOXbfUvE3TkE5w=/0x0/filters:format(png)/pic2452831.png",
         "images": [
             "https://cf.geekdo-images.com/UCurv84wkB3RzFysLGvGaw__original/img/oMfSX9mf0D4k8Tm7x4o_86TEjVA=/0x0/filters:format(jpeg)/pic3025181.jpg",
@@ -1769,7 +1769,7 @@
     {
         "name": "Spirit Island",
         "description": "In the most distant reaches of the world, magic still exists, embodied by spirits of the land, of the sky, and of every natural thing. As the great powers of Europe stretch their colonial empires further and further, they will inevitably lay claim to a place where spirits still hold power - and when they do, the land itself will fight back alongside the islanders who live there.&#10;&#10;Spirit Island is a complex and thematic cooperative game about defending your island home from colonizing Invaders. Players are different spirits of the land, each with its own unique elemental powers. Every turn, players simultaneously choose which of their power cards to play, paying energy to do so. Using combinations of power cards that match a spirit's elemental affinities can grant free bonus effects. Faster powers take effect immediately, before the Invaders spread and ravage, but other magics are slower, requiring forethought and planning to use effectively. In the Spirit phase, spirits gain energy, and choose how / whether to Grow: to reclaim used power cards, to seek for new power, or to spread presence into new areas of the island.&#10;&#10;The Invaders expand across the island map in a semi-predictable fashion. Each turn they explore into some lands (portions of the island); the next turn, they build in those lands, forming settlements and cities. The turn after that, they ravage there, bringing blight to the land and attacking any native islanders present. The islanders fight back against the Invaders when attacked, and lend the spirits some other aid, but may not always do so exactly as you'd hoped. Some Powers work through the islanders, helping them (eg) drive out the Invaders or clean the land of blight.&#10;&#10;The game escalates as it progresses: spirits spread their presence to new parts of the island and seek out new and more potent powers, while the Invaders step up their colonization efforts. Each turn represents 1-3 years of alternate-history. At game start, winning requires destroying every last settlement and city on the board - but as you frighten the Invaders more and more, victory becomes easier: they'll run away even if some number of settlements or cities remain. Defeat comes if any spirit is destroyed, if the island is overrun by blight, or if the Invader deck is depleted before achieving victory.&#10;&#10;The game includes different adversaries to fight against (eg: a Swedish Mining Colony, or a Remote British Colony). Each changes play in different ways, and offers a different path of difficulty boosts to keep the game challenging as you gain skill.&#10;&#10;",
-        "short_description": "Island Spirits join forces using elemental powers to defend their home from invaders.",
+        "shortDescription": "Island Spirits join forces using elemental powers to defend their home from invaders.",
         "designers": [
             {
                 "name": "R. Eric Reuss",
@@ -1867,69 +1867,69 @@
         "artists": [
             {
                 "name": "Jason Behnke",
-                "id": 32
+                "id": 30
             },
             {
                 "name": "Loïc Berger",
-                "id": 33
+                "id": 31
             },
             {
                 "name": "Loïc Billiau",
-                "id": 34
+                "id": 32
             },
             {
                 "name": "Kat G Birmelin",
-                "id": 35
+                "id": 33
             },
             {
                 "name": "Cari Corene",
-                "id": 36
+                "id": 34
             },
             {
                 "name": "Lucas Durham",
-                "id": 37
+                "id": 35
             },
             {
                 "name": "Rocky Hammer",
-                "id": 38
+                "id": 36
             },
             {
                 "name": "Sydni Kruger",
-                "id": 39
+                "id": 37
             },
             {
                 "name": "Nolan Nasser",
-                "id": 40
+                "id": 38
             },
             {
                 "name": "Jorge Ramos",
-                "id": 41
+                "id": 39
             },
             {
                 "name": "Adam Rebottaro",
-                "id": 42
+                "id": 40
             },
             {
                 "name": "Moro Rogers",
-                "id": 43
+                "id": 41
             },
             {
                 "name": "Graham Sternberg",
-                "id": 44
+                "id": 42
             },
             {
                 "name": "Shane Tyree",
-                "id": 45
+                "id": 43
             }
         ],
-        "complexity": 4.0628,
+        "complexity": 4.0619,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 13,
         "minplaytime": 90,
         "maxplaytime": 120,
-        "score": 8.35114,
-        "numRatings": 47388,
+        "score": 8.35152,
+        "numRatings": 47433,
         "image": "https://cf.geekdo-images.com/kjCm4ZvPjIZxS-mYgSPy1g__original/img/9uLd9C3XAvInLCLhAoXqKVk56zs=/0x0/filters:format(jpeg)/pic7013651.jpg",
         "images": [
             "https://cf.geekdo-images.com/A1P2U7IW01nLjS7ZwHAAew__original/img/CgauGhwhND9hCY8HHWPtBa7OguA=/0x0/filters:format(jpeg)/pic5433116.jpg",
@@ -1977,7 +1977,7 @@
     {
         "name": "Orléans",
         "description": "During the medieval goings-on around Orl&eacute;ans, you must assemble a following of farmers, merchants, knights, monks, etc. to gain supremacy through trade, construction and science in medieval France.&#10;&#10;In Orl&eacute;ans, you will recruit followers and put them to work to make use of their abilities. Farmers and Boatmen supply you with money and goods; Knights expand your scope of action and secure your mercantile expeditions; Craftsmen build trading stations and tools to facilitate work; Scholars make progress in science; Traders open up new locations for you to use your followers; and last but not least, it cannot hurt to get active in monasteries since with Monks on your side you are much less likely to fall prey to fate.&#10;&#10;You will always want to take more actions than possible, and there are many paths to victory. The challenge is to combine all elements as best as possible with regard to your strategy.&#10;&#10;",
-        "short_description": "Craftsmen, scholars & monks can help you reign supreme—but who will turn up to help?",
+        "shortDescription": "Craftsmen, scholars & monks can help you reign supreme—but who will turn up to help?",
         "designers": [
             {
                 "name": "Reiner Stockhausen",
@@ -2075,7 +2075,7 @@
         "artists": [
             {
                 "name": "Klemens Franz",
-                "id": 46
+                "id": 16
             }
         ],
         "complexity": 3.0255,
@@ -2085,7 +2085,7 @@
         "minplaytime": 90,
         "maxplaytime": 90,
         "score": 8.06281,
-        "numRatings": 30086,
+        "numRatings": 30099,
         "image": "https://cf.geekdo-images.com/nagl1li6kYt9elV9jbfVQw__original/img/Qn6vlBaTUaHNFsqohIUjd0EA4z0=/0x0/filters:format(jpeg)/pic6228507.jpg",
         "images": [
             "https://cf.geekdo-images.com/-FCR5UtkC04Nj1XbFGsp-w__original/img/r65U6YlRAKSIwhJlWexm5R1CxTs=/0x0/filters:format(jpeg)/pic3881224.jpg",
@@ -2124,7 +2124,7 @@
     {
         "name": "Nemesis",
         "description": "Playing Nemesis will take you into the heart of sci-fi survival horror in all its terror. A soldier fires blindly down a corridor, trying to stop the alien advance. A scientist races to find a solution in his makeshift lab. A traitor steals the last escape pod in the very last moment. Intruders you meet on the ship are not only reacting to the noise you make but also evolve as the time goes by. The longer the game takes, the stronger they become. During the game, you control one of the crew members with a unique set of skills, personal deck of cards, and individual starting equipment. These heroes cover all your basic SF horror needs. For example, the scientist is great with computers and research, but will have a hard time in combat. The soldier, on the other hand...&#10;&#10;Nemesis is a semi-cooperative game in which you and your crewmates must survive on a ship infested with hostile organisms. To win the game, you have to complete one of the two objectives dealt to you at the start of the game and get back to Earth in one piece. You will find many obstacles on your way: swarms of Intruders (the name given to the alien organisms by the ship AI), the poor physical condition of the ship, agendas held by your fellow players, and sometimes just cruel fate.&#10;&#10;The gameplay of Nemesis is designed to be full of climactic moments which, hopefully, you will find rewarding even when your best plans are ruined and your character meets a terrible fate.&#10;&#10;",
-        "short_description": "Survive an alien-infested spaceship, but beware of other players and their agendas!",
+        "shortDescription": "Survive an alien-infested spaceship, but beware of other players and their agendas!",
         "designers": [
             {
                 "name": "Adam Kwapiński",
@@ -2202,29 +2202,29 @@
         "artists": [
             {
                 "name": "Piotr Foksowicz",
-                "id": 47
+                "id": 44
             },
             {
                 "name": "Patryk Jędraszek",
-                "id": 48
+                "id": 45
             },
             {
                 "name": "Ewa Labak",
-                "id": 49
+                "id": 46
             },
             {
                 "name": "Andrzej Półtoranos",
-                "id": 50
+                "id": 47
             }
         ],
-        "complexity": 3.4536,
+        "complexity": 3.4547,
         "minplayers": 1,
         "maxplayers": 5,
         "minage": 12,
         "minplaytime": 90,
         "maxplaytime": 180,
-        "score": 8.28259,
-        "numRatings": 28212,
+        "score": 8.28262,
+        "numRatings": 28228,
         "image": "https://cf.geekdo-images.com/tAqLpWxQ0Oo3GaPP3MER1g__original/img/sA6r1p6BO_Tgyc3-xgIESC9Y-vg=/0x0/filters:format(jpeg)/pic5073276.jpg",
         "images": [
             "https://cf.geekdo-images.com/PIu9uqDX_crhV_k2qveUEg__original/img/drDQU46ciUkjuhtX37mxFyQVSws=/0x0/filters:format(jpeg)/pic6095122.jpg",
@@ -2261,7 +2261,7 @@
     {
         "name": "Terraforming Mars",
         "description": "In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, initiate huge projects to raise the temperature, the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those corporations and work together in the terraforming process, but compete for getting victory points that are awarded not only for your contribution to the terraforming, but also for advancing human infrastructure throughout the solar system, and doing other commendable things.&#10;&#10;The players acquire unique project cards (from over two hundred different ones) by buying them to their hand. The cards can give you immediate bonuses, as well as increasing your production of different resources. Many cards also have requirements and they become playable when the temperature, oxygen, or ocean coverage increases enough. Buying cards is costly, so there is a balance between buying cards and actually playing them. Standard Projects are always available to complement your cards. Your basic income, as well as your basic score, is based on your Terraform Rating. However, your income is complemented with your production, and you also get VPs from many other sources.&#10;&#10;Each player keeps track of their production and resources on their player boards, and the game uses six types of resources: MegaCredits, Steel, Titanium, Plants, Energy, and Heat. On the game board, you compete for the best places for your city tiles, ocean tiles, and greenery tiles. You also compete for different Milestones and Awards worth many VPs. Each round is called a generation and consists of the following phases:&#10;&#10;1) Player order shifts clockwise.&#10;2) Research phase: All players buy cards from four privately drawn.&#10;3) Action phase: Players take turns doing 1-2 actions from these options: Playing a card, claiming a Milestone, funding an Award, using a Standard project, converting plant into greenery tiles (and raising oxygen), converting heat into a temperature raise, and using the action of a card in play. The turn continues around the table (sometimes several laps) until all players have passed.&#10;4) Production phase: Players get resources according to their terraform rating and production parameters.&#10;&#10;When the three global parameters (temperature, oxygen, ocean) have all reached their goal, the terraforming is complete, and the game ends after that generation. Count your Terraform Rating and other VPs to determine the winning corporation!&#10;&#10;",
-        "short_description": "Compete with rival CEOs to make Mars habitable and build your corporate empire.",
+        "shortDescription": "Compete with rival CEOs to make Mars habitable and build your corporate empire.",
         "designers": [
             {
                 "name": "Jacob Fryxelius",
@@ -2404,21 +2404,21 @@
         "artists": [
             {
                 "name": "Isaac Fryxelius",
-                "id": 51
+                "id": 48
             },
             {
                 "name": "Daniel Fryxelius",
-                "id": 52
+                "id": 49
             }
         ],
-        "complexity": 3.2595,
+        "complexity": 3.2592,
         "minplayers": 1,
         "maxplayers": 5,
         "minage": 12,
         "minplaytime": 120,
         "maxplaytime": 120,
-        "score": 8.36725,
-        "numRatings": 93875,
+        "score": 8.36739,
+        "numRatings": 93936,
         "image": "https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__original/img/thIqWDnH9utKuoKVEUqveDixprI=/0x0/filters:format(jpeg)/pic3536616.jpg",
         "images": [
             "https://cf.geekdo-images.com/4G1stWaDCd_1S-4FGZMf5Q__original/img/3vPSN-wvwlDHAbRdbsBeYllCU3Q=/0x0/filters:format(jpeg)/pic4181866.jpg",
@@ -2484,7 +2484,7 @@
     {
         "name": "Scythe",
         "description": "It is a time of unrest in 1920s Europa. The ashes from the first great war still darken the snow. The capitalistic city-state known simply as &ldquo;The Factory&rdquo;, which fueled the war with heavily armored mechs, has closed its doors, drawing the attention of several nearby countries.&#10;&#10;Scythe is an engine-building game set in an alternate-history 1920s period. It is a time of farming and war, broken hearts and rusted gears, innovation and valor. In Scythe, each player represents a character from one of five factions of Eastern Europe who are attempting to earn their fortune and claim their faction's stake in the land around the mysterious Factory. Players conquer territory, enlist new recruits, reap resources, gain villagers, build structures, and activate monstrous mechs.&#10;&#10;Each player begins the game with different resources (power, coins, combat acumen, and popularity), a different starting location, and a hidden goal. Starting positions are specially calibrated to contribute to each faction&rsquo;s uniqueness and the asymmetrical nature of the game (each faction always starts in the same place). Scythe uses a streamlined action-selection mechanism (no rounds or phases) to keep gameplay moving at a brisk pace and reduce downtime between turns. While there is plenty of direct conflict for players who seek it, there is no player elimination.&#10;&#10;Scythe gives players almost complete control over their fate. Other than each player&rsquo;s individual hidden objective card, the only elements of luck or variability are &ldquo;encounter&rdquo; cards that players will draw as they interact with the citizens of newly explored lands. Each encounter card provides the player with several options, allowing them to mitigate the luck of the draw through their selection. Combat is also driven by choices, not luck or randomness. Every part of Scythe has an aspect of engine-building to it. Players can upgrade actions to become more efficient, build structures that improve their position on the map, enlist new recruits to enhance character abilities, activate mechs to deter opponents from invading, and expand their borders to reap greater types and quantities of resources. These engine-building aspects create a sense of momentum and progress throughout the game. The order in which players improve their engine adds to the unique feel of each game, even when playing one faction multiple times.&#10;&#10;",
-        "short_description": "Five factions vie for dominance in a war-torn, mech-filled, dieselpunk 1920s Europe.",
+        "shortDescription": "Five factions vie for dominance in a war-torn, mech-filled, dieselpunk 1920s Europe.",
         "designers": [
             {
                 "name": "Jamey Stegmaier",
@@ -2592,17 +2592,17 @@
         "artists": [
             {
                 "name": "Jakub Rozalski",
-                "id": 53
+                "id": 50
             }
         ],
-        "complexity": 3.4432,
+        "complexity": 3.4439,
         "minplayers": 1,
         "maxplayers": 5,
         "minage": 14,
         "minplaytime": 90,
         "maxplaytime": 115,
-        "score": 8.15863,
-        "numRatings": 79671,
+        "score": 8.15847,
+        "numRatings": 79724,
         "image": "https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__original/img/HlDb9F365w0tSP8uD1vf1pfniQE=/0x0/filters:format(jpeg)/pic3163924.jpg",
         "images": [
             "https://cf.geekdo-images.com/xuStPGAGgACBtuflprHbUg__original/img/Pp-vOrf4FyFvpe5yxDIS8oAPTs8=/0x0/filters:format(png)/pic5278990.png",
@@ -2649,7 +2649,7 @@
     {
         "name": "Blood Rage",
         "description": "&quot;Life is Battle; Battle is Glory; Glory is ALL&quot;&#10;&#10;In Blood Rage, each player controls their own Viking clan&rsquo;s warriors, leader, and ship. Ragnar&ouml;k has come, and it&rsquo;s the end of the world! It&rsquo;s the Vikings&rsquo; last chance to go down in a blaze of glory and secure their place in Valhalla at Odin&rsquo;s side! For a Viking there are many pathways to glory. You can invade and pillage the land for its rewards, crush your opponents in epic battles, fulfill quests, increase your clan's stats, or even die gloriously either in battle or from Ragnar&ouml;k, the ultimate inescapable doom.&#10;&#10;Most player strategies are guided by the cards drafted at the beginning of each of the three game rounds (or Ages). These &ldquo;Gods&rsquo; Gifts&rdquo; grant you numerous boons for your clan including: increased Viking strength and devious battle strategies, upgrades to your clan, or even the aid of legendary creatures from Norse mythology. They may also include various quests, from dominating specific provinces, to having lots of your Vikings sent to Valhalla. Most of these cards are aligned with one of the Norse gods, hinting at the kind of strategy they support. For example, Thor gives more glory for victory in battle, Heimdall grants you foresight and surprises, Tyr strengthens you in battle, while the trickster Loki actually rewards you for losing battles, or punishes the winner.&#10;&#10;Players must choose their strategies carefully during the draft phase, but also be ready to adapt and react to their opponents&rsquo; strategies as the action phase unfolds. Battles are decided not only by the strength of the figures involved, but also by cards played in secret. By observing your opponent&rsquo;s actions and allegiances to specific gods, you may predict what card they are likely to play, and plan accordingly. Winning battles is not always the best course of action, as the right card can get you even more rewards by being crushed. The only losing strategy in Blood Rage is to shy away from battle and a glorious death!&#10;&#10;",
-        "short_description": "Ragnarök has come! Secure your place in Valhalla in epic Viking battles.",
+        "shortDescription": "Ragnarök has come! Secure your place in Valhalla in epic Viking battles.",
         "designers": [
             {
                 "name": "Eric M. Lang",
@@ -2747,19 +2747,19 @@
         "artists": [
             {
                 "name": "Henning Ludvigsen",
-                "id": 54
+                "id": 51
             },
             {
                 "name": "Thierry Masson",
-                "id": 55
+                "id": 52
             },
             {
                 "name": "Mike McVey",
-                "id": 56
+                "id": 53
             },
             {
                 "name": "Adrian Smith",
-                "id": 57
+                "id": 54
             }
         ],
         "complexity": 2.8747,
@@ -2768,8 +2768,8 @@
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 90,
-        "score": 7.93935,
-        "numRatings": 45317,
+        "score": 7.93952,
+        "numRatings": 45332,
         "image": "https://cf.geekdo-images.com/HkZSJfQnZ3EpS214xtuplg__original/img/Myy6IPDJDzLoPdXrPXVZcddBQoQ=/0x0/filters:format(jpeg)/pic2439223.jpg",
         "images": [
             "https://cf.geekdo-images.com/n8SyiwTrz99wkeSCP_xqRw__original/img/3pM7lkuIUFrGR2DZLsOt0X4oPmQ=/0x0/filters:format(jpeg)/pic4767157.jpg",
@@ -2811,7 +2811,7 @@
     {
         "name": "7 Wonders Duel",
         "description": "In many ways 7 Wonders Duel resembles its parent game 7 Wonders as over three ages players acquire cards that provide resources or advance their military or scientific development in order to develop a civilization and complete wonders.&#10;&#10;What's different about 7 Wonders Duel is that, as the title suggests, the game is solely for two players, with the players not drafting cards simultaneously from hands of cards, but from a display of face-down and face-up cards arranged at the start of a round. A player can take a card only if it's not covered by any others, so timing comes into play as well as bonus moves that allow you to take a second card immediately. As in the original game, each card that you acquire can be built, discarded for coins, or used to construct a wonder.&#10;&#10;Each player starts with four wonder cards, and the construction of a wonder provides its owner with a special ability. Only seven wonders can be built, though, so one player will end up short.&#10;&#10;Players can purchase resources at any time from the bank, or they can gain cards during the game that provide them with resources for future building; as you acquire resources, the cost for those particular resources increases for your opponent, representing your dominance in this area.&#10;&#10;A player can win 7 Wonders Duel in one of three ways: each time you acquire a military card, you advance the military marker toward your opponent's capital, giving you a bonus at certain positions; if you reach the opponent's capital, you win the game immediately; similarly, if you acquire any six of seven different scientific symbols, you achieve scientific dominance and win immediately; if none of these situations occurs, then the player with the most points at the end of the game wins.&#10;&#10;",
-        "short_description": "Science? Military? What will you draft to win this head-to-head version of 7 Wonders?",
+        "shortDescription": "Science? Military? What will you draft to win this head-to-head version of 7 Wonders?",
         "designers": [
             {
                 "name": "Antoine Bauza",
@@ -2924,17 +2924,17 @@
         "artists": [
             {
                 "name": "Miguel Coimbra",
-                "id": 58
+                "id": 55
             }
         ],
-        "complexity": 2.227,
+        "complexity": 2.2264,
         "minplayers": 2,
         "maxplayers": 2,
         "minage": 10,
         "minplaytime": 30,
         "maxplaytime": 30,
-        "score": 8.09639,
-        "numRatings": 89158,
+        "score": 8.09632,
+        "numRatings": 89223,
         "image": "https://cf.geekdo-images.com/zdagMskTF7wJBPjX74XsRw__original/img/Ju836WNSaW7Mab9Vjq2TJ_FqhWQ=/0x0/filters:format(jpeg)/pic2576399.jpg",
         "images": [
             "https://cf.geekdo-images.com/8BTB4Vqeztv7wI2LdFFdbg__original/img/hSqQcD0LmR8Se9QthjQGlc8O-bc=/0x0/filters:format(png)/pic7857077.png",
@@ -2967,6 +2967,8 @@
             "https://cf.geekdo-images.com/-42ndMfzUJZfLFgXOyEtVQ__original/img/3Sk2OqAV-7l2cqdc8VOnBLaoXxI=/0x0/filters:format(jpeg)/pic6843979.jpg",
             "https://cf.geekdo-images.com/f-02w0zVqX3AlzcUG2cbcw__original/img/qBCZKYlvTQD3oMBHYWP6yWEYArc=/0x0/filters:format(png)/pic2599422.png",
             "https://cf.geekdo-images.com/IctleplLrOcnHY4iVztHlA__original/img/A6EmVuCT4QTmC_xuiFeUsO9r8qE=/0x0/filters:format(jpeg)/pic7229825.jpg",
+            "https://cf.geekdo-images.com/nCD09GzcgoQQxhLVlHnNRg__original/img/8t9KFxWPr8mZkS40x1YjAP2yjIA=/0x0/filters:format(png)/pic7885258.png",
+            "https://cf.geekdo-images.com/pLDmpmPxpkF2cEA2SF_EJA__original/img/yHhLI3-UE12Dx_3quVNDpsivcUM=/0x0/filters:format(png)/pic7885263.png",
             "https://cf.geekdo-images.com/Ub2y2sM5maT0jASJJvXaoQ__original/img/gj22tcZROf8yEtYj6hdZ8C5jF0g=/0x0/filters:format(jpeg)/pic3254417.jpg",
             "https://cf.geekdo-images.com/USfyDUCiUsFgYxDyMbfoDA__original/img/lbLP7tsRqWj9kMMD8hm9PZVdpKE=/0x0/filters:format(jpeg)/pic3251246.jpg",
             "https://cf.geekdo-images.com/lDhiQvCTjxyE7uKrisdXZQ__original/img/iLypIX4iIVaiuqAVabmSpYeFUF0=/0x0/filters:format(jpeg)/pic4150657.jpg",
@@ -3000,7 +3002,7 @@
     {
         "name": "Gloomhaven",
         "description": "Gloomhaven  is a game of Euro-inspired tactical combat in a persistent world of shifting motives. Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. Players must work together out of necessity to clear out menacing dungeons and forgotten ruins. In the process, they will enhance their abilities with experience and loot, discover new locations to explore and plunder, and expand an ever-branching story fueled by the decisions they make.&#10;&#10;This is a game with a persistent and changing world that is ideally played over many game sessions. After a scenario, players will make decisions on what to do, which will determine how the story continues, kind of like a &ldquo;Choose Your Own Adventure&rdquo; book. Playing through a scenario is a cooperative affair where players will fight against automated monsters using an innovative card system to determine the order of play and what a player does on their turn.&#10;&#10;Each turn, a player chooses two cards to play out of their hand. The number on the top card determines their initiative for the round. Each card also has a top and bottom power, and when it is a player&rsquo;s turn in the initiative order, they determine whether to use the top power of one card and the bottom power of the other, or vice-versa. Players must be careful, though, because over time they will permanently lose cards from their hands. If they take too long to clear a dungeon, they may end up exhausted and be forced to retreat.&#10;&#10;",
-        "short_description": "Vanquish monsters with strategic cardplay. Fulfill your quest to leave your legacy!",
+        "shortDescription": "Vanquish monsters with strategic cardplay. Fulfill your quest to leave your legacy!",
         "designers": [
             {
                 "name": "Isaac Childres",
@@ -3068,25 +3070,25 @@
         "artists": [
             {
                 "name": "Alexandr Elichev",
-                "id": 59
+                "id": 56
             },
             {
                 "name": "Josh T. McDowell",
-                "id": 60
+                "id": 57
             },
             {
                 "name": "Alvaro Nebot",
-                "id": 61
+                "id": 58
             }
         ],
-        "complexity": 3.8993,
+        "complexity": 3.8994,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.60772,
-        "numRatings": 60192,
+        "score": 8.60785,
+        "numRatings": 60217,
         "image": "https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__original/img/7d-lj5Gd1e8PFnD97LYFah2c45M=/0x0/filters:format(jpeg)/pic2437871.jpg",
         "images": [
             "https://cf.geekdo-images.com/-FscE2pbauFHXxXCAPQHug__original/img/19NU9tzaXqLqqqGGH_6Ax-rC-iE=/0x0/filters:format(png)/pic4780773.png",
@@ -3125,7 +3127,7 @@
     {
         "name": "Food Chain Magnate",
         "description": "&quot;Lemonade? They want lemonade? What is the world coming to? I want commercials for burgers on all channels, every 15 minutes. We are the Home of the Original Burger, not a hippie health haven. And place a billboard next to that new house on the corner. I want them craving beer every second they sit in their posh new garden.&quot; The new management trainee trembles in front of the CEO and tries to politely point out that... &quot;How do you mean, we don't have enough staff? The HR director reports to you. Hire more people! Train them! But whatever you do, don't pay them any real wages. I did not go into business to become poor. And fire that discount manager, she is only costing me money. From now on, we'll sell gourmet burgers. Same crap, double the price. Get my marketing director in here!&quot;&#10;&#10;Food Chain Magnate is a heavy strategy game about building a fast food chain. The focus is on building your company using a card-driven (human) resource management system. Players compete on a variable city map through purchasing, marketing and sales, and on a job market for key staff members. The game can be played by 2-5 serious gamers in 2-4 hours.&#10;&#10;German:&#10;&#10;&quot;Limonade? Sie wollen Limonade? Was ist mit der Welt los? Ich will Werbung f&uuml;r Burger auf allen Kan&auml;len, alle 15 Minuten. Wir sind die Heimat des Original-Burgers, kein Hippie-Gesundheitsparadies. Und stellen Sie eine Werbetafel neben das neue Haus an der Ecke. Ich will, dass sie jede Sekunde, in der sie in ihrem schicken neuen Garten sitzen, nach Bier lechzen.&quot; Der neue Management-Trainee zittert vor dem CEO und versucht, h&ouml;flich darauf hinzuweisen, dass... &quot;Wie meinen Sie das, wir haben nicht genug Personal? Der Personaldirektor berichtet an Sie. Stellen Sie mehr Leute ein! Bilden Sie sie aus! Aber was auch immer Sie tun, zahlen Sie ihnen keine echten L&ouml;hne. Ich bin nicht ins Gesch&auml;ft eingestiegen, um arm zu werden. Und feuere diese Discount-Managerin, sie kostet mich nur Geld. Von nun an werden wir Gourmet-Burger verkaufen. Derselbe Mist, nur doppelt so teuer. Holen Sie meinen Marketingdirektor her!&quot;&#10;&#10;Food Chain Magnate ist ein schweres Strategiespiel &uuml;ber den Aufbau einer Fast-Food-Kette. Der Schwerpunkt liegt auf dem Aufbau des eigenen Unternehmens mit Hilfe eines kartengesteuerten (Personal-)Managementsystems. Die Spieler konkurrieren auf einer variablen Stadtkarte durch Einkauf, Marketing und Verkauf sowie auf einem Stellenmarkt f&uuml;r wichtige Mitarbeiter.&#10;&#10;Das Spiel kann von 2-5 ernsthaften Spielern in 2-4 Stunden gespielt werden.&#10;&#10;",
-        "short_description": "Strategically hire and manage your workforce to outcompete rival fast food chains.",
+        "shortDescription": "Strategically hire and manage your workforce to outcompete rival fast food chains.",
         "designers": [
             {
                 "name": "Jeroen Doumen",
@@ -3183,41 +3185,41 @@
         "artists": [
             {
                 "name": "Snow Conrad",
-                "id": 62
+                "id": 59
             },
             {
                 "name": "Iris de Haan",
-                "id": 63
+                "id": 60
             },
             {
                 "name": "Sarah Kelly",
-                "id": 64
+                "id": 61
             },
             {
                 "name": "Victor Maristane",
-                "id": 65
+                "id": 62
             },
             {
                 "name": "Matt Paquette & Co.",
-                "id": 66
+                "id": 63
             },
             {
                 "name": "Ynze Moedt",
-                "id": 67
+                "id": 64
             },
             {
                 "name": "Kwanchai Moriya",
-                "id": 68
+                "id": 65
             }
         ],
-        "complexity": 4.1989,
+        "complexity": 4.1996,
         "minplayers": 2,
         "maxplayers": 5,
         "minage": 14,
         "minplaytime": 120,
         "maxplaytime": 240,
-        "score": 8.06851,
-        "numRatings": 19494,
+        "score": 8.06932,
+        "numRatings": 19509,
         "image": "https://cf.geekdo-images.com/Wtxml94LAXsIWQCxGPS63Q__original/img/9c-MJB6x54vN5eB-1hT4XQaHtP8=/0x0/filters:format(png)/pic2649434.png",
         "images": [
             "https://cf.geekdo-images.com/RgHAZlLxaH6tM0fJzrPbAg__original/img/n1xvESlDix5GPAonACOwMxTkjq4=/0x0/filters:format(jpeg)/pic4166872.jpg",
@@ -3241,7 +3243,7 @@
     {
         "name": "A Feast for Odin",
         "description": "A Feast for Odin is a saga in the form of a board game. You are reliving the cultural achievements, mercantile expeditions, and pillages of those tribes we know as Viking today &mdash; a term that was used quite differently towards the end of the first millennium.&#10;&#10;When the northerners went out for a raid, they used to say they headed out for a viking. Their Scandinavian ancestors, however, were much more than just pirates. They were explorers and founders of states. Leif Eriksson is said to be the first European in America, long before Columbus.&#10;In what is known today as Normandy, the intruders were not called Vikings but Normans. One of them is the famous William the Conqueror who invaded England in 1066. He managed to do what the king of Norway failed to do only a few years prior: conquer the Throne of England. The reason why the people of these times became such strong seafarers is due to their unfortunate agricultural situation. Crop shortfalls caused great distress.&#10;&#10;In this game, you will raid and explore new territories. You will also experience their day-to-day activities: collecting goods to achieve a financially secure position in society. In the end, the player whose possessions bear the greatest value will be declared the winner.&#10;&#10;--gameplay description from @StoryBoardGamer's review:&#10;A Feast for Odin is a points-driven game, with plethora of pathways to victory, with a range of risk balanced against reward. A significant portion of this is your central hall, which has a whopping -86 points of squares and a major part of your game is attempting to cover these up with various tiles. Likewise, long halls and island colonies can also offer large rewards, but they will have penalties of their own.&#10;&#10;Each year follows a familiar pattern of preparation, worker placement, and then meeting the requirements of your feast. The main phase of each year is a worker placement affair. You start with a selection of Vikings, and a large action board with a whopping 61 different options to choose from. Each of these will be arranged from left to right in one of four columns. Each column requires an additional Viking to activate, but they are proportionally more powerful.&#10;&#10;At the end of each round, you will need to fill a feast table with food, alternating between plants and vegetable matter. You will also have a chance to lay the valuable green and blue tiles into your main hall. The configuration of these tiles must follow certain requirements, but your main goal is to both cover up a line of coin icons to increase your income, while otherwise encircling certain printed icons to generate those.&#10;&#10;You will build your engine over time, following an alternating pattern of outward expansion and hunting against development and cultivation. It all comes down to how much you&rsquo;re willing to take on at any one time, and what risks you&rsquo;re willing to set yourself up with for their rewards.&#10;&#10;UPC 681706716909&#10;&#10;",
-        "short_description": "Puzzle together the life of a Viking village as you hunt, farm, craft, and explore.",
+        "shortDescription": "Puzzle together the life of a Viking village as you hunt, farm, craft, and explore.",
         "designers": [
             {
                 "name": "Uwe Rosenberg",
@@ -3329,7 +3331,7 @@
         "artists": [
             {
                 "name": "Dennis Lohausen",
-                "id": 69
+                "id": 25
             }
         ],
         "complexity": 3.8625,
@@ -3338,8 +3340,8 @@
         "minage": 12,
         "minplaytime": 30,
         "maxplaytime": 120,
-        "score": 8.17745,
-        "numRatings": 26831,
+        "score": 8.17768,
+        "numRatings": 26847,
         "image": "https://cf.geekdo-images.com/s9oGMCo1fcfV4Dk3EnqLZw__original/img/N1X-0JB1GapFVhl98nP4tNFXMcM=/0x0/filters:format(png)/pic3146943.png",
         "images": [
             "https://cf.geekdo-images.com/C5-_xdPHTzCatjmhGk5qqg__original/img/jTYzJZsqkc2c4gyr9PhVoGYuh6s=/0x0/filters:format(jpeg)/pic3542488.jpg",
@@ -3386,7 +3388,7 @@
     {
         "name": "Through the Ages: A New Story of Civilization",
         "description": "Through the Ages: A New Story of Civilization is the new edition of Through the Ages: A Story of Civilization, with many changes small and large to the game's cards over its three ages and extensive changes to how military works.&#10;&#10;Through the Ages is a civilization building game. Each player attempts to build the best civilization through careful resource management, discovering new technologies, electing the right leaders, building wonders and maintaining a strong military. Weakness in any area can be exploited by your opponents. The game takes place throughout the ages beginning in the age of antiquity and ending in the modern age.&#10;&#10;One of the primary mechanisms in TTA is card drafting. Technologies, wonders, and leaders come into play and become easier to draft the longer they are in play. In order to use a technology you will need enough science to discover it, enough food to create a population to man it and enough resources (ore) to build the building to use it. While balancing the resources needed to advance your technology you also need to build a military. Military is built in the same way as civilian buildings. Players that have a weak military will be preyed upon by other players. There is no map in the game so you cannot lose territory, but players with higher military will steal resources, science, kill leaders, take population or culture. It is very difficult to win with a large military, but it is very easy to lose because of a weak one.&#10;&#10;Victory is achieved by the player whose nation has the most culture at the end of the modern age.&#10;&#10;",
-        "short_description": "Rewrite history as you build up your civilization in this epic card drafting game!",
+        "shortDescription": "Rewrite history as you build up your civilization in this epic card drafting game!",
         "designers": [
             {
                 "name": "Vlaada Chvátil",
@@ -3474,19 +3476,19 @@
         "artists": [
             {
                 "name": "Filip Murmak",
-                "id": 70
+                "id": 66
             },
             {
                 "name": "Radim Pech",
-                "id": 71
+                "id": 67
             },
             {
                 "name": "Jakub Politzer",
-                "id": 72
+                "id": 68
             },
             {
                 "name": "Milan Vavroň",
-                "id": 73
+                "id": 20
             }
         ],
         "complexity": 4.4359,
@@ -3495,8 +3497,8 @@
         "minage": 14,
         "minplaytime": 120,
         "maxplaytime": 120,
-        "score": 8.30411,
-        "numRatings": 30552,
+        "score": 8.30398,
+        "numRatings": 30566,
         "image": "https://cf.geekdo-images.com/fVwPntkJKgaEo0rIC0RwpA__original/img/1jawNpljTXwnT4km_2CjGwoUPR8=/0x0/filters:format(jpeg)/pic2663291.jpg",
         "images": [
             "https://cf.geekdo-images.com/GvUL1X2hAfi1YEg2Vkp6Lg__original/img/wg0i5gete5YU5xC6IQ8KHB8nAHw=/0x0/filters:format(jpeg)/pic3940558.jpg",
@@ -3532,7 +3534,7 @@
     {
         "name": "Viticulture Essential Edition",
         "description": "In Viticulture, the players find themselves in the roles of people in rustic, pre-modern Tuscany who have inherited meager vineyards. They have a few plots of land, an old crushpad, a tiny cellar, and three workers. They each have a dream of being the first to call their winery a true success.&#10;&#10;The players are in the position of determining how they want to allocate their workers throughout the year. Every season is different on a vineyard, so the workers have different tasks they can take care of in the summer and winter. There's competition over those tasks, and often the first worker to get to the job has an advantage over subsequent workers.&#10;&#10;Fortunately for the vineyard owners, people love to visit wineries, and it just so happens that many of those visitors are willing to help out around the vineyard when they visit as long as you assign a worker to take care of them. Their visits (in the form of cards) are brief but can be very helpful.&#10;&#10;Using those workers and visitors, the vineyard owners can expand their vineyards by building structures, planting vines, and filling wine orders, working towards the goal of running the most successful winery in Tuscany.&#10;&#10;Viticulture Essential Edition includes the base game of Viticulture and a few of the most popular modules from the original Tuscany expansion, including Mamas &amp; Papas, Fields (previously known as Properties), expanded and revised Visitors, and Automa cards for a solo variant, along with a few minor rule changes.&#10;&#10;",
-        "short_description": "Create the most prosperous winery in Italy from the Tuscan vineyard you've inherited.",
+        "shortDescription": "Create the most prosperous winery in Italy from the Tuscan vineyard you've inherited.",
         "designers": [
             {
                 "name": "Jamey Stegmaier",
@@ -3640,15 +3642,15 @@
         "artists": [
             {
                 "name": "Jacqui Davis",
-                "id": 74
+                "id": 69
             },
             {
                 "name": "David Montgomery",
-                "id": 75
+                "id": 70
             },
             {
                 "name": "Beth Sobel",
-                "id": 76
+                "id": 71
             }
         ],
         "complexity": 2.89,
@@ -3657,8 +3659,8 @@
         "minage": 13,
         "minplaytime": 45,
         "maxplaytime": 90,
-        "score": 8.00101,
-        "numRatings": 46231,
+        "score": 8.00099,
+        "numRatings": 46258,
         "image": "https://cf.geekdo-images.com/l_PRU2lVlX9seScRFcvFlA__original/img/gDL7OZFlzoOFgU0VYlREs8P5hCQ=/0x0/filters:format(jpeg)/pic6500949.jpg",
         "images": [
             "https://cf.geekdo-images.com/OsK1McDQchEZTUlwMN-MFA__original/img/1bOWGAfJW5Bb8YOn-plLqpBb3aw=/0x0/filters:format(jpeg)/pic7466685.jpg",
@@ -3692,7 +3694,7 @@
     {
         "name": "On Mars",
         "description": "Following the success of unmanned rover missions, the United Nations established the Department of Operations and Mars Exploration (D.O.M.E.). The first settlers arrived on Mars in the year 2037 and in the decades after establishment Mars Base Camp, private exploration companies began work on the creation of a self-sustaining colony. As chief astronaut for one of these enterprises, you want to be a pioneer in the development of the biggest, most advanced colony on Mars by achieving both D.O.M.E. mission goals as well as your company&rsquo;s private agenda.&#10;&#10;In the beginning, you will be dependent on supplies from Earth and will have to travel often between the Mars Space Station and the planet's surface. As the colony expands over time, you will shift your activities to construct mines, power generators, water extractors, greenhouses, oxygen factories, and shelters. Your goal is to develop a self-sustaining colony independent of any terrestrial organization. This will require understanding the importance of water, air, power, and food &mdash; the necessities for survival.&#10;&#10;Do you dare take part in humankind&rsquo;s biggest challenge?&#10;&#10;On Mars is played over several rounds, each consisting of two phases - the Colonization Phase &#226;&#128;&#139;and the Shuttle Phase&#226;&#128;&#139;.&#10;&#10;During the Colonization Phase, each player takes a turn during which they take actions. The available actions depend on the side of the board they are on. If you are in orbit, you can take blueprints, buy and develop technologies, and take supplies from the Warehouse. If you are on the surface of the planet, you can construct buildings with your bots, upgrade these buildings using blueprints, take scientists and new contracts, welcome new ships, and explore the planet&rsquo;s surface with your rover. In the Shuttle Phase, players may travel between the colony and the Space Station in orbit.&#10;&#10;All buildings on Mars have a dependency on each other and some are required for the colony to grow. Building shelters for Colonists to live in requires oxygen; generating oxygen requires plants; growing plants requires water; extracting water from ice requires power; generating power requires mining minerals; and mining minerals requires Colonists. Upgrading the colony&rsquo;s ability to provide each of these resources is vital. As the colony grows, more shelters are needed so that the Colonists can survive the inhospitable conditions on Mars.&#10;&#10;During the game, players are also trying to complete missions. Once a total of three missions have been completed, the game ends. To win the game, players must contribute to the development of the first colony on Mars. This is represented during the game by players gaining Opportunity Points (OP). The player with the most OP at the end of the game is declared the winner.&#10;&#10;",
-        "short_description": "Be a part of the first Martian colony, striving to be the best contributor.",
+        "shortDescription": "Be a part of the first Martian colony, striving to be the best contributor.",
         "designers": [
             {
                 "name": "Vital Lacerda",
@@ -3770,7 +3772,7 @@
         "artists": [
             {
                 "name": "Ian O'Toole",
-                "id": 77
+                "id": 72
             }
         ],
         "complexity": 4.6744,
@@ -3779,8 +3781,8 @@
         "minage": 14,
         "minplaytime": 90,
         "maxplaytime": 150,
-        "score": 8.20738,
-        "numRatings": 11762,
+        "score": 8.20603,
+        "numRatings": 11777,
         "image": "https://cf.geekdo-images.com/Nm0Iw8NoiM9V8IsifimGBw__original/img/GNjjsgxq7wYO9pSIteDJe6Sxt00=/0x0/filters:format(jpeg)/pic4357658.jpg",
         "images": [
             "https://cf.geekdo-images.com/phgt_oxl48vthLhmHE9Ziw__original/img/cCrWkmnox_G_u-dywiZfMFJN6tU=/0x0/filters:format(jpeg)/pic5278965.jpg",
@@ -3821,7 +3823,7 @@
     {
         "name": "Anachrony",
         "description": "It is the late 26th century. Earth is recovering from a catastrophic explosion that exterminated the majority of the population centuries ago and made most of the surface uninhabitable due to unearthly weather conditions. The surviving humans organized along four radically different ideologies, called Paths, to rebuild the world as they see fit: Harmony, Dominance, Progress, and Salvation. Followers of the four Paths live in a fragile peace, but in almost complete isolation next to each other. Their only meeting point is the last major city on Earth, now just known as the Capital.&#10;&#10;By powering up the mysterious Time Rifts that opened in the wake of the cataclysm, each Path is able to reach back to specific moments in their past. Doing so can greatly speed up their progress, but too much meddling may endanger the time-space continuum. But progress is more important than ever before: if the mysterious message arriving through the Time Rift is to be believed, an even more terrible cataclysm is looming on the horizon: an asteroid bearing the mysterious substance called Neutronium is heading towards Earth. Even stranger, the scientists show that the energy signature of the asteroid matches the explosion centuries ago...&#10;&#10;Anachrony features a unique two-tiered worker placement system. To travel to the Capital or venture out to the devastated areas for resources, players need not only various specialists (Engineers, Scientists, Administrators, and Geniuses) but also Exosuits to protect and enhance them &mdash; and both are in short supply.&#10;&#10;The game is played in 4-7 turns, depending on the time when the looming cataclysm occurs &mdash; unless, of course, it is averted! The elapsed turns are measured on a dynamic timeline. By powering up the Time Rifts, players can reach back to earlier turns to supply their past &quot;self&quot; with resources. Each Path has a vastly different objective that rewards it with a massive amount of victory points when achieved. The Paths' settlements will survive the impact, but the Capital will not. Whichever Path manages to collect most points will be the new seat for the Capital, thus the most important force left on the planet...&#10;&#10;",
-        "short_description": "Use Exosuits & time travel to ensure your vision for the future after the cataclysm.",
+        "shortDescription": "Use Exosuits & time travel to ensure your vision for the future after the cataclysm.",
         "designers": [
             {
                 "name": "Dávid Turczi",
@@ -3914,23 +3916,23 @@
         "artists": [
             {
                 "name": "Villő Farkas",
-                "id": 78
+                "id": 73
             },
             {
                 "name": "László Fejes",
-                "id": 79
+                "id": 74
             },
             {
                 "name": "Laslo Forgach",
-                "id": 80
+                "id": 75
             },
             {
                 "name": "Márton Gyula Kiss",
-                "id": 81
+                "id": 76
             },
             {
                 "name": "Péter Meszlényi",
-                "id": 82
+                "id": 77
             }
         ],
         "complexity": 4.0208,
@@ -3939,8 +3941,8 @@
         "minage": 15,
         "minplaytime": 30,
         "maxplaytime": 120,
-        "score": 8.0834,
-        "numRatings": 17638,
+        "score": 8.0826,
+        "numRatings": 17646,
         "image": "https://cf.geekdo-images.com/31quLNzteInnevVRAABoow__original/img/3KfMPSj7jjhG0g5lQBsO-bn67D0=/0x0/filters:format(jpeg)/pic3499707.jpg",
         "images": [
             "https://cf.geekdo-images.com/1VjOAeg4w4Ro_nUo58OW0Q__original/img/DIOG5C9zsqe_lwZ7GeYWqfPKpT0=/0x0/filters:format(jpeg)/pic5300113.jpg",
@@ -3972,7 +3974,7 @@
     {
         "name": "Star Wars: Rebellion",
         "description": "Star Wars: Rebellion is a board game of epic conflict between the Galactic Empire and Rebel Alliance for two to four players.&#10;&#10;Experience the Galactic Civil War like never before. In Rebellion, you control the entire Galactic Empire or the fledgling Rebel Alliance. You must command starships, account for troop movements, and rally systems to your cause. Given the differences between the Empire and Rebel Alliance, each side has different win conditions, and you'll need to adjust your play style depending on who you represent:&#10;&#10;     As the Imperial player, you can command legions of Stormtroopers, swarms of TIEs, Star Destroyers, and even the Death Star. You rule the galaxy by fear, relying on the power of your massive military to enforce your will. To win the game, you need to snuff out the budding Rebel Alliance by finding its base and obliterating it. Along the way, you can subjugate worlds or even destroy them.&#10;     As the Rebel player, you can command dozens of troopers, T-47 airspeeders, Corellian corvettes, and fighter squadrons. However, these forces are no match for the Imperial military. In terms of raw strength, you'll find yourself clearly overmatched from the very outset, so you'll need to rally the planets to join your cause and execute targeted military strikes to sabotage Imperial build yards and steal valuable intelligence. To win the Galactic Civil War, you'll need to sway the galaxy's citizens to your cause. If you survive long enough and strengthen your reputation, you inspire the galaxy to a full-scale revolt, and you win.&#10;&#10;&#10;Featuring more than 150 plastic miniatures and two game boards that account for thirty-two of the Star Wars galaxy's most notable systems, Rebellion features a scope that is as large and sweeping as any Star Wars game before it.&#10;&#10;Yet for all its grandiosity, Rebellion remains intensely personal, cinematic, and heroic. As much as your success depends upon the strength of your starships, vehicles, and troops, it depends upon the individual efforts of such notable characters as Leia Organa, Mon Mothma, Grand Moff Tarkin, and Emperor Palpatine. As civil war spreads throughout the galaxy, these leaders are invaluable to your efforts, and the secret missions they attempt will evoke many of the most inspiring moments from the classic trilogy. You might send Luke Skywalker to receive Jedi training on Dagobah or have Darth Vader spring a trap that freezes Han Solo in carbonite!&#10;&#10;",
-        "short_description": "Strike from your hidden base as the Rebels—or find and destroy it as the Empire.",
+        "shortDescription": "Strike from your hidden base as the Rebels—or find and destroy it as the Empire.",
         "designers": [
             {
                 "name": "Corey Konieczka",
@@ -4035,183 +4037,183 @@
         "artists": [
             {
                 "name": "Matt Allsopp",
-                "id": 83
+                "id": 78
             },
             {
                 "name": "David Ardila",
-                "id": 84
+                "id": 79
             },
             {
                 "name": "Balaskas",
-                "id": 85
+                "id": 80
             },
             {
                 "name": "Tiziano Baracchi",
-                "id": 86
+                "id": 81
             },
             {
                 "name": "Ryan Barger",
-                "id": 87
+                "id": 82
             },
             {
                 "name": "Jorge Barrero",
-                "id": 88
+                "id": 83
             },
             {
                 "name": "Cassandre Bolan",
-                "id": 89
+                "id": 84
             },
             {
                 "name": "Jon Bosco",
-                "id": 90
+                "id": 85
             },
             {
                 "name": "Matt Bradbury",
-                "id": 91
+                "id": 86
             },
             {
                 "name": "Adam Burn",
-                "id": 92
+                "id": 87
             },
             {
                 "name": "Alexandre Dainche",
-                "id": 93
+                "id": 88
             },
             {
                 "name": "Christina Davis",
-                "id": 94
+                "id": 89
             },
             {
                 "name": "Anthony Devine",
-                "id": 95
+                "id": 90
             },
             {
                 "name": "Allen Douglas",
-                "id": 96
+                "id": 91
             },
             {
                 "name": "Jose Mikhail Elloso",
-                "id": 97
+                "id": 92
             },
             {
                 "name": "Tony Foti",
-                "id": 98
+                "id": 93
             },
             {
                 "name": "Michele Frigo",
-                "id": 99
+                "id": 94
             },
             {
                 "name": "Mariusz Gandzel",
-                "id": 100
+                "id": 95
             },
             {
                 "name": "Zach Graves",
-                "id": 101
+                "id": 96
             },
             {
                 "name": "Richard Hanuschek",
-                "id": 102
+                "id": 97
             },
             {
                 "name": "Andrew Johanson",
-                "id": 103
+                "id": 98
             },
             {
                 "name": "Jeff Lee Johnson",
-                "id": 104
+                "id": 99
             },
             {
                 "name": "Jason Juta",
-                "id": 105
+                "id": 100
             },
             {
                 "name": "Adam Lane",
-                "id": 106
+                "id": 101
             },
             {
                 "name": "Ignacio Bazán Lazcano",
-                "id": 107
+                "id": 102
             },
             {
                 "name": "Ralph McQuarrie",
-                "id": 108
+                "id": 103
             },
             {
                 "name": "Mark Molnar",
-                "id": 109
+                "id": 104
             },
             {
                 "name": "Jake Murray",
-                "id": 110
+                "id": 105
             },
             {
                 "name": "Ameen Naksewee",
-                "id": 111
+                "id": 106
             },
             {
                 "name": "David Auden Nash",
-                "id": 112
+                "id": 107
             },
             {
                 "name": "Mike Nash",
-                "id": 113
+                "id": 108
             },
             {
                 "name": "Maciej Rebisz",
-                "id": 114
+                "id": 109
             },
             {
                 "name": "Alexandru Sabo",
-                "id": 115
+                "id": 110
             },
             {
                 "name": "Tony Shasteen",
-                "id": 116
+                "id": 111
             },
             {
                 "name": "Stephen Somers",
-                "id": 117
+                "id": 112
             },
             {
                 "name": "Matthew Starbuck",
-                "id": 118
+                "id": 113
             },
             {
                 "name": "Nicholas Stohlman",
-                "id": 119
+                "id": 114
             },
             {
                 "name": "Angela Sung",
-                "id": 120
+                "id": 115
             },
             {
                 "name": "Darren Tan",
-                "id": 121
+                "id": 116
             },
             {
                 "name": "Ryan Valle",
-                "id": 122
+                "id": 117
             },
             {
                 "name": "Jose Vega",
-                "id": 123
+                "id": 118
             },
             {
                 "name": "VIKO",
-                "id": 124
+                "id": 119
             },
             {
                 "name": "Magali Villeneuve",
-                "id": 125
+                "id": 120
             },
             {
                 "name": "Jacob Walker",
-                "id": 126
+                "id": 121
             },
             {
                 "name": "Ben Zweifel",
-                "id": 127
+                "id": 122
             }
         ],
         "complexity": 3.7451,
@@ -4220,8 +4222,8 @@
         "minage": 14,
         "minplaytime": 180,
         "maxplaytime": 240,
-        "score": 8.41936,
-        "numRatings": 31033,
+        "score": 8.41945,
+        "numRatings": 31049,
         "image": "https://cf.geekdo-images.com/7SrPNGBKg9IIsP4UQpOi8g__original/img/GKueTbkCk2Ramf6ai8mDj-BP6cI=/0x0/filters:format(jpeg)/pic4325841.jpg",
         "images": [
             "https://cf.geekdo-images.com/3QdrBISf6xzunUTkcZhVpw__original/img/Fh18AmfgdBJAVs9JVNFoXRoAxDg=/0x0/filters:format(jpeg)/pic3375365.jpg",
@@ -4267,7 +4269,7 @@
     {
         "name": "Too Many Bones",
         "description": "Too Many Bones comes loaded for bear by breaking into a new genre: the dice-builder RPG. This game takes everything you think you know about dice-rolling and turns it on its head. Dripping with strategy, this fantasy-based RPG puts you in the skin of a new race and takes you on an adventure to the northern territories to root out and defeat growing enemy forces and of course the infamous &quot;baddie&quot; responsible.&#10;&#10;Team up or go it alone in a 1-4 player Coop or Solo play campaign. With over 100+ unique skill dice and 4-7 classes to choose from, every battle is its own mini challenge to figure out. Your adventure will consist of 8-12 battles before you reach your final destination and face off against one of a number of possible kingpins in order to win. Along the way, you will be faced with storyline decisions that will quickly have you weighing risk/reward, odds, and logic - with dice woven into every aspect! Your party will also be faced with other decisions: when to rest, when to explore, or even which fights to pursue! The Encounter cards offer fun plot twists and some comic relief, all while setting the stage for your next battle.&#10;&#10;",
-        "short_description": "Toss gobs of unique dice in an epic adventure en route to a final boss showdown.",
+        "shortDescription": "Toss gobs of unique dice in an epic adventure en route to a final boss showdown.",
         "designers": [
             {
                 "name": "Josh J. Carlson",
@@ -4320,21 +4322,21 @@
         "artists": [
             {
                 "name": "Josh J. Carlson",
-                "id": 128
+                "id": 123
             },
             {
                 "name": "Anthony LeTourneau",
-                "id": 129
+                "id": 124
             }
         ],
-        "complexity": 3.8512,
+        "complexity": 3.8515,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 12,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.34964,
-        "numRatings": 11871,
+        "score": 8.35058,
+        "numRatings": 11884,
         "image": "https://cf.geekdo-images.com/wKwRk0wYBcrtLAfgn4PCdg__original/img/Wpp0vzsVe4HxXGUqiZ1hDvwAHZU=/0x0/filters:format(png)/pic6624445.png",
         "images": [
             "https://cf.geekdo-images.com/VIAOCOVlTbwOLONMQ1V5RA__original/img/ntGpJRRZEnS9H8clq8vJZDkoGlQ=/0x0/filters:format(jpeg)/pic4746920.jpg",
@@ -4368,7 +4370,7 @@
     {
         "name": "Great Western Trail",
         "description": "America in the 19th century: You are a rancher and repeatedly herd your cattle from Texas to Kansas City, where you send them off by train. This earns you money and victory points. Needless to say, each time you arrive in Kansas City, you want to have your most valuable cattle in tow. However, the &quot;Great Western Trail&quot; not only requires that you keep your herd in good shape, but also that you wisely use the various buildings along the trail. Also, it might be a good idea to hire capable staff: cowboys to improve your herd, craftsmen to build your very own buildings, or engineers for the important railroad line.&#10;&#10;If you cleverly manage your herd and navigate the opportunities and pitfalls of Great Western Trail, you surely will gain the most victory points and win the game.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Use strategic outposts and navigate danger as you herd your cattle to Kansas City.",
+        "shortDescription": "Use strategic outposts and navigate danger as you herd your cattle to Kansas City.",
         "designers": [
             {
                 "name": "Alexander Pfister",
@@ -4471,21 +4473,21 @@
         "artists": [
             {
                 "name": "Andreas Resch",
-                "id": 130
+                "id": 125
             },
             {
                 "name": "Alexander Pfister",
-                "id": 131
+                "id": 126
             }
         ],
-        "complexity": 3.7045,
+        "complexity": 3.7038,
         "minplayers": 2,
         "maxplayers": 4,
         "minage": 12,
         "minplaytime": 75,
         "maxplaytime": 150,
-        "score": 8.21391,
-        "numRatings": 39575,
+        "score": 8.21387,
+        "numRatings": 39588,
         "image": "https://cf.geekdo-images.com/u1l0gH7sb_vnvDvoO_QHqA__original/img/2zv_XMQoPFWk9Dn0oS4JY1IeFzw=/0x0/filters:format(jpeg)/pic4887376.jpg",
         "images": [
             "https://cf.geekdo-images.com/xgfLeHpZZdybZ89tPGO7DA__original/img/feJ_Et4xfGTSwQQuYNvKmDsxqus=/0x0/filters:format(jpeg)/pic3762410.jpg",
@@ -4528,7 +4530,7 @@
     {
         "name": "Everdell",
         "description": "Within the charming valley of Everdell, beneath the boughs of towering trees, among meandering streams and mossy hollows, a civilization of forest critters is thriving and expanding. From Everfrost to Bellsong, many a year have come and gone, but the time has come for new territories to be settled and new cities established. You will be the leader of a group of critters intent on just such a task. There are buildings to construct, lively characters to meet, events to host&mdash;you have a busy year ahead of yourself. Will the sun shine brightest on your city before the winter moon rises?&#10;&#10;Everdell is a game of dynamic tableau building and worker placement.&#10;&#10;On their turn a player can take one of three actions:&#10;&#10;a) Place a Worker: Each player has a collection of Worker pieces. These are placed on the board locations, events, and on Destination cards. Workers perform various actions to further the development of a player's tableau: gathering resources, drawing cards, and taking other special actions.&#10;&#10;b) Play a Card: Each player is building and populating a city; a tableau of up to 15 Construction and Critter cards. There are five types of cards: Travelers, Production, Destination, Governance, and Prosperity. Cards generate resources (twigs, resin, pebbles, and berries), grant abilities, and ultimately score points. The interactions of the cards reveal numerous strategies and a near infinite variety of working cities.&#10;&#10;c) Prepare for the next Season: Workers are returned to the players supply and new workers are added. The game is played from Winter through to the onset of the following winter, at which point the player with the city with the most points wins.&#10;&#10;",
-        "short_description": "Gather resources to develop a harmonious village of woodland critters and structures.",
+        "shortDescription": "Gather resources to develop a harmonious village of woodland critters and structures.",
         "designers": [
             {
                 "name": "James A. Wilson",
@@ -4626,25 +4628,25 @@
         "artists": [
             {
                 "name": "Andrew Bosley",
-                "id": 132
+                "id": 127
             },
             {
                 "name": "Cody Jones",
-                "id": 133
+                "id": 128
             },
             {
                 "name": "Dann May",
-                "id": 134
+                "id": 129
             }
         ],
-        "complexity": 2.811,
+        "complexity": 2.8111,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 13,
         "minplaytime": 40,
         "maxplaytime": 80,
-        "score": 8.04127,
-        "numRatings": 49481,
+        "score": 8.04095,
+        "numRatings": 49527,
         "image": "https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__original/img/HQ1ti16wT9lqja5_h3gUfHUIcVI=/0x0/filters:format(png)/pic3918905.png",
         "images": [
             "https://cf.geekdo-images.com/PG_iXoLjDvVC7184NqslNw__original/img/QLKwEu18MwiwnVC8J1_LUj5EM7A=/0x0/filters:format(png)/pic6622666.png",
@@ -4690,7 +4692,7 @@
     {
         "name": "Arkham Horror: The Card Game",
         "description": "Something evil stirs in Arkham, and only you can stop it. Blurring the traditional lines between role-playing and card game experiences, Arkham Horror: The Card Game is a Living Card Game of Lovecraftian mystery, monsters, and madness!&#10;&#10;In the game, you and your friend (or up to three friends with two Core Sets) become characters within the quiet New England town of Arkham. You have your talents, sure, but you also have your flaws. Perhaps you've dabbled a little too much in the writings of the Necronomicon, and its words continue to haunt you. Perhaps you feel compelled to cover up any signs of otherworldly evils, hampering your own investigations in order to protect the quiet confidence of the greater population. Perhaps you'll be scarred by your encounters with a ghoulish cult.&#10;&#10;No matter what compels you, no matter what haunts you, you'll find both your strengths and weaknesses reflected in your custom deck of cards, and these cards will be your resources as you work with your friends to unravel the world's most terrifying mysteries.&#10;&#10;Each of your adventures in Arkham Horror LCG carries you deeper into mystery. You'll find cultists and foul rituals. You'll find haunted houses and strange creatures. And you may find signs of the Ancient Ones straining against the barriers to our world...&#10;&#10;The basic mode of play in Arkham LCG is not the adventure, but the campaign. You might be scarred by your adventures, your sanity may be strained, and you may alter Arkham's landscape, burning buildings to the ground. All your choices and actions have consequences that reach far beyond the immediate resolution of the scenario at hand&mdash;and your actions may earn you valuable experience with which you can better prepare yourself for the adventures that still lie before you.&#10;&#10;",
-        "short_description": "Investigate the horrors of Arkham while courting cosmic doom.",
+        "shortDescription": "Investigate the horrors of Arkham while courting cosmic doom.",
         "designers": [
             {
                 "name": "Nate French",
@@ -4768,41 +4770,41 @@
         "artists": [
             {
                 "name": "Christopher Hosch",
-                "id": 135
+                "id": 130
             },
             {
                 "name": "Marcin Jakubowski",
-                "id": 136
+                "id": 131
             },
             {
                 "name": "Ignacio Bazán Lazcano",
-                "id": 137
+                "id": 102
             },
             {
                 "name": "Henning Ludvigsen",
-                "id": 138
+                "id": 51
             },
             {
                 "name": "Mercedes Opheim",
-                "id": 139
+                "id": 132
             },
             {
                 "name": "Zoe Robinson",
-                "id": 140
+                "id": 133
             },
             {
                 "name": "Evan Simonet",
-                "id": 141
+                "id": 134
             }
         ],
-        "complexity": 3.529,
+        "complexity": 3.5297,
         "minplayers": 1,
         "maxplayers": 2,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.13504,
-        "numRatings": 41320,
+        "score": 8.13492,
+        "numRatings": 41340,
         "image": "https://cf.geekdo-images.com/B5F5ulz0UivNgrI9Ky0euA__original/img/guEKCewM_2e5ugltSN3dTSwdZJI=/0x0/filters:format(jpeg)/pic3122349.jpg",
         "images": [
             "https://cf.geekdo-images.com/BkVm7LLhCJwBaULCbt1ESg__original/img/90vxLTEJdFg9NK_0k5fsoNYGqJ0=/0x0/filters:format(png)/pic3949123.png",
@@ -4850,7 +4852,7 @@
     {
         "name": "Gaia Project",
         "description": "Gaia Project is a new game in the line of Terra Mystica. As in the original Terra Mystica, fourteen different factions live on seven different kinds of planets, and each faction is bound to their own home planets, so to develop and grow, they must terraform neighboring planets into their home environments in competition with the other groups. In addition, Gaia planets can be used by all factions for colonization, and Transdimensional planets can be changed into Gaia planets.&#10;&#10;All factions can improve their skills in six different areas of development &mdash; Terraforming, Navigation, Artificial Intelligence, Gaiaforming, Economy, Research &mdash; leading to advanced technology and special bonuses. To do all of that, each group has special skills and abilities.&#10;&#10;The playing area is made of ten sectors, allowing a variable set-up and thus an even bigger replay value than its predecessor Terra Mystica. A two-player game is hosted on seven sectors.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Expand, research, upgrade, and settle the galaxy with one of 14 alien species.",
+        "shortDescription": "Expand, research, upgrade, and settle the galaxy with one of 14 alien species.",
         "designers": [
             {
                 "name": "Jens Drögemüller",
@@ -4948,17 +4950,17 @@
         "artists": [
             {
                 "name": "Dennis Lohausen",
-                "id": 142
+                "id": 25
             }
         ],
-        "complexity": 4.398,
+        "complexity": 4.3978,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 12,
         "minplaytime": 60,
         "maxplaytime": 150,
-        "score": 8.39454,
-        "numRatings": 25746,
+        "score": 8.39447,
+        "numRatings": 25760,
         "image": "https://cf.geekdo-images.com/hGWFm3hbMlCDsfCsauOQ4g__original/img/tjlflQtUPFiTpLpwk1NCVCS29Ic=/0x0/filters:format(png)/pic5375625.png",
         "images": [
             "https://cf.geekdo-images.com/v7XsgBZM9DKCEWK2J2IW9g__original/img/mhNV7ogISqRcIDxSCm0TnwCmXYo=/0x0/filters:format(jpeg)/pic3732924.jpg",
@@ -5005,7 +5007,7 @@
     {
         "name": "Brass: Birmingham",
         "description": "Brass: Birmingham is an economic strategy game sequel to Martin Wallace' 2007 masterpiece, Brass. Brass: Birmingham tells the story of competing entrepreneurs in Birmingham during the industrial revolution, between the years of 1770-1870.&#10;&#10;It offers a very different story arc and experience from its predecessor. As in its predecessor, you must develop, build, and establish your industries and network, in an effort to exploit low or high market demands. The game is played over two halves: the canal era (years 1770-1830) and the rail era (years 1830-1870). To win the game, score the most VPs. VPs are counted at the end of each half for the canals, rails and established (flipped) industry tiles.&#10;&#10;Each round, players take turns according to the turn order track, receiving two actions to perform any of the following actions (found in the original game):&#10;&#10;1) Build - Pay required resources and place an industry tile.&#10;2) Network - Add a rail / canal link, expanding your network.&#10;3) Develop - Increase the VP value of an industry.&#10;4) Sell - Sell your cotton, manufactured goods and pottery.&#10;5) Loan - Take a &pound;30 loan and reduce your income.&#10;&#10;Brass: Birmingham also features a new sixth action:&#10;&#10;6) Scout - Discard three cards and take a wild location and wild industry card. (This action replaces Double Action Build in original Brass.)&#10;&#10;",
-        "short_description": "Build networks, grow industries, and navigate the world of the Industrial Revolution.",
+        "shortDescription": "Build networks, grow industries, and navigate the world of the Industrial Revolution.",
         "designers": [
             {
                 "name": "Gavan Brown",
@@ -5123,33 +5125,33 @@
         "artists": [
             {
                 "name": "Gavan Brown",
-                "id": 143
+                "id": 10
             },
             {
                 "name": "Lina Cossette",
-                "id": 144
+                "id": 11
             },
             {
                 "name": "David Forest",
-                "id": 145
+                "id": 13
             },
             {
                 "name": "Damien Mammoliti",
-                "id": 146
+                "id": 15
             },
             {
                 "name": "Matt Tolman",
-                "id": 147
+                "id": 135
             }
         ],
-        "complexity": 3.8906,
+        "complexity": 3.8912,
         "minplayers": 2,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.60712,
-        "numRatings": 41833,
+        "score": 8.6068,
+        "numRatings": 41880,
         "image": "https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__original/img/FpyxH41Y6_ROoePAilPNEhXnzO8=/0x0/filters:format(jpeg)/pic3490053.jpg",
         "images": [
             "https://cf.geekdo-images.com/9R-zfmWa3EjsPeFNWypmGA__original/img/T1J2gjL0K5NlqGx4Xfm5jD-R3m0=/0x0/filters:format(jpeg)/pic5616885.jpg",
@@ -5200,7 +5202,7 @@
     {
         "name": "Twilight Imperium: Fourth Edition",
         "description": "Twilight Imperium (Fourth Edition) is a game of galactic conquest in which three to six players take on the role of one of seventeen factions vying for galactic domination through military might, political maneuvering, and economic bargaining. Every faction offers a completely different play experience, from the wormhole-hopping Ghosts of Creuss to the Emirates of Hacan, masters of trade and economics. These seventeen races are offered many paths to victory, but only one may sit upon the throne of Mecatol Rex as the new masters of the galaxy.&#10;&#10;No two games of Twilight Imperium are ever identical. At the start of each galactic age, the game board is uniquely and strategically constructed using 51 galaxy tiles that feature everything from lush new planets and supernovas to asteroid fields and gravity rifts. Players are dealt a hand of these tiles and take turns creating the galaxy around Mecatol Rex, the capital planet seated in the center of the board. An ion storm may block your race from progressing through the galaxy while a fortuitously placed gravity rift may protect you from your closest foes. The galaxy is yours to both craft and dominate.&#10;&#10;A round of Twilight Imperium begins with players selecting one of eight strategy cards that both determine player order and give their owner a unique strategic action for that round. These may do anything from providing additional command tokens to allowing a player to control trade throughout the galaxy. After these roles are selected, players take turns moving their fleets from system to system, claiming new planets for their empire, and engaging in warfare and trade with other factions. At the end of a turn, players gather in a grand council to pass new laws and agendas, shaking up the game in unpredictable ways.&#10;&#10;After every player has passed their turn, players move up the victory track by checking to see whether they have completed any objectives throughout the turn and scoring them. Objectives are determined by setting up ten public objective cards at the start of each game, then gradually revealing them with every round. Every player also chooses between two random secret objectives at the start of the game, providing victory points achievable only by the holder of that objective. These objectives can be anything from researching new technologies to taking your neighbor's home system. At the end of every turn, a player can claim one public objective and one secret objective. As play continues, more of these objectives are revealed and more secret objectives are dealt out, giving players dynamically changing goals throughout the game. Play continues until a player reaches ten victory points.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Build an intergalactic empire through trade, research, conquest and grand politics.",
+        "shortDescription": "Build an intergalactic empire through trade, research, conquest and grand politics.",
         "designers": [
             {
                 "name": "Dane Beltrami",
@@ -5273,17 +5275,17 @@
         "artists": [
             {
                 "name": "Scott Schomburg",
-                "id": 148
+                "id": 136
             }
         ],
-        "complexity": 4.31,
+        "complexity": 4.3094,
         "minplayers": 3,
         "maxplayers": 6,
         "minage": 14,
         "minplaytime": 240,
         "maxplaytime": 480,
-        "score": 8.61007,
-        "numRatings": 22068,
+        "score": 8.61081,
+        "numRatings": 22080,
         "image": "https://cf.geekdo-images.com/_Ppn5lssO5OaildSE-FgFA__original/img/kVpZ0Maa_LeQGWxOqsYKP3N4KUY=/0x0/filters:format(jpeg)/pic3727516.jpg",
         "images": [
             "https://cf.geekdo-images.com/K8ueRafH-oDitTvZdM_c5A__original/img/fCsKaaMG0bohNKaaJFTF1O_myeQ=/0x0/filters:format(jpeg)/pic4364447.jpg",
@@ -5332,7 +5334,7 @@
     {
         "name": "Root",
         "description": "Root is a game of adventure and war in which 2 to 4 (1 to 6 with the 'Riverfolk' expansion) players battle for control of a vast wilderness. Like Vast: The Crystal Caverns, each player in Root has unique capabilities and a different victory condition. Now, with the aid of gorgeous, multi-use cards, a truly asymmetric design has never been more accessible.&#10;&#10;The nefarious Marquise de Cat has seized the great woodland, intent on harvesting its riches. Under her rule, the many creatures of the forest have banded together. This Alliance will seek to strengthen its resources and subvert the rule of Cats. In this effort, the Alliance may enlist the help of the wandering Vagabonds who are able to move through the more dangerous woodland paths. Though some may sympathize with the Alliance&rsquo;s hopes and dreams, these wanderers are old enough to remember the great birds of prey who once controlled the woods.&#10;&#10;Meanwhile, at the edge of the region, the proud, squabbling Eyrie have found a new commander who they hope will lead their faction to resume their ancient birthright. The stage is set for a contest that will decide the fate of the great woodland. It is up to the players to decide which group will ultimately take root.&#10;&#10;In Root, players drive the narrative, and the differences between each role create an unparalleled level of interaction and replayability. Leder Games invites you and your family to explore the fantastic world of Root!&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Decide the fate of the forest as woodland factions fight for contrasting goals.",
+        "shortDescription": "Decide the fate of the forest as woodland factions fight for contrasting goals.",
         "designers": [
             {
                 "name": "Cole Wehrle",
@@ -5430,17 +5432,17 @@
         "artists": [
             {
                 "name": "Kyle Ferrin",
-                "id": 149
+                "id": 137
             }
         ],
-        "complexity": 3.7829,
+        "complexity": 3.7839,
         "minplayers": 2,
         "maxplayers": 4,
         "minage": 10,
         "minplaytime": 60,
         "maxplaytime": 90,
-        "score": 8.07628,
-        "numRatings": 47092,
+        "score": 8.07627,
+        "numRatings": 47138,
         "image": "https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__original/img/E0s2LvtFA1L5YKk-_44D4u2VD2s=/0x0/filters:format(jpeg)/pic4254509.jpg",
         "images": [
             "https://cf.geekdo-images.com/R8RNR4N36fOa9vuB6MqUTA__original/img/OncRCWwdcNfLQnkDdAN2B0Yt6Xo=/0x0/filters:format(jpeg)/pic5798984.jpg",
@@ -5484,7 +5486,7 @@
     {
         "name": "Eclipse: Second Dawn for the Galaxy",
         "description": "A game of Eclipse places you in control of a vast interstellar civilization, competing for success with its rivals. You explore new star systems, research technologies, and build spaceships with which to wage war. There are many potential paths to victory, so you need to plan your strategy according to the strengths and weaknesses of your species, while paying attention to the other civilizations' endeavors.&#10;&#10;Eclipse: Second Dawn for the Galaxy is a revised and upgraded version of the Eclipse base game that debuted in 2011 that features:&#10;&#10;&#10;    New graphic design, while maintaining the acclaimed symbology of the first edition &#10;    A full line of Ship Pack 1 miniatures&#10;    New miniatures for ancients, GCDS, orbitals, and more&#10;    Custom plastic inlays&#10;    Custom combat dice&#10;    Fine-tuned gameplay&#10;&#10;&#10;",
-        "short_description": "Build an interstellar civilization by exploration, research, conquest, and diplomacy.",
+        "shortDescription": "Build an interstellar civilization by exploration, research, conquest, and diplomacy.",
         "designers": [
             {
                 "name": "Touko Tahkokallio",
@@ -5552,29 +5554,29 @@
         "artists": [
             {
                 "name": "Noah Adelman",
-                "id": 150
+                "id": 138
             },
             {
                 "name": "Jere Kasanen",
-                "id": 151
+                "id": 139
             },
             {
                 "name": "Jukka Rajaniemi",
-                "id": 152
+                "id": 140
             },
             {
                 "name": "Sampo Sikiö",
-                "id": 153
+                "id": 141
             }
         ],
-        "complexity": 3.6618,
+        "complexity": 3.6602,
         "minplayers": 2,
         "maxplayers": 6,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 200,
-        "score": 8.48303,
-        "numRatings": 12025,
+        "score": 8.48265,
+        "numRatings": 12040,
         "image": "https://cf.geekdo-images.com/Oh3kHw6lweg6ru71Q16h2Q__original/img/yW7d4RNfU1ndISCaPlfGYUyxnRU=/0x0/filters:format(jpeg)/pic5235277.jpg",
         "images": [
             "https://cf.geekdo-images.com/Jf_uhgbzGbIm9GmMn1mSNQ__original/img/IsePt1y_m7mjurxz7OlKZS8KXFY=/0x0/filters:format(jpeg)/pic6243253.jpg",
@@ -5614,7 +5616,7 @@
     {
         "name": "Underwater Cities",
         "description": "In Underwater Cities, which takes about 30-45 minutes per player, players represent the most powerful brains in the world, brains nominated due to the overpopulation of Earth to establish the best and most livable underwater areas possible.&#10;&#10;The main principle of the game is card placement. Three colored cards are placed along the edge of the main board  into 3 x 5 slots, which are also colored. Ideally players can place cards into slots of the same color. Then they can take both actions and advantages: the action depicted in the slot on the main board and also the advantage of the card. Actions and advantages can allow players to intake raw materials; to build and upgrade city domes, tunnels and production buildings such as farms, desalination devices and laboratories in their personal underwater area; to move their marker on the initiative track (which is important for player order in the next turn); to activate the player's &quot;A-cards&quot;; and to collect cards, both special ones and basic ones that allow for better decision possibilities during gameplay.&#10;&#10;All of the nearly 220 cards &mdash; whether special or basic &mdash; are divided into five types according to the way and time of use. Underwater areas are planned to be double-sided, giving players many opportunities to achieve VPs and finally win.&#10;&#10;",
-        "short_description": "Develop future cities on the seafloor through politics, production, and science.",
+        "shortDescription": "Develop future cities on the seafloor through politics, production, and science.",
         "designers": [
             {
                 "name": "Vladimír Suchý",
@@ -5692,11 +5694,11 @@
         "artists": [
             {
                 "name": "Uildrim",
-                "id": 154
+                "id": 142
             },
             {
                 "name": "Milan Vavroň",
-                "id": 155
+                "id": 20
             }
         ],
         "complexity": 3.5991,
@@ -5705,8 +5707,8 @@
         "minage": 12,
         "minplaytime": 80,
         "maxplaytime": 150,
-        "score": 8.07374,
-        "numRatings": 18243,
+        "score": 8.07379,
+        "numRatings": 18255,
         "image": "https://cf.geekdo-images.com/PwOwTVHovJAUQgghnGqCOg__original/img/1WL5-4DZi0hX76HEgsLIYRRaIh4=/0x0/filters:format(png)/pic4837710.png",
         "images": [
             "https://cf.geekdo-images.com/UtutgU5o-qoffOdLy-nhag__original/img/HBm9fLubIakuRxkqLS9WDVOwJI0=/0x0/filters:format(png)/pic5134808.png",
@@ -5755,7 +5757,7 @@
     {
         "name": "Barrage",
         "description": "In the dystopic 1930s, the industrial revolution pushed the exploitation of fossil-based resources to the limit, and now the only thing powerful enough to quench the thirst for power of the massive machines and of the unstoppable engineering progress is the unlimited hydroelectric energy provided by the rivers.&#10;&#10;Barrage is a resource management strategic game in which players compete to build their majestic dams, raise them to increase their storing capacity, and deliver all the potential power through pressure tunnels connected to the energy turbines of their powerhouses.&#10;&#10;Each player represents one of the four international companies who are gathering machinery, innovative patents and brilliant engineers to claim the best locations to collect and exploit the water of a contested Alpine region crossed by rivers.&#10;&#10;Barrage includes two innovative and challenging mechanisms. First, the players must carefully plan their actions and handle their machinery, since both their action tokens and resources are stored on a Construction Wheel and will only be available after a full turn of the wheel. The better you manage your wheel, the earlier your resources and actions come back to you.&#10;&#10;Second, the water flow on the rivers depicted on the board is a shared and contested resource. Players have to intercept and store as much of the water as they can, build dams (upstream dams are expensive but can block part of the water before it reaches the downstream dams), raise the dams to increase their capacity, and build long tunnels to channel the water to their powerhouses. Water is never consumed &mdash; its flow is just used to produce energy &mdash;, it is instead released back to the rivers, so you have to strategically place your dams to recover the water diverted by you and the other players.&#10;&#10;Over five rounds, the players must fulfill power requirements represented by a common competitive power track and meet specific requests of personal contracts. At the same time, by placing a limited number of engineers, they attempt to enhance their machinery to acquire new and more efficient construction actions and to build and activate special unique-effect buildings to forward their own developing strategy.&#10;&#10;",
-        "short_description": "Nations vie for hydroelectric dominance in a dystopia where water is power.",
+        "shortDescription": "Nations vie for hydroelectric dominance in a dystopia where water is power.",
         "designers": [
             {
                 "name": "Tommaso Battista",
@@ -5833,25 +5835,25 @@
         "artists": [
             {
                 "name": "Mauro Alocci",
-                "id": 156
+                "id": 143
             },
             {
                 "name": "Antonio De Luca",
-                "id": 157
+                "id": 144
             },
             {
                 "name": "Roman Roland Kuteynikov",
-                "id": 158
+                "id": 145
             }
         ],
-        "complexity": 4.0992,
+        "complexity": 4.1002,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.18036,
-        "numRatings": 16193,
+        "score": 8.17925,
+        "numRatings": 16217,
         "image": "https://cf.geekdo-images.com/jEPmWvvYpqkWrKOzqIHFsg__original/img/rkHKwkUqpQC7PAGG7n2gbrcQiUY=/0x0/filters:format(png)/pic4336469.png",
         "images": [
             "https://cf.geekdo-images.com/UJUU-NZ85CT_xy5icbW0hQ__original/img/6sCl4F0T1PIjX5GtyglpaAlKIwY=/0x0/filters:format(jpeg)/pic5076069.jpg",
@@ -5886,7 +5888,7 @@
     {
         "name": "Pax Pamir: Second Edition",
         "description": "In Pax Pamir, players assume the role of nineteenth century Afghan leaders attempting to forge a new state after the collapse of the Durrani Empire. Western histories often call this period &quot;The Great Game&quot; because of the role played by the Europeans who attempted to use central Asia as a theater for their own rivalries. In this game, those empires are viewed strictly from the perspective of the Afghans who sought to manipulate the interloping ferengi (foreigners) for their own purposes.&#10;&#10;In terms of game play, Pax Pamir is a pretty straightforward tableau builder. Players spend most of their turns purchasing cards from a central market, then playing those cards in front of them in a single row called a court. Playing cards adds units to the game's map and grants access to additional actions that can be taken to disrupt other players and influence the course of the game. That last point is worth emphasizing. Though everyone is building their own row of cards, the game offers many ways for players to interfere with each other directly and indirectly.&#10;&#10;To survive, players will organize into coalitions. Throughout the game, the dominance of the different coalitions will be evaluated by the players when a special card, called a &quot;Dominance Check&quot;, is resolved. If a single coalition has a commanding lead during one of these checks, those players loyal to that coalition will receive victory points based on their influence in their coalition. However, if Afghanistan remains fragmented during one of these checks, players instead will receive victory points based on their personal power base.&#10;&#10;After each Dominance Check, victory is checked and the game will be partially reset, offering players a fresh attempt to realize their ambitions. The game ends when a single player is able to achieve a lead of four or more victory points  or after the fourth and final Dominance Check is resolved.&#10;&#10;",
-        "short_description": "Swing the tides of &quot;The Great Game&quot; as countries vie for control of Afghanistan.",
+        "shortDescription": "Swing the tides of &quot;The Great Game&quot; as countries vie for control of Afghanistan.",
         "designers": [
             {
                 "name": "Cole Wehrle",
@@ -5949,21 +5951,21 @@
         "artists": [
             {
                 "name": "Cole Wehrle",
-                "id": 159
+                "id": 146
             },
             {
                 "name": "Richard Wilkins",
-                "id": 160
+                "id": 147
             }
         ],
-        "complexity": 3.8435,
+        "complexity": 3.8438,
         "minplayers": 1,
         "maxplayers": 5,
         "minage": 13,
         "minplaytime": 45,
         "maxplaytime": 120,
-        "score": 8.22422,
-        "numRatings": 12521,
+        "score": 8.2254,
+        "numRatings": 12540,
         "image": "https://cf.geekdo-images.com/oSM_AuKYfGIwOtKbVEsoVg__original/img/7DlaMCmuoJzm9AzelmStYIDgutI=/0x0/filters:format(png)/pic4503733.png",
         "images": [
             "https://cf.geekdo-images.com/EW_ViaVJp34UKY68K50rCw__original/img/jJinIlJtdK2RGT12rjvbi9UfVuc=/0x0/filters:format(jpeg)/pic5656845.jpg",
@@ -6007,7 +6009,7 @@
     {
         "name": "Wingspan",
         "description": "Wingspan is&nbsp;a competitive, medium-weight, card-driven, engine-building board game from Stonemaier Games. It's designed by Elizabeth Hargrave and features over 170 birds illustrated by Beth Sobel, Natalia Rojas, and Ana Maria Martinez.&#10;&#10;You are bird enthusiasts&mdash;researchers, bird watchers, ornithologists, and collectors&mdash;seeking to discover and attract the best birds to your network of wildlife preserves. Each bird extends a chain of powerful combinations in one of your habitats (actions). These habitats  focus on several key aspects of growth:&#10;&#10;&#10;     Gain food tokens via custom dice in a birdfeeder dice tower&#10;     Lay eggs using egg miniatures in a variety of colors&#10;     Draw from hundreds of unique bird cards and play them&#10;&#10;&#10;The winner is the player with the most points after 4 rounds.&#10;&#10;&mdash;description from the publisher&#10;&#10;From the 7th printing on, the base game box includes Wingspan: Swift-Start Promo Pack.&#10;&#10;",
-        "short_description": "Attract a beautiful and diverse collection of birds to your wildlife preserve.",
+        "shortDescription": "Attract a beautiful and diverse collection of birds to your wildlife preserve.",
         "designers": [
             {
                 "name": "Elizabeth Hargrave",
@@ -6160,29 +6162,29 @@
         "artists": [
             {
                 "name": "Ana Maria Martinez Jaramillo",
-                "id": 161
+                "id": 148
             },
             {
                 "name": "Natalia Rojas",
-                "id": 162
+                "id": 149
             },
             {
                 "name": "Greg May",
-                "id": 163
+                "id": 150
             },
             {
                 "name": "Beth Sobel",
-                "id": 164
+                "id": 71
             }
         ],
-        "complexity": 2.4576,
+        "complexity": 2.4577,
         "minplayers": 1,
         "maxplayers": 5,
         "minage": 10,
         "minplaytime": 40,
         "maxplaytime": 70,
-        "score": 8.06425,
-        "numRatings": 85474,
+        "score": 8.06422,
+        "numRatings": 85580,
         "image": "https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__original/img/cI782Zis9cT66j2MjSHKJGnFPNw=/0x0/filters:format(jpeg)/pic4458123.jpg",
         "images": [
             "https://cf.geekdo-images.com/DU3QyL46wIv4JNFGzImgQw__original/img/OGQJQa4lhNcyNXMbfJy37uwXBjk=/0x0/filters:format(jpeg)/pic5279037.jpg",
@@ -6235,7 +6237,7 @@
     {
         "name": "Clank! Legacy: Acquisitions Incorporated",
         "description": "Clank! Legacy: Acquisitions Incorporated extends the deck-building fun of Clank! with legacy-style gameplay! Found your own franchise of the legendary adventuring company Acquisitions Incorporated, and shepherd your fledgling treasure-hunters to immortal corporate glory over the course of multiple games. Your game board, your deck, and your world change as you play to create a unique campaign tailored to your adventuring party. Be cunning, be bold, and most importantly be ready...&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "&quot;Go forth, be bold, and ACQUIRE!&quot; in this campaign version of &quot;Clank!&quot;",
+        "shortDescription": "&quot;Go forth, be bold, and ACQUIRE!&quot; in this campaign version of &quot;Clank!&quot;",
         "designers": [
             {
                 "name": "Andy Clautice",
@@ -6293,27 +6295,27 @@
         "artists": [
             {
                 "name": "Clay Brooks",
-                "id": 165
+                "id": 151
             },
             {
                 "name": "Anika Burrell",
-                "id": 166
+                "id": 152
             },
             {
                 "name": "Derek Herring",
-                "id": 167
+                "id": 153
             },
             {
                 "name": "Raul Ramos",
-                "id": 168
+                "id": 154
             },
             {
                 "name": "Nate Storm",
-                "id": 169
+                "id": 155
             },
             {
                 "name": "Alain Viesca",
-                "id": 170
+                "id": 156
             }
         ],
         "complexity": 2.7109,
@@ -6322,8 +6324,8 @@
         "minage": 13,
         "minplaytime": 90,
         "maxplaytime": 120,
-        "score": 8.55922,
-        "numRatings": 8688,
+        "score": 8.55972,
+        "numRatings": 8698,
         "image": "https://cf.geekdo-images.com/hc2NDafu5c24iLJh_IZmyg__original/img/1Fpyz7j7rTvMPRiDdPjn0Vf0m2k=/0x0/filters:format(png)/pic4885780.png",
         "images": [
             "https://cf.geekdo-images.com/La9--_nBvm0aBsfTFWCA6g__original/img/PfOmNHOKtYHwhLQ3kkc06GhYSaE=/0x0/filters:format(jpeg)/pic6193153.jpg",
@@ -6348,7 +6350,7 @@
     {
         "name": "Marvel Champions: The Card Game",
         "description": "&quot;With great power, there must also come great responsibility.&quot;&#10;   &ndash;Stan Lee, Amazing Fantasy #15&#10;&#10;Iron Man and Black Panther team up to stop Rhino from rampaging through the streets of New York. Captain Marvel and Spider-Man battle Ultron as he threatens global annihilation. Do you have what it takes to join the ranks of these legendary heroes and become a champion?&#10;&#10;Jump into the Marvel Universe with Marvel Champions: The Card Game, a cooperative Living Card Game for one to four players!&#10;&#10;Marvel Champions: The Card Game invites players to embody iconic heroes from the Marvel Universe as they battle to stop infamous villains from enacting their devious schemes. As a Living Card Game, Marvel Champions is supported with regular releases of new product, including new heroes and scenarios.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Battle Marvel villains with unique teams of iconic heroes in this LCG.",
+        "shortDescription": "Battle Marvel villains with unique teams of iconic heroes in this LCG.",
         "designers": [
             {
                 "name": "Michael Boggs",
@@ -6394,14 +6396,14 @@
             }
         ],
         "artists": [],
-        "complexity": 2.9157,
+        "complexity": 2.9158,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 45,
         "maxplaytime": 90,
-        "score": 8.129,
-        "numRatings": 22027,
+        "score": 8.12906,
+        "numRatings": 22059,
         "image": "https://cf.geekdo-images.com/kRvUgYiaOq07kC67ZK5UoQ__original/img/cqng0e4S7Cj6j6Sb49-OCggGi-8=/0x0/filters:format(jpeg)/pic4900321.jpg",
         "images": [
             "https://cf.geekdo-images.com/reGk7x7CdLh1vdLPAz3g3w__original/img/ba8VIqF_UOPTpKrUhi3eilgHgag=/0x0/filters:format(jpeg)/pic5947644.jpg",
@@ -6435,7 +6437,7 @@
     {
         "name": "Gloomhaven: Jaws of the Lion",
         "description": "Gloomhaven: Jaws of the Lion is a standalone game that takes place before the events of Gloomhaven. The game includes four new characters &mdash; Valrath Red Guard (tank, crowd control), Inox Hatchet (ranged damage), Human Voidwarden (support, mind-control), and Quatryl Demolitionist (melee damage, obstacle manipulation) &mdash; that can also be used in the original Gloomhaven game.&#10;&#10;The game also includes 16 monster types (including seven new standard monsters and three new bosses) and a new campaign with 25 scenarios that invites the heroes to investigate a case of mysterious disappearances within the city. Is it the work of Vermlings, or is something far more sinister going on?&#10;&#10;Gloomhaven: Jaws of the Lion is aimed at a more casual audience to get people into the gameplay more quickly. All of the hard-to-organize cardboard map tiles have been removed, and instead players will play on the scenario book itself, which features new artwork unique to each scenario. The last barrier to entry &mdash; i.e., learning the game &mdash; has also been lowered through a simplified rule set and a five-scenario tutorial that will ease new players into the experience.&#10;&#10;",
-        "short_description": "Vanquish monsters with strategic cardplay in a 25-scenario Gloomhaven campaign.",
+        "shortDescription": "Vanquish monsters with strategic cardplay in a 25-scenario Gloomhaven campaign.",
         "designers": [
             {
                 "name": "Isaac Childres",
@@ -6508,25 +6510,25 @@
         "artists": [
             {
                 "name": "Francesca Baerald",
-                "id": 171
+                "id": 157
             },
             {
                 "name": "David Demaret",
-                "id": 172
+                "id": 158
             },
             {
                 "name": "Alexandr Elichev",
-                "id": 173
+                "id": 56
             }
         ],
-        "complexity": 3.6336,
+        "complexity": 3.634,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 30,
         "maxplaytime": 120,
-        "score": 8.47257,
-        "numRatings": 31461,
+        "score": 8.47211,
+        "numRatings": 31484,
         "image": "https://cf.geekdo-images.com/_HhIdavYW-hid20Iq3hhmg__original/img/PBzsLRqNKQKJxGnzpb7o3qLWPQM=/0x0/filters:format(jpeg)/pic5055631.jpg",
         "images": [
             "https://cf.geekdo-images.com/iur7ovSTcbC_un2KQctK6Q__original/img/mD9aT_ggIKtv5CcCrEkMZi9CJII=/0x0/filters:format(png)/pic6540718.png",
@@ -6568,7 +6570,7 @@
     {
         "name": "Frosthaven",
         "description": "Frosthaven is the story of a small outpost far to the north of the capital city of White Oak, an outpost barely surviving the harsh weather as well as invasions from forces both known and unknown. There, a group of mercenaries at the end of their rope will help bring back this settlement from the edge of destruction. Not only will they have to deal with the harsh elements, but there are other, far more dangerous threats out in the unforgiving cold as well. There are Algox, the bigger, more yeti-like cousins of the Inox, attacking from the mountains; Lurkers flooding in from the northern sea; and rumors of machines that wander the frozen wastes of their own free will. The party of mercenaries must face all of these perils, and perhaps in doing so, make peace with these new races so they can work together against even more sinister forces.&#10;&#10;Frosthaven is a standalone adventure from the designer and publisher of Gloomhaven that features sixteen new characters, three new races, more than twenty new enemies, more than one hundred new items, and a new, 100-scenario campaign.  Characters and items from Gloomhaven will be usable in Frosthaven, and vice versa.&#10;&#10;In addition to having the well-known combat mechanisms of Gloomhaven, Frosthaven will feature much more to do outside of combat, such as numerous mysteries to solve, a seasonal event system to live through, and player control over how this ramshackle village expands, with each new building offering new ways to progress.&#10;&#10;Frosthaven has a whole new set of items but there is a mechanic for bringing items over from 'Gloomhaven'. However, as it is a remote location, these products get imported and are not there as standard. Resources are much more valuable and you have to build items through a crafting system rather than just buy them.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Adventure in the frozen north and build up your outpost throughout an epic campaign.",
+        "shortDescription": "Adventure in the frozen north and build up your outpost throughout an epic campaign.",
         "designers": [
             {
                 "name": "Isaac Childres",
@@ -6606,19 +6608,19 @@
         "artists": [
             {
                 "name": "Francesca Baerald",
-                "id": 174
+                "id": 157
             },
             {
                 "name": "David Demaret",
-                "id": 175
+                "id": 158
             },
             {
                 "name": "Alexandr Elichev",
-                "id": 176
+                "id": 56
             },
             {
                 "name": "Josh T. McDowell",
-                "id": 177
+                "id": 57
             }
         ],
         "complexity": 4.3354,
@@ -6627,8 +6629,8 @@
         "minage": 14,
         "minplaytime": 30,
         "maxplaytime": 120,
-        "score": 8.8637,
-        "numRatings": 5589,
+        "score": 8.86734,
+        "numRatings": 5612,
         "image": "https://cf.geekdo-images.com/iEBr5o8AbJi9V9cgQcYROQ__original/img/ZNt6bSM6kCGFzN1_mzuPl4wCbyM=/0x0/filters:format(jpeg)/pic6177719.jpg",
         "images": [
             "https://cf.geekdo-images.com/cwUgf-f-qwri8UHBUnifuQ__original/img/Tk7wFDJuaU8RPjNkmyC3AWYOPpU=/0x0/filters:format(png)/pic5092291.png"
@@ -6659,7 +6661,7 @@
     {
         "name": "Cascadia",
         "description": "Cascadia is a puzzly tile-laying and token-drafting game featuring the habitats and wildlife of the Pacific Northwest.&#10;&#10;In the game, you take turns building out your own terrain area and populating it with wildlife. You start with three hexagonal habitat tiles (with the five types of habitat in the game), and on a turn you choose a new habitat tile that's paired with a wildlife token, then place that tile next to your other ones and place the wildlife token on an appropriate habitat. (Each tile depicts 1-3 types of wildlife from the five types in the game, and you can place at most one tile on a habitat.) Four tiles are on display, with each tile being paired at random with a wildlife token, so you must make the best of what's available &mdash; unless you have a nature token to spend so that you can pick your choice of each item.&#10;&#10;Ideally you can place habitat tiles to create matching terrain that reduces fragmentation and creates wildlife corridors, mostly because you score for the largest area of each type of habitat at game's end, with a bonus if your group is larger than each other player's. At the same time, you want to place wildlife tokens so that you can maximize the number of points scored by them, with the wildlife goals being determined at random by one of the four scoring cards for each type of wildlife. Maybe hawks want to be separate from other hawks, while foxes want lots of different animals surrounding them and bears want to be in pairs. Can you make it happen?&#10;&#10;",
-        "short_description": "Create the most harmonious ecosystem as you puzzle together habitats and wildlife.",
+        "shortDescription": "Create the most harmonious ecosystem as you puzzle together habitats and wildlife.",
         "designers": [
             {
                 "name": "Randy Flynn",
@@ -6772,17 +6774,17 @@
         "artists": [
             {
                 "name": "Beth Sobel",
-                "id": 178
+                "id": 71
             }
         ],
-        "complexity": 1.8357,
+        "complexity": 1.8333,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 10,
         "minplaytime": 30,
         "maxplaytime": 45,
-        "score": 7.96408,
-        "numRatings": 31677,
+        "score": 7.96465,
+        "numRatings": 31763,
         "image": "https://cf.geekdo-images.com/MjeJZfulbsM1DSV3DrGJYA__original/img/B374C04Eip7fmQBGJzgiOTp-jyQ=/0x0/filters:format(jpeg)/pic5100691.jpg",
         "images": [
             "https://cf.geekdo-images.com/FLVV02tovj6Ai-wCqLKTMw__original/img/wBFLS_zwo9VPwdmCwe0OGnD9huQ=/0x0/filters:format(jpeg)/pic7547204.jpg",
@@ -6826,7 +6828,7 @@
     {
         "name": "Lost Ruins of Arnak",
         "description": "On an uninhabited island in uncharted seas, explorers have found traces of a great civilization. Now you will lead an expedition to explore the island, find lost artifacts, and face fearsome guardians, all in a quest to learn the island's secrets.&#10;&#10;Lost Ruins of Arnak combines deck-building and worker placement in a game of exploration, resource management, and discovery. In addition to traditional deck-builder effects, cards can also be used to place workers, and new worker actions become available as players explore the island. Some of these actions require resources instead of workers, so building a solid resource base will be essential. You are limited to only one action per turn, so make your choice carefully... what action will benefit you most now? And what can you afford to do later... assuming someone else doesn't take the action first!?&#10;&#10;Decks are small, and randomness in the game is heavily mitigated by the wealth of tactical decisions offered on the game board. With a variety of worker actions, artifacts, and equipment cards, the set-up for each game will be unique, encouraging players to explore new strategies to meet the challenge.&#10;&#10;Discover the Lost Ruins of Arnak!&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Explore an island to find resources and discover the lost ruins of Arnak.",
+        "shortDescription": "Explore an island to find resources and discover the lost ruins of Arnak.",
         "designers": [
             {
                 "name": "Elwen",
@@ -6949,37 +6951,37 @@
         "artists": [
             {
                 "name": "Ondřej Hrdina",
-                "id": 179
+                "id": 159
             },
             {
                 "name": "Jiří Kůs",
-                "id": 180
+                "id": 160
             },
             {
                 "name": "Filip Murmak",
-                "id": 181
+                "id": 66
             },
             {
                 "name": "Jakub Politzer",
-                "id": 182
+                "id": 68
             },
             {
                 "name": "František Sedláček",
-                "id": 183
+                "id": 161
             },
             {
                 "name": "Milan Vavroň",
-                "id": 184
+                "id": 20
             }
         ],
-        "complexity": 2.9084,
+        "complexity": 2.9078,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 12,
         "minplaytime": 30,
         "maxplaytime": 120,
-        "score": 8.0804,
-        "numRatings": 39238,
+        "score": 8.08059,
+        "numRatings": 39295,
         "image": "https://cf.geekdo-images.com/6GqH14TJJhza86BX5HCLEQ__original/img/CXqwimJPonWy1oyXEMgPN_ZVmUI=/0x0/filters:format(jpeg)/pic5674958.jpg",
         "images": [
             "https://cf.geekdo-images.com/IE7u66EF0sVXBYFMAqu21g__original/img/M0KZEWD-IUjsvWNEpBxcrB1NmsU=/0x0/filters:format(png)/pic6622620.png",
@@ -7025,7 +7027,7 @@
     {
         "name": "Dune: Imperium",
         "description": "Dune: Imperium is a game that uses deck-building to add a hidden-information angle to traditional worker placement. It finds inspiration in elements and characters from the Dune legacy, both the new film from Legendary Pictures and the seminal literary series from Frank Herbert, Brian Herbert, and Kevin J. Anderson.&#10;&#10;As a leader of one of the Great Houses of the Landsraad, raise your banner and marshal your forces and spies. War is coming, and at the center of the conflict is Arrakis &ndash; Dune, the desert planet.&#10;&#10;You start with a unique leader card, as well as a deck identical to those of your opponents.  As you acquire cards and build your deck, your choices will define your strengths and weaknesses. Cards allow you to send your Agents to certain spaces on the game board, so how your deck evolves affects your strategy. You might become more powerful militarily, able to deploy more troops than your opponents. Or you might acquire cards that give you an edge with the four political factions represented in the game: the Emperor, the Spacing Guild, the Bene Gesserit, and the Fremen.&#10;&#10;Unlike many deck-building games, you don&rsquo;t play your entire hand in one turn. Instead, you draw a hand of cards at the start of every round and alternate with other players, taking one Agent turn at a time (playing one card to send one of your Agents to the game board). When it&rsquo;s your turn and you have no more Agents to place, you&rsquo;ll take a Reveal turn, revealing the rest of your cards, which will provide Persuasion and Swords. Persuasion is used to acquire more cards, and Swords help your troops fight for the current round&rsquo;s rewards as shown on the revealed Conflict card.&#10;&#10;Defeat your rivals in combat, shrewdly navigate the political factions, and acquire precious cards. The Spice must flow to lead your House to victory!&#10;&#10;Some important links: The Official FAQ, the Unofficial FAQ, and an Automa (solo and 2p) Overview&#10;&#10;",
-        "short_description": "Influence, intrigue, and combat in the universe of Dune.",
+        "shortDescription": "Influence, intrigue, and combat in the universe of Dune.",
         "designers": [
             {
                 "name": "Paul Dennen",
@@ -7088,29 +7090,29 @@
         "artists": [
             {
                 "name": "Clay Brooks",
-                "id": 185
+                "id": 151
             },
             {
                 "name": "Brett Nienburg",
-                "id": 186
+                "id": 162
             },
             {
                 "name": "Raul Ramos",
-                "id": 187
+                "id": 154
             },
             {
                 "name": "Nate Storm",
-                "id": 188
+                "id": 155
             }
         ],
-        "complexity": 3.0334,
+        "complexity": 3.034,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 60,
         "maxplaytime": 120,
-        "score": 8.42355,
-        "numRatings": 39400,
+        "score": 8.4237,
+        "numRatings": 39474,
         "image": "https://cf.geekdo-images.com/PhjygpWSo-0labGrPBMyyg__original/img/mZzaBAEEJpMlHWWmC0R6Su0OibQ=/0x0/filters:format(jpeg)/pic5666597.jpg",
         "images": [
             "https://cf.geekdo-images.com/i5G7jYnk7GQdjo4LhJZR1w__original/img/zd66ybY5HK7qcYO92ESVWMYZ5yg=/0x0/filters:format(jpeg)/pic6191612.jpg",
@@ -7148,7 +7150,7 @@
     {
         "name": "The Crew: Mission Deep Sea",
         "description": "In the trick-taking card game The Crew: Mission Deep Sea, you and the other players work together to search for the lost continent of Mu. This new adventure takes your crew deep down into the abyss on a search for the fabled sunken land. How far you get depends entirely on how well you work together as a team. Card by card, trick by trick, your search party will discover the challenges that lie ahead and forge a path to Mu.&#10;&#10;This new version of The Crew has the same innovative co-operative trick-taking mechanism as the highly lauded original game &mdash; but with some exciting new surprises! While communication between your crew members is severely limited by your submerged state, it is also critical to your success; finding the hidden land in the murky depths depends not only on winning tricks, but also on carefully negotiating the order in which they are won. If things don't go as planned, you might just be able to salvage the operation, but it will take near flawless execution and perhaps a little luck to finally reach Mu.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Dive into the deep sea in this co-operative trick-taking game with variable missions.",
+        "shortDescription": "Dive into the deep sea in this co-operative trick-taking game with variable missions.",
         "designers": [
             {
                 "name": "Thomas Sing",
@@ -7231,7 +7233,7 @@
         "artists": [
             {
                 "name": "Marco Armbruster",
-                "id": 189
+                "id": 163
             }
         ],
         "complexity": 2.046,
@@ -7240,8 +7242,8 @@
         "minage": 10,
         "minplaytime": 20,
         "maxplaytime": 20,
-        "score": 8.19245,
-        "numRatings": 14587,
+        "score": 8.19289,
+        "numRatings": 14631,
         "image": "https://cf.geekdo-images.com/VuBqZ1sMaDAVVHF_OEJP4g__original/img/jGWxczXC_VWZofeAmlO_DkB0hCI=/0x0/filters:format(jpeg)/pic5988903.jpg",
         "images": [
             "https://cf.geekdo-images.com/_j0DVd6kuPADQU4Mi-ZX6Q__original/img/FvLqBlCUwLIXMttlSKVtEQEX4wM=/0x0/filters:format(jpeg)/pic7080473.jpg",
@@ -7277,7 +7279,7 @@
     {
         "name": "Great Western Trail: Second Edition",
         "description": "America in the 19th century: You are a rancher and repeatedly herd your cattle from Texas to Kansas City, where you send them off by train. This earns you money and victory points. Needless to say, each time you arrive in Kansas City, you want to have your most valuable cattle in tow. However, the &quot;Great Western Trail&quot; not only requires that you keep your herd in good shape, but also that you wisely use the various buildings along the trail. Also, it might be a good idea to hire capable staff: cowboys to improve your herd, craftsmen to build your very own buildings, or engineers for the important railroad line.&#10;&#10;If you cleverly manage your herd and navigate the opportunities and pitfalls of Great Western Trail, you surely will gain the most victory points and win the game.&#10;&#10;The second edition of Great Western Trail includes solitaire rules, making for a player count of 1-4.&#10;&#10;Second Edition:&#10;Remember the old days in the West? Well, the times they are a-changing&rsquo;! From new solo opponent to incredible landscapes, you won't know where to start. And there is a new herd of cows for you to sell!&#10;&#10;Great Western Trail is the critically acclaimed game of cattle ranching by Alexander Pfister. Players attempt to wrangle their herd across the Midwest prairie and deliver it to Kansas City. But beware! Other cowboys are sharing the trail with you. We invite you to saddle up!&#10;&#10;The changes in the Second edition:&#10;&#10;&#10;     Brand New Artwork by Chris Quilliams&#10;     Solo Mode: A New Challenger in the West&#10;     Dual-Layered Player Boards&#10;     Addition of a new breed of cows: The Simmental breed&#10;     Two new reversible buildings (#11 &amp; 12)&#10;     Twelve Exchange Tokens, First introduced in the Rails of North Expansion, for more interaction with other players&#10;     Four new Master Tiles added for more strategy, replayability, and challenges&#10;&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Wrangle your herd of cows across the Midwest prairie and deliver it to Kansas City.",
+        "shortDescription": "Wrangle your herd of cows across the Midwest prairie and deliver it to Kansas City.",
         "designers": [
             {
                 "name": "Alexander Pfister",
@@ -7350,17 +7352,17 @@
         "artists": [
             {
                 "name": "Chris Quilliams",
-                "id": 190
+                "id": 29
             }
         ],
-        "complexity": 3.7174,
+        "complexity": 3.7222,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 12,
         "minplaytime": 75,
         "maxplaytime": 150,
-        "score": 8.37864,
-        "numRatings": 10463,
+        "score": 8.37872,
+        "numRatings": 10491,
         "image": "https://cf.geekdo-images.com/gDn7AhrDlmfCLSz9ZqoNFQ__original/img/yecB1xO32nnjBAyskVOTq9LBuLo=/0x0/filters:format(jpeg)/pic5988511.jpg",
         "images": [
             "https://cf.geekdo-images.com/RIxmy4YsVFkqqDAvgYczcg__original/img/WbHE4HzvKIJuuVxqEY2AS-Ux7_8=/0x0/filters:format(jpeg)/pic6393788.jpg",
@@ -7395,7 +7397,7 @@
     {
         "name": "Ark Nova",
         "description": "In Ark Nova, you will plan and design a modern, scientifically managed zoo. With the ultimate goal of owning the most successful zoological establishment, you will build enclosures, accommodate animals, and support conservation projects all over the world. Specialists and unique buildings will help you in achieving this goal.&#10;&#10;Each player has a set of five action cards to manage their gameplay, and the power of an action is determined by the slot the card currently occupies. The cards in question are:&#10;&#10;&#10;    CARDS: Allows you to gain new zoo cards (animals, sponsors, and conservation project cards).&#10;    BUILD: Allows you to build standard or special enclosures, kiosks, and pavilions.&#10;    ANIMALS: Allows you to accommodate animals in your zoo.&#10;    ASSOCIATION: Allows your association workers to carry out different tasks.&#10;    SPONSORS: Allows you to play a sponsor card in your zoo or to raise money.&#10;&#10;&#10;255 cards featuring animals, specialists, special enclosures, and conservation projects, each with a special ability, are at the heart of Ark Nova. Use them to increase the appeal and scientific reputation of your zoo and collect conservation points.&#10;&#10;&mdash;description from the publisher&#10;&#10;",
-        "short_description": "Plan and build a modern, scientifically managed zoo to support conservation projects.",
+        "shortDescription": "Plan and build a modern, scientifically managed zoo to support conservation projects.",
         "designers": [
             {
                 "name": "Mathias Wigge",
@@ -7503,29 +7505,29 @@
         "artists": [
             {
                 "name": "Steffen Bieker",
-                "id": 191
+                "id": 164
             },
             {
                 "name": "Loïc Billiau",
-                "id": 192
+                "id": 32
             },
             {
                 "name": "Dennis Lohausen",
-                "id": 193
+                "id": 25
             },
             {
                 "name": "Christof Tisch",
-                "id": 194
+                "id": 165
             }
         ],
-        "complexity": 3.7354,
+        "complexity": 3.737,
         "minplayers": 1,
         "maxplayers": 4,
         "minage": 14,
         "minplaytime": 90,
         "maxplaytime": 150,
-        "score": 8.53318,
-        "numRatings": 36768,
+        "score": 8.53379,
+        "numRatings": 36855,
         "image": "https://cf.geekdo-images.com/SoU8p28Sk1s8MSvoM4N8pQ__original/img/g4S18szTdrXCdIwVKzMKrZrYAcM=/0x0/filters:format(jpeg)/pic6293412.jpg",
         "images": [
             "https://cf.geekdo-images.com/tCZw-OlXpBxoyccIhpq_fA__original/img/GtA3ypvDqoqWF7B9COxzfVvq_Ig=/0x0/filters:format(jpeg)/pic6569437.jpg",
