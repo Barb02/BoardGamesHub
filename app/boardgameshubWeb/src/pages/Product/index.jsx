@@ -74,12 +74,6 @@ function Product() {
     }
   },2*1000)
 
-  // useEffect(()=>{
-  //   loadLowestPrice(id,false);
-  //   const inter = setInterval(loadLowestPrice,2*1000,id,true);
-
-  //   return () => clearInterval(inter);
-  // },[])
 
   useEffect(() => {
     gameService.getLastPrices(id).then((data) => {
