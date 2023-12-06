@@ -72,7 +72,7 @@ function Product() {
     }else{
       loadLowestPrice(id,false)
     }
-  },2*1000)
+  },2000)
 
 
   useEffect(() => {
