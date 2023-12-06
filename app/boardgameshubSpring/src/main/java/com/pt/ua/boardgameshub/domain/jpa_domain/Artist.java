@@ -4,13 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-
-import com.pt.ua.boardgameshub.controller.request_body.ArtistRequest;
-
 import jakarta.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
 
 @Entity
 @Table(name = "artist")

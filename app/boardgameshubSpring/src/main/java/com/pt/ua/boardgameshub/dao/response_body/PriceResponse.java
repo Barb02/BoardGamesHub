@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.controller.response_body;
+package com.pt.ua.boardgameshub.dao.response_body;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Store;

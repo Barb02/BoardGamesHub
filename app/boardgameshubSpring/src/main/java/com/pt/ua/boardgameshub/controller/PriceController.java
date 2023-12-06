@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
-import com.pt.ua.boardgameshub.controller.response_body.PriceResponse;
+import com.pt.ua.boardgameshub.dao.response_body.PriceResponse;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
 

@@ -1,8 +1,7 @@
-package com.pt.ua.boardgameshub.controller.request_body;
+package com.pt.ua.boardgameshub.dao.request_body;
 
-public class CategoryRequest {
+public class ArtistRequest {
     private Long id;
-
     private String name;
 
     public Long getId(){

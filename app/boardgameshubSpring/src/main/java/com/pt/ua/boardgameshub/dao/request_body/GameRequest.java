@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.controller.request_body;
+package com.pt.ua.boardgameshub.dao.request_body;
 
 import java.util.ArrayList;
 import java.util.List;

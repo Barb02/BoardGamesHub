@@ -8,14 +8,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-
-import com.pt.ua.boardgameshub.controller.request_body.GameRequest;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import com.pt.ua.boardgameshub.dao.request_body.GameRequest;
 
 @Entity
 @Table(name = "game")

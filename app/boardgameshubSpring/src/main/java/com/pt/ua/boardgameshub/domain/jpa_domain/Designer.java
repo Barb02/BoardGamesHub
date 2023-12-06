@@ -9,7 +9,7 @@ import jakarta.persistence.Column;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.pt.ua.boardgameshub.controller.request_body.DeveloperRequest;
+import com.pt.ua.boardgameshub.dao.request_body.DeveloperRequest;
 
 @Entity
 @Table(name = "designer")

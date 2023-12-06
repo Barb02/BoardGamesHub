@@ -1,8 +1,11 @@
-package com.pt.ua.boardgameshub.controller.request_body;
+package com.pt.ua.boardgameshub.dao.request_body;
 
-public class ArtistRequest {
+public class DeveloperRequest {
     private Long id;
+
     private String name;
+
+    private String image;
 
     public Long getId(){
         return id;
@@ -18,5 +21,13 @@ public class ArtistRequest {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public String getImage(){
+        return image;
+    }
+
+    public void setImage(String image){
+        this.image = image;
     }
 }

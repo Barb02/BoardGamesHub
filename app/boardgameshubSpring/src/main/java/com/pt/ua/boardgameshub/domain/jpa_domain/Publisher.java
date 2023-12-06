@@ -5,10 +5,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-import com.pt.ua.boardgameshub.controller.request_body.DeveloperRequest;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import com.pt.ua.boardgameshub.dao.request_body.DeveloperRequest;
 
 import jakarta.persistence.Column;
 

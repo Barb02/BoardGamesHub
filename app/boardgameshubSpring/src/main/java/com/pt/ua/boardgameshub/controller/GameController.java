@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-import com.pt.ua.boardgameshub.controller.request_body.*;
+import com.pt.ua.boardgameshub.dao.request_body.*;
 import com.pt.ua.boardgameshub.domain.jpa_domain.*;
 
 
