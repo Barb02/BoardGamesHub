@@ -25,6 +25,7 @@ module.exports = {
        boxShadow: {
         'image': '8px 14px 7px 5px rgba(0, 0, 0, 0.5)',
         'innerSearch': '0px 0px 7px 2px rgba(0, 0, 0, 0.50) inset', 
+        'divDistact': '6px 6px 7.3px 5px rgba(0, 0, 0, 0.50)',
       },
       fontFamily: {
         'title': ['Alatsi'],
