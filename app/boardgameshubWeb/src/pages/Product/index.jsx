@@ -53,7 +53,15 @@ function Product() {
       setDataload(true);
     });
   }, []);
+  useEffect(() => {
+    gameService.getLastPrices(id).then((data) => {
+      setRprices(data || []);
+      setPriceload(true);
+    });
+    loadLowestPrice(id,false)
+  }, []);
 
+  
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
       console.log(data.price,lowesPrice.price)
@@ -69,18 +77,10 @@ function Product() {
   useInterval(()=>{
     if(lowesPriceLoad){
       loadLowestPrice(id,true)
-    }else{
-      loadLowestPrice(id,false)
     }
   },2000)
 
 
-  useEffect(() => {
-    gameService.getLastPrices(id).then((data) => {
-      setRprices(data || []);
-      setPriceload(true);
-    });
-  }, []);
 
   function abbrNum(number, decPlaces) {
     // 2 decimal places => 100, 3 => 1000, etc
