@@ -53,7 +53,15 @@ function Product() {
       setDataload(true);
     });
   }, []);
+  useEffect(() => {
+    gameService.getLastPrices(id).then((data) => {
+      setRprices(data || []);
+      setPriceload(true);
+    });
+    loadLowestPrice(id,false)
+  }, []);
 
+  
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
       console.log(data.price,lowesPrice.price)
@@ -69,18 +77,10 @@ function Product() {
   useInterval(()=>{
     if(lowesPriceLoad){
       loadLowestPrice(id,true)
-    }else{
-      loadLowestPrice(id,false)
     }
   },2000)
 
 
-  useEffect(() => {
-    gameService.getLastPrices(id).then((data) => {
-      setRprices(data || []);
-      setPriceload(true);
-    });
-  }, []);
 
   function abbrNum(number, decPlaces) {
     // 2 decimal places => 100, 3 => 1000, etc
@@ -172,8 +172,8 @@ function Product() {
               <div className="inline-block pl-8 text-sm text-center">
                 Playtime
                 <p>
-                  {rdata.minplaytime}
-                  {rdata.minplaytime}-{rdata.maxplaytime} min
+                  {rdata.minplaytime === rdata.maxplaytime? rdata.maxplaytime: `${rdata.minplaytime} - ${rdata.maxplaytime}`}
+                    min
                 </p>
               </div>
             </div>
@@ -314,7 +314,7 @@ function Product() {
             <div className="bg-black w-[19%] bg-opacity-20 rounded-[30px] p-[25px] text-lg shadow-divDistact">
               {priceload &&
                 rprices.map((price, index) => (
-                  <div className="grid grid-cols-2 justify-items-start gap-[15%]">
+                  <div className="grid grid-cols-2 justify-items-start gap-[10%]">
                     <div className=" justify-self-end">{price.price} $</div>
                     <div className=" justify-self-end">{price.store.name}</div>
                   </div>

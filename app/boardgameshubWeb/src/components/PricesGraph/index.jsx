@@ -23,13 +23,31 @@ function PricesGraph({ className,data }) {
                 "container": {
                     "background": "#000"
                 }
-            }}
+            },
+             "axis":{
+              "legend":{
+                "text":{
+                  "fill":"#ffffff"
+                }
+              },
+              "ticks":{
+                "text":{
+                  "fill":"#ffffff"
+                }
+              }
+             },
+             "legends":{
+                "text":{
+                  "fill":"#ffffff"
+                }
+             }
+          }
         }
         axisBottom={{
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "transportation",
+          legend: "Date",
           legendOffset: 36,
           legendPosition: "middle",
         }}
@@ -37,7 +55,7 @@ function PricesGraph({ className,data }) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "count",
+          legend: "Price",
           legendOffset: -40,
           legendPosition: "middle",
         }}
