@@ -172,8 +172,8 @@ function Product() {
               <div className="inline-block pl-8 text-sm text-center">
                 Playtime
                 <p>
-                  {rdata.minplaytime}
-                  {rdata.minplaytime}-{rdata.maxplaytime} min
+                  {rdata.minplaytime === rdata.maxplaytime? rdata.maxplaytime: `${rdata.minplaytime} - ${rdata.maxplaytime}`}
+                    min
                 </p>
               </div>
             </div>
@@ -314,7 +314,7 @@ function Product() {
             <div className="bg-black w-[19%] bg-opacity-20 rounded-[30px] p-[25px] text-lg shadow-divDistact">
               {priceload &&
                 rprices.map((price, index) => (
-                  <div className="grid grid-cols-2 justify-items-start gap-[15%]">
+                  <div className="grid grid-cols-2 justify-items-start gap-[10%]">
                     <div className=" justify-self-end">{price.price} $</div>
                     <div className=" justify-self-end">{price.store.name}</div>
                   </div>
