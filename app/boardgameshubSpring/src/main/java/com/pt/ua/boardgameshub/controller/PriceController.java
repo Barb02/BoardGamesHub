@@ -2,6 +2,7 @@ package com.pt.ua.boardgameshub.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +22,23 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators.None;
+import com.pt.ua.boardgameshub.controller.response_body.PriceHistory;
 import com.pt.ua.boardgameshub.controller.response_body.PriceResponse;
+import com.pt.ua.boardgameshub.controller.response_body.ShortPrice;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
 
-
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -126,4 +136,47 @@ public class PriceController {
         }
     }
 
+    @Operation(summary = "Get current price for a game in the specified store")
+    @GetMapping("price/history/{game_id}")
+    public List<PriceHistory> priceHistory(@PathVariable long game_id){
+        List<Price> history = priceService.getHistory(game_id);
+        List<PriceHistory> result = new ArrayList<>();
+        Map<String, Integer> visited = new HashMap<>();
+        Map<String, String> colors = new HashMap<>() {{
+            put("worten", "hsl(0, 100%, 50%)");
+            put("amazon", "hsl(32, 100%, 57%)");
+            put("fnac", "hsl(106, 100%, 57%)");
+            put("zatu", "hsl(289, 100%, 57%)");
+        }};
+        int index = 0;
+        for(Price p : history){
+            Double price = p.getPrice();
+            String store = p.getStore().getName();
+            Timestamp timestamp = p.getTimestamp();
+            Date date = new Date(timestamp.getTime());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
+            String formatted_timestamp = dateFormat.format(date);
+            if(visited.keySet().contains(store)){
+                int key = visited.get(store);
+                ShortPrice sp = new ShortPrice();
+                sp.setY(price);
+                sp.setX(formatted_timestamp);
+                result.get(key).getData().add(sp);
+            }
+            else{
+                PriceHistory ph = new PriceHistory();
+                List<ShortPrice> data = new ArrayList<>();
+                ShortPrice sp = new ShortPrice();
+                sp.setY(price);
+                sp.setX(formatted_timestamp);
+                data.add(sp);
+                ph.setId(store);
+                ph.setData(data);
+                ph.setColor(colors.get(store.toLowerCase()));
+                result.add(ph);
+                visited.put(store, index++);
+            }
+        }
+        return result;
+    }
 }

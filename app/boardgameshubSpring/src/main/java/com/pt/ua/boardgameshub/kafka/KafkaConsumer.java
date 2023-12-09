@@ -34,7 +34,7 @@ public class KafkaConsumer {
         JSONObject obj = new JSONObject(message);
         int game_id = obj.getInt("game_id");
         int store_id = obj.getInt("store_id");
-        double price = obj.getDouble("price");
+        double price = Math.floor(obj.getDouble("price") * 100) / 100;;
         System.out.println("game_id: " + game_id);
         System.out.println("store_id: " + store_id);
         System.out.println("price: " + price);
