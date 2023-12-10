@@ -9,11 +9,8 @@ import jakarta.persistence.Column;
 import java.util.HashSet;
 import java.util.Set;
 
-import lombok.Builder;
-import lombok.Data;
+import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
 
-@Data
-@Builder
 @Entity
 @Table(name = "artist")
 public class Artist {
@@ -23,7 +20,31 @@ public class Artist {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Builder.Default
     @ManyToMany(mappedBy = "artists")
     private Set<Game> games = new HashSet<>();
+
+    public Artist(){
+
+    }
+
+    public Artist(ArtistRequest ar){
+        this.id = ar.getId();        
+        this.name = ar.getName();
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
 }

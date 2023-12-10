@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
     Game findById(long id);
-    List<Game> findAllByOrderByIdAsc();
+    List<Game> findByNameContainingOrderByIdAsc(String query);
 }
