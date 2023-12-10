@@ -2,13 +2,15 @@ package com.pt.ua.boardgameshub.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.pt.ua.boardgameshub.service.jpa_service.StoreService;
+import com.pt.ua.boardgameshub.domain.Store;
+import com.pt.ua.boardgameshub.service.StoreService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -17,10 +19,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
-
 import java.util.List;
 
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1")
 public class StoreController {
