@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 import com.pt.ua.boardgameshub.dao.request_body.SignInRequest;
 import com.pt.ua.boardgameshub.dao.response_body.JwtAuthenticationResponse;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Role;
 import com.pt.ua.boardgameshub.domain.jpa_domain.User;
 import com.pt.ua.boardgameshub.repository.jpa_repo.UserRepository;
 import com.pt.ua.boardgameshub.service.jpa_service.AuthenticationService;

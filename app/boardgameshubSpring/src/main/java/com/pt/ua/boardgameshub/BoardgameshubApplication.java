@@ -29,7 +29,7 @@ public class BoardgameshubApplication {
 	@EventListener(ApplicationReadyEvent.class)
 	public void doSomethingAfterStartup() {
 
-		if(!checkDatabaseEmpty()){
+		if(signin()){
 			return;
 		}
 
@@ -41,21 +41,45 @@ public class BoardgameshubApplication {
         }
 	}
 
-    public boolean checkDatabaseEmpty(){
-        try {
-            URL url = new URL("http://localhost:8080/api/v1/game/1");
+    public boolean signin() {
+        boolean siginSuccess = false;
+        try{
+            String jsonString = "{\"email\":\"admin@gmail.com\",\"password\":\""+adminPassword+"\"}";
+            JSONObject request = new JSONObject(jsonString);
+            URL url = new URL("http://localhost:8080/api/v1/auth/signin");
+            
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
 
-            int responseCode = connection.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
-                    return false;
+            String jsonInputString = request.toString();
+            byte[] jsonBytes = jsonInputString.getBytes(StandardCharsets.UTF_8);
+            try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
+                outputStream.write(jsonBytes);
+                outputStream.flush();
             }
-            connection.disconnect();
-        } catch (IOException e) {
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("POST request sent successfully");
+                InputStreamReader in = new InputStreamReader(connection.getInputStream());
+                BufferedReader br = new BufferedReader(in);
+                String output;
+                String token = null;
+                while ((output = br.readLine()) != null) {
+                    JSONObject response = new JSONObject(output);
+                    token = response.getString("token");
+                }
+                System.out.println(token);
+                siginSuccess = true;
+            } else {
+                System.out.println("POST request failed: " + responseCode);
+            }
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
-        return true;
+        return siginSuccess;
     }
 
     public String signup() {

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 import com.pt.ua.boardgameshub.dao.request_body.SignInRequest;
 import com.pt.ua.boardgameshub.dao.response_body.JwtAuthenticationResponse;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
 import com.pt.ua.boardgameshub.service.jpa_service.AuthenticationService;
 
 import io.swagger.v3.oas.annotations.Operation;
