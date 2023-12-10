@@ -3,9 +3,6 @@ package com.pt.ua.boardgameshub.service.impl;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.Comparator;
 
 /* import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -115,7 +112,13 @@ public class GameServiceImpl implements GameService{
 
     @Override
     public List<Game> getFilterdGames(String filter){
-        List<Game> games = gameRepository.findByNameContainingOrderByIdAsc(filter);
+        List<Game> games = gameRepository.findByNameStartingWithOrderByNameAsc(filter);
+        List<Game> gamesContains = gameRepository.findByNameContainingOrderByNameAsc(filter);
+        for(Game game: gamesContains){
+            if (!games.contains(game)){
+                games.add(game);
+            }
+        }
         return games;
     }
 
