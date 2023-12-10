@@ -16,18 +16,16 @@ import jakarta.persistence.EnumType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Data;
 
-
-@Data
-@Builder
 @Entity
 @Table(name = "_user")
 public class User implements UserDetails{
@@ -48,7 +46,6 @@ public class User implements UserDetails{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Builder.Default
     @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "wishlist", 
@@ -56,7 +53,6 @@ public class User implements UserDetails{
         inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> wishlist = new HashSet<>();
 
-    @Builder.Default
     @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "preferred_categories", 
@@ -64,9 +60,71 @@ public class User implements UserDetails{
         inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> preferredCategories = new HashSet<>();
 
+    public User() {
+    }
+    
+    public User(SignUpRequest request, PasswordEncoder passwordEncoder) {
+        this.username = request.getUsername();
+        this.password = passwordEncoder.encode(request.getPassword());
+        this.email = request.getEmail();
+        this.role = Role.USER;
+    }
+
     @Override
     public String getUsername() {
         return email; // email vai ser usado no signin
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Set<Game> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Set<Game> wishlist) {
+        this.wishlist = wishlist;
+    }
+    public Set<Category> getPreferredCategories() {
+        return preferredCategories;
+    }
+
+    public void setPreferredCategories(Set<Category> preferredCategories) {
+        this.preferredCategories = preferredCategories;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole(){
+        return role;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     @Override
