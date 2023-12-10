@@ -3,6 +3,9 @@ package com.pt.ua.boardgameshub.service.impl;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.Comparator;
 
 /* import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -49,51 +52,52 @@ public class GameServiceImpl implements GameService{
     public Game addGameManual(GameRequest gamerequest){
         Game game = new Game(gamerequest);
         Set<Designer> designers = new HashSet<>();
-        for(DeveloperRequest designer: gamerequest.getDesigners()){
-            if (designerRepository.findById(designer.getId()) == null){
-                Designer newDesigner = new Designer(designer);
+        for(DeveloperRequest request: gamerequest.getDesigners()){
+            Designer designer = designerRepository.findById(request.getId()).orElse(null);
+            if (designer == null){
+                System.out.println("\n\n\nHERE\n\n\n");
+                Designer newDesigner = new Designer(request);
                 designerRepository.save(newDesigner);
                 designers.add(newDesigner);
             }
             else{
-                Designer newDesigner = designerRepository.findById(designer.getId()).orElse(null);
-                designers.add(newDesigner);
+                designers.add(designer);
             }
         }
         Set<Publisher> publishers = new HashSet<>();
-        for(DeveloperRequest pub: gamerequest.getPublishers()){
-            if (publisherRepository.findById(pub.getId()) == null){
-                Publisher newPublisher = new Publisher(pub);
+        for(DeveloperRequest request: gamerequest.getPublishers()){
+            Publisher pub = publisherRepository.findById(request.getId()).orElse(null);
+            if (pub == null){
+                Publisher newPublisher = new Publisher(request);
                 publisherRepository.save(newPublisher);
                 publishers.add(newPublisher);
             }
             else{
-                Publisher newPublisher = publisherRepository.findById(pub.getId()).orElse(null);
-                publishers.add(newPublisher);
+                publishers.add(pub);
             }
         }
         Set<Artist> artists = new HashSet<>();
-        for(ArtistRequest artist: gamerequest.getArtists()){
-            if (artistRepository.findById(artist.getId()) == null){
-                Artist newArtist = new Artist(artist);
+        for(ArtistRequest request: gamerequest.getArtists()){
+            Artist artist = artistRepository.findById(request.getId()).orElse(null);
+            if (artist == null){
+                Artist newArtist = new Artist(request);
                 artistRepository.save(newArtist);
                 artists.add(newArtist);
             }
             else{
-                Artist newArtist = artistRepository.findById(artist.getId()).orElse(null);
-                artists.add(newArtist);
+                artists.add(artist);
             }
         }
         Set<Category> categories = new HashSet<>();
-        for(CategoryRequest cat: gamerequest.getCategories()){
-            if (categoryRepository.findById(cat.getId()) == null){
-                Category newCategory = new Category(cat);
+        for(CategoryRequest request: gamerequest.getCategories()){
+            Category cat = categoryRepository.findById(request.getId()).orElse(null);
+            if (cat == null){
+                Category newCategory = new Category(request);
                 categoryRepository.save(newCategory);
                 categories.add(newCategory);
             }
             else{
-                Category newCategory = categoryRepository.findById(cat.getId()).orElse(null);
-                categories.add(newCategory);
+                categories.add(cat);
             }
         }
         game.setDesigners(designers);

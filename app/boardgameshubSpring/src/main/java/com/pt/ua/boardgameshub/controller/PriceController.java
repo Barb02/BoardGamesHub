@@ -25,7 +25,6 @@ import com.pt.ua.boardgameshub.domain.Game;
 import com.pt.ua.boardgameshub.domain.Price;
 import com.pt.ua.boardgameshub.domain.Store;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

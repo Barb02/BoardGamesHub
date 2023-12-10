@@ -7,12 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.Comparator;
 
 import com.pt.ua.boardgameshub.dao.request_body.GameRequest;
 
@@ -83,6 +87,7 @@ public class Game {
     @Column
     private String[] images;
 
+    @OrderBy("name ASC")
     @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(
         name = "categories_games", 
