@@ -1,11 +1,11 @@
-package com.pt.ua.boardgameshub.service.jpa_service.impl;
-
-import com.pt.ua.boardgameshub.service.jpa_service.StoreService;
+package com.pt.ua.boardgameshub.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
-import com.pt.ua.boardgameshub.repository.jpa_repo.StoreRepository;
+
+import com.pt.ua.boardgameshub.domain.Store;
+import com.pt.ua.boardgameshub.repository.StoreRepository;
+import com.pt.ua.boardgameshub.service.StoreService;
 
 import java.util.List;
 

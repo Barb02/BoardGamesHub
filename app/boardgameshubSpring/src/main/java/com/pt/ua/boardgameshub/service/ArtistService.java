@@ -1,6 +1,6 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Artist;
+import com.pt.ua.boardgameshub.domain.Artist;
 
 public interface ArtistService {
     public Artist getArtistById(Long id);

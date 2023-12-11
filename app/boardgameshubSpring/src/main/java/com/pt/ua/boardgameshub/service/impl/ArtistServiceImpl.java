@@ -1,10 +1,11 @@
-package com.pt.ua.boardgameshub.service.jpa_service.impl;
+package com.pt.ua.boardgameshub.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Artist;
-import com.pt.ua.boardgameshub.repository.jpa_repo.ArtistRepository;
-import com.pt.ua.boardgameshub.service.jpa_service.ArtistService;
+
+import com.pt.ua.boardgameshub.domain.Artist;
+import com.pt.ua.boardgameshub.repository.ArtistRepository;
+import com.pt.ua.boardgameshub.service.ArtistService;
 
 @Service
 public class ArtistServiceImpl implements ArtistService{

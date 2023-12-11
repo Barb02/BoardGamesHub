@@ -1,7 +1,8 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
 import java.util.List;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
+
+import com.pt.ua.boardgameshub.domain.Store;
 
 public interface StoreService {
     public Store getStoreById(Long id);

@@ -1,19 +1,20 @@
-package com.pt.ua.boardgameshub.domain.jpa_domain;
+package com.pt.ua.boardgameshub.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import com.pt.ua.boardgameshub.dao.request_body.DeveloperRequest;
 
+import jakarta.persistence.Column;
+
 @Entity
-@Table(name = "designer")
-public class Designer {
+@Table(name = "publisher")
+public class Publisher {
     @Id
     private Long id;
 
@@ -23,17 +24,17 @@ public class Designer {
     @Column
     private String image;
 
-    @ManyToMany(mappedBy = "designers")
+    @ManyToMany(mappedBy = "publishers")
     private Set<Game> games = new HashSet<>();
 
-    public Designer(){
+    public Publisher(){
 
     }
 
-    public Designer(DeveloperRequest dr){
-        this.id = dr.getId();        
-        this.name = dr.getName();
-        this.image = dr.getImage();
+    public Publisher(DeveloperRequest pr){
+        this.id = pr.getId();        
+        this.name = pr.getName();
+        this.image = pr.getImage();
     }
 
     public Long getId(){

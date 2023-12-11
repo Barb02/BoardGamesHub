@@ -1,10 +1,11 @@
-package com.pt.ua.boardgameshub.service.jpa_service.impl;
+package com.pt.ua.boardgameshub.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Publisher;
-import com.pt.ua.boardgameshub.repository.jpa_repo.PublisherRepository;
-import com.pt.ua.boardgameshub.service.jpa_service.PublisherService;
+
+import com.pt.ua.boardgameshub.domain.Publisher;
+import com.pt.ua.boardgameshub.repository.PublisherRepository;
+import com.pt.ua.boardgameshub.service.PublisherService;
 
 @Service
 public class PublisherServiceImpl implements PublisherService{

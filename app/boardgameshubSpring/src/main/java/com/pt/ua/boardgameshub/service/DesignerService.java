@@ -1,6 +1,6 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Designer;
+import com.pt.ua.boardgameshub.domain.Designer;
 
 public interface DesignerService {
     public Designer getDesignerById(Long id);

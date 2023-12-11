@@ -1,6 +1,6 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Category;
+import com.pt.ua.boardgameshub.domain.Category;
 
 public interface CategoryService {
     public Category getCategoryById(Long id);

@@ -1,14 +1,14 @@
-package com.pt.ua.boardgameshub.service.jpa_service.impl;
+package com.pt.ua.boardgameshub.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
-import com.pt.ua.boardgameshub.service.jpa_service.PriceService;
-import com.pt.ua.boardgameshub.repository.jpa_repo.PriceRepository;
+import com.pt.ua.boardgameshub.domain.Game;
+import com.pt.ua.boardgameshub.domain.Price;
+import com.pt.ua.boardgameshub.domain.Store;
+import com.pt.ua.boardgameshub.repository.PriceRepository;
+import com.pt.ua.boardgameshub.service.PriceService;
 
 @Service
 public class PriceServiceImpl implements PriceService{

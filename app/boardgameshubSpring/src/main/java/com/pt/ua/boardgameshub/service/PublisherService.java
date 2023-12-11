@@ -1,6 +1,6 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Publisher;
+import com.pt.ua.boardgameshub.domain.Publisher;
 
 public interface PublisherService {
     public Publisher getPublisherById(Long id);

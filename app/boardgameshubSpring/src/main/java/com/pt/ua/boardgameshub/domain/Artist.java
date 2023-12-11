@@ -1,35 +1,35 @@
-package com.pt.ua.boardgameshub.domain.jpa_domain;
+package com.pt.ua.boardgameshub.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.pt.ua.boardgameshub.dao.request_body.CategoryRequest;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "artist")
+public class Artist {
     @Id
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "artists")
     private Set<Game> games = new HashSet<>();
 
-    public Category(){
+    public Artist(){
 
     }
 
-    public Category(CategoryRequest cr){
-        this.id = cr.getId();        
-        this.name = cr.getName();
+    public Artist(ArtistRequest ar){
+        this.id = ar.getId();        
+        this.name = ar.getName();
     }
 
     public Long getId(){
@@ -47,5 +47,4 @@ public class Category {
     public void setName(String name){
         this.name = name;
     }
-
 }
