@@ -32,9 +32,11 @@ import com.pt.ua.boardgameshub.domain.*;
 public class GameController {
     
     private final GameService gameService;
+    private final ClickService clickService;
     @Autowired
-    public GameController(GameService gameService){
+    public GameController(GameService gameService, ClickService clickService){
         this.gameService = gameService;
+        this.clickService = clickService;
     }
 
     @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
@@ -83,6 +85,11 @@ public class GameController {
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
         }
+    }
+
+    @GetMapping("clicks/{id}")
+    public List<Click> getClicks(@PathVariable long id){
+        return clickService.getClicks(id);
     }
 
 }
