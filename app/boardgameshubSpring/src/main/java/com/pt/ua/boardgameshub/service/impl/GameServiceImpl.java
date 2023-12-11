@@ -112,8 +112,8 @@ public class GameServiceImpl implements GameService{
 
     @Override
     public List<Game> getFilterdGames(String filter){
-        List<Game> games = gameRepository.findByNameStartingWithOrderByNameAsc(filter);
-        List<Game> gamesContains = gameRepository.findByNameContainingOrderByNameAsc(filter);
+        List<Game> games = gameRepository.findByNameStartingIgnoreCaseWithOrderByNameAsc(filter);
+        List<Game> gamesContains = gameRepository.findByNameContainingIgnoreCaseOrderByNameAsc(filter);
         for(Game game: gamesContains){
             if (!games.contains(game)){
                 games.add(game);

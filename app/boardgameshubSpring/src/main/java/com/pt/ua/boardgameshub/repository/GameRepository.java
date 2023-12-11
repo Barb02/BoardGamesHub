@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
-    List<Game> findByNameContainingOrderByNameAsc(String query);
-    List<Game> findByNameStartingWithOrderByNameAsc(String query);
+    List<Game> findByNameStartingIgnoreCaseWithOrderByNameAsc(String query);
+    List<Game> findByNameContainingIgnoreCaseOrderByNameAsc(String query);
 }
