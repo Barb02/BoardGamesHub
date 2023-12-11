@@ -35,7 +35,7 @@ public class User implements UserDetails{
     private Long id;
 
     @Column(nullable = false)
-    private String username;
+    private String name;
 
     @Column
     private String password;
@@ -64,7 +64,7 @@ public class User implements UserDetails{
     }
     
     public User(SignUpRequest request, PasswordEncoder passwordEncoder) {
-        this.username = request.getUsername();
+        this.name = request.getUsername();
         this.password = passwordEncoder.encode(request.getPassword());
         this.email = request.getEmail();
         this.role = Role.USER;
@@ -72,11 +72,15 @@ public class User implements UserDetails{
 
     @Override
     public String getUsername() {
-        return email; // email vai ser usado no signin
+        return email; // email vai ser usado para autenticação e autorização
     }
 
-    public void setUsername(String username){
-        this.username = username;
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
     
     public void setPassword(String password) {

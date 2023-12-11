@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -20,7 +20,8 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class BoardgameshubApplication {
 
-    String adminPassword = "akjndjo3172dbunaku3";
+    @Value("${admin.password}")
+    String adminPassword;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoardgameshubApplication.class, args);
@@ -64,12 +65,9 @@ public class BoardgameshubApplication {
                 System.out.println("POST request sent successfully");
                 InputStreamReader in = new InputStreamReader(connection.getInputStream());
                 BufferedReader br = new BufferedReader(in);
-                String output;
-                String token = null;
-                while ((output = br.readLine()) != null) {
-                    JSONObject response = new JSONObject(output);
-                    token = response.getString("token");
-                }
+                String output = br.readLine();
+                JSONObject response = new JSONObject(output);
+                String token = response.getString("token");
                 System.out.println(token);
                 siginSuccess = true;
             } else {
@@ -106,11 +104,9 @@ public class BoardgameshubApplication {
                 
                 InputStreamReader in = new InputStreamReader(connection.getInputStream());
                 BufferedReader br = new BufferedReader(in);
-                String output;
-                while ((output = br.readLine()) != null) {
-                    JSONObject response = new JSONObject(output);
-                    token = response.getString("token");
-                }
+                String output = br.readLine();
+                JSONObject response = new JSONObject(output);
+                token = response.getString("token");
             } else {
                 System.out.println("POST request failed");
             }
