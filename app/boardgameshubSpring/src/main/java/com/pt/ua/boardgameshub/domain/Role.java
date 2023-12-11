@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.domain.jpa_domain;
+package com.pt.ua.boardgameshub.domain;
 
 public enum Role {
     USER,

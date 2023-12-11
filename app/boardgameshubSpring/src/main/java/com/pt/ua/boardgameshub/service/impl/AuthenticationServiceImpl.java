@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.service.jpa_service.impl;
+package com.pt.ua.boardgameshub.service.impl;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 import com.pt.ua.boardgameshub.dao.request_body.SignInRequest;
 import com.pt.ua.boardgameshub.dao.response_body.JwtAuthenticationResponse;
-import com.pt.ua.boardgameshub.domain.jpa_domain.User;
-import com.pt.ua.boardgameshub.repository.jpa_repo.UserRepository;
-import com.pt.ua.boardgameshub.service.jpa_service.AuthenticationService;
-import com.pt.ua.boardgameshub.service.jpa_service.JwtService;
+import com.pt.ua.boardgameshub.domain.User;
+import com.pt.ua.boardgameshub.repository.UserRepository;
+import com.pt.ua.boardgameshub.service.AuthenticationService;
+import com.pt.ua.boardgameshub.service.JwtService;
 
 import lombok.RequiredArgsConstructor;
 

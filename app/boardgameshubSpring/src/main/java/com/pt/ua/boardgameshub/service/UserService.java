@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 

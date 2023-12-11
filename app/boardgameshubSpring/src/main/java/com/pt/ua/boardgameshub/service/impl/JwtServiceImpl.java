@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.service.jpa_service.impl;
+package com.pt.ua.boardgameshub.service.impl;
 
 import java.security.Key;
 import java.util.Date;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import com.pt.ua.boardgameshub.service.jpa_service.JwtService;
+import com.pt.ua.boardgameshub.service.JwtService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

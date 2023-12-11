@@ -1,4 +1,4 @@
-package com.pt.ua.boardgameshub.service.jpa_service;
+package com.pt.ua.boardgameshub.service;
 
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 import com.pt.ua.boardgameshub.dao.request_body.SignInRequest;
