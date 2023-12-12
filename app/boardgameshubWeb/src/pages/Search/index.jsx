@@ -14,20 +14,17 @@ function Search() {
         const queryParams = new URLSearchParams(window.location.search);
         const query = queryParams.get('q');
 
-        if (query != null){
-            setQuery(query || "");
-            setRquery(query || "");
-        }
-
+        setQuery(query);
+        setRquery(query);
     }, []);
 
     const handleSearch = (e) => {
-        setQuery(e.target[0].value)
+        setQuery(e.target[0].value);
         navigate(`/search?query=${encodeURI(search)}`);
     }
 
     const handleChange = (e) => {
-        setRquery(e.target.value || "");
+        setRquery(e.target.value);
     }
 
     return (
