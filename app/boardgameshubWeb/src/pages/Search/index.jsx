@@ -6,8 +6,8 @@ import { Form, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 function Search() {
-    const [search, setQuery] = useState("");
-    const [rquery, setRquery] = useState("");
+    const [search, setQuery] = useState();
+    const [rquery, setRquery] = useState();
     const navigate = useNavigate();
     
     useEffect(() => {
