@@ -2,7 +2,6 @@ package com.pt.ua.boardgameshub.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,28 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.pt.ua.boardgameshub.service.jpa_service.PriceService;
-import com.pt.ua.boardgameshub.service.jpa_service.GameService;
-import com.pt.ua.boardgameshub.service.jpa_service.StoreService;
+import com.pt.ua.boardgameshub.service.GameService;
+import com.pt.ua.boardgameshub.service.PriceService;
+import com.pt.ua.boardgameshub.service.StoreService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.*;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-import com.pt.ua.boardgameshub.domain.jpa_domain.Store;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.None;
-import com.pt.ua.boardgameshub.controller.response_body.PriceHistory;
-import com.pt.ua.boardgameshub.controller.response_body.PriceResponse;
-import com.pt.ua.boardgameshub.controller.response_body.ShortPrice;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Game;
-import com.pt.ua.boardgameshub.domain.jpa_domain.Price;
+import com.pt.ua.boardgameshub.domain.Store;
+import com.pt.ua.boardgameshub.dao.response_body.PriceHistory;
+import com.pt.ua.boardgameshub.dao.response_body.PriceResponse;
+import com.pt.ua.boardgameshub.dao.response_body.ShortPrice;
+import com.pt.ua.boardgameshub.domain.Game;
+import com.pt.ua.boardgameshub.domain.Price;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
