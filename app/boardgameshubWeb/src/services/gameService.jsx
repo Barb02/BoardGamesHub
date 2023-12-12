@@ -15,6 +15,10 @@ const gameService = {
 
     async getLowestPrice(id){
         return await client.get(`/price/lowest/${id}`)
+    },
+
+    async getHistoryPriceGraph(id){
+        return await client.get(`/price/history/${id}`)
     }
 }
 
