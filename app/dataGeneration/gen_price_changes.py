@@ -36,27 +36,27 @@ def delivery_report(err, msg):
 
 def run():
     while True:
-        message_type = random.choice(["PRICE", "CLICK"])
-        message = {}
-        message['type'] = message_type
-        if message_type == "PRICE":
-            game_id = 1
-            store_id = random.randint(1, NUM_STORES)
-            r = requests.get("http://springboot:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
-            if r.status_code == 200:
-                change = random.choices(changes, weights=prob_weights, k=1)[0]
-                new_price = r.json()['price'] * change
-                message['game_id'] = game_id
-                message['store_id'] = store_id
-                message['price'] = new_price
+        for message_type in ["PRICE", "CLICK"]:
+            message = {}
+            message['type'] = message_type
+            if message_type == "PRICE":
+                game_id = 1
+                store_id = random.randint(1, NUM_STORES)
+                r = requests.get("http://springboot:8080/api/v1/price/" + str(game_id) + "/" + str(store_id))
+                if r.status_code == 200:
+                    change = random.choices(changes, weights=prob_weights, k=1)[0]
+                    new_price = r.json()['price'] * change
+                    message['game_id'] = game_id
+                    message['store_id'] = store_id
+                    message['price'] = new_price
 
-        elif message_type == "CLICK":
-            message['game_id'] = random.randint(1, NUM_GAMES)
-            message['amount'] = random.randint(1, MAX_CLICKS)
+            elif message_type == "CLICK":
+                message['game_id'] = random.randint(1, NUM_GAMES)
+                message['amount'] = random.randint(1, MAX_CLICKS)
 
-        msg_json = json.dumps(message)
-        producer.produce(topic, value=msg_json, callback=delivery_report)
-        print("Message sent",msg_json)
+            msg_json = json.dumps(message)
+            producer.produce(topic, value=msg_json, callback=delivery_report)
+            print("Message sent",msg_json)
         time.sleep(DELAY)
 
 def main():

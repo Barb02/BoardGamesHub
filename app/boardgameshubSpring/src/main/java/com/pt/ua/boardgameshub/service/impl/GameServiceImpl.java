@@ -45,6 +45,7 @@ public class GameServiceImpl implements GameService{
         this.categoryRepository = categoryRepository;
     }
 
+
     @Override
     public Game addGameManual(GameRequest gamerequest){
         Game game = new Game(gamerequest);
@@ -120,6 +121,12 @@ public class GameServiceImpl implements GameService{
             }
         }
         return games;
+    }
+
+
+    @Override
+    public List<Game> getTopGames(int limit) {
+        return gameRepository.findAllGamesOrderByClickCountDesc(limit);
     }
 
     /* @Override

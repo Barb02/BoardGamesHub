@@ -16,21 +16,38 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class BoardgameshubApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BoardgameshubApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BoardgameshubApplication.class, args);
+    }
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void doSomethingAfterStartup() {
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup() {
 
-		if(!checkDatabaseEmpty()){
-			return;
-		}
+        if(!checkDatabaseEmpty()){
+            return;
+        }
 
-        loadBoardGames();
+        int bgcount = loadBoardGames();
         loadStores();
         loadPrices();
-	}
+        loadClicks(bgcount);
+    }
+
+    public void loadClicks(int n){
+        for(int i = 1; i <= n; i++){
+            try{
+                URL url = new URL("http://localhost:8080/api/v1/game/" + i);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.getResponseCode();
+                connection.disconnect();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
     public boolean checkDatabaseEmpty(){
         try {
@@ -39,8 +56,8 @@ public class BoardgameshubApplication {
             connection.setRequestMethod("GET");
 
             int responseCode = connection.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
-                    return false;
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                return false;
             }
             connection.disconnect();
         } catch (IOException e) {
@@ -49,7 +66,7 @@ public class BoardgameshubApplication {
         return true;
     }
 
-    public void loadBoardGames() {
+    public int loadBoardGames() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/board_games.json");
@@ -64,10 +81,12 @@ public class BoardgameshubApplication {
                     URL url = new URL("http://localhost:8080/api/v1/game/manual");
                     sendRequest(url, boardGame);
                 }
+                return boardGames.length();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return -1;
     }
 
     public void loadStores() {
@@ -100,7 +119,7 @@ public class BoardgameshubApplication {
                 byte[] bytes = inputStream.readAllBytes();
                 String jsonString = new String(bytes, StandardCharsets.UTF_8);
 
-                int game_id = 0; 
+                int game_id = 0;
                 JSONArray stores = new JSONArray(jsonString);
                 for (int i = 0; i < stores.length(); i++) {
                     int store_id = i%4 + 1;

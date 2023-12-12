@@ -10,4 +10,5 @@ public interface GameService {
     //public Game addGameAuto(Long id);
     public Game getGameById(Long id);
     public List<Game> getFilterdGames(String filter);
+    public List<Game> getTopGames(int limit);
 }
