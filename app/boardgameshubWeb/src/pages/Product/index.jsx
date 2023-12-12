@@ -7,30 +7,6 @@ import { Notification,PricesGraph } from "../../components";
 import { useInterval } from "../../hooks";
 
 function Product() {
-  const data = [
-    {
-      id: "japan",
-      color: "hsl(12, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 196,
-        },
-        {
-          x: "helicopter",
-          y: 1,
-        },
-        {
-          x: "boat",
-          y: 30,
-        },
-        {
-          x: "train",
-          y: 285,
-        },
-      ],
-    },
-  ];
 
   let { id } = useParams();
   const [showAllCats, setShowAllCats] = useState(false);
@@ -42,6 +18,7 @@ function Product() {
 
   const [rdata, setRdata] = useState({});
   const [rprices, setRprices] = useState([]);
+  const [historyPrice,setHistoryPrice] = useState([]);
   const [lowesPrice,setLowestPrice] = useState({});
   const [dataload, setDataload] = useState(false);
   const [priceload, setPriceload] = useState(false);
@@ -52,7 +29,11 @@ function Product() {
       setRdata(data || {});
       setDataload(true);
     });
+    gameService.getHistoryPriceGraph(id).then((data) =>{
+      setHistoryPrice(data)
+    });
   }, []);
+
   useEffect(() => {
     gameService.getLastPrices(id).then((data) => {
       setRprices(data || []);
@@ -60,11 +41,9 @@ function Product() {
     });
     loadLowestPrice(id,false)
   }, []);
-
   
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
-      console.log(data.price,lowesPrice.price)
       if (checkUpdate && (lowesPrice.price != data.price || lowesPrice.store.name != data.store.name)){
         setNotification(true);
       }
@@ -321,7 +300,7 @@ function Product() {
                 ))}
             </div>
             <div className="w-[79%] bg-black bg-opacity-20 rounded-[30px] shadow-divDistact">
-              <PricesGraph className={"h-[400px] w-[80%"} data={data} />
+              <PricesGraph className={"h-[400px] w-[80%"} data={historyPrice} />
             </div>
           </div>}
         </div>

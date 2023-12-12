@@ -1,12 +1,14 @@
 import { ResponsiveLine } from "@nivo/line";
 
 function PricesGraph({ className,data }) {
+
   return (
     <div className={` h-1 ${className}`}>
       <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: "point" }}
+        xScale={{ format: "%b %d %Y", type: "time" }}
+        xFormat="time:%b %d %Y"
         yScale={{
           type: "linear",
           min: "auto",
@@ -44,9 +46,10 @@ function PricesGraph({ className,data }) {
           }
         }
         axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
+          //tickSize: 5,
+          //tickPadding: 5,
+          //tickRotation: 0,
+          format: "%b %d",
           legend: "Date",
           legendOffset: 36,
           legendPosition: "middle",
