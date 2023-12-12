@@ -7,6 +7,7 @@ import Search from './pages/Search';
 import Product from './pages/Product';
 import Login from './pages/Login';
 import Wishlist from './pages/Wishlist';
+import Register from './pages/Register';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/search", element:<Search/>},
       { path: "/product/:id", element:<Product/>},
       { path: "/login", element:<Login/>},
+      { path: "/register", element:<Register/>},
       { path: "/wishlist", element:<Wishlist/>},
     ]
   },

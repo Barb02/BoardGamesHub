@@ -24,7 +24,7 @@ const Navbar = () => {
                     </form>
                   </div>
                   <Link to="/login"><button className="rounded-xl flex p-4 pt-2 pb-2 mr-4 justify-center items-center bg-primary text-text">Login</button></Link>
-                  <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">Register</button>
+                  <Link to="/register"><button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">Register</button></Link>
                 </div>
             </div>
           </div>
