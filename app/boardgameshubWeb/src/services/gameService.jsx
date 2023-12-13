@@ -23,6 +23,10 @@ const gameService = {
 
     async getPopularGames(limit){
         return await client.get(`/game/top?limit=${limit}`)
+    },
+
+    async getNewGames(){
+        return await client.get(`/game?orderBy=yearPublished`)
     }
 }
 
