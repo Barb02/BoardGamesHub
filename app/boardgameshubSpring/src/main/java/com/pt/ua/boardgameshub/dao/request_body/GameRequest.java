@@ -27,6 +27,8 @@ public class GameRequest {
 
     private int minage;
 
+    private int yearPublished;
+
     private int minplaytime;
 
     private int maxplaytime;
@@ -103,6 +105,14 @@ public class GameRequest {
 
     public void setComplexity(double complexity) {
         this.complexity = complexity;
+    }
+
+    public int getYearPublished() {
+        return yearPublished;
+    }
+
+    public void setYearPublished(int yearPublished){
+        this.yearPublished = yearPublished;
     }
 
     public double getMinplayers() {

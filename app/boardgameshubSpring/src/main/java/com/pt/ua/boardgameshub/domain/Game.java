@@ -12,7 +12,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.pt.ua.boardgameshub.dao.request_body.GameRequest;
@@ -64,6 +66,9 @@ public class Game {
     private double maxplayers;
 
     @Column
+    private int yearPublished;
+
+    @Column
     private int minage;
 
     @Column
@@ -109,6 +114,7 @@ public class Game {
         this.numRatings = gamerequest.getNumRatings();
         this.image = gamerequest.getImage();
         this.images = gamerequest.getImages();
+        this.yearPublished = gamerequest.getYearPublished();
     }
 
     public Long getId() {
@@ -189,6 +195,14 @@ public class Game {
 
     public void setMaxplayers(double maxPlayers) {
         this.maxplayers = maxPlayers;
+    }
+
+    public int getYearPublished() {
+        return yearPublished;
+    }
+
+    public void setYearPublished(int yearPublished){
+        this.yearPublished = yearPublished;
     }
 
     public int getMinage() {
