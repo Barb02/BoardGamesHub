@@ -1,6 +1,9 @@
 package com.pt.ua.boardgameshub.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -81,14 +84,15 @@ public class GameController {
                     content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
             @ApiResponse(responseCode = "404", description = "Games not found", content = @Content)})
     @GetMapping("game")
-    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String filter){
-        List<Game> games = gameService.getFilterdGames(filter);
-        if (games != null) {
+    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String name, 
+                                  @RequestParam(name="categories", defaultValue="") String categories,
+                                  @RequestParam(name="orderBy", defaultValue="") String orderBy){
+        List<Game> games = gameService.getFilteredGames(name, categories, orderBy);
+        if(games != null)
             return games;
-        }
-        else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
-        }
+        
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        
     }
 
     @Operation(summary = "Get the most visited games")

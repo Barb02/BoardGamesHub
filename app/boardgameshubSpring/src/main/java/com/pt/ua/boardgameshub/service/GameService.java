@@ -9,6 +9,6 @@ public interface GameService {
     public Game addGameManual(GameRequest game);
     //public Game addGameAuto(Long id);
     public Game getGameById(Long id);
-    public List<Game> getFilterdGames(String filter);
+    public List<Game> getFilteredGames(String name, String categories, String orderBy);
     public List<Game> getTopGames(int limit);
 }
