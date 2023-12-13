@@ -19,6 +19,10 @@ const gameService = {
 
     async getHistoryPriceGraph(id){
         return await client.get(`/price/history/${id}`)
+    },
+
+    async getPopularGames(limit){
+        return await client.get(`/game/top?limit=${limit}`)
     }
 }
 

@@ -7,12 +7,12 @@ function Homepage() {
   const [price,setPrice] = useState({})
 
   useEffect(() => {
-    gameService.getGame(49).then((data) => {
-      setHotOfWeek(data);
+    gameService.getPopularGames(20).then((data) => {
+      setHotOfWeek(data[0]);
       setLoaded(true);
-    gameService.getLowestPrice(20).then((data)=>{
-      setPrice(data);
-    })
+      gameService.getLowestPrice(data[0].id).then((price) => {
+        setPrice(price)
+      })
     });
   }, []);
 
@@ -23,7 +23,7 @@ function Homepage() {
           <div className="w-[30%] h-full place-self-center">
             <p className="text-text font-hot italic text-[48px] h-[10%] whitespace-nowrap font-extrabold textShadow-shtitle -rotate-6 translate-y-4 -translate-x-5" style={{textShadow:"9px 7px 0px #000"}}>GAME OF THE WEEK</p>
             <img src={hotOfWeek.image} className=" w-full rounded-[20px] aspect-square shadow-image object-cover"></img>
-            <p className="text-text text-right font-mono text-[40px] pt-4 h-[54px]">{price.price} $</p>
+            <p className="text-text text-right font-mono text-[40px] pt-4 h-[10%]">{(Math.round(price.price * 100) / 100).toFixed(2)}$</p>
             <p className="text-text text-right font-mono text-[16px]">current lowest price</p>
           </div>
           <div className="flex flex-col shadow-divDistact w-[60%] rounded-[20px] h-[85%] place-self-center px-10 py-5 bg-black bg-opacity-20">
