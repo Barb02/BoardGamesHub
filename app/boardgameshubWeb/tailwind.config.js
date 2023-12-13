@@ -26,14 +26,19 @@ module.exports = {
         'image': '8px 14px 7px 5px rgba(0, 0, 0, 0.5)',
         'innerSearch': '0px 0px 7px 2px rgba(0, 0, 0, 0.50) inset', 
         'divDistact': '6px 6px 7.3px 5px rgba(0, 0, 0, 0.50)',
+        'hot':'9px 7px 0px rgba(0,0,0,1)',
       },
       fontFamily: {
         'title': ['Alatsi'],
         'text': ['IBM Plex Mono'],
+        'hot': ['Josefin Sans'],
       },
       gradientColorStopPositions: {
         22: '22%',
       },
+      rotate: {
+        '6': '6deg',
+      }
     },
   },
   plugins: [],

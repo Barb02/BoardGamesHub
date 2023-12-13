@@ -1,5 +1,4 @@
 import user_group_icon from "../../static/user_group_icon.svg";
-import logo_worten from "../../static/logo_worten.jpg";
 import React, { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
 import { useParams } from "react-router-dom";
@@ -7,30 +6,6 @@ import { Notification,PricesGraph } from "../../components";
 import { useInterval } from "../../hooks";
 
 function Product() {
-  const data = [
-    {
-      id: "japan",
-      color: "hsl(12, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 196,
-        },
-        {
-          x: "helicopter",
-          y: 1,
-        },
-        {
-          x: "boat",
-          y: 30,
-        },
-        {
-          x: "train",
-          y: 285,
-        },
-      ],
-    },
-  ];
 
   let { id } = useParams();
   const [showAllCats, setShowAllCats] = useState(false);
@@ -42,6 +17,7 @@ function Product() {
 
   const [rdata, setRdata] = useState({});
   const [rprices, setRprices] = useState([]);
+  const [historyPrice,setHistoryPrice] = useState([]);
   const [lowesPrice,setLowestPrice] = useState({});
   const [dataload, setDataload] = useState(false);
   const [priceload, setPriceload] = useState(false);
@@ -52,11 +28,21 @@ function Product() {
       setRdata(data || {});
       setDataload(true);
     });
+    gameService.getHistoryPriceGraph(id).then((data) =>{
+      setHistoryPrice(data)
+    });
   }, []);
 
+  useEffect(() => {
+    gameService.getLastPrices(id).then((data) => {
+      setRprices(data || []);
+      setPriceload(true);
+    });
+    loadLowestPrice(id,false)
+  }, []);
+  
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
-      console.log(data.price,lowesPrice.price)
       if (checkUpdate && (lowesPrice.price != data.price || lowesPrice.store.name != data.store.name)){
         setNotification(true);
       }
@@ -69,18 +55,10 @@ function Product() {
   useInterval(()=>{
     if(lowesPriceLoad){
       loadLowestPrice(id,true)
-    }else{
-      loadLowestPrice(id,false)
     }
   },2000)
 
 
-  useEffect(() => {
-    gameService.getLastPrices(id).then((data) => {
-      setRprices(data || []);
-      setPriceload(true);
-    });
-  }, []);
 
   function abbrNum(number, decPlaces) {
     // 2 decimal places => 100, 3 => 1000, etc
@@ -172,8 +150,8 @@ function Product() {
               <div className="inline-block pl-8 text-sm text-center">
                 Playtime
                 <p>
-                  {rdata.minplaytime}
-                  {rdata.minplaytime}-{rdata.maxplaytime} min
+                  {rdata.minplaytime === rdata.maxplaytime? rdata.maxplaytime: `${rdata.minplaytime} - ${rdata.maxplaytime}`}
+                    min
                 </p>
               </div>
             </div>
@@ -314,14 +292,14 @@ function Product() {
             <div className="bg-black w-[19%] bg-opacity-20 rounded-[30px] p-[25px] text-lg shadow-divDistact">
               {priceload &&
                 rprices.map((price, index) => (
-                  <div className="grid grid-cols-2 justify-items-start gap-[15%]">
+                  <div className="grid grid-cols-2 justify-items-start gap-[10%]">
                     <div className=" justify-self-end">{price.price} $</div>
                     <div className=" justify-self-end">{price.store.name}</div>
                   </div>
                 ))}
             </div>
             <div className="w-[79%] bg-black bg-opacity-20 rounded-[30px] shadow-divDistact">
-              <PricesGraph className={"h-[400px] w-[80%"} data={data} />
+              <PricesGraph className={"h-[400px] w-[80%"} data={historyPrice} />
             </div>
           </div>}
         </div>

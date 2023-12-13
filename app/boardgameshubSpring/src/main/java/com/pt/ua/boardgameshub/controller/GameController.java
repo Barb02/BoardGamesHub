@@ -1,8 +1,9 @@
 package com.pt.ua.boardgameshub.controller;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.pt.ua.boardgameshub.service.jpa_service.*;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,8 +24,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-import com.pt.ua.boardgameshub.controller.request_body.*;
-import com.pt.ua.boardgameshub.domain.jpa_domain.*;
+import com.pt.ua.boardgameshub.service.*;
+import com.pt.ua.boardgameshub.dao.request_body.*;
+import com.pt.ua.boardgameshub.domain.*;
 
 
 @CrossOrigin(maxAge = 3600)
@@ -35,18 +35,11 @@ import com.pt.ua.boardgameshub.domain.jpa_domain.*;
 public class GameController {
     
     private final GameService gameService;
-    private final DesignerService designerService;
-    private final PublisherService publisherService;
-    private final ArtistService artistService;
-    private final CategoryService categoryService;
-
+    private final ClickService clickService;
     @Autowired
-    public GameController(GameService gameService, DesignerService designerService, PublisherService publisherService, ArtistService artistService, CategoryService categoryService){
+    public GameController(GameService gameService, ClickService clickService){
         this.gameService = gameService;
-        this.designerService = designerService;
-        this.publisherService = publisherService;
-        this.artistService = artistService;
-        this.categoryService = categoryService;
+        this.clickService = clickService;
     }
 
     @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
@@ -56,60 +49,7 @@ public class GameController {
             @ApiResponse(responseCode = "500", description = "Couldn't add game (manual)", content = @Content)})
     @PostMapping("game/manual")
     public Game addGameManual(@RequestBody GameRequest gamerequest){
-        Game game = new Game(gamerequest);
-        Set<Designer> designers = new HashSet<>();
-        for(DeveloperRequest designer: gamerequest.getDesigners()){
-            if (designerService.getDesignerById(designer.getId()) == null){
-                Designer newDesigner = new Designer(designer);
-                designerService.addDesigner(newDesigner);
-                designers.add(newDesigner);
-            }
-            else{
-                Designer newDesigner = designerService.getDesignerById(designer.getId());
-                designers.add(newDesigner);
-            }
-        }
-        Set<Publisher> publishers = new HashSet<>();
-        for(DeveloperRequest pub: gamerequest.getPublishers()){
-            if (publisherService.getPublisherById(pub.getId()) == null){
-                Publisher newPublisher = new Publisher(pub);
-                publisherService.addPublisher(newPublisher);
-                publishers.add(newPublisher);
-            }
-            else{
-                Publisher newPublisher = publisherService.getPublisherById(pub.getId());
-                publishers.add(newPublisher);
-            }
-        }
-        Set<Artist> artists = new HashSet<>();
-        for(ArtistRequest artist: gamerequest.getArtists()){
-            if (artistService.getArtistById(artist.getId()) == null){
-                Artist newArtist = new Artist(artist);
-                artistService.addArtist(newArtist);
-                artists.add(newArtist);
-            }
-            else{
-                Artist newArtist = artistService.getArtistById(artist.getId());
-                artists.add(newArtist);
-            }
-        }
-        Set<Category> categories = new HashSet<>();
-        for(CategoryRequest cat: gamerequest.getCategories()){
-            if (categoryService.getCategoryById(cat.getId()) == null){
-                Category newCategory = new Category(cat);
-                categoryService.addCategory(newCategory);
-                categories.add(newCategory);
-            }
-            else{
-                Category newCategory = categoryService.getCategoryById(cat.getId());
-                categories.add(newCategory);
-            }
-        }
-        game.setDesigners(designers);
-        game.setPublishers(publishers);
-        game.setArtists(artists);
-        game.setCategories(categories);
-        Game newGame = gameService.addGameManual(game);
+        Game newGame = gameService.addGameManual(gamerequest);
         if (newGame != null) {
             return newGame;
         }
@@ -127,6 +67,10 @@ public class GameController {
     public Game getGameById(@PathVariable long id){
         Game game = gameService.getGameById(id);
         if (game != null) {
+            Click click = new Click();
+            click.setClickTime(new java.sql.Timestamp(System.currentTimeMillis()));
+            click.setGame(game);
+            clickService.addClick(click);
             return game;
         }
         else{
@@ -140,13 +84,25 @@ public class GameController {
                     content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
             @ApiResponse(responseCode = "404", description = "Games not found", content = @Content)})
     @GetMapping("game")
-    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String filter){
-        List<Game> games = gameService.getFilterdGames(filter);
-        if (games != null) {
+    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String name, 
+                                  @RequestParam(name="categories", defaultValue="") String categories,
+                                  @RequestParam(name="orderBy", defaultValue="") String orderBy){
+        List<Game> games = gameService.getFilteredGames(name, categories, orderBy);
+        if(games != null)
             return games;
+        
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        
+    }
+
+    @Operation(summary = "Get the most visited games")
+    @GetMapping("game/top")
+    public List<Game> getTopGames(@RequestParam(name="limit", defaultValue="10") String limit){
+        try{
+            return gameService.getTopGames(Integer.parseInt(limit));
         }
-        else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "limit must be an integer");
         }
     }
 

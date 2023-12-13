@@ -36,7 +36,7 @@ services:
       - springboot
     build:
       context: ./boardgameshubWeb
-      dockerfile: .docker/dev/Dockerfile
+      dockerfile: .docker/Dockerfile
     restart: unless-stopped
     volumes:
       - "./boardgameshubWeb/:/webApp"
