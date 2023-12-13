@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
-import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import placeholder from "../../static/placeholder.png";
 import { Link } from 'react-router-dom';
+import Carousel from "../../components/Carrosel";
 
 function Homepage() {
   const [games, setGames] = useState({});
@@ -83,33 +83,36 @@ function Homepage() {
           </div>
         </div>
 
-        <div className="flex w-full h-auto" style={{background: "linear-gradient(180deg, rgba(34, 34, 34, 0.00) 0%, rgba(0, 0, 0, 0.30) 6.25%, rgba(0, 0, 0, 0.00) 81.25%)"}}>
-          <div className="max-w-7xl w-full mx-auto pt-[2%] pb-[2%]">
-            <div className="text-2xl ml-[5%] mb-[1%]">
-              Categories:
-            </div>
-            <div className="flex h-full pb-[3%]">
-              <div className="mr-auto self-center">
-                <SlArrowLeft size={64}/>
+        
+          <div className="w-full h-auto" style={{background: "linear-gradient(180deg, rgba(34, 34, 34, 0.00) 0%, rgba(0, 0, 0, 0.30) 6.25%, rgba(0, 0, 0, 0.00) 81.25%)"}}>
+            <div className="max-w-6xl w-full mx-auto pt-[2%]">
+              <div className="text-2xl ml-[5%] mb-[1%]">
+                Categories:
               </div>
-              <div className="mx-auto self-center">
-                <img src={ placeholder } className="rounded-md h-[160px]"/>
-              </div>
-              <div className="mx-auto self-center">
-                <img src={ placeholder } className="rounded-md h-[160px]"/>
-              </div>
-              <div className="mx-auto self-center">
-                <img src={ placeholder } className="rounded-md h-[160px]"/>
-              </div>
-              <div className="mx-auto self-center">
-                <img src={ placeholder } className="rounded-md h-[160px]"/>
-              </div>
-              <div className="ml-auto self-center">
-                <SlArrowRight size={64}/>
-              </div>
-            </div>
-          </div>  
-        </div>
+
+              <Carousel buttons={true} width={230} >
+                  <div className="w-[230px]">
+                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </div>
+                  <div className="w-[230px]">
+                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </div>
+                  <div className="w-[230px]">
+                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </div>
+                  <div className="w-[230px]">
+                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </div>
+                  <div className="w-[230px]">
+                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </div>
+                  <div className="w-[230px]">
+                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </div>
+              </Carousel>
+
+            </div>  
+          </div>
 
         <div className="flex max-w-5xl mx-auto text-xl">
           <div className={`w-[10%] text-center rounded-t-lg cursor-pointer pt-1` + (extra === "New" ? " bg-primary" : " ")} 
