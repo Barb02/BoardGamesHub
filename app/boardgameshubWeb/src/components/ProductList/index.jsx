@@ -19,7 +19,7 @@ function ProductList({ query }) {
     }
 
     useEffect(() => {
-        if (query){
+        if (query || query === ""){
             gameService.getGames(query).then((data) => {
                 setRdata(data || []);
 

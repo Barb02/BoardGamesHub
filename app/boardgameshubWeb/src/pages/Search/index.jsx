@@ -6,28 +6,25 @@ import { Form, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 function Search() {
-    const [search, setQuery] = useState("");
-    const [rquery, setRquery] = useState("");
+    const [search, setQuery] = useState();
+    const [rquery, setRquery] = useState();
     const navigate = useNavigate();
     
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
         const query = queryParams.get('q');
 
-        if (query != null){
-            setQuery(query || "");
-            setRquery(query || "");
-        }
-
+        setQuery(query);
+        setRquery(query);
     }, []);
 
     const handleSearch = (e) => {
-        setQuery(e.target[0].value)
+        setQuery(e.target[0].value);
         navigate(`/search?query=${encodeURI(search)}`);
     }
 
     const handleChange = (e) => {
-        setRquery(e.target.value || "");
+        setRquery(e.target.value);
     }
 
     return (
