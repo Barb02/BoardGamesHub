@@ -1,5 +1,7 @@
 package com.pt.ua.boardgameshub.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -36,5 +38,10 @@ public class PriceServiceImpl implements PriceService{
     @Override
     public Price getPriceByStoreIdAndGameId(Long store_id, Long game_id) {
         return priceRepository.findFirstByStoreIdAndGameId(store_id, game_id, Sort.by(Sort.Direction.DESC, "timestamp"));
+    }
+
+    public List<Price> getHistory(Long game_id){
+        List<Price> history = priceRepository.findByGameId(game_id);
+        return history;
     }
 }

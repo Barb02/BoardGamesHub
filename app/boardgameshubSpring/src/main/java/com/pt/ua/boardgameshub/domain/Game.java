@@ -14,9 +14,6 @@ import jakarta.persistence.Column;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.Comparator;
 
 import com.pt.ua.boardgameshub.dao.request_body.GameRequest;
 
