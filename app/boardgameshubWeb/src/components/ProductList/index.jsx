@@ -36,7 +36,7 @@ function ProductList({ query }) {
     }, [query]);
 
     function getPrice(index) {
-        return rprices[index];
+        return (Math.round(rprices[index] * 100) / 100).toFixed(2);
     }
 
 
@@ -46,7 +46,7 @@ function ProductList({ query }) {
                 <Link to={`/product/${game.id}`}>
                     <div id={game.id} className="flex rounded-xl w-full h-[80px] bg-searchProductBackground mb-4" onMouseOver={expandProductView}>
                         <img alt="boardgame_cover" className="object-cover self-center ml-3 rounded-lg h-[70%] w-[120px]" src={game.image} />
-                        <div className="flex flex-col pl-3">
+                        <div className="flex flex-col pl-3 w-[60%]">
                             <span className="mr-5 text-xl pt-3 pl-5">{game.name}</span>
                             <ul className="inline-block">
                                 {game.categories.slice(0,2).map((category) => (
@@ -54,14 +54,14 @@ function ProductList({ query }) {
                                 ))}
                             </ul>
                         </div>
-                        <div className="ml-auto w-[30%] flex">
-                            <div className="flex-col w-full self-center text-center">
+                        <div className="ml-auto w-[27%] flex">
+                            <div className="flex-col w-[50%] self-center text-center">
                                 <span className="text-xs">score: {Math.round(game.score * 10) / 10}</span>
-                                <div className="w-[75%] rounded-full h-1.5 dark:bg-gray-700 mx-auto">
+                                <div className="w-full rounded-full h-1.5 dark:bg-gray-700 mx-auto">
                                     <div className={`bg-primary h-1.5 rounded-full`} style={{ width: `${Math.round(game.score * 10) + "%"}` }}></div>
                                 </div>
                             </div>
-                            <span className="float-right text-2xl self-center ml-4 mr-5">{ getPrice(index) }$</span>
+                            <span className="float-right text-2xl self-center ml-auto mr-5">{ getPrice(index) }$</span>
                         </div>
                     </div>
                     
@@ -70,14 +70,14 @@ function ProductList({ query }) {
                     <div id={game.id + "_hover"} className="flex flex-col rounded-xl w-full h-[250px] bg-searchProductBackgroundHover mb-4" style={{display: "none"}}>
                     <div className="w-full flex h-[50%]">
                         <img alt="boardgame_cover" className="object-cover mt-3 ml-3 rounded-lg h-[90%] w-[120px]" src={game.image} />
-                        <div className="flex flex-col pl-3">
+                        <div className="flex flex-col pl-3 w-[60%]">
                             <span className="mr-5 text-xl pt-3 pl-5">{game.name}</span>
                             <ul className="inline-block">
                                 {game.categories.slice(0,2).map((category) => (
                                     <li key={category.id} className="bg-secondary inline-block w-auto mt-2 pr-1 pl-1 mr-1 rounded text-sm">{category.name}</li>
                                 ))}
                             </ul>
-                            <div className="pt-[5%] ml-1 inline-block">
+                            <div className="pt-[2%] ml-1 inline-block">
                                 <div className="inline-block text-sm text-center">
                                     Players
                                     <p>
@@ -97,14 +97,14 @@ function ProductList({ query }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="ml-auto w-[30%] flex">
-                            <div className="flex-col w-full self-center text-center">
+                        <div className="ml-auto w-[27%] flex">
+                            <div className="flex-col w-[50%] self-center text-center">
                                 <span className="text-xs">score: {Math.round(game.score * 10) / 10}</span>
-                                <div className="w-[75%] rounded-full h-1.5 dark:bg-gray-700 mx-auto">
+                                <div className="w-full rounded-full h-1.5 dark:bg-gray-700 mx-auto">
                                     <div className={`bg-primary h-1.5 rounded-full`} style={{ width: `${Math.round(game.score * 10) + "%"}` }}></div>
                                 </div>
                             </div>
-                            <span className="float-right text-2xl self-center ml-4 mr-5">{ getPrice(index) }$</span>
+                            <span className="float-right text-2xl self-center ml-auto mr-5">{ getPrice(index) }$</span>
                         </div>
                     </div>
                     <div className="w-full h-[50%]">

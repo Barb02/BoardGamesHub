@@ -1,5 +1,4 @@
 import user_group_icon from "../../static/user_group_icon.svg";
-import logo_worten from "../../static/logo_worten.jpg";
 import React, { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
 import { useParams } from "react-router-dom";
