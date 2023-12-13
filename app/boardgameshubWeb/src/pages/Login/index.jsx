@@ -1,6 +1,8 @@
 import logo from "../../static/logo.svg"
 
+
 function Login() {
+
     return(
         <div className="w-full h-full text-text font-text">
             <div className="h-full w-full absolute z-0 opacity-5">

@@ -2,13 +2,16 @@ import { useRef } from "react";
 import logo from "../../static/logo.svg"
 import accountService from "../../services/accountService";
 import { useUserStore } from "../../stores/useUserStore";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Register() {
+    const navigate = useNavigate();
     const usernameInput = useRef(null);
     const emailInput = useRef(null);
     const passordInput = useRef(null);
     const Login = useUserStore((state) => state.login)
-    const token = useUserStore((state) => state)
+    const logged = useUserStore((state)=>state.logged)
 
     const login = ()=>{
         accountService.signup({
@@ -18,11 +21,15 @@ function Register() {
         }).then((data)=>{
             console.log(data)
             Login(data.token,usernameInput.current.value)
-
+            navigate("/")
         })
     }
 
-    console.log(token)
+    useEffect(()=>{
+        if(logged){
+            navigate("/")
+        }
+    },[])
 
     return(
         <div className="w-full h-full text-text font-text">
