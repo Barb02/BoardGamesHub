@@ -63,12 +63,6 @@ public class BoardgameshubApplication {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 System.out.println("POST request sent successfully");
-                InputStreamReader in = new InputStreamReader(connection.getInputStream());
-                BufferedReader br = new BufferedReader(in);
-                String output = br.readLine();
-                JSONObject response = new JSONObject(output);
-                String token = response.getString("token");
-                System.out.println(token);
                 siginSuccess = true;
             } else {
                 System.out.println("POST request failed: " + responseCode);
@@ -107,7 +101,6 @@ public class BoardgameshubApplication {
                 String output = br.readLine();
                 JSONObject response = new JSONObject(output);
                 token = response.getString("token");
-                System.out.println(token);
             } else {
                 System.out.println("POST request failed");
             }
