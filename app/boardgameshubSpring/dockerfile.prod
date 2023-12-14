@@ -1,0 +1,17 @@
+FROM maven:3.9.6-eclipse-temurin-17 as build
+
+WORKDIR /build
+
+COPY . .
+
+RUN mvn package
+
+FROM eclipse-temurin:17
+
+WORKDIR /Spring
+
+COPY --from=build /build/target/ ./target
+ 
+CMD ["java","-jar","./target/boardgameshub-0.0.1-SNAPSHOT.jar"]
+
+EXPOSE 8080

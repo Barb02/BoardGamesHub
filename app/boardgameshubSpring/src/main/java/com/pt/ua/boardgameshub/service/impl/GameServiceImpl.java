@@ -1,5 +1,7 @@
 package com.pt.ua.boardgameshub.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +29,18 @@ import com.pt.ua.boardgameshub.domain.*;
 import com.pt.ua.boardgameshub.repository.*;
 import com.pt.ua.boardgameshub.service.GameService;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.Subquery;
+import jakarta.persistence.criteria.Expression;
+
+
 @Service
 public class GameServiceImpl implements GameService{
     
@@ -44,6 +58,7 @@ public class GameServiceImpl implements GameService{
         this.artistRepository = artistRepository;
         this.categoryRepository = categoryRepository;
     }
+
 
     @Override
     public Game addGameManual(GameRequest gamerequest){
@@ -110,16 +125,64 @@ public class GameServiceImpl implements GameService{
         return gameRepository.findById(id).orElse(null);
     }
 
+    @PersistenceContext
+    private EntityManager entityManager;
+    
     @Override
-    public List<Game> getFilterdGames(String filter){
-        List<Game> games = gameRepository.findByNameStartingWithOrderByNameAsc(filter);
-        List<Game> gamesContains = gameRepository.findByNameContainingOrderByNameAsc(filter);
-        for(Game game: gamesContains){
-            if (!games.contains(game)){
-                games.add(game);
+    public List<Game> getFilteredGames(String name, String categories, String orderBy) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Game> criteriaQuery = criteriaBuilder.createQuery(Game.class);
+        Root<Game> root = criteriaQuery.from(Game.class);
+        List<Predicate> predicates = new ArrayList<>();
+    
+        // Filtering by name containing the provided string
+        if (name != null && !name.isEmpty()) {
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%"));
+        }
+    
+        // Filtering by categories (case-insensitive exact match - game must have all categories)
+        if (categories != null && !categories.isEmpty()) {
+            List<String> categoryList = Arrays.asList(categories.split(","));
+            List<Predicate> categoryPredicates = new ArrayList<>();
+            
+            for (String category : categoryList) {
+                Join<Game, Category> categoryJoin = root.join("categories");
+                Expression<String> categoryLowerCase = criteriaBuilder.lower(categoryJoin.get("name"));
+                Predicate categoryPredicate = criteriaBuilder.equal(categoryLowerCase, category.trim().toLowerCase());
+                categoryPredicates.add(categoryPredicate);
+            }
+            
+            predicates.add(criteriaBuilder.and(categoryPredicates.toArray(new Predicate[0])));
+        }
+    
+        // Sorting
+        System.out.println(orderBy);
+        if (orderBy != null && !orderBy.isEmpty() && orderBy != "name") {
+            switch (orderBy) {
+                case "score":
+                case "yearPublished":
+                case "numRatings":
+                    criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderBy)));
+                    break;
             }
         }
-        return games;
+        else{
+            criteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
+        }
+    
+        criteriaQuery.where(predicates.toArray(new Predicate[0]));
+    
+        TypedQuery<Game> query = entityManager.createQuery(criteriaQuery);
+        List<Game> result =  query.getResultList();
+        System.out.println(result);
+        return result;
+    }
+    
+
+
+    @Override
+    public List<Game> getTopGames(int limit) {
+        return gameRepository.findAllGamesOrderByClickCountDesc(limit);
     }
 
     /* @Override

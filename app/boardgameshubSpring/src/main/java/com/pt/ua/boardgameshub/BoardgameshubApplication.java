@@ -27,8 +27,8 @@ public class BoardgameshubApplication {
 		SpringApplication.run(BoardgameshubApplication.class, args);
 	}
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void doSomethingAfterStartup() {
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup() {
 
 		if(signin()){
 			return;
@@ -36,9 +36,10 @@ public class BoardgameshubApplication {
 
         String token = signup();
         if(token != null){
-            loadBoardGames(token);
+            int bgcount = loadBoardGames(token);
             loadStores(token);
             loadPrices(token);
+            loadClicks(bgcount);
         }
 	}
 
@@ -111,7 +112,23 @@ public class BoardgameshubApplication {
         return token;
     }
 
-    public void loadBoardGames(String token) {
+    public void loadClicks(int n){
+        for(int i = 1; i <= n; i++){
+            try{
+                URL url = new URL("http://localhost:8080/api/v1/game/" + i);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.getResponseCode();
+                connection.disconnect();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public int loadBoardGames(String token) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/board_games.json");
@@ -126,10 +143,12 @@ public class BoardgameshubApplication {
                     URL url = new URL("http://localhost:8080/api/v1/game/manual");
                     sendRequest(url, boardGame, token);
                 }
+                return boardGames.length();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return -1;
     }
 
     public void loadStores(String token) {
@@ -162,7 +181,7 @@ public class BoardgameshubApplication {
                 byte[] bytes = inputStream.readAllBytes();
                 String jsonString = new String(bytes, StandardCharsets.UTF_8);
 
-                int game_id = 0; 
+                int game_id = 0;
                 JSONArray stores = new JSONArray(jsonString);
                 for (int i = 0; i < stores.length(); i++) {
                     int store_id = i%4 + 1;
