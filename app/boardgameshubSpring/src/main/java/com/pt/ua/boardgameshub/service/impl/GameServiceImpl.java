@@ -67,7 +67,6 @@ public class GameServiceImpl implements GameService{
         for(DeveloperRequest request: gamerequest.getDesigners()){
             Designer designer = designerRepository.findById(request.getId()).orElse(null);
             if (designer == null){
-                System.out.println("\n\n\nHERE\n\n\n");
                 Designer newDesigner = new Designer(request);
                 designerRepository.save(newDesigner);
                 designers.add(newDesigner);
