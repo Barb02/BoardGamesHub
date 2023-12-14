@@ -1,6 +1,9 @@
 package com.pt.ua.boardgameshub.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,9 +35,11 @@ import com.pt.ua.boardgameshub.domain.*;
 public class GameController {
     
     private final GameService gameService;
+    private final ClickService clickService;
     @Autowired
-    public GameController(GameService gameService){
+    public GameController(GameService gameService, ClickService clickService){
         this.gameService = gameService;
+        this.clickService = clickService;
     }
 
     @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
@@ -62,6 +67,10 @@ public class GameController {
     public Game getGameById(@PathVariable long id){
         Game game = gameService.getGameById(id);
         if (game != null) {
+            Click click = new Click();
+            click.setClickTime(new java.sql.Timestamp(System.currentTimeMillis()));
+            click.setGame(game);
+            clickService.addClick(click);
             return game;
         }
         else{
@@ -75,13 +84,25 @@ public class GameController {
                     content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
             @ApiResponse(responseCode = "404", description = "Games not found", content = @Content)})
     @GetMapping("game")
-    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String filter){
-        List<Game> games = gameService.getFilterdGames(filter);
-        if (games != null) {
+    public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String name, 
+                                  @RequestParam(name="categories", defaultValue="") String categories,
+                                  @RequestParam(name="orderBy", defaultValue="") String orderBy){
+        List<Game> games = gameService.getFilteredGames(name, categories, orderBy);
+        if(games != null)
             return games;
+        
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        
+    }
+
+    @Operation(summary = "Get the most visited games")
+    @GetMapping("game/top")
+    public List<Game> getTopGames(@RequestParam(name="limit", defaultValue="10") String limit){
+        try{
+            return gameService.getTopGames(Integer.parseInt(limit));
         }
-        else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "limit must be an integer");
         }
     }
 

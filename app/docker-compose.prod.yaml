@@ -13,39 +13,7 @@ services:
     ports:
       - "5433:5432"
     restart: unless-stopped
-
-  springboot:
-    depends_on:
-      - postgres
-    build:
-      context: ./boardgameshubSpring
-      dockerfile: Dockerfile
-    volumes:
-      - ./boardgameshubSpring:/app
-      - ./boardgameshubSpring/.m2:/root/.m2
-    working_dir: /app
-    command: sh run.sh
-    ports:
-      - 8080:8080
-      - 35729:35729
-      - 5005:5005
-
-  web:
-    depends_on:
-      - postgres
-      - springboot
-    build:
-      context: ./boardgameshubWeb
-      dockerfile: .docker/Dockerfile
-    restart: unless-stopped
-    volumes:
-      - "./boardgameshubWeb/:/webApp"
-    ports:
-      - 3000:3000
-    command: >
-      bash -c "cp -rfu /cache/node_modules/. /webApp/node_modules/  
-      && npm start"
-
+  
   kafka:
     image: confluentinc/cp-kafka
     ports:
@@ -67,15 +35,35 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+  
+  web:
+    image: tvictal/boardgameshubweb:1.0
+    build:
+      context: ./boardgameshubWeb
+      dockerfile: .docker/dockerfile.prod
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - springboot
 
+  springboot:
+    depends_on:
+      - postgres
+    image: tvictal/boardgameshubspring:1.0
+    build: 
+      context: ./boardgameshubSpring
+      dockerfile: dockerfile.prod
+    ports:
+      - 8080:8080
   python_script:
-    image: python:3.9
-    volumes:
-      - ./dataGeneration:/app 
-    working_dir: /app
-    command: >
-      bash -c "pip install -r requirements.txt && python3 -u gen_price_changes.py"
-
+    image: tvictal/boardgameshubpython:1.0
+    build:
+      context: ./dataGeneration
+      dockerfile: dockerfile.prod
+    
 volumes:
   pgdata:
     driver: local
+
