@@ -21,21 +21,6 @@ const Carousel = ({ children,width,buttons }) => {
             setCurrent(0);
     };
     
-    //swipe
-    const [touchStart, setTouchStart] = useState(null)
-    const [touchEnd, setTouchEnd] = useState(null)
-    
-    const onTouchStart = (e) => {
-        setTouchEnd(null)
-        setTouchStart(e.targetTouches[0].clientX)
-    }
-    
-    const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX)
-    
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return
-    }
-
     return (
         <div className={`w-full pt-[2%] pb-[4%]`}>
             <div className="relative flex">
@@ -43,7 +28,6 @@ const Carousel = ({ children,width,buttons }) => {
                     <motion.div
                     className="flex gap-3"
                     animate={{x:current*(-width-32)}}
-                    onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
                     >
                         {children}
                     </motion.div>
