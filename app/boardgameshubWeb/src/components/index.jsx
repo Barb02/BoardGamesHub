@@ -4,4 +4,5 @@ export {default as ProductList} from "./ProductList"
 export {default as WishList} from "./WishList"
 export {default as Notification} from "./Notification"
 export {default as PricesGraph} from "./PricesGraph"
-
+export {default as Carrosel} from "./Carrosel"
+export {default as ScrollToTop} from "./ScrollToTop"
