@@ -43,7 +43,7 @@ function Product() {
   
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
-      if (checkUpdate && (lowesPrice.price != data.price || lowesPrice.store.name != data.store.name)){
+      if (checkUpdate && (lowesPrice.price !== data.price || lowesPrice.store.name !== data.store.name)){
         setNotification(true);
       }
       setLowestPrice(data || {})
@@ -186,7 +186,7 @@ function Product() {
             <div className=" pb-[15%]">
               <h2 className="text-2xl bg-designers rounded px-2">Current Lowest Price</h2>
               <div className="text-xl mt-[4%] px-2">
-                {lowesPriceLoad && lowesPrice.price + " $ " + lowesPrice.store.name}
+                {lowesPriceLoad && (Math.round(lowesPrice.price * 100) / 100).toFixed(2) + " $ " + lowesPrice.store.name}
               </div>
             </div>
             {/* Designers display area */}
@@ -293,7 +293,7 @@ function Product() {
               {priceload &&
                 rprices.map((price, index) => (
                   <div className="grid grid-cols-2 justify-items-start gap-[10%]">
-                    <div className=" justify-self-end">{price.price} $</div>
+                    <div className=" justify-self-end">{(Math.round(price.price * 100) / 100).toFixed(2)} $</div>
                     <div className=" justify-self-end">{price.store.name}</div>
                   </div>
                 ))}
