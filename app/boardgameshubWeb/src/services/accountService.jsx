@@ -6,7 +6,7 @@ const accountService = {
     },
 
     async signin(data){
-        return await client.post("/auth/register",data)
+        return await client.post("/auth/signin",data)
     },
 }
 

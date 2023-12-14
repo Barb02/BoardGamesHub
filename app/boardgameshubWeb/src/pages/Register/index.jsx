@@ -3,7 +3,8 @@ import logo from "../../static/logo.svg"
 import accountService from "../../services/accountService";
 import { useUserStore } from "../../stores/useUserStore";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
+import { BiSolidError } from "react-icons/bi";
 
 function Register() {
     const navigate = useNavigate();
@@ -12,17 +13,32 @@ function Register() {
     const passordInput = useRef(null);
     const Login = useUserStore((state) => state.login)
     const logged = useUserStore((state)=>state.logged)
+    const [error,setError] = useState(false);
+
+    const verifyInputs = ()=>{
+        if(!String(emailInput.current.value).toLowerCase().match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        ))
+            return false
+        if (String(emailInput.current.value).length < 8)
+            return false
+
+        return true
+    }
 
     const login = ()=>{
-        accountService.signup({
-            "username": usernameInput.current.value,
-            "email": emailInput.current.value,
-            "password": passordInput.current.value,
-        }).then((data)=>{
-            console.log(data)
-            Login(data.token,usernameInput.current.value)
-            navigate("/")
-        })
+        if(verifyInputs()){
+            accountService.signup({
+                "username": usernameInput.current.value,
+                "email": emailInput.current.value,
+                "password": passordInput.current.value,
+            }).then((data)=>{
+                Login(data.token,usernameInput.current.value)
+                navigate("/")
+            })
+        }else{
+            setError(true)
+        }
     }
 
     useEffect(()=>{
@@ -49,7 +65,10 @@ function Register() {
                     <span className="pb-1 pl-3">Password</span>
                     <input ref={passordInput} type="password" className="text-lg bg-loginInput text-black rounded-sm outline-none pl-2" autocomplete="off"></input>
                 </div>
-                <button className="rounded-xl mx-auto p-4 z-10 pt-2 pb-2 mt-[10%] bg-primary text-text" onClick={login}>Login</button>
+                <div className="z-0 mt-[10%] place-self-center flex flex-col place-items-center">
+                    <button className="rounded-xl p-4 z-10 pt-2 pb-2 mt-[10%] bg-primary text-text" onClick={login}>Register</button>
+                    { error && <div className="text-center flex gap-2"><BiSolidError className=" translate-y-[6px]"/> erro dados invalidos</div>}
+                </div>
             </div>
         </div>
     );
