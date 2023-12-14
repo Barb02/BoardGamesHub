@@ -107,6 +107,7 @@ public class BoardgameshubApplication {
                 String output = br.readLine();
                 JSONObject response = new JSONObject(output);
                 token = response.getString("token");
+                System.out.println(token);
             } else {
                 System.out.println("POST request failed");
             }
