@@ -1,7 +1,6 @@
 import { CiSearch } from "react-icons/ci";
 import { TbFilterOff } from "react-icons/tb";
-import { IoIosArrowDown } from "react-icons/io";
-import { ProductList } from "../../components";
+import { ProductList, SortSearch } from "../../components";
 import { Form, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
@@ -9,6 +8,7 @@ function Search() {
     const [search, setQuery] = useState();
     const [rquery, setRquery] = useState();
     const [currentFilters, setFilters] = useState([]);
+    const [currentSort, setSort] = useState("Name");
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -21,7 +21,7 @@ function Search() {
 
     const handleSearch = (e) => {
         setQuery(e.target[0].value);
-        navigate(`/search?query=${encodeURI(search)}`);
+        navigate(`/search?query=${encodeURI(search)}&orderBy=${currentSort}`);
     }
 
     const handleChange = (e) => {
@@ -43,20 +43,18 @@ function Search() {
                             <span className="pl-1 self-center"><CiSearch /></span>
                         </button>
                     </Form>
+                    
                     <button className="flex rounded-xl p-4 pt-2 pb-2 items-center bg-primary  ml-auto">
                         Filters
                         <span className="pl-1 self-center"><TbFilterOff /></span>
                     </button>
                     <span className="mr-3 text-sortByText text-sm ml-4 w-[10%]">Sort by</span>
-                    <button className="flex rounded-xl p-4 pt-2 pb-2 mr-4 bg-primary self-center">
-                        Relevance
-                        <span className="pl-1 self-end"><IoIosArrowDown size={23}/></span>
-                    </button>                          
+                    <SortSearch currentSort={currentSort} setSort={setSort}/>                         
                 </div>
             </div>
 
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                <ProductList query={search} filters={currentFilters} />
+                <ProductList query={search} sort={currentSort} filters={currentFilters} />
             </div>
         </div>
       </div>
