@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { useNavigate, Link } from 'react-router-dom';
 import { useUserStore } from "../../stores/useUserStore";
 
-const Navbar = () => {
+const Navbar = ({activateUser}) => {
   const navigate = useNavigate();
   const logged = useUserStore((state) => state.logged);
   const username = useUserStore((state) => state.username);
@@ -31,12 +31,11 @@ const Navbar = () => {
   } else {
     var buttons = (
       <div className="flex">
-        <div className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">
+        <div className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text"
+             onClick={activateUser}
+        >
           {username}
         </div>
-        <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text" onClick={()=>logout()}>
-          Logout
-        </button>
       </div>
     );
   }
