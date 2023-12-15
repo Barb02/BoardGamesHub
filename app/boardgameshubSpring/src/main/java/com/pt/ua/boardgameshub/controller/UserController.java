@@ -4,8 +4,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,36 +92,30 @@ public class UserController {
         }
     }
 
-    @Operation(summary = "Add a category to user's preferred categories (AUTHENTICATION REQUIRED)")
+    @Operation(summary = "Edit user's preferred categories (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Category saved to preferred categories",
+            @ApiResponse(responseCode = "200", description = "Preferred categories was updated",
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = WishlistedResponse.class))}),
-            @ApiResponse(responseCode = "404", description = "Category not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
-    @PostMapping("user/categories/{category_id}")
-    public PreferredCategoryResponse addPreferredCategories(@PathVariable long category_id) {
-        PreferredCategoryResponse category = preferredCategoryService.addPreferredCategory(category_id);
-        if(category != null){
-            return category;
+    @PutMapping("user/categories/{category_id}")
+    public List<PreferredCategoryResponse> editPreferredCategories(@RequestBody List<PreferredCategoryResponse> updatedCategories) {
+        List<PreferredCategoryResponse> currentCategories = preferredCategoryService.getPreferredCategories();
+        if(currentCategories != null && updatedCategories != null){
+            for(PreferredCategoryResponse current: currentCategories){
+                if(!updatedCategories.contains(current)){
+                    preferredCategoryService.removePreferredCategory(current.getCategory().getId());
+                }
+            }
+            for(PreferredCategoryResponse updated: updatedCategories){
+                if(!currentCategories.contains(updated)){
+                    preferredCategoryService.addPreferredCategory(updated.getCategory().getId());
+                }
+            }
+            return preferredCategoryService.getPreferredCategories();
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
-        }
-    }
-
-    @Operation(summary = "Remove a category from user's preferred categories (AUTHENTICATION REQUIRED)")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Category removed from wishlist",
-            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = WishlistedResponse.class))}),
-            @ApiResponse(responseCode = "404", description = "Category not found", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
-    @DeleteMapping("user/categories/{category_id}")
-    public void removePreferredCategories(@PathVariable long category_id) {
-        try{
-            preferredCategoryService.removePreferredCategory(category_id);
-        }
-        catch(Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categories not found");
         }
     }
 
