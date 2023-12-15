@@ -62,18 +62,22 @@ function Publisher() {
     function onHoverOut(e) {
       e.currentTarget.style.opacity = 1;
     }
+    
 
     return (
         <div className="text-text font-text">
-            <div className="flex pt-[3%] pb-[3%] w-full h-[350px]">
-                <div className="flex">
-                    <img className="w-full bg-cover bg-center" src={fantasy}/>
+            <div className="flex relative pt-[2%] pb-[2%] w-full h-[350px]">
+                <div className="flex h-[79%] w-[60%] absolute">
+                    <img className="w-full object-cover" 
+                        style={{ 
+                                  clipPath: "polygon(100% 100%, 67% 0%, 0% 0%, 0% 100%)" }}
+                        src={fantasy}/>
                 </div>
-                <div>
-                    <img />
+                <div className="flex w-full h-[79%] absolute">
+                  <img className="flex w-[20%] h-[40%] mx-auto rounded-[70px] self-center bg-white" />
                 </div>
-                <div className="flex">
-                    <img src={exploration}/>
+                <div className="flex w-[60%] ml-auto">
+                    <img className="w-full object-cover" src={exploration}/>
                 </div>
             </div>
             <div className="flex max-w-5xl mx-auto text-xl">
