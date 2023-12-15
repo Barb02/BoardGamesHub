@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Layout from './pages/Layout';
-import Homepage from './pages/Homepage';
-import Search from './pages/Search';
-import Product from './pages/Product';
-import Login from './pages/Login';
-import Wishlist from './pages/Wishlist';
+import { Layout, Homepage, Search, Product, Login, Wishlist, Publisher, Register } from './pages'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +17,9 @@ const router = createBrowserRouter([
       { path: "/search", element:<Search/>},
       { path: "/product/:id", element:<Product/>},
       { path: "/login", element:<Login/>},
+      { path: "/register", element:<Register/>},
       { path: "/wishlist", element:<Wishlist/>},
+      { path: "/publisher", element:<Publisher/>},
     ]
   },
 ]);
