@@ -11,15 +11,10 @@ import java.util.List;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
-    List<Game> findByNameContainingOrderByNameAsc(String query);
-    List<Game> findByNameStartingWithOrderByNameAsc(String query);
-
     @Query("SELECT c.game " +
            "FROM Click c " +
            "GROUP BY c.game " +
            "ORDER BY COUNT(c) DESC " +
            "LIMIT :max")
     List<Game> findAllGamesOrderByClickCountDesc(@Param("max") int limit);
-    List<Game> findByNameStartingIgnoreCaseWithOrderByNameAsc(String query);
-    List<Game> findByNameContainingIgnoreCaseOrderByNameAsc(String query);
 }

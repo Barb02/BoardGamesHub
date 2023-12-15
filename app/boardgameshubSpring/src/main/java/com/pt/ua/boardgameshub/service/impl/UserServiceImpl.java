@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.pt.ua.boardgameshub.repository.UserRepository;
 import com.pt.ua.boardgameshub.service.UserService;
 
-
 import lombok.RequiredArgsConstructor;
 
 @Service
