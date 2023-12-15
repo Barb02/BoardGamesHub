@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.EnumType;
@@ -46,14 +47,7 @@ public class User implements UserDetails{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToMany(cascade = { CascadeType.MERGE })
-    @JoinTable(
-        name = "wishlist", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "game_id"))
-    private Set<Game> wishlist = new HashSet<>();
-
-    @ManyToMany(cascade = { CascadeType.MERGE })
+    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
     @JoinTable(
         name = "preferred_categories", 
         joinColumns = @JoinColumn(name = "user_id"), 
@@ -100,13 +94,6 @@ public class User implements UserDetails{
         return email;
     }
 
-    public Set<Game> getWishlist() {
-        return wishlist;
-    }
-
-    public void setWishlist(Set<Game> wishlist) {
-        this.wishlist = wishlist;
-    }
     public Set<Category> getPreferredCategories() {
         return preferredCategories;
     }
