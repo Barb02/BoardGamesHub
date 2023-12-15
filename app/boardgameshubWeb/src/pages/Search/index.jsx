@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 function Search() {
     const [search, setQuery] = useState();
     const [rquery, setRquery] = useState();
+    const [currentFilters, setFilters] = useState([]);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -55,7 +56,7 @@ function Search() {
             </div>
 
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                <ProductList query={ search } />
+                <ProductList query={search} filters={currentFilters} />
             </div>
         </div>
       </div>
