@@ -248,8 +248,8 @@ public class GameServiceImpl implements GameService{
 
 
     @Override
-    public List<Game> getTopGames(int limit) {
-        return gameRepository.findAllGamesOrderByClickCountDesc(limit);
+    public List<Game> getTopGames(int limit, String publisher) {
+        return gameRepository.findAllGamesOrderByClickCountDesc(limit, publisher);
     }
 
     /* @Override

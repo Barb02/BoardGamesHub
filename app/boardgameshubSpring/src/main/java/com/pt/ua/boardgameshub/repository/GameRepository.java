@@ -12,9 +12,13 @@ import java.util.List;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
     @Query("SELECT c.game " +
-           "FROM Click c " +
-           "GROUP BY c.game " +
-           "ORDER BY COUNT(c) DESC " +
-           "LIMIT :max")
-    List<Game> findAllGamesOrderByClickCountDesc(@Param("max") int limit);
+        "FROM Click c " +
+        "LEFT JOIN c.game.publishers p " +
+        "WHERE (:publisherName IS NULL OR p.name = :publisherName) " +
+        "GROUP BY c.game " +
+        "ORDER BY COUNT(c) DESC " +
+        "LIMIT :max")
+    List<Game> findAllGamesOrderByClickCountDesc(@Param("max") int limit, @Param("publisherName") String publisherName);
+    List<Game> findByNameStartingIgnoreCaseWithOrderByNameAsc(String query);
+    List<Game> findByNameContainingIgnoreCaseOrderByNameAsc(String query);
 }
