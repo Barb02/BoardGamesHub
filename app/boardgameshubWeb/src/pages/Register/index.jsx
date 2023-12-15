@@ -1,14 +1,14 @@
+import { useRef } from "react";
 import logo from "../../static/logo.svg"
-import { useNavigate } from "react-router-dom";
-import { useRef,useEffect, useState } from "react";
-import { useUserStore } from "../../stores/useUserStore";
 import accountService from "../../services/accountService";
+import { useUserStore } from "../../stores/useUserStore";
+import { useNavigate } from "react-router-dom";
+import { useEffect,useState } from "react";
 import { BiSolidError } from "react-icons/bi";
 
-
-
-function Login() {
+function Register() {
     const navigate = useNavigate();
+    const usernameInput = useRef(null);
     const emailInput = useRef(null);
     const passordInput = useRef(null);
     const Login = useUserStore((state) => state.login)
@@ -28,11 +28,12 @@ function Login() {
 
     const login = ()=>{
         if(verifyInputs()){
-            accountService.signin({
+            accountService.signup({
+                "username": usernameInput.current.value,
                 "email": emailInput.current.value,
                 "password": passordInput.current.value,
             }).then((data)=>{
-                Login(data.token,"null")
+                Login(data.token,usernameInput.current.value)
                 navigate("/")
             })
         }else{
@@ -53,15 +54,19 @@ function Login() {
             </div>
             <div className="pt-[11%] text-xl max-w-md mx-auto flex flex-col">
                 <div className="flex flex-col z-10">
+                    <span className="pb-1 pl-3">Username</span>
+                    <input ref={usernameInput} className="text-lg bg-loginInput text-black rounded-sm outline-none pl-2" autocomplete="off"></input>
+                </div>
+                <div className="flex flex-col z-10 pt-[10%]">
                     <span className="pb-1 pl-3">Email</span>
                     <input ref={emailInput} className="text-lg bg-loginInput text-black rounded-sm outline-none pl-2" autocomplete="off"></input>
                 </div>
                 <div className="flex flex-col z-10 pt-[10%]">
                     <span className="pb-1 pl-3">Password</span>
-                    <input type="password" ref={passordInput} className="text-lg bg-loginInput text-black rounded-sm outline-none pl-2" autocomplete="off"></input>
+                    <input ref={passordInput} type="password" className="text-lg bg-loginInput text-black rounded-sm outline-none pl-2" autocomplete="off"></input>
                 </div>
                 <div className="z-0 mt-[10%] place-self-center flex flex-col place-items-center">
-                    <button className="rounded-xl p-4 z-10 pt-2 pb-2 mt-[10%] bg-primary text-text" onClick={login}>Login</button>
+                    <button className="rounded-xl p-4 z-10 pt-2 pb-2 mt-[10%] bg-primary text-text" onClick={login}>Register</button>
                     { error && <div className="text-center flex gap-2"><BiSolidError className=" translate-y-[6px]"/> erro dados invalidos</div>}
                 </div>
             </div>
@@ -69,4 +74,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;
