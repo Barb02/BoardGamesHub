@@ -85,9 +85,22 @@ public class GameController {
             @ApiResponse(responseCode = "404", description = "Games not found", content = @Content)})
     @GetMapping("game")
     public List<Game> getAllGames(@RequestParam(name="q", defaultValue="") String name, 
-                                  @RequestParam(name="categories", defaultValue="") String categories,
-                                  @RequestParam(name="orderBy", defaultValue="") String orderBy){
-        List<Game> games = gameService.getFilteredGames(name, categories, orderBy);
+                                  @RequestParam(name="categories", defaultValue="") List<String> categories,
+                                  @RequestParam(name="price", defaultValue="") String price,
+                                  @RequestParam(name="players", defaultValue="") String players,
+                                  @RequestParam(name="complexity", defaultValue="") String complexity,
+                                  @RequestParam(name="playtime", defaultValue="") String playtime,
+                                  @RequestParam(name="orderBy", defaultValue="") String orderBy,
+                                  @RequestParam(name="order", defaultValue="") String order){
+
+        GameQuery gameQuery = new GameQuery(name, categories,
+                                            Range.parseString(price), 
+                                            Range.parseString(players), 
+                                            Range.parseString(complexity), 
+                                            Range.parseString(playtime), 
+                                            orderBy, order);
+                                            
+        List<Game> games = gameService.getFilteredGames(gameQuery);
         if(games != null)
             return games;
         

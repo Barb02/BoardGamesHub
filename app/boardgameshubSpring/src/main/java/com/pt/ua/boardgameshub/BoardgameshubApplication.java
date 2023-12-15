@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,12 +17,26 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StreamUtils;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class BoardgameshubApplication {
 
     @Value("${admin.password}")
     String adminPassword;
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public BoardgameshubApplication(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoardgameshubApplication.class, args);
@@ -40,8 +55,29 @@ public class BoardgameshubApplication {
             loadStores(token);
             loadPrices(token);
             loadClicks(bgcount);
+            loadUDFs();
         }
 	}
+
+    @Transactional
+    public void loadUDFs() {
+        try {
+            String fileName = "udfs.sql";
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream(fileName);
+            if (inputStream != null) {
+                String sql = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+                String[] udfs = sql.split("(?=CREATE FUNCTION)");
+                for(String udf : udfs)
+                    jdbcTemplate.execute(udf.trim());
+            } else {
+                throw new IOException("File not found: " + fileName);
+            }
+        } catch (IOException e) {
+            // Handle file reading or execution errors
+            e.printStackTrace();
+        }
+    }
 
     public boolean signin() {
         boolean siginSuccess = false;
