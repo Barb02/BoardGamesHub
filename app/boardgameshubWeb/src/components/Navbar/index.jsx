@@ -1,11 +1,9 @@
 import logo from "../../static/logo.svg";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
 import { useUserStore } from "../../stores/useUserStore";
 
 const Navbar = () => {
-  const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const logged = useUserStore((state) => state.logged);
   const username = useUserStore((state) => state.username);
@@ -52,7 +50,7 @@ const Navbar = () => {
                   <div className="bg-white flex w-auto pt-2 pb-2 pr-3 pl-3 rounded-lg mr-10">
                     <span className="self-center"><CiSearch /></span>
                     <form onSubmit={handleSearch}>
-                      <input onChange={(e) => setQuery(e.target.value)} name="q" type="text" className="ml-2 text-black w-auto outline-none" placeholder="Search..." autoComplete="off"></input>
+                      <input name="q" type="text" className="ml-2 text-black w-auto outline-none" placeholder="Search..." autoComplete="off"></input>
                     </form>
                   </div>
                   {buttons}
