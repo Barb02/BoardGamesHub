@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
+import { AnimatePresence } from "framer-motion";
 
 
 const SortSearch = ( {currentSort, setSort} ) => {
@@ -18,39 +19,36 @@ const SortSearch = ( {currentSort, setSort} ) => {
         }
     };
 
-    function onHover(e) {
-        e.currentTarget.style.opacity = 0.8;
-        e.currentTarget.style.background = "grey";
-    }
-    
-    function onHoverOut(e) {
-        e.currentTarget.style.opacity = 1;
-        e.currentTarget.style.background = "";
-    }
-
     return (
         <div className="mr-4">
             <button id="main_button" className="flex w-[180px] rounded-xl p-4 pt-2 pb-2 justify-start bg-primary" onClick={expandSort}>
                 {currentSort}
                 <span className="ml-auto self-end pl-2"><IoIosArrowDown size={23}/></span>
-            </button> 
-            <motion.div 
-                animate={{
-                    height: isDropdownOpen ? "auto" : 0, 
-                    opacity: isDropdownOpen ? 1 : 0
-                }}
-                transition={{ duration: 0.1}}
-                style={{ overflow: "hidden" }}
-                >
+            </button>
 
-                {isDropdownOpen && (
-                    <div className="dropdown-content flex flex-col bg-primary fixed w-[180px] rounded-b-lg">
-                        <button className="py-2 bg-primary" onMouseEnter={onHover} onMouseLeave={onHoverOut} onClick={() => { setSort("Name"); expandSort(); }}>Name</button>
-                        <button className="py-2 bg-primary" onMouseEnter={onHover} onMouseLeave={onHoverOut} onClick={() => { setSort("Score"); expandSort(); }}>Score</button>
-                        <button className="py-2 bg-primary rounded-b-lg" onMouseEnter={onHover} onMouseLeave={onHoverOut} onClick={() => { setSort("Release Date"); expandSort(); }}>Release Date</button>
-                    </div>
-                )}
-            </motion.div>
+            <AnimatePresence>
+               {isDropdownOpen && <motion.div 
+                    initial={{
+                        opacity:0,
+                    }}
+                    animate={{
+                        opacity: 1,
+
+                    }}
+                    exit={{
+                        opacity: 0
+                    }}
+                    transition={{ duration: 0.5}}
+                    
+                    >
+                        <div className="dropdown-content flex flex-col bg-primary fixed w-[180px] rounded-b-lg">
+                            <motion.button initial={{}}className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" onClick={() => { setSort("Name"); expandSort(); }}>Name</motion.button>
+                            <motion.button className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" onClick={() => { setSort("Score"); expandSort(); }}>Score</motion.button>
+                            <motion.button className="py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" onClick={() => { setSort("Release Date"); expandSort(); }}>Release Date</motion.button>
+                        </div>
+                </motion.div>
+                }
+            </AnimatePresence>
         </div>
     )
 }
