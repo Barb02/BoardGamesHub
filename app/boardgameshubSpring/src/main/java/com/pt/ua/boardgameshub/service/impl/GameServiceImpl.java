@@ -191,12 +191,23 @@ public class GameServiceImpl implements GameService{
                 value = (Range)getterMethod.invoke(q);
 
                 if(value != null && value.getMin() >= 0 && value.getMax() >= 0){
-                    if(f.getName().equals("price")){
-                        predicates.add(criteriaBuilder.between(lowestPriceFunction, value.getMin(), value.getMax()));
+                    String fname = f.getName();
+                    switch(fname) {
+                        case "price":
+                            predicates.add(criteriaBuilder.between(lowestPriceFunction, value.getMin(), value.getMax()));
+                            break;
+                        case "players":
+                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("minplayers"), value.getMin()));
+                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplayers"), value.getMax()));
+                            break;
+                        case "playtime":
+                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("minplaytime"), value.getMin()));
+                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplaytime"), value.getMax()));
+                            break;
+                        default:
+                            predicates.add(criteriaBuilder.between(root.get(fname), value.getMin(), value.getMax()));
                     }
-                    else{
-                        predicates.add(criteriaBuilder.between(root.get(f.getName()), value.getMin(), value.getMax()));
-                    }
+
                 }
             }
             catch(Exception e){
