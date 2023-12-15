@@ -1,10 +1,13 @@
 package com.pt.ua.boardgameshub.service.impl;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /* import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,7 +27,9 @@ import org.springframework.stereotype.Service;
 import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
 import com.pt.ua.boardgameshub.dao.request_body.CategoryRequest;
 import com.pt.ua.boardgameshub.dao.request_body.DeveloperRequest;
+import com.pt.ua.boardgameshub.dao.request_body.GameQuery;
 import com.pt.ua.boardgameshub.dao.request_body.GameRequest;
+import com.pt.ua.boardgameshub.dao.request_body.Range;
 import com.pt.ua.boardgameshub.domain.*;
 import com.pt.ua.boardgameshub.repository.*;
 import com.pt.ua.boardgameshub.service.GameService;
@@ -128,23 +133,24 @@ public class GameServiceImpl implements GameService{
     private EntityManager entityManager;
     
     @Override
-    public List<Game> getFilteredGames(String name, String categories, String orderBy) {
+    public List<Game> getFilteredGames(GameQuery q) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Game> criteriaQuery = criteriaBuilder.createQuery(Game.class);
         Root<Game> root = criteriaQuery.from(Game.class);
         List<Predicate> predicates = new ArrayList<>();
     
         // Filtering by name containing the provided string
+        String name = q.getName();
         if (name != null && !name.isEmpty()) {
             predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%"));
         }
-    
+        
+        List<String> categories = q.getCategories();
         // Filtering by categories (case-insensitive exact match - game must have all categories)
         if (categories != null && !categories.isEmpty()) {
-            List<String> categoryList = Arrays.asList(categories.split(","));
             List<Predicate> categoryPredicates = new ArrayList<>();
             
-            for (String category : categoryList) {
+            for (String category : categories) {
                 Join<Game, Category> categoryJoin = root.join("categories");
                 Expression<String> categoryLowerCase = criteriaBuilder.lower(categoryJoin.get("name"));
                 Predicate categoryPredicate = criteriaBuilder.equal(categoryLowerCase, category.trim().toLowerCase());
@@ -155,28 +161,93 @@ public class GameServiceImpl implements GameService{
         }
     
         // Sorting
-        System.out.println(orderBy);
-        if (orderBy != null && !orderBy.isEmpty() && orderBy != "name") {
-            switch (orderBy) {
-                case "score":
-                case "yearPublished":
-                case "numRatings":
-                    criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderBy)));
-                    break;
+        String orderBy = q.getOrderBy();
+        Expression<Double> lowestPriceFunction = criteriaBuilder.function("getlowestpriceforgame", Double.class, root.get("id"));
+        List<String> sortFields = getSortFields(Game.class);
+        sortFields.add("price");
+        if (orderBy != null && !orderBy.isEmpty() && sortFields.contains(orderBy)) {
+            Expression<?> result;
+            if(orderBy.equals("price")){
+                result = lowestPriceFunction;
             }
-        }
-        else{
-            criteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
+            else{
+                result = root.get(orderBy);
+            }
+
+            if(q.getOrder().toLowerCase().equals("asc"))
+                criteriaQuery.orderBy(criteriaBuilder.asc(result));
+            else if(q.getOrder().toLowerCase().equals("desc"))
+                criteriaQuery.orderBy(criteriaBuilder.desc(result));
         }
     
+        // Filtering
+        List<Field> rangeFields = getRangeFields(GameQuery.class);
+        for(Field f : rangeFields){
+            Range value;
+            String getterName = "get" + f.getName().substring(0, 1).toUpperCase() + f.getName().substring(1);
+            try{
+                Method getterMethod = GameQuery.class.getMethod(getterName);
+                value = (Range)getterMethod.invoke(q);
+
+                if(value != null && value.getMin() >= 0 && value.getMax() >= 0){
+                    String fname = f.getName();
+                    switch(fname) {
+                        case "price":
+                            predicates.add(criteriaBuilder.between(lowestPriceFunction, value.getMin(), value.getMax()));
+                            break;
+                        case "players":
+                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("minplayers"), value.getMin()));
+                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplayers"), value.getMax()));
+                            break;
+                        case "playtime":
+                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("minplaytime"), value.getMin()));
+                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplaytime"), value.getMax()));
+                            break;
+                        default:
+                            predicates.add(criteriaBuilder.between(root.get(fname), value.getMin(), value.getMax()));
+                    }
+
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        
+
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
     
         TypedQuery<Game> query = entityManager.createQuery(criteriaQuery);
         List<Game> result =  query.getResultList();
-        System.out.println(result);
         return result;
     }
+
+    private static List<Field> getRangeFields(Class<?> clazz) {
+        List<Field> rangeFields = new ArrayList<>();
+        Field[] fields = clazz.getDeclaredFields();
+
+        for (Field field : fields) {
+            if (field.getType().getSimpleName().equals("Range")) {
+                rangeFields.add(field);
+            }
+        }
+
+        return rangeFields;
+    }
     
+    public static List<String> getSortFields(Class<?> clazz) {
+        List<String> fieldNames = new ArrayList<>();
+        Field[] fields = clazz.getDeclaredFields();
+
+        for (Field field : fields) {
+            Class<?> fieldType = field.getType();
+            if (fieldType == int.class || fieldType == String.class || fieldType == double.class) {
+                fieldNames.add(field.getName());
+            }
+        }
+
+        return fieldNames;
+    }
 
 
     @Override

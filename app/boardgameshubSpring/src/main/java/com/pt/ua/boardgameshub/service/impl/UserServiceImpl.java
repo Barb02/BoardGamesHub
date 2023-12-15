@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import com.pt.ua.boardgameshub.repository.UserRepository;
 import com.pt.ua.boardgameshub.service.UserService;
 
+
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+
     @Override
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
