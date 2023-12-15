@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 import com.pt.ua.boardgameshub.dao.request_body.SignInRequest;
-import com.pt.ua.boardgameshub.dao.response_body.JwtAuthenticationResponse;
+import com.pt.ua.boardgameshub.dao.response_body.SignUpResponse;
+import com.pt.ua.boardgameshub.dao.response_body.SignInResponse;
 import com.pt.ua.boardgameshub.service.AuthenticationService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +34,7 @@ public class AuthenticationController {
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ResponseEntity.class))}),
             @ApiResponse(responseCode = "500", description = "Couldn't register user", content = @Content)})
     @PostMapping("/signup")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@RequestBody SignUpRequest request) {
+    public ResponseEntity<SignUpResponse> signup(@RequestBody SignUpRequest request) {
         return ResponseEntity.ok(authenticationService.signup(request));
     }
 
@@ -43,7 +44,7 @@ public class AuthenticationController {
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ResponseEntity.class))}),
             @ApiResponse(responseCode = "500", description = "Couldn't sign-in user", content = @Content)})
     @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SignInRequest request) {
+    public ResponseEntity<SignInResponse> signin(@RequestBody SignInRequest request) {
         return ResponseEntity.ok(authenticationService.signin(request));
     }
 }
