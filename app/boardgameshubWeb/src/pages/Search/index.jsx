@@ -8,6 +8,7 @@ function Search() {
     const [search, setQuery] = useState();
     const [rquery, setRquery] = useState();
     const [currentFilters, setFilters] = useState([]);
+    const [currentOrder, setOrder] = useState("asc");
     const [currentSort, setSort] = useState("Name");
     const navigate = useNavigate();
     
@@ -49,12 +50,12 @@ function Search() {
                         <span className="pl-1 self-center"><TbFilterOff /></span>
                     </button>
                     <span className="mr-3 text-sortByText text-sm ml-4 w-[10%]">Sort by</span>
-                    <SortSearch currentSort={currentSort} setSort={setSort}/>                         
+                    <SortSearch currentSort={currentSort} setSort={setSort} currentOrder={currentOrder} setOrder={setOrder} />                         
                 </div>
             </div>
 
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                <ProductList query={search} sort={currentSort} filters={currentFilters} />
+                <ProductList query={search} sort={currentSort} order={currentOrder} filters={currentFilters} />
             </div>
         </div>
       </div>

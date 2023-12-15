@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 
-function ProductList({ query, sort }) {
+function ProductList({ query, sort, order, filters }) {
     const [rdata, setRdata] = useState([]);
     const [rprices, setRprices] = useState();
     const [rdataload, setDataLoad] = useState(false);
@@ -24,7 +24,7 @@ function ProductList({ query, sort }) {
             if (sort === "release date")
                 sort = "yearPublished";
 
-            gameService.getGames(query, sort).then((data) => {
+            gameService.getGames(query, sort, order).then((data) => {
                 setRdata(data || []);
 
                 const promises = data.map((game) => {
