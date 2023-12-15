@@ -11,5 +11,5 @@ public interface GameService {
     //public Game addGameAuto(Long id);
     public Game getGameById(Long id);
     public List<Game> getFilteredGames(GameQuery query);
-    public List<Game> getTopGames(int limit);
+    public List<Game> getTopGames(int limit, String publisher);
 }
