@@ -1,6 +1,5 @@
 package com.pt.ua.boardgameshub.dao.request_body;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
