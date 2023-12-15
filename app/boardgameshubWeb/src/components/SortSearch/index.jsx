@@ -4,7 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 
 
-const SortSearch = ( {currentSort, setSort, currentOrder, setOrder} ) => {
+const SortSearch = ( {currentSort, setSort, setOrder} ) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const expandSort = () => {

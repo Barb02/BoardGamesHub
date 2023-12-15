@@ -1,6 +1,5 @@
 import { CiSearch } from "react-icons/ci";
-import { TbFilterOff } from "react-icons/tb";
-import { ProductList, SortSearch } from "../../components";
+import { ProductList, SortSearch, FilterSearch } from "../../components";
 import { Form, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
@@ -30,7 +29,7 @@ function Search() {
     }
 
     return (
-      <div className="w-full h-auto text-text font-text">
+      <div id="search_body" className="w-full h-auto text-text font-text">
         <div className="pt-[3%]">
             <div className="text-4xl max-w-6xl pl-6 pb-1 mx-auto">
                     Discover:
@@ -44,16 +43,11 @@ function Search() {
                             <span className="pl-1 self-center"><CiSearch /></span>
                         </button>
                     </Form>
-                    
-                    <button className="flex rounded-xl p-4 pt-2 pb-2 items-center bg-primary  ml-auto">
-                        Filters
-                        <span className="pl-1 self-center"><TbFilterOff /></span>
-                    </button>
+                    <FilterSearch />
                     <span className="mr-3 text-sortByText text-sm ml-4 w-[10%]">Sort by</span>
-                    <SortSearch currentSort={currentSort} setSort={setSort} currentOrder={currentOrder} setOrder={setOrder} />                         
+                    <SortSearch currentSort={currentSort} setSort={setSort} setOrder={setOrder} />                         
                 </div>
             </div>
-
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
                 <ProductList query={search} sort={currentSort} order={currentOrder} filters={currentFilters} />
             </div>
