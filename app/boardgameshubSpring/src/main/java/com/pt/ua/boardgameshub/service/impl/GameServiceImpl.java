@@ -175,6 +175,10 @@ public class GameServiceImpl implements GameService{
                 criteriaQuery.orderBy(criteriaBuilder.asc(result));
             else if(q.getOrder().toLowerCase().equals("desc"))
                 criteriaQuery.orderBy(criteriaBuilder.desc(result));
+            
+            if(q.getOrder().isEmpty()){
+                criteriaQuery.orderBy(criteriaBuilder.asc(result));
+            }
         }
     
         // Filtering
