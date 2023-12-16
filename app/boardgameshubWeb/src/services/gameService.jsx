@@ -5,9 +5,9 @@ const gameService = {
         return await client.get(`/game/${id}`)
     },
 
-    async getGames(query="", sort="name", order="asc", categories="", price="", players="", playtime="", complexity=""){
+    async getGames(query="", sort="name", order="asc", categories="", players="", price="", playtime="", complexity=""){
         console.log(query, sort, order, categories);
-        return await client.get(`/game?q=${query}&orderBy=${sort}&order=${order}&categories=${categories}`)
+        return await client.get(`/game?q=${query}&orderBy=${sort}&order=${order}&categories=${categories}&players=${players[0]}_${players[1]}`)
     },
 
     async getLastPrices(id){

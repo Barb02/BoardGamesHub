@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbFilterOff } from "react-icons/tb";
+import { TbFilterFilled } from "react-icons/tb";
 import Categories from "./Categories";
 import PlayerNumber from "./PlayerNumber";
 import Playtime from "./Playtime";
@@ -19,6 +20,9 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
     useEffect(() => {
         setCategoriesFilter(categories);
         setPlayersFilter(players);
+        if (categories.length !== 0){
+            setFilterIcon(<TbFilterFilled />)
+        }
       }, [categories, players]);
     
     // dropdown manager to remove unwanted selections
@@ -44,6 +48,11 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
         expandSort();
         setCategories(categoriesFilter);
         setPlayers(playersFilter);
+
+        if (categoriesFilter.length !== 0)
+            setFilterIcon(<TbFilterFilled />)
+        else
+            setFilterIcon(<TbFilterOff />);
     }
 
     return (

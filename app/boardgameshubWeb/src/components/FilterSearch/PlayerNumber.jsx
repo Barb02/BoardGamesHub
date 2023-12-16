@@ -3,19 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
     const players = ["1 player", "2 players", "3 players", "4 players", "5 players", "6 players", "7 players", "8 players", 
-                        "9 players", "10 players"];
+                        "9 players", "10 players", "any"];
 
     const [minPlayerList, setMinPlayerListOpen] = useState(false);
     const [maxPlayerList, setMaxPlayerListOpen] = useState(false);
     const [minPlayerArray, setMinPlayerArray] = useState(players);
     const [maxPlayerArray, setMaxPlayerArray] = useState(players);
-    const [playerMin, setPlayerMin] = useState("1 Player");
-    const [playerMax, setPlayerMax] = useState("10 Players");
+    const [playerMin, setPlayerMin] = useState();
+    const [playerMax, setPlayerMax] = useState();
 
     useEffect(() => {
-        setPlayerMin(players[currentPlayers[0]]);
-        setPlayerMax(players[currentPlayers[1]]);
-      }, [currentPlayers]);
+        setPlayerMin(players[players.indexOf(currentPlayers[0])]);
+        setPlayerMax(players[players.indexOf(currentPlayers[1])]);
+      }, []);
 
     const changeMinPlayerArray = (player) => {
         let playerArray = [];
@@ -32,6 +32,7 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
         }
         setMaxPlayerArray(playerArray);
     }
+
 
     return (
         <div className="h-[50%] w-full">
