@@ -108,7 +108,7 @@ public class GameController {
 
     @Operation(summary = "Get the most visited games")
     @GetMapping("game/top")
-    public List<Game> getTopGames(@RequestParam( defaultValue = "10", required = false) String limit, @RequestParam(required = false) String publisher){
+    public List<Game> getTopGames(@RequestParam( defaultValue = "10", required = false) String limit, @RequestParam(required = false, defaultValue = "") String publisher){
         try{
             return gameService.getTopGames(Integer.parseInt(limit), publisher);
         }
