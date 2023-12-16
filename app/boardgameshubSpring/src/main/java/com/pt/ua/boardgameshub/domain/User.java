@@ -6,12 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.EnumType;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -22,8 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.List;
 
 
@@ -46,13 +39,6 @@ public class User implements UserDetails{
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "preferred_categories", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> preferredCategories = new HashSet<>();
 
     public User() {
     }
@@ -92,14 +78,6 @@ public class User implements UserDetails{
 
     public String getEmail() {
         return email;
-    }
-
-    public Set<Category> getPreferredCategories() {
-        return preferredCategories;
-    }
-
-    public void setPreferredCategories(Set<Category> preferredCategories) {
-        this.preferredCategories = preferredCategories;
     }
 
     public void setRole(Role role) {

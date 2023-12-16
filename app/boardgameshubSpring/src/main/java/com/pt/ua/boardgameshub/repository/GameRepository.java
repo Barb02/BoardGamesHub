@@ -11,9 +11,6 @@ import java.util.List;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
-    List<Game> findByNameContainingOrderByNameAsc(String query);
-    List<Game> findByNameStartingWithOrderByNameAsc(String query);
-
     @Query("SELECT c.game " +
         "FROM Click c " +
         "LEFT JOIN c.game.publishers p " +
