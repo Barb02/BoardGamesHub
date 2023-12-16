@@ -1,29 +1,20 @@
-import { useState, useEffect } from "react";
 
 
 const Categories = ( {currentCategories, setCategories} ) => {
-    const categories_list = ["Fantasy","Adventure","Area Control","Card Game","Tower Defense","Collectible","Miniatures","4X",
-    "Worker Placement","Family"];
+    const categories_list = ["Fantasy","Adventure","Area Control","Card Game","Tower Defense","Collectible","Miniatures","Horror",
+    "Worker Placement","Exploration"];
 
-    const [selectedCategories, setSelectedCategories] = useState([]);
-
-    useEffect(() => {
-        setSelectedCategories(currentCategories);
-      }, [currentCategories]);
-
-    const toggleCategory = (index) => {
+    const toggleCategory = (category) => {
         let currentCategories = [];
-        setSelectedCategories((categories) => {
-          if (categories.includes(index)){
-            currentCategories = categories.filter((category) => category !== index);
-            setCategories(currentCategories);
-            return currentCategories;
-          }
-          else{
-            currentCategories = [... categories, index];
-            setCategories(currentCategories);
-            return currentCategories
-          }
+        setCategories((categories) => {
+            if (categories.includes(category)){
+                currentCategories = categories.filter((cat) => cat !== category);
+                return currentCategories;
+            }
+            else{
+                currentCategories = [... categories, category];
+                return currentCategories
+            }
         });
     };
 
@@ -37,8 +28,8 @@ const Categories = ( {currentCategories, setCategories} ) => {
                     <div className="pb-1">
                         <div className="inline-block cursor-pointer">
                             <div className="relative">
-                                <div className="flex items-center" onClick={() => toggleCategory(index)}>
-                                    <span className={`rounded h-5 w-5 border mr-4 ${selectedCategories.includes(index) ? 'bg-green-600' : ''}`} />
+                                <div className="flex items-center" onClick={() => toggleCategory(category)}>
+                                    <span className={`rounded h-5 w-5 border mr-4 ${currentCategories.includes(category) ? 'bg-green-600' : ''}`} />
                                     <span>{category}</span>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbFilterOff } from "react-icons/tb";
 import Categories from "./Categories";
@@ -8,16 +8,20 @@ import Complexity from "./Complexity";
 import Price from "./Price";
 
 
-const FilterSearch = ( {} ) => {
-    const [categories, setCategories] = useState([]);
-    const [players, setPlayers] = useState([0, 9]);
-    const [playtimes, setPlaytimes] = useState([0, 11]);
-    const [currentComplexities, setComplexities] = useState([0, 4]);
-    const [currentPrices, setPrices] = useState();
-
+const FilterSearch = ( {categories, setCategories, players, setPlayers, playtimes, setPlaytimes, 
+                        complexities, setComplexities, prices, setPrices} ) => {
     const [filterIcon, setFilterIcon] = useState(<TbFilterOff />);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [categoriesFilter, setCategoriesFilter] = useState([]);
+    const [playersFilter, setPlayersFilter] = useState();
 
+    // initialize information
+    useEffect(() => {
+        setCategoriesFilter(categories);
+        setPlayersFilter(players);
+      }, [categories, players]);
+    
+    // dropdown manager to remove unwanted selections
     const expandSort = () => {
         setDropdownOpen(!isDropdownOpen);
         var filterElement = document.getElementById("filter_button");
@@ -30,11 +34,16 @@ const FilterSearch = ( {} ) => {
             filterElement.style.borderBottomRightRadius = "";
             filterElement.style.borderBottomLeftRadius = "";
             filterElement.style.border = "";
+            setCategoriesFilter(categories);
+            setPlayersFilter(players);
         }
     };
 
+    // update states for search
     const applyFilters = () => {
         expandSort();
+        setCategories(categoriesFilter);
+        setPlayers(playersFilter);
     }
 
     return (
@@ -53,18 +62,18 @@ const FilterSearch = ( {} ) => {
                     >
                         <div className="dropdown-content flex bg-searchDivBackground absolute w-[55.45%] h-[400px] rounded-b-lg right-[22.25%] border border-white">
                             {/* FIRST SPLIT */}
-                            <Categories currentCategories={categories} setCategories={setCategories} />
+                            <Categories currentCategories={categoriesFilter} setCategories={setCategoriesFilter} />
 
                             {/* SECOND SPLIT */}
                             <div className="flex flex-col w-[33.3%] h-full">
-                                <PlayerNumber currentPlayers={players} setPlayers={setPlayers} />
+                                <PlayerNumber currentPlayers={playersFilter} setPlayers={setPlayersFilter} />
                                 <Playtime currentPlaytimes={playtimes} setPlaytimes={setPlaytimes} />
                             </div>
 
                             {/* THIRD SPLIT */}
                             <div className="flex flex-col w-[33.3%] h-full">
-                                <Complexity currentComplexities={currentComplexities} setComplexities={setComplexities}/>
-                                <Price currentPrices={currentPrices} setPrices={setPrices} />
+                                <Complexity currentComplexities={complexities} setComplexities={setComplexities}/>
+                                <Price currentPrices={prices} setPrices={setPrices} />
                                 <div className="flex h-[15%] w-full justify-center">
                                     <button className="bg-primary rounded-xl w-[90px] h-[40px]" onClick={applyFilters}>
                                         Apply

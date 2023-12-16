@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 
-function ProductList({ query, sort, order, filters }) {
+function ProductList({ query, sort, order, categories }) {
     const [rdata, setRdata] = useState([]);
     const [rprices, setRprices] = useState();
     const [rdataload, setDataLoad] = useState(false);
@@ -18,13 +18,14 @@ function ProductList({ query, sort, order, filters }) {
         document.getElementById(node.id + "_hover").style.display = 'block';
     }
 
+
     useEffect(() => {
         if (query || query === ""){
             sort = sort.toLowerCase();
             if (sort === "release date")
                 sort = "yearPublished";
-
-            gameService.getGames(query, sort, order).then((data) => {
+            
+            gameService.getGames(query, sort, order, categories).then((data) => {
                 setRdata(data || []);
 
                 const promises = data.map((game) => {
@@ -37,7 +38,7 @@ function ProductList({ query, sort, order, filters }) {
                 }); 
             });   
         }
-    }, [query, sort]);
+    }, [query, sort, categories]);
 
     function getPrice(index) {
         return (Math.round(rprices[index] * 100) / 100).toFixed(2);

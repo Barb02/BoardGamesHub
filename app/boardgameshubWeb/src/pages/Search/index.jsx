@@ -4,21 +4,39 @@ import { Form, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
 function Search() {
+    // SEARCH STATES //
     const [search, setQuery] = useState();
     const [rquery, setRquery] = useState();
-    const [currentFilters, setFilters] = useState([]);
+    ///////////////////
+
+    // SORT STATES //
     const [currentOrder, setOrder] = useState("asc");
     const [currentSort, setSort] = useState("Name");
+    /////////////////
+
+    // FILTER STATES //
+    const [categories, setCategories] = useState([]);
+    const [players, setPlayers] = useState([0, 9]);
+    const [playtimes, setPlaytimes] = useState([0, 11]);
+    const [complexities, setComplexities] = useState([0, 4]);
+    const [prices, setPrices] = useState();
+    ////////////////////
+
+
     const navigate = useNavigate();
     
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
         const query = queryParams.get('q');
+        const category = queryParams.get('categories');
+
+        setCategories([category]);
 
         setQuery(query);
         setRquery(query);
     }, []);
 
+    
     const handleSearch = (e) => {
         setQuery(e.target[0].value);
         navigate(`/search?query=${encodeURI(search)}&orderBy=${currentSort}`);
@@ -43,13 +61,18 @@ function Search() {
                             <span className="pl-1 self-center"><CiSearch /></span>
                         </button>
                     </Form>
-                    <FilterSearch />
+                    <FilterSearch categories={categories} setCategories={setCategories}
+                                  players={players} setPlayers={setPlayers}
+                                  playtimes={playtimes} setPlaytimes={setPlaytimes}
+                                  complexities={complexities} setComplexities={setComplexities}
+                                  prices={prices} setPrices={setPrices}
+                    />
                     <span className="mr-3 text-sortByText text-sm ml-4 w-[10%]">Sort by</span>
                     <SortSearch currentSort={currentSort} setSort={setSort} setOrder={setOrder} />                         
                 </div>
             </div>
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                <ProductList query={search} sort={currentSort} order={currentOrder} filters={currentFilters} />
+                <ProductList query={search} sort={currentSort} order={currentOrder} categories={categories} />
             </div>
         </div>
       </div>

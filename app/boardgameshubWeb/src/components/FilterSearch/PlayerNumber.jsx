@@ -33,8 +33,6 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
         setMaxPlayerArray(playerArray);
     }
 
-    console.log(currentPlayers);
-
     return (
         <div className="h-[50%] w-full">
             <div className="text-2xl mt-4">
