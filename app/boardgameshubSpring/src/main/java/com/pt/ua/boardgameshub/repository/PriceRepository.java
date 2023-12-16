@@ -15,9 +15,12 @@ public interface PriceRepository extends JpaRepository<Price, Long> {
     public Price findFirstByStoreIdAndGameId(Long store_id, Long game_id, Sort sort);
     public List<Price> findByGameId(Long game_id);
 
-    @Query(value = "SELECT * FROM GetLatestPriceForGame(:gameId)", nativeQuery = true)
+    @Query(value = "SELECT * FROM GetLatestPricesForGame(:gameId)", nativeQuery = true)
     public List<Price> findLatestPriceByGameId(@Param("gameId") Long game_id);
 
     @Query(value = "SELECT * FROM GetLowestPriceForGame(:gameId)", nativeQuery = true)
     public Price findLowestPriceByGameId(@Param("gameId") Long game_id);
+
+    @Query(value = "SELECT * FROM GetPriceHistory(:gameId)", nativeQuery = true)
+    public List<Price> findPriceHistory(@Param("gameId") Long game_id);
 }
