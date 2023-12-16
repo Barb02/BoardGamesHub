@@ -8,13 +8,15 @@ const Complexity = ( {currentComplexities, setComplexities} ) => {
     const [maxComplexityList, setMaxComplexityListOpen] = useState(false);
     const [minComplexityArray, setMinComplexityArray] = useState(complexities);
     const [maxComplexityArray, setMaxComplexityArray] = useState(complexities);
-    const [complexityMin, setComplexityMin] = useState("1 - Light");
-    const [complexityMax, setComplexityMax] = useState("5 - Heavy");
+    const [complexityMin, setComplexityMin] = useState();
+    const [complexityMax, setComplexityMax] = useState();
 
     useEffect(() => {
         setComplexityMin(complexities[currentComplexities[0]]);
         setComplexityMax(complexities[currentComplexities[1]]);
-      }, [currentComplexities]);
+        changeMinComplexityArray(complexities[currentComplexities[1]]);
+        changeMaxComplexityArray(complexities[currentComplexities[0]]);
+    }, []);
 
     const changeMinComplexityArray = (complexity) => {
         let complexityArray = []
@@ -33,7 +35,7 @@ const Complexity = ( {currentComplexities, setComplexities} ) => {
     }
 
     return (
-            <div className="h-[50%] w-full">
+            <div className="h-[45%] w-full">
                 <div className="text-2xl ml-5 mt-4">
                     <span>Complexity:</span>
                 </div>

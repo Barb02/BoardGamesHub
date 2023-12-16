@@ -9,13 +9,15 @@ const Playtime = ( {currentPlaytimes, setPlaytimes} ) => {
     const [maxPlaytimeList, setMaxPlaytimeListOpen] = useState(false);
     const [minPlaytimeArray, setMinPlaytimeArray] = useState(playtimes);
     const [maxPlaytimeArray, setMaxPlaytimeArray] = useState(playtimes);
-    const [playtimeMin, setPlaytimeMin] = useState("15 minutes");
-    const [playtimeMax, setPlaytimeMax] = useState("6 hours");
+    const [playtimeMin, setPlaytimeMin] = useState();
+    const [playtimeMax, setPlaytimeMax] = useState();
 
     useEffect(() => {
         setPlaytimeMin(playtimes[currentPlaytimes[0]]);
         setPlaytimeMax(playtimes[currentPlaytimes[1]]);
-      }, [currentPlaytimes]);
+        changeMinPlaytimeArray(playtimes[currentPlaytimes[1]]);
+        changeMaxPlaytimeArray(playtimes[currentPlaytimes[0]]);
+    }, []);
 
     const changeMinPlaytimeArray = (playtime) => {
         let playtimeArray = [];

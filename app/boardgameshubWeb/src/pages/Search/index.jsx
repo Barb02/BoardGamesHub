@@ -15,11 +15,11 @@ function Search() {
     /////////////////
 
     // FILTER STATES //
-    const [categories, setCategories] = useState([]);
-    const [players, setPlayers] = useState(["any", "any"]);
-    const [playtimes, setPlaytimes] = useState([0, 11]);
-    const [complexities, setComplexities] = useState([0, 4]);
-    const [prices, setPrices] = useState();
+    const [categories, setCategories] = useState([]); // none selected
+    const [players, setPlayers] = useState([10, 10]); // any, any
+    const [playtimes, setPlaytimes] = useState([0, 11]); // 15mins, 6 hours
+    const [complexities, setComplexities] = useState([0, 4]); // light, heavy
+    const [prices, setPrices] = useState(["1", "900"]);
     ////////////////////
 
 
@@ -72,7 +72,8 @@ function Search() {
                 </div>
             </div>
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                <ProductList query={search} sort={currentSort} order={currentOrder} categories={categories} players={players}/>
+                <ProductList query={search} sort={currentSort} order={currentOrder} categories={categories} players={players} 
+                            playtimes={playtimes} complexities={complexities} prices={prices}/>
             </div>
         </div>
       </div>

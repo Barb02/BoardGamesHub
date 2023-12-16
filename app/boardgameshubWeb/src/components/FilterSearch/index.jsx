@@ -15,15 +15,22 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [categoriesFilter, setCategoriesFilter] = useState([]);
     const [playersFilter, setPlayersFilter] = useState();
+    const [complexitiesFilter, setComplexitiesFilter] = useState();
+    const [playtimesFilter, setPlaytimesFilter] = useState();
+    const [pricesFilter, setPricesFilter] = useState();
 
     // initialize information
     useEffect(() => {
         setCategoriesFilter(categories);
         setPlayersFilter(players);
+        setComplexitiesFilter(complexities);
+        setPlaytimesFilter(playtimes);
+        setPricesFilter(prices);
+
         if (categories.length !== 0){
             setFilterIcon(<TbFilterFilled />)
         }
-      }, [categories, players]);
+      }, [categories, players, complexities, playtimes, prices]);
     
     // dropdown manager to remove unwanted selections
     const expandSort = () => {
@@ -40,6 +47,9 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
             filterElement.style.border = "";
             setCategoriesFilter(categories);
             setPlayersFilter(players);
+            setComplexitiesFilter(complexities);
+            setPlaytimesFilter(playtimes);
+            setPricesFilter(prices);
         }
     };
 
@@ -48,6 +58,9 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
         expandSort();
         setCategories(categoriesFilter);
         setPlayers(playersFilter);
+        setComplexities(complexitiesFilter);
+        setPlaytimes(playtimesFilter);
+        setPrices(pricesFilter);
 
         if (categoriesFilter.length !== 0)
             setFilterIcon(<TbFilterFilled />)
@@ -76,14 +89,14 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
                             {/* SECOND SPLIT */}
                             <div className="flex flex-col w-[33.3%] h-full">
                                 <PlayerNumber currentPlayers={playersFilter} setPlayers={setPlayersFilter} />
-                                <Playtime currentPlaytimes={playtimes} setPlaytimes={setPlaytimes} />
+                                <Playtime currentPlaytimes={playtimesFilter} setPlaytimes={setPlaytimesFilter} />
                             </div>
 
                             {/* THIRD SPLIT */}
                             <div className="flex flex-col w-[33.3%] h-full">
-                                <Complexity currentComplexities={complexities} setComplexities={setComplexities}/>
-                                <Price currentPrices={prices} setPrices={setPrices} />
-                                <div className="flex h-[15%] w-full justify-center">
+                                <Complexity currentComplexities={complexitiesFilter} setComplexities={setComplexitiesFilter}/>
+                                <Price currentPrices={pricesFilter} setPrices={setPricesFilter} />
+                                <div className="flex h-[15%] pt-6 pr-6 w-full justify-end">
                                     <button className="bg-primary rounded-xl w-[90px] h-[40px]" onClick={applyFilters}>
                                         Apply
                                     </button>

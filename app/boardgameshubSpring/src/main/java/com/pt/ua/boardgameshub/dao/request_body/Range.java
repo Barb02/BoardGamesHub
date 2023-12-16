@@ -24,17 +24,16 @@ public class Range {
         if (parts.length != 2) {
             throw new IllegalArgumentException("Invalid range format. Expected format: min_max");
         }
-        double min,max;
+        
+        if(parts[0].equalsIgnoreCase("any") && parts[1].equalsIgnoreCase("any"))
+            return new Range(Double.MAX_VALUE, Double.MIN_VALUE);
+
         if(parts[0].equalsIgnoreCase("any"))
-            min = Double.MAX_VALUE;
-        else
-             min = Double.parseDouble(parts[0]);
+            return new Range(1, Double.parseDouble(parts[1]));
 
         if(parts[1].equalsIgnoreCase("any"))
-            max = Double.MIN_VALUE;
-        else
-            max = Double.parseDouble(parts[1]);
+            return new Range(Double.parseDouble(parts[0]), Double.parseDouble(parts[0]));
 
-        return new Range(min, max);
+        return new Range(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
     }
 }

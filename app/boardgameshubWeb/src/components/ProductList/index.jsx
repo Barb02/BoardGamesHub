@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 
-function ProductList({ query, sort, order, categories, players }) {
+function ProductList({ query, sort, order, categories, players, complexities, playtimes, prices }) {
     const [rdata, setRdata] = useState([]);
     const [rprices, setRprices] = useState();
     const [rdataload, setDataLoad] = useState(false);
@@ -18,13 +18,16 @@ function ProductList({ query, sort, order, categories, players }) {
         document.getElementById(node.id + "_hover").style.display = 'block';
     }
 
-
     useEffect(() => {
         if (query || query === ""){
+            let playerNum = [];
+            let complexityNum = [];
+            let playtimeNum = [];
             sort = sort.toLowerCase();
-            handleExceptions();
-            
-            gameService.getGames(query, sort, order, categories, players).then((data) => {
+
+            handleExceptions(playerNum, complexityNum, playtimeNum);
+
+            gameService.getGames(query, sort, order, categories, playerNum, complexityNum, playtimeNum, prices).then((data) => {
                 setRdata(data || []);
 
                 const promises = data.map((game) => {
@@ -37,12 +40,21 @@ function ProductList({ query, sort, order, categories, players }) {
                 }); 
             });   
         }
-    }, [query, sort, categories, players]);
+    }, [query, sort, categories, players, complexities, playtimes, prices]);
 
-    function handleExceptions() {
+    function handleExceptions(player, complexity, playtime) {
+        const playtimeMins = [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 300, 360];
         if (sort === "release date")
             sort = "yearPublished";
 
+        player[0] = players[0] === 10 ? "any" : players[0] + 1;
+        player[1] = players[1] === 10 ? "any" : players[1] + 1;
+
+        complexity[0] = complexities[0] + 1;
+        complexity[1] = complexities[1] + 1;
+
+        playtime[0] = playtimeMins[playtimes[0]];
+        playtime[1] = playtimeMins[playtimes[1]];
     }
 
     function getPrice(index) {

@@ -13,9 +13,11 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
     const [playerMax, setPlayerMax] = useState();
 
     useEffect(() => {
-        setPlayerMin(players[players.indexOf(currentPlayers[0])]);
-        setPlayerMax(players[players.indexOf(currentPlayers[1])]);
-      }, []);
+        setPlayerMin(players[currentPlayers[0]]);
+        setPlayerMax(players[currentPlayers[1]]);
+        changeMinPlayerArray(players[currentPlayers[1]]);
+        changeMaxPlayerArray(players[currentPlayers[0]]);
+    }, []);
 
     const changeMinPlayerArray = (player) => {
         let playerArray = [];
@@ -32,7 +34,6 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
         }
         setMaxPlayerArray(playerArray);
     }
-
 
     return (
         <div className="h-[50%] w-full">
