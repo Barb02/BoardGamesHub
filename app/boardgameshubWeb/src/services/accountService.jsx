@@ -8,6 +8,10 @@ const accountService = {
     async signin(data){
         return await client.post("/auth/signin",data)
     },
+
+    async getWishlist(){
+        return await client.get("/user/wishlist")
+    }
 }
 
 export default accountService;

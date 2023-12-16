@@ -7,7 +7,6 @@ const client = axios.create({
 })
 client.interceptors.request.use(
   (config) => {
-    console.log(useUserStore.getState())
     if(useUserStore.getState().logged){
       config.headers.Authorization = `Bearer ${useUserStore.getState().token}`;
     }
