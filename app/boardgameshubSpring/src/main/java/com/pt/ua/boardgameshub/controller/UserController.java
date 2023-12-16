@@ -98,7 +98,7 @@ public class UserController {
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = WishlistedResponse.class))}),
             @ApiResponse(responseCode = "404", description = "Categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
-    @PutMapping("user/categories/{category_id}")
+    @PutMapping("user/categories")
     public List<PreferredCategoryResponse> editPreferredCategories(@RequestBody List<PreferredCategoryResponse> updatedCategories) {
         List<PreferredCategoryResponse> currentCategories = preferredCategoryService.getPreferredCategories();
         if(currentCategories != null && updatedCategories != null){
