@@ -159,7 +159,7 @@ public class GameServiceImpl implements GameService{
     
         // Sorting
         String orderBy = q.getOrderBy();
-        Expression<Double> lowestPriceFunction = criteriaBuilder.function("getlowestpriceforgame", Double.class, root.get("id"));
+        Expression<Double> lowestPriceFunction = criteriaBuilder.function("GetLowestPriceValueForGame", Double.class, root.get("id"));
         List<String> sortFields = getSortFields(Game.class);
         sortFields.add("price");
         if (orderBy != null && !orderBy.isEmpty() && sortFields.contains(orderBy)) {

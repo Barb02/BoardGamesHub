@@ -21,6 +21,16 @@ END;
 $$
 LANGUAGE PLPGSQL;
 
+CREATE OR REPLACE FUNCTION GetLowestPriceValueForGame(gid bigint) RETURNS double precision AS $$
+declare
+   min_price double precision;
+begin
+    SELECT price into min_price FROM GetLatestPricesForGame(gid) order by price asc limit 1;
+    return min_price;
+end;
+$$
+LANGUAGE PLPGSQL;
+
 CREATE OR REPLACE FUNCTION GetPriceHistory(gid bigint) RETURNS SETOF Price AS $$
 BEGIN
     RETURN QUERY
