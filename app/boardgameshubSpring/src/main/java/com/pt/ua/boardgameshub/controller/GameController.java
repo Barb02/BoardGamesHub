@@ -1,9 +1,7 @@
 package com.pt.ua.boardgameshub.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -99,7 +97,7 @@ public class GameController {
                                             Range.parseString(complexity), 
                                             Range.parseString(playtime), 
                                             orderBy, order);
-                                            
+
         List<Game> games = gameService.getFilteredGames(gameQuery);
         if(games != null)
             return games;
@@ -110,9 +108,9 @@ public class GameController {
 
     @Operation(summary = "Get the most visited games")
     @GetMapping("game/top")
-    public List<Game> getTopGames(@RequestParam(name="limit", defaultValue="10") String limit){
+    public List<Game> getTopGames(@RequestParam( defaultValue = "10", required = false) String limit, @RequestParam(required = false, defaultValue = "") String publisher){
         try{
-            return gameService.getTopGames(Integer.parseInt(limit));
+            return gameService.getTopGames(Integer.parseInt(limit), publisher);
         }
         catch(Exception e){
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "limit must be an integer");

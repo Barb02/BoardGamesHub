@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
@@ -11,6 +11,11 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
     const [maxPlayerArray, setMaxPlayerArray] = useState(players);
     const [playerMin, setPlayerMin] = useState("1 Player");
     const [playerMax, setPlayerMax] = useState("10 Players");
+
+    useEffect(() => {
+        setPlayerMin(players[currentPlayers[0]]);
+        setPlayerMax(players[currentPlayers[1]]);
+      }, [currentPlayers]);
 
     const changeMinPlayerArray = (player) => {
         let playerArray = [];
@@ -27,6 +32,8 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
         }
         setMaxPlayerArray(playerArray);
     }
+
+    console.log(currentPlayers);
 
     return (
         <div className="h-[50%] w-full">
@@ -59,7 +66,9 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
                                             <div 
                                             key={index}
                                             className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                            onClick={() => {setPlayerMin(player); changeMaxPlayerArray(player)}}
+                                            onClick={() => {setPlayerMin(player); 
+                                                            setPlayers([index, players.indexOf(playerMax)]); 
+                                                            changeMaxPlayerArray(player)}}
                                             >
                                                 {player}
                                             </div>
@@ -93,7 +102,9 @@ const PlayerNumber = ( {currentPlayers, setPlayers} ) => {
                                             <div 
                                             key={index}
                                             className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                            onClick={() => {setPlayerMax(player); changeMinPlayerArray(player)}}
+                                            onClick={() => {setPlayerMax(player); 
+                                                            setPlayers([players.indexOf(playerMin), players.indexOf(player)]); 
+                                                            changeMinPlayerArray(player)}}
                                             >
                                                 {player}
                                             </div>

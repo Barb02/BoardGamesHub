@@ -3,11 +3,9 @@ package com.pt.ua.boardgameshub.service.impl;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /* import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -42,7 +40,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.criteria.Expression;
 
 
@@ -72,7 +69,6 @@ public class GameServiceImpl implements GameService{
         for(DeveloperRequest request: gamerequest.getDesigners()){
             Designer designer = designerRepository.findById(request.getId()).orElse(null);
             if (designer == null){
-                System.out.println("\n\n\nHERE\n\n\n");
                 Designer newDesigner = new Designer(request);
                 designerRepository.save(newDesigner);
                 designers.add(newDesigner);
@@ -252,8 +248,11 @@ public class GameServiceImpl implements GameService{
 
 
     @Override
-    public List<Game> getTopGames(int limit) {
-        return gameRepository.findAllGamesOrderByClickCountDesc(limit);
+    public List<Game> getTopGames(int limit, String publisher) {
+        if(publisher.isEmpty()){
+            publisher = null;
+        }
+        return gameRepository.findAllGamesOrderByClickCountDesc(limit, publisher);
     }
 
     /* @Override
