@@ -4,6 +4,7 @@ import { useState,useEffect } from "react";
 import { TbLogout } from "react-icons/tb";
 import { MdEditSquare,MdSave,MdSearch,MdClose } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
+import accountService from "../../services/accountService";
 
 function UserBar({deactivateUser}){
     const username = useUserStore((state) => state.username);
@@ -12,6 +13,12 @@ function UserBar({deactivateUser}){
     const [listOpen,setListOpen] = useState(false);
     const [filter,setFilter] = useState("");
     const [userCategorys,setUserCategorys] = useState([]);
+
+    const fetchCategories = ()=>{
+        accountService.getCategories().then((data)=>{
+            
+        })
+    }
 
     const addCat = (cat)=>{
         if (!userCategorys.includes(cat)){
