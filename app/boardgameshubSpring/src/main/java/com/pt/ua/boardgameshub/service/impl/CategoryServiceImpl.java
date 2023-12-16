@@ -7,6 +7,8 @@ import com.pt.ua.boardgameshub.domain.Category;
 import com.pt.ua.boardgameshub.repository.CategoryRepository;
 import com.pt.ua.boardgameshub.service.CategoryService;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService{
     
@@ -25,5 +27,10 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public void addCategory(Category category) {
         categoryRepository.save(category);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAllByOrderByNameAsc();
     }
 }
