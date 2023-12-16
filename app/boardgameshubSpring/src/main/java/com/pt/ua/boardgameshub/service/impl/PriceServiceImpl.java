@@ -52,8 +52,8 @@ public class PriceServiceImpl implements PriceService{
         List<PriceHistory> result = List.of(
             new PriceHistory("Worten", "hsl(0, 100%, 50%)"),
             new PriceHistory("Fnac", "hsl(106, 100%, 57%)"),
-            new PriceHistory("ZATU", "hsl(289, 100%, 57%)"),
-            new PriceHistory("Amazon", "hsl(32, 100%, 57%)")
+            new PriceHistory("Amazon", "hsl(32, 100%, 57%)"),
+            new PriceHistory("ZATU", "hsl(289, 100%, 57%)")
         );
 
         for(Price p : history){
