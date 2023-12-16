@@ -7,8 +7,8 @@ function PricesGraph({ className,data }) {
       <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ format: "%b %d %Y", type: "time" }}
-        xFormat="time:%b %d %Y"
+        xScale={{ format: "%b %d %Y %H:00", type: "time" }}
+        xFormat="time:%b %d %Y %H:00"
         yScale={{
           type: "linear",
           min: "auto",
@@ -17,7 +17,7 @@ function PricesGraph({ className,data }) {
           reverse: false,
         }}
         yFormat=" >-.2f"
-        curve="stepAfter"
+        curve="linear"
         axisTop={null}
         axisRight={null}
         theme={

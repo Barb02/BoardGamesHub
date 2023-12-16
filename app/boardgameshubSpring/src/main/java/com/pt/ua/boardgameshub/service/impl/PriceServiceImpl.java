@@ -60,7 +60,7 @@ public class PriceServiceImpl implements PriceService{
             int store_index = (int)(p.getStore().getId()-1);
             PriceHistory ph = result.get(store_index);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy HH:mm");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy HH:00");
             String formatted_timestamp = dateFormat.format(new Date(p.getTimestamp().getTime()));
             ShortPrice sp = new ShortPrice(formatted_timestamp, p.getPrice());
 

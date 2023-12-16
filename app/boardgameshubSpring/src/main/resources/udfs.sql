@@ -24,9 +24,9 @@ LANGUAGE PLPGSQL;
 CREATE OR REPLACE FUNCTION GetPriceHistory(gid bigint) RETURNS SETOF Price AS $$
 BEGIN
     RETURN QUERY
-    SELECT DISTINCT ON (date_trunc('minute', p.timestamp), p.store_id) *
+    SELECT DISTINCT ON (date_trunc('hour', p.timestamp), p.store_id) *
     FROM price as p
     WHERE game_id = gid
-    ORDER BY date_trunc('minute', p.timestamp), p.store_id, p.price;
+    ORDER BY date_trunc('hour', p.timestamp), p.store_id, p.price;
 END;
 $$ LANGUAGE PLPGSQL;
