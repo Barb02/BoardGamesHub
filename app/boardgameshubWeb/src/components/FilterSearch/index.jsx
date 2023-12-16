@@ -1,22 +1,32 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbFilterOff } from "react-icons/tb";
+import Categories from "./Categories";
+import PlayerNumber from "./PlayerNumber";
 
 
 const FilterSearch = ( {} ) => {
-    const players = ["1 player", "2 players", "3 players", "4 players", "5 players", "6 players", "7 players", "8 players", 
-                        "9 players", "10 players"];
-    const categories = ["Fantasy","Adventure","Area Control","Card Game","Tower Defense","Collectible","Miniatures","4X",
-                        "Worker Placement","Family"];
+    const playtimes = ["15 minutes", "30 minutes", "45 minutes", "60 minutes", "1.5 hours", "2 hours", "2.5 hours", "3 hours",
+                         "3.5 hours", "4 hours", "5 hours", "6 hours"];
+    const complexities = ["1 - Light", "2 - Medium Light", "3 - Medium", "4 - Medium Heavy", "5 - Heavy"];
 
+    const [categories, setCategories] = useState([]);
+    const [players, setPlayers] = useState();
 
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
-    const [minPlayerList, setMinPlayerListOpen] = useState(false);
-    const [maxPlayerList, setMaxPlayerListOpen] = useState(false);
-    const [maxPlayerArray, setMaxPlayerArray] = useState(players);
-    const [playerMin, setPlayerMin] = useState("1 Player");
-    const [playerMax, setPlayerMax] = useState("10 Players");
+    const [minPlaytimeList, setMinPlaytimeListOpen] = useState(false);
+    const [maxPlaytimeList, setMaxPlaytimeListOpen] = useState(false);
+    const [maxPlaytimeArray, setMaxPlaytimeArray] = useState(playtimes);
+    const [playtimeMin, setPlaytimeMin] = useState("15 minutes");
+    const [playtimeMax, setPlaytimeMax] = useState("6+ hours");
+
+    const [minComplexityList, setMinComplexityListOpen] = useState(false);
+    const [maxComplexityList, setMaxComplexityListOpen] = useState(false);
+    const [maxComplexityArray, setMaxComplexityArray] = useState(complexities);
+    const [complexityMin, setComplexityMin] = useState("1 - Light");
+    const [complexityMax, setComplexityMax] = useState("5 - Heavy");
+
     const [filterIcon, setFilterIcon] = useState(<TbFilterOff />);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const expandSort = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -33,14 +43,25 @@ const FilterSearch = ( {} ) => {
         }
     };
 
-    const changeMaxPlayerArray = (player) => {
-        let playerArray = [];
-        for (let i = players.indexOf(player); i < players.length; i++){
-            playerArray.push(players[i]);
-        }
-        setMaxPlayerArray(playerArray);
+    const applyFilters = () => {
+        expandSort();
     }
 
+    const changeMaxPlaytimeArray = (playtime) => {
+        let playtimeArray = []
+        for (let i = playtimes.indexOf(playtime); i < playtimes.length; i++){
+            playtimeArray.push(playtimes[i]);
+        }
+        setMaxPlaytimeArray(playtimeArray);
+    }
+
+    const changeMaxComplexityArray = (complexity) => {
+        let complexityArray = []
+        for (let i = complexities.indexOf(complexity); i < complexities.length; i++){
+            complexityArray.push(complexities[i]);
+        }
+        setMaxComplexityArray(complexityArray);
+    }
 
     return (
         <div id="filters" className="mr-4">
@@ -58,31 +79,14 @@ const FilterSearch = ( {} ) => {
                     >
                         <div className="dropdown-content flex bg-searchDivBackground absolute w-[55.45%] h-[400px] rounded-b-lg right-[22.25%] border border-white">
                             {/* FIRST SPLIT */}
-                            <div className="flex flex-col w-[33.3%] h-full">
-                                <div className="text-2xl ml-7 mt-4">
-                                    <span>Categories:</span>
-                                </div>
-                                <div className="flex flex-col relative ml-7 mt-4 text-md">
-                                    {categories.map((category) => (
-                                        <div className="pb-1">
-                                            <div className="inline-block">
-                                                <div className="relative">
-                                                    <div className="flex items-center">
-                                                        <span className="rounded h-5 w-5 border mr-4" />
-                                                        <span className="">{category}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            <Categories currentCategories={categories} setCategories={setCategories} />
 
                             {/* SECOND SPLIT */}
                             <div className="flex flex-col w-[33.3%] h-full">
+                                <PlayerNumber currentPlayers={players} setPlayers={setPlayers} />
                                 <div className="h-[50%] w-full">
                                     <div className="text-2xl mt-4">
-                                        <span>Number of Players:</span>
+                                        <span>Playtime:</span>
                                     </div>
                                     <div className="flex flex-col relative ml-4 mt-4 text-md">
                                         <div className="pb-1 pt-3">
@@ -92,27 +96,27 @@ const FilterSearch = ( {} ) => {
                                                     <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[85px] place-items-center gap-1 z-40 pointer-events-auto">
                                                         <button 
                                                             className="text-black rounded-md bg-loginInput h-[25px] w-[85px] z-40" 
-                                                            onClick={() => setMinPlayerListOpen(true) }
+                                                            onClick={() => setMinPlaytimeListOpen(true) }
                                                             onBlur={()=>setTimeout(function() {
-                                                                setMinPlayerListOpen(false)
+                                                                setMinPlaytimeListOpen(false)
                                                             }, 40)}                          
-                                                        >{playerMin}</button>
+                                                        >{playtimeMin}</button>
                                                     </div>
                                                     <AnimatePresence>
-                                                        {minPlayerList &&
+                                                        {minPlaytimeList &&
                                                             <motion.div className="rounded-lg overflow-hidden max-h-[100px] ml-2 overflow-y-scroll z-50 pointer-events-auto"
                                                                 initial={{y:-200,opacity:0,scale:0}}
                                                                 animate={{y:0,opacity:1,scale:1}}
                                                                 exit={{y:-200,opacity:0,scale:0}}
                                                                 transition={{ease:"easeInOut"}}
                                                             >
-                                                                {players.map((player, index)=>(
+                                                                {playtimes.map((playtime, index)=>(
                                                                     <div 
                                                                     key={index}
                                                                     className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                                                    onClick={() => {setPlayerMin(player); changeMaxPlayerArray(player)}}
+                                                                    onClick={() => {setPlaytimeMin(playtime); changeMaxPlaytimeArray(playtime)}}
                                                                     >
-                                                                        {player}
+                                                                        {playtime}
                                                                     </div>
                                                                 ))}
                                                             </motion.div>
@@ -126,27 +130,27 @@ const FilterSearch = ( {} ) => {
                                                     <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[85px] place-items-center gap-1 z-40 pointer-events-auto">
                                                         <button 
                                                             className="text-black rounded-md bg-loginInput h-[25px] w-[85px] z-40" 
-                                                            onClick={()=>setMaxPlayerListOpen(true)}
+                                                            onClick={()=>setMaxPlaytimeListOpen(true)}
                                                             onBlur={()=>setTimeout(function() {
-                                                                setMaxPlayerListOpen(false)
+                                                                setMaxPlaytimeListOpen(false)
                                                             }, 40)}                          
-                                                        >{playerMax}</button>
+                                                        >{playtimeMax}</button>
                                                     </div>
                                                     <AnimatePresence>
-                                                        {maxPlayerList &&
+                                                        {maxPlaytimeList &&
                                                             <motion.div className="rounded-lg overflow-hidden max-h-[100px] ml-2 overflow-y-scroll z-20 pointer-events-auto"
                                                                 initial={{y:-200,opacity:0,scale:0}}
                                                                 animate={{y:0,opacity:1,scale:1}}
                                                                 exit={{y:-200,opacity:0,scale:0}}
                                                                 transition={{ease:"easeInOut"}}
                                                             >
-                                                                {maxPlayerArray.map((player, index)=>(
+                                                                {maxPlaytimeArray.map((playtime, index)=>(
                                                                     <div 
                                                                     key={index}
                                                                     className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                                                    onClick={() => setPlayerMax(player)}
+                                                                    onClick={() => setPlaytimeMax(playtime)}
                                                                     >
-                                                                        {player}
+                                                                        {playtime}
                                                                     </div>
                                                                 ))}
                                                             </motion.div>
@@ -157,27 +161,98 @@ const FilterSearch = ( {} ) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="h-[50%] w-full">
-                                    <div className="text-2xl ml-7 mt-4">
-                                        <span>Playtime:</span>
-                                    </div>
-                                </div>
                             </div>
 
                             {/* THIRD SPLIT */}
                             <div className="flex flex-col w-[33.3%] h-full">
-                                <div className="h-[40%] w-full">
+                                <div className="h-[50%] w-full">
                                     <div className="text-2xl ml-5 mt-4">
                                         <span>Complexity:</span>
                                     </div>
+                                    <div className="flex flex-col relative ml-4 mt-4 text-md">
+                                        <div className="pb-1 pt-3">
+                                            <div className="flex">
+                                                <span className="pt-1">From: </span>
+                                                <div className="flex flex-col absolute ml-[15%] w-[150px] overflow-hidden z-50 pointer-events-none text-xs">
+                                                    <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[140px] place-items-center gap-1 z-40 pointer-events-auto">
+                                                        <button 
+                                                            className="text-black rounded-md bg-loginInput h-[25px] w-[140px] z-40" 
+                                                            onClick={() => setMinComplexityListOpen(true) }
+                                                            onBlur={()=>setTimeout(function() {
+                                                                setMinComplexityListOpen(false)
+                                                            }, 40)}                          
+                                                        >{complexityMin}</button>
+                                                    </div>
+                                                    <AnimatePresence>
+                                                        {minComplexityList &&
+                                                            <motion.div className="rounded-lg overflow-hidden max-h-[100px] ml-2 overflow-y-scroll z-50 pointer-events-auto"
+                                                                initial={{y:-200,opacity:0,scale:0}}
+                                                                animate={{y:0,opacity:1,scale:1}}
+                                                                exit={{y:-200,opacity:0,scale:0}}
+                                                                transition={{ease:"easeInOut"}}
+                                                            >
+                                                                {complexities.map((complexity, index)=>(
+                                                                    <div 
+                                                                    key={index}
+                                                                    className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
+                                                                    onClick={() => {setComplexityMin(complexity); changeMaxComplexityArray(complexity)}}
+                                                                    >
+                                                                        {complexity}
+                                                                    </div>
+                                                                ))}
+                                                            </motion.div>
+                                                        }
+                                                    </AnimatePresence>
+                                                </div>
+                                            </div>
+                                            <div className="flex pt-8">
+                                                <span className="pt-1 pr-5">To: </span>
+                                                <div className="flex flex-col w-[150px] overflow-hidden z-20 pointer-events-none text-xs">
+                                                    <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[140px] place-items-center gap-1 z-40 pointer-events-auto">
+                                                        <button 
+                                                            className="text-black rounded-md bg-loginInput h-[25px] w-[140px] z-40" 
+                                                            onClick={()=>setMaxComplexityListOpen(true)}
+                                                            onBlur={()=>setTimeout(function() {
+                                                                setMaxComplexityListOpen(false)
+                                                            }, 40)}                          
+                                                        >{complexityMax}</button>
+                                                    </div>
+                                                    <AnimatePresence>
+                                                        {maxComplexityList &&
+                                                            <motion.div className="rounded-lg overflow-hidden max-h-[100px] ml-2 overflow-y-scroll z-20 pointer-events-auto"
+                                                                initial={{y:-200,opacity:0,scale:0}}
+                                                                animate={{y:0,opacity:1,scale:1}}
+                                                                exit={{y:-200,opacity:0,scale:0}}
+                                                                transition={{ease:"easeInOut"}}
+                                                            >
+                                                                {maxComplexityArray.map((complexity, index)=>(
+                                                                    <div 
+                                                                    key={index}
+                                                                    className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
+                                                                    onClick={() => setComplexityMax(complexity)}
+                                                                    >
+                                                                        {complexity}
+                                                                    </div>
+                                                                ))}
+                                                            </motion.div>
+                                                        }
+                                                    </AnimatePresence>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="h-[40%] ml-5 w-full">
+                                <div className="h-[35%] ml-5 w-full">
                                     <div className="text-2xl mt-4">
                                         <span>Price:</span>
                                     </div>
                                 </div>
-                                <div className="h-[20%] w-full">
-                                    <button className="bg-black rounded w-[90px] h-[40px]">Apply</button>
+                                <div className="flex h-[15%] w-full justify-center">
+                                    <button className="bg-primary rounded-xl w-[90px] h-[40px]"
+                                            onClick={applyFilters}
+                                    >
+                                        Apply
+                                    </button>
                                 </div>
                             </div>
                         </div>

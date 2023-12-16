@@ -41,7 +41,7 @@ const SortSearch = ( {currentSort, setSort, setOrder} ) => {
                     transition={{ duration: 0.5}}
                     
                     >
-                        <div className="dropdown-content flex flex-col bg-primary fixed w-[180px] rounded-b-lg">
+                        <div className="dropdown-content flex flex-col bg-primary absolute w-[180px] rounded-b-lg">
                             <motion.button initial={{}}className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
                                             onClick={() => { setSort("Name"); setOrder("asc"); expandSort(); }}>Name
                             </motion.button>
