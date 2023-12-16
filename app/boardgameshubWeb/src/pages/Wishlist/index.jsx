@@ -1,11 +1,11 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { WishList } from "../../components";
 import { Form } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import accountService from "../../services/accountService";
 
 function Wishlist() {
-    function displayOptions(){
-        
-    }
+    
 
     return (
         <div className="w-full h-auto text-text font-text">
@@ -16,7 +16,7 @@ function Wishlist() {
                 <div className="max-w-5xl mx-auto">
                     <div className="bg-primary h-14 rounded-t-xl flex text-xl w-[70%]">
                         <span className="mr-3 ml-4 w-[20%] self-center">Sort by:</span>
-                        <button onClick={displayOptions} className="flex rounded-xl items-center self-center mr-5">
+                        <button className="flex rounded-xl items-center self-center mr-5">
                             Name
                             <span className="pl-1 self-end"><IoIosArrowDown size={35}/></span>
                         </button>
