@@ -31,11 +31,11 @@ const Navbar = ({activateUser}) => {
   } else {
     var buttons = (
       <div className="flex">
-        <div className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text"
+        <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text"
              onClick={activateUser}
         >
           {username}
-        </div>
+        </button>
       </div>
     );
   }
