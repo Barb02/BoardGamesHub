@@ -34,10 +34,13 @@ public class GameController {
     
     private final GameService gameService;
     private final ClickService clickService;
+    private final CategoryService categoryService;
+
     @Autowired
-    public GameController(GameService gameService, ClickService clickService){
+    public GameController(GameService gameService, ClickService clickService, CategoryService categoryService){
         this.gameService = gameService;
         this.clickService = clickService;
+        this.categoryService = categoryService;
     }
 
     @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
@@ -114,6 +117,22 @@ public class GameController {
         }
         catch(Exception e){
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "limit must be an integer");
+        }
+    }
+
+    @Operation(summary = "Get all categories available")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Category.class)))}),
+            @ApiResponse(responseCode = "404", description = "Categories not found", content = @Content)})
+    @GetMapping("game/categories")
+    public List<Category> getAllCategories(){
+        List<Category> categories = categoryService.getAllCategories();
+        if (categories != null) {
+            return categories;
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categories not found");
         }
     }
 
