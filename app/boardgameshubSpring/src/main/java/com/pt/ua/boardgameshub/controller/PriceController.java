@@ -36,6 +36,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -101,15 +103,9 @@ public class PriceController {
             @ApiResponse(responseCode = "404", description = "Prices not found", content = @Content)})
     @GetMapping("price/{game_id}")
     public List<PriceResponse> getCurrentPrices(@PathVariable long game_id){
-        List<Store> stores = storeService.getStores();
-        List<PriceResponse> prices = new ArrayList<>();
-        for (Store store : stores) {
-            Price price = priceService.getPriceByStoreIdAndGameId(store.getId(), game_id);
-            PriceResponse priceResponse = new PriceResponse(price);
-            prices.add(priceResponse);
-        }
-        if ( ! prices.isEmpty()) {
-            return prices;
+        List<Price> prices = priceService.getCurrentPrices(game_id);
+        if ( !prices.isEmpty()) {
+            return prices.stream().map(PriceResponse::new).collect(Collectors.toList());
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prices not found");
@@ -123,10 +119,9 @@ public class PriceController {
             @ApiResponse(responseCode = "404", description = "Price not found", content = @Content)})
     @GetMapping("price/lowest/{game_id}")
     public PriceResponse getCurrentLowestPrice(@PathVariable long game_id){
-        List<PriceResponse> prices = getCurrentPrices(game_id);
-        PriceResponse lowestPrice = prices.stream().min(Comparator.comparing(PriceResponse::getPrice)).orElse(null);
+        Price lowestPrice = priceService.getLowerPrice(game_id);
         if (lowestPrice != null) {
-            return lowestPrice;
+            return new PriceResponse(lowestPrice);
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prices not found");

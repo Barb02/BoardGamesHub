@@ -1,40 +1,22 @@
-CREATE FUNCTION GetLatestPricesForGame(gid bigint)  RETURNS table(game_id bigint, store_id bigint, price double precision, tstamp timestamp) AS $$
+CREATE OR REPLACE FUNCTION GetLatestPricesForGame(gid bigint) RETURNS SETOF Price AS $$
 BEGIN
-RETURN QUERY
-    SELECT
-        gp.game_id,
-        gp.store_id,
-        gp.price,
-        gp.timestamp
-    FROM
-        price gp
-    INNER JOIN
-        (
-            SELECT
-                price.store_id,
-                MAX(timestamp) AS latest_timestamp
-            FROM
-                price
-            WHERE
-                price.game_id = gid
-            GROUP BY
-                price.store_id
-        ) latest
-    ON
-        gp.store_id = latest.store_id
-        AND gp.timestamp = latest.latest_timestamp
-    WHERE
-        gp.game_id = gid
-;
-END; $$
-LANGUAGE PLPGSQL;
+    RETURN QUERY
+    SELECT p.id, p.price, p.timestamp, p.game_id, p.store_id
+    FROM price p
+    INNER JOIN (
+        SELECT price.store_id, MAX(timestamp) AS latest_timestamp
+        FROM price
+        WHERE price.game_id = gid
+        GROUP BY price.store_id
+    ) latest ON p.store_id = latest.store_id AND p.timestamp = latest.latest_timestamp
+    WHERE p.game_id = gid;
+END;
+$$ LANGUAGE PLPGSQL;
 
-CREATE OR REPLACE FUNCTION GetLowestPriceForGame(gid bigint) RETURNS double precision AS $$
-declare
-   min_price double precision;
-begin
-    SELECT price into min_price FROM GetLatestPricesForGame(gid) order by price asc limit 1;
-    return min_price;
-end;
+CREATE OR REPLACE FUNCTION GetLowestPriceForGame(gid integer) RETURNS SETOF Price AS $$
+BEGIN
+    RETURN QUERY
+    SELECT id, p.price, p.timestamp, p.game_id, p.store_id FROM GetLatestPricesForGame(gid) as p order by price asc limit 1;
+END;
 $$
 LANGUAGE PLPGSQL;

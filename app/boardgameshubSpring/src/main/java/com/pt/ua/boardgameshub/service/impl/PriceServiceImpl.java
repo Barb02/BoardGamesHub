@@ -44,4 +44,14 @@ public class PriceServiceImpl implements PriceService{
         List<Price> history = priceRepository.findByGameId(game_id);
         return history;
     }
+
+    @Override
+    public List<Price> getCurrentPrices(Long game_id) {
+        return priceRepository.findLatestPriceByGameId(game_id);
+    }
+
+    @Override
+    public Price getLowerPrice(Long game_id) {
+        return priceRepository.findLowestPriceByGameId(game_id);
+    }
 }
