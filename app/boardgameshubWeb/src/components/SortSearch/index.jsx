@@ -4,7 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 
 
-const SortSearch = ( {currentSort, setSort} ) => {
+const SortSearch = ( {currentSort, setSort, setOrder} ) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const expandSort = () => {
@@ -41,10 +41,16 @@ const SortSearch = ( {currentSort, setSort} ) => {
                     transition={{ duration: 0.5}}
                     
                     >
-                        <div className="dropdown-content flex flex-col bg-primary fixed w-[180px] rounded-b-lg">
-                            <motion.button initial={{}}className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" onClick={() => { setSort("Name"); expandSort(); }}>Name</motion.button>
-                            <motion.button className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" onClick={() => { setSort("Score"); expandSort(); }}>Score</motion.button>
-                            <motion.button className="py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" onClick={() => { setSort("Release Date"); expandSort(); }}>Release Date</motion.button>
+                        <div className="dropdown-content flex flex-col bg-primary absolute w-[180px] rounded-b-lg">
+                            <motion.button initial={{}}className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Name"); setOrder("asc"); expandSort(); }}>Name
+                            </motion.button>
+                            <motion.button className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Score"); setOrder("desc"); expandSort(); }}>Score
+                            </motion.button>
+                            <motion.button className="py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Release Date"); setOrder("desc"); expandSort(); }}>Release Date
+                            </motion.button>
                         </div>
                 </motion.div>
                 }
