@@ -11,4 +11,5 @@ import java.util.List;
 public interface WishlistedRepository extends JpaRepository<Wishlisted, Long> {
     List<Wishlisted> findByUserIdAndGameNameContainingIgnoreCaseOrderByInsertionDateDesc(long user_id, String query);
     Wishlisted findByGameIdAndUserId(long game_id, long user_id);
+    boolean existsByGameIdAndUserId(long game_id, long user_id);
 }
