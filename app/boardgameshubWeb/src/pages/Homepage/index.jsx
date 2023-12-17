@@ -22,7 +22,6 @@ function Homepage() {
   useEffect(() => {
     gameService.getPopularGames(20).then((data) => {
       setHotGames(data);
-      console.log(data)
       if (extra === "Popular")
         setGames(data);
 

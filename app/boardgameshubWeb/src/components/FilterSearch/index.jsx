@@ -60,6 +60,15 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
         setPlayers(playersFilter);
         setComplexities(complexitiesFilter);
         setPlaytimes(playtimesFilter);
+
+        // check if given string only has numbers, if not then set value to 1
+        if (!(/^\d+$/.test(pricesFilter[0])))
+            pricesFilter[0] = 1;
+
+        // check if given string only has numbers, if not then set value to 900
+        if (!(/^\d+$/.test(pricesFilter[1])))
+            pricesFilter[1] = 900;
+
         setPrices(pricesFilter);
 
         if (categoriesFilter.length !== 0)
@@ -82,7 +91,7 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5}}
                     >
-                        <div className="dropdown-content flex bg-searchDivBackground absolute w-[55.45%] h-[400px] rounded-b-lg right-[22.25%] border border-white">
+                        <div className="dropdown-content flex bg-searchDivBackground absolute w-[1024px] h-[400px] right-[22.3%] rounded-b-lg border border-white">
                             {/* FIRST SPLIT */}
                             <Categories currentCategories={categoriesFilter} setCategories={setCategoriesFilter} />
 
