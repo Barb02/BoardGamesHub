@@ -60,4 +60,10 @@ public class WishlitedServiceImpl implements WishlistedService{
         return wishlistResponse;
     }
 
+    @Override
+    public boolean inWishlist(long game_id) throws IllegalArgumentException{
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return wishlistedRepository.existsByGameIdAndUserId(game_id, user.getId());
+    }
+
 }
