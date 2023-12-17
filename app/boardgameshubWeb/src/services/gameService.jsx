@@ -21,7 +21,7 @@ const gameService = {
         return await client.get(`/price/history/${id}`)
     },
 
-    async getPopularGames(limit, publisher){
+    async getPopularGames(limit, publisher=""){
         return await client.get(`/game/top?limit=${limit}&publisher=${publisher}`)
     },
 

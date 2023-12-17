@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import accountService from "../../services/accountService";
 
 function Wishlist() {
-    
+    const [query,setQuery] = useState("");
+
+    function updateQuery(q){
+        setQuery(q)
+    }
 
     return (
         <div className="w-full h-auto text-text font-text">
@@ -21,13 +25,13 @@ function Wishlist() {
                             <span className="pl-1 self-end"><IoIosArrowDown size={35}/></span>
                         </button>
                         <Form className="flex w-full h-full items-center" method="get">
-                            <input placeholder="Search by name or tag" name="q" className="mr-3 pl-4 text-xl text-black bg-loginInput rounded-md w-full h-[70%] outline-none" autoComplete="off"></input>
+                            <input onChange={(e)=>{updateQuery(e.currentTarget.value)}}placeholder="Search by name or tag" name="q" className="mr-3 pl-4 text-xl text-black bg-loginInput rounded-md w-full h-[70%] outline-none" autoComplete="off"></input>
                         </Form> 
                     </div>
                 </div>
 
                 <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                    < WishList query={"yes"} />
+                    < WishList query={query} />
                 </div>
             </div>
         </div>
