@@ -18,6 +18,7 @@ import java.util.List;
 
 import com.pt.ua.boardgameshub.dao.response_body.PreferredCategoryResponse;
 import com.pt.ua.boardgameshub.dao.response_body.WishlistedResponse;
+import com.pt.ua.boardgameshub.dao.response_body.InWishlist;
 import com.pt.ua.boardgameshub.service.WishlistedService;
 import com.pt.ua.boardgameshub.service.PreferredCategoryService;
 
@@ -89,6 +90,22 @@ public class UserController {
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wishlist not found");
+        }
+    }
+
+    @Operation(summary = "Check if a game is at user's wishlist (AUTHENTICATION REQUIRED)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InWishlist.class))}),
+            @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
+    @GetMapping("user/wishlist/{game_id}")
+    public InWishlist inWishlist(@PathVariable long game_id) {
+        try{
+            return new InWishlist(wishlistedService.inWishlist(game_id));
+        }
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
     }
 

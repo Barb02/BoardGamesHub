@@ -8,4 +8,5 @@ public interface WishlistedService {
     WishlistedResponse addToWishlist(long game_id);
     void removeFromWishlist(long game_id);
     List<WishlistedResponse> getWishlist(String filter);
+    boolean inWishlist(long game_id);
 }

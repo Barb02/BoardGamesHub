@@ -249,6 +249,9 @@ public class GameServiceImpl implements GameService{
 
     @Override
     public List<Game> getTopGames(int limit, String publisher) {
+        if(publisher.isEmpty()){
+            publisher = null;
+        }
         return gameRepository.findAllGamesOrderByClickCountDesc(limit, publisher);
     }
 

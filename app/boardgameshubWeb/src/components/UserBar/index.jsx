@@ -5,6 +5,7 @@ import { TbLogout } from "react-icons/tb";
 import { MdEditSquare,MdSave,MdSearch,MdClose } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
 import accountService from "../../services/accountService";
+import { Link } from "react-router-dom";
 
 function UserBar({deactivateUser}){
     const username = useUserStore((state) => state.username);
@@ -49,10 +50,11 @@ function UserBar({deactivateUser}){
                 initial={{x:450}}
                 animate={{x:0}}
                 exit={{x:450}}
-                transition={{ease:"easeInOut",duration:1}}
+                transition={{ease:"easeInOut",duration:0.5}}
                 onMouseLeave={deactivateUser}
             >
                 <div className="text-text text-4xl shadow-divDistact rounded-lg p-1 text-center bg-black bg-opacity-10">{username}</div>
+                <Link to={"/wishlist"}><div className="text-text text-4xl shadow-divDistact rounded-lg p-1 text-center bg-black bg-opacity-10">Whishlist</div></Link>
                 <div className="h-[90%] shadow-divDistact rounded-lg bg-black bg-opacity-10 flex flex-col p-2 gap-2">
                     <div className="text-center text-text text-2xl">Categorias</div>
                     <div className="flex text-text justify-end gap-2 h-8">

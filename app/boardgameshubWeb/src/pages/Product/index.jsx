@@ -4,6 +4,8 @@ import gameService from "../../services/gameService";
 import { useParams } from "react-router-dom";
 import { Notification,PricesGraph } from "../../components";
 import { useInterval } from "../../hooks";
+import { useUserStore } from "../../stores/useUserStore";
+import accountService from "../../services/accountService";
 
 function Product() {
 
@@ -22,6 +24,11 @@ function Product() {
   const [dataload, setDataload] = useState(false);
   const [priceload, setPriceload] = useState(false);
   const [lowesPriceLoad,setLowestPriceLoad] = useState(false);
+  const logged = useUserStore((state)=>state.logged)
+
+  const addGameWishlist = ()=>{
+    accountService.addGameWishlist(id);
+  }
 
   useEffect(() => {
     gameService.getGame(id).then((data) => {
@@ -110,8 +117,14 @@ function Product() {
 
           <div className="ml-[7%] max-w-[20%] mr-[7%]">
             <h1 className="text-4xl font-title">{rdata.name}</h1>
-            <div className="mt-[10%] inline-block pr-2 pl-2 bg-primary rounded">
-              <button>+ ADD TO WISHLIST</button>
+            <div>
+              <button 
+                className={"mt-[10%] inline-block pr-2 pl-2 bg-primary rounded "+ (!logged ? " cursor-not-allowed":"")}
+                onClick={()=>{logged && addGameWishlist()}}
+              >
+                + ADD TO WISHLIST
+              </button>
+              {!logged && <div className="text-[12px]">You need to be logged in</div>}
             </div>
             {/* Tags display area */}
             <h2 className="pt-[10%] text-lg mt-1 ml-1 mr-1">Tags</h2>
