@@ -9,8 +9,16 @@ const accountService = {
         return await client.post("/auth/signin",data)
     },
 
-    async getWishlist(){
-        return await client.get("/user/wishlist")
+    async getWishlist(query){
+        return await client.get(`/user/wishlist?q=${query}`)
+    },
+
+    async deleteGameWishlist(id){
+        return await client.delete(`/user/wishlist/${id}`)
+    },
+
+    async addGameWishlist(id){
+        return await client.post(`/user/wishlist/${id}`)
     }
 }
 
