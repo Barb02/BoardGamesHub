@@ -25,7 +25,7 @@ function ProductList({ query, sort, order, categories, players, complexities, pl
             let playtimeNum = [];
             sort = sort.toLowerCase();
 
-            handleExceptions(playerNum, complexityNum, playtimeNum);
+            handleExceptions(playerNum, complexityNum, playtimeNum, categories);
 
             gameService.getGames(query, sort, order, categories, playerNum, complexityNum, playtimeNum, prices).then((data) => {
                 setRdata(data || []);
@@ -42,7 +42,7 @@ function ProductList({ query, sort, order, categories, players, complexities, pl
         }
     }, [query, sort, categories, players, complexities, playtimes, prices]);
 
-    function handleExceptions(player, complexity, playtime) {
+    function handleExceptions(player, complexity, playtime, categories) {
         const playtimeMins = [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 300, 360];
         if (sort === "release date")
             sort = "yearPublished";
@@ -55,6 +55,10 @@ function ProductList({ query, sort, order, categories, players, complexities, pl
 
         playtime[0] = playtimeMins[playtimes[0]];
         playtime[1] = playtimeMins[playtimes[1]];
+
+        if (categories.length === 0)
+            categories = "";
+
     }
 
     function getPrice(index) {

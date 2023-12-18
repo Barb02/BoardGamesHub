@@ -15,7 +15,7 @@ function Search() {
     /////////////////
 
     // FILTER STATES //
-    const [categories, setCategories] = useState([]); // none selected
+    const [categories, setCategories] = useState(""); // none selected
     const [players, setPlayers] = useState([10, 10]); // any, any
     const [playtimes, setPlaytimes] = useState([0, 11]); // 15mins, 6 hours
     const [complexities, setComplexities] = useState([0, 4]); // light, heavy
@@ -30,7 +30,8 @@ function Search() {
         const query = queryParams.get('q');
         const category = queryParams.get('categories');
 
-        setCategories([category]);
+        if (category != null)
+            setCategories([category]);
 
         setQuery(query);
         setRquery(query);
