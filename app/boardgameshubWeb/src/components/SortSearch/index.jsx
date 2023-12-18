@@ -48,11 +48,11 @@ const SortSearch = ( {currentSort, setSort, setOrder} ) => {
                             <motion.button className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
                                             onClick={() => { setSort("Score"); setOrder("desc"); expandSort(); }}>Score
                             </motion.button>
-                            <motion.button className="self-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
-                                            onClick={() => { setSort("Price"); setOrder("asc"); expandSort(); }}>Price <IoMdArrowDown />
+                            <motion.button className="flex justify-center place-items-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Price"); setOrder("asc"); expandSort(); }}><div>Price</div> <IoMdArrowDown />
                             </motion.button>
-                            <motion.button className="self-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
-                                            onClick={() => { setSort("Price"); setOrder("desc"); expandSort(); }}>Price <IoMdArrowUp />
+                            <motion.button className="flex place-items-center justify-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Price"); setOrder("desc"); expandSort(); }}> <div>Price</div> <IoMdArrowUp />
                             </motion.button>
                             <motion.button className="py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
                                             onClick={() => { setSort("Release Date"); setOrder("desc"); expandSort(); }}>Release Date
