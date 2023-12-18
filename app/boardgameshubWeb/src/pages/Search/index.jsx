@@ -22,8 +22,6 @@ function Search() {
     const [prices, setPrices] = useState(["1", "900"]);
     ////////////////////
 
-    console.log("ORDERS: ", currentOrder, currentSort);
-
     const navigate = useNavigate();
     
     useEffect(() => {
