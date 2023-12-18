@@ -201,8 +201,8 @@ public class GameServiceImpl implements GameService{
                             predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplayers"), value.getMax()));
                             break;
                         case "playtime":
-                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("minplaytime"), value.getMin()));
-                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplaytime"), value.getMax()));
+                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("minplaytime"), value.getMin()));
+                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("maxplaytime"), value.getMax()));
                             break;
                         default:
                             predicates.add(criteriaBuilder.between(root.get(fname), value.getMin(), value.getMax()));
