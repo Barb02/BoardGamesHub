@@ -68,7 +68,7 @@ function Search() {
                                   prices={prices} setPrices={setPrices}
                     />
                     <span className="mr-3 text-sortByText text-sm ml-4 w-[10%]">Sort by</span>
-                    <SortSearch currentSort={currentSort} setSort={setSort} setOrder={setOrder} />                         
+                    <SortSearch currentSort={currentSort} setSort={setSort} currentOrder={currentOrder} setOrder={setOrder} />                         
                 </div>
             </div>
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
