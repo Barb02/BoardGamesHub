@@ -40,7 +40,7 @@ function ProductList({ query, sort, order, categories, players, complexities, pl
                 }); 
             });   
         }
-    }, [query, sort, categories, players, complexities, playtimes, prices]);
+    }, [query, sort, order, categories, players, complexities, playtimes, prices]);
 
     function handleExceptions(player, complexity, playtime, categories) {
         const playtimeMins = [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 300, 360];

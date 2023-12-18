@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 
 
@@ -48,9 +48,16 @@ const SortSearch = ( {currentSort, setSort, setOrder} ) => {
                             <motion.button className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
                                             onClick={() => { setSort("Score"); setOrder("desc"); expandSort(); }}>Score
                             </motion.button>
+                            <motion.button className="self-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Price"); setOrder("asc"); expandSort(); }}>Price <IoMdArrowDown />
+                            </motion.button>
+                            <motion.button className="self-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Price"); setOrder("desc"); expandSort(); }}>Price <IoMdArrowUp />
+                            </motion.button>
                             <motion.button className="py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
                                             onClick={() => { setSort("Release Date"); setOrder("desc"); expandSort(); }}>Release Date
                             </motion.button>
+
                         </div>
                 </motion.div>
                 }
