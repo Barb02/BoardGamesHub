@@ -43,11 +43,11 @@ public class GameController {
         this.categoryService = categoryService;
     }
 
-    @Operation(summary = "Add a new game manually (without pulling data from BGG API)")
+    @Operation(summary = "Add a new game manually (manually add all the information required)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Game was created",
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Game.class))}),
-            @ApiResponse(responseCode = "500", description = "Couldn't add game (manual)", content = @Content)})
+            @ApiResponse(responseCode = "500", description = "Couldn't add game", content = @Content)})
     @PostMapping("game/manual")
     public Game addGameManual(@RequestBody GameRequest gamerequest){
         Game newGame = gameService.addGameManual(gamerequest);
@@ -55,7 +55,7 @@ public class GameController {
             return newGame;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't add game (manual)");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't add game");
         }
     }
 
@@ -79,7 +79,7 @@ public class GameController {
         }
     }
 
-    @Operation(summary = "Get all games filtered by search query")
+    @Operation(summary = "Get all games filtered by search query and filters")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
                     content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
@@ -104,19 +104,31 @@ public class GameController {
         List<Game> games = gameService.getFilteredGames(gameQuery);
         if(games != null)
             return games;
-        
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
-        
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        }   
     }
 
     @Operation(summary = "Get the most visited games")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
+            @ApiResponse(responseCode = "404", description = "Games not found", content = @Content),
+            @ApiResponse(responseCode = "422", description = "Parameter 'limit' must be an integer", content = @Content)})
     @GetMapping("game/top")
     public List<Game> getTopGames(@RequestParam( defaultValue = "10", required = false) String limit, @RequestParam(required = false, defaultValue = "") String publisher){
+        List<Game> topGames;
         try{
-            return gameService.getTopGames(Integer.parseInt(limit), publisher);
+            topGames = gameService.getTopGames(Integer.parseInt(limit), publisher);
         }
         catch(Exception e){
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "limit must be an integer");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Parameter 'limit' must be an integer");
+        }
+        if(topGames != null){
+            return topGames;
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
         }
     }
 

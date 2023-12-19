@@ -45,10 +45,11 @@ public class UserController {
 
     @Operation(summary = "Add a game to user's wishlist (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Game saved to wishlist",
+            @ApiResponse(responseCode = "201", description = "Game added to wishlist",
             content = {@Content(mediaType = "application/json", schema = @Schema(implementation = WishlistedResponse.class))}),
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Couldn't add game to wishlist", content = @Content)})
     @PostMapping("user/wishlist/{game_id}")
     public WishlistedResponse addGameToWishlist(@PathVariable long game_id) {
         WishlistedResponse game;
@@ -68,10 +69,10 @@ public class UserController {
 
     @Operation(summary = "Remove a game from user's wishlist (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Game removed from wishlist",
-            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = WishlistedResponse.class))}),
+            @ApiResponse(responseCode = "200", description = "Game removed from wishlist"),
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Couldn't remove from wishlist", content = @Content)})
     @DeleteMapping("user/wishlist/{game_id}")
     public void removeGameFromWishlist(@PathVariable long game_id) {
         try{
@@ -117,10 +118,11 @@ public class UserController {
 
     @Operation(summary = "Edit user's preferred categories (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Preferred categories was updated",
-            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = WishlistedResponse.class))}),
+            @ApiResponse(responseCode = "200", description = "Preferred categories were updated",
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PreferredCategoryResponse.class))}),
             @ApiResponse(responseCode = "404", description = "Categories not found", content = @Content),
-            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Couldn't update categories", content = @Content)})
     @PutMapping("user/categories")
     public List<PreferredCategoryResponse> editPreferredCategories(@RequestBody List<PreferredCategoryResponse> updatedCategories) {
         List<PreferredCategoryResponse> currentCategories = preferredCategoryService.getPreferredCategories();
@@ -145,7 +147,7 @@ public class UserController {
     @Operation(summary = "Get user's preferred categories (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = WishlistedResponse.class)))}),
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PreferredCategoryResponse.class)))}),
             @ApiResponse(responseCode = "404", description = "Preferred categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
     @GetMapping("user/categories")

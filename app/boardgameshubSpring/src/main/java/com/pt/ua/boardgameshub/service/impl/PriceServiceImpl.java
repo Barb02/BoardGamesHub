@@ -3,48 +3,57 @@ package com.pt.ua.boardgameshub.service.impl;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.pt.ua.boardgameshub.dao.response_body.PriceHistory;
+import com.pt.ua.boardgameshub.dao.response_body.PriceResponse;
 import com.pt.ua.boardgameshub.dao.response_body.ShortPrice;
 import com.pt.ua.boardgameshub.domain.Game;
 import com.pt.ua.boardgameshub.domain.Price;
 import com.pt.ua.boardgameshub.domain.Store;
+import com.pt.ua.boardgameshub.repository.GameRepository;
 import com.pt.ua.boardgameshub.repository.PriceRepository;
+import com.pt.ua.boardgameshub.repository.StoreRepository;
 import com.pt.ua.boardgameshub.service.PriceService;
 
 @Service
 public class PriceServiceImpl implements PriceService{
     
     private final PriceRepository priceRepository;
+    private final StoreRepository storeRepository;
+    private final GameRepository gameRepository;
 
     @Autowired
-    public PriceServiceImpl(PriceRepository priceRepository) {
+    public PriceServiceImpl(PriceRepository priceRepository, GameRepository gameRepository, StoreRepository storeRepository) {
         this.priceRepository = priceRepository;
+        this.gameRepository = gameRepository;
+        this.storeRepository = storeRepository;
     }
 
     @Override
-    public Price addPrice(Price newPrice, Game game, Store store) {
-        if (game != null) newPrice.setGame(game);
-        if (store != null) newPrice.setStore(store);
-        newPrice.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
-        return priceRepository.save(newPrice);
+    public Price addPrice(Price newPrice, long game_id, long store_id) {
+        Game game = gameRepository.findById(game_id).orElse(null);
+        Store store = storeRepository.findById(store_id).orElse(null);
+        if (game != null && store != null){
+            newPrice.setGame(game);
+            newPrice.setStore(store);
+            newPrice.setTimestamp(new java.sql.Timestamp(System.currentTimeMillis()));
+            return priceRepository.save(newPrice);
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
-    public Price getPriceById(Long id) {
-        return priceRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Price getPriceByStoreIdAndGameId(Long store_id, Long game_id) {
-        return priceRepository.findFirstByStoreIdAndGameId(store_id, game_id, Sort.by(Sort.Direction.DESC, "timestamp"));
+    public PriceResponse getPriceByStoreIdAndGameId(Long store_id, Long game_id) {
+        Price price = priceRepository.findFirstByStoreIdAndGameId(store_id, game_id, Sort.by(Sort.Direction.DESC, "timestamp"));
+        return new PriceResponse(price);
     }
 
     public List<PriceHistory> getHistory(Long game_id){
@@ -76,45 +85,17 @@ public class PriceServiceImpl implements PriceService{
         }
         System.out.println(result);
         return result;
-
-        // int index = 0;
-        // for(Price p : history){
-        //     Double price = p.getPrice();
-        //     String store = p.getStore().getName();
-        //     Timestamp timestamp = p.getTimestamp();
-        //     Date date = new Date(timestamp.getTime());
-        //     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
-        //     String formatted_timestamp = dateFormat.format(date);
-        //     if(visited.keySet().contains(store)){
-        //         int key = visited.get(store);
-        //         ShortPrice sp = new ShortPrice();
-        //         sp.setY(price);
-        //         sp.setX(formatted_timestamp);
-        //         result.get(key).getData().add(sp);
-        //     }
-        //     else{
-        //         PriceHistory ph = new PriceHistory();
-        //         List<ShortPrice> data = new ArrayList<>();
-        //         ShortPrice sp = new ShortPrice();
-        //         sp.setY(price);
-        //         sp.setX(formatted_timestamp);
-        //         data.add(sp);
-        //         ph.setId(store);
-        //         ph.setData(data);
-        //         ph.setColor(colors.get(store.toLowerCase()));
-        //         result.add(ph);
-        //         visited.put(store, index++);
-        //     }
-        // }
     }
 
     @Override
-    public List<Price> getCurrentPrices(Long game_id) {
-        return priceRepository.findLatestPriceByGameId(game_id);
+    public List<PriceResponse> getCurrentPrices(Long game_id) {
+        List<Price> prices = priceRepository.findLatestPriceByGameId(game_id);
+        return prices.stream().map(PriceResponse::new).collect(Collectors.toList());
     }
 
     @Override
-    public Price getLowerPrice(Long game_id) {
-        return priceRepository.findLowestPriceByGameId(game_id);
+    public PriceResponse getLowerPrice(Long game_id) {
+        Price price = priceRepository.findLowestPriceByGameId(game_id);
+        return new PriceResponse(price);
     }
 }
