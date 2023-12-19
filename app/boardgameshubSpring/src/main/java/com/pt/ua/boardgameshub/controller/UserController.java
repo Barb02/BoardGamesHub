@@ -18,8 +18,10 @@ import java.util.List;
 
 import com.pt.ua.boardgameshub.dao.response_body.PreferredCategoryResponse;
 import com.pt.ua.boardgameshub.dao.response_body.WishlistedResponse;
+import com.pt.ua.boardgameshub.domain.Game;
 import com.pt.ua.boardgameshub.dao.response_body.InWishlist;
 import com.pt.ua.boardgameshub.service.WishlistedService;
+import com.pt.ua.boardgameshub.service.GameService;
 import com.pt.ua.boardgameshub.service.PreferredCategoryService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,11 +38,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class UserController {
     private final WishlistedService wishlistedService;
     private final PreferredCategoryService preferredCategoryService;
+    private final GameService gameService;
 
     @Autowired
-    public UserController(WishlistedService wishlistedService, PreferredCategoryService preferredCategoryService) {
+    public UserController(WishlistedService wishlistedService, PreferredCategoryService preferredCategoryService, GameService gameService) {
         this.wishlistedService = wishlistedService;
         this.preferredCategoryService = preferredCategoryService;
+        this.gameService = gameService;
     }
 
     @Operation(summary = "Add a game to user's wishlist (AUTHENTICATION REQUIRED)")
@@ -159,6 +163,11 @@ public class UserController {
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categories not found");
         }
+    }
+
+    @GetMapping("user/game/recommended")
+    public List<Game> getRecommendedGames(@RequestParam( defaultValue = "10", required = false) String limit){
+        return gameService.getRecommendedGames(Integer.parseInt(limit));
     }
 
 }

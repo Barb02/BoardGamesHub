@@ -19,4 +19,15 @@ public interface GameRepository extends JpaRepository<Game, Long> {
         "ORDER BY COUNT(c) DESC " +
         "LIMIT :max")
     List<Game> findAllGamesOrderByClickCountDesc(@Param("max") int limit, @Param("publisherName") String publisherName);
+    @Query("SELECT c.game " +
+        "FROM Click c " +
+        "LEFT JOIN c.game.categories cat " +
+        "WHERE cat.name IN " +
+        "(SELECT pc.category.name FROM PreferredCategory pc " +
+        "WHERE pc.user.id = :userId) " +
+        "GROUP BY c.game " +
+        "ORDER BY COUNT(c) DESC " +
+        "LIMIT :max")
+    List<Game> findGamesByPreferredCategoryOrderByClickCountDesc(@Param("max") int limit, @Param("userId") long userId);
+
 }

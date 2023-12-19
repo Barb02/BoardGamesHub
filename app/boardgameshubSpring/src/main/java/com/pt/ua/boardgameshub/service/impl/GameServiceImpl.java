@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node; */
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
@@ -257,6 +258,12 @@ public class GameServiceImpl implements GameService{
             publisher = null;
         }
         return gameRepository.findAllGamesOrderByClickCountDesc(limit, publisher);
+    }
+
+    @Override
+    public List<Game> getRecommendedGames(int limit){
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return gameRepository.findGamesByPreferredCategoryOrderByClickCountDesc(limit, user.getId());
     }
 
     /* @Override
