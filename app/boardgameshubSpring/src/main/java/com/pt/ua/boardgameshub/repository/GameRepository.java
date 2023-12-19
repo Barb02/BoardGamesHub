@@ -25,6 +25,9 @@ public interface GameRepository extends JpaRepository<Game, Long> {
         "WHERE cat.name IN " +
         "(SELECT pc.category.name FROM PreferredCategory pc " +
         "WHERE pc.user.id = :userId) " +
+        "AND c.game.name NOT IN " +
+        "(SELECT w.game.name FROM Wishlisted w " +
+        "WHERE w.user.id =: userId) " +
         "GROUP BY c.game " +
         "ORDER BY COUNT(c) DESC " +
         "LIMIT :max")
