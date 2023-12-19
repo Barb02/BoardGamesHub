@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class WishlitedServiceImpl implements WishlistedService{
     }
     
     @Override
-    public WishlistedResponse addToWishlist(long game_id) {
+    public WishlistedResponse addToWishlist(long game_id) throws DataIntegrityViolationException {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Game game = gameRepository.findById(game_id).orElse(null);
         if(game != null){

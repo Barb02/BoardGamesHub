@@ -51,7 +51,13 @@ public class UserController {
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
     @PostMapping("user/wishlist/{game_id}")
     public WishlistedResponse addGameToWishlist(@PathVariable long game_id) {
-        WishlistedResponse game = wishlistedService.addToWishlist(game_id);
+        WishlistedResponse game;
+        try{
+            game = wishlistedService.addToWishlist(game_id);
+        }
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Game is already on wishlist");
+        }
         if(game != null){
             return game;
         }
