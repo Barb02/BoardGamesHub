@@ -1,11 +1,11 @@
 package com.pt.ua.boardgameshub.service;
 
-import com.pt.ua.boardgameshub.dao.response_body.PreferredCategoryResponse;
+import com.pt.ua.boardgameshub.domain.Category;
 
 import java.util.List;
 
 public interface PreferredCategoryService {
-    PreferredCategoryResponse addPreferredCategory(long category_id);
+    Category addPreferredCategory(long category_id);
     void removePreferredCategory(long category_id);
-    List<PreferredCategoryResponse> getPreferredCategories();
+    List<Category> getPreferredCategories();
 }
