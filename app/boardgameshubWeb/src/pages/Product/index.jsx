@@ -1,7 +1,7 @@
 import user_group_icon from "../../static/user_group_icon.svg";
 import React, { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Notification,PricesGraph } from "../../components";
 import { useInterval } from "../../hooks";
 import { useUserStore } from "../../stores/useUserStore";
@@ -255,9 +255,11 @@ function Product() {
                     ? rdata.publishers
                     : rdata.publishers.slice(0, 3)
                   ).map((publisher, index) => (
-                    <li className="w-auto ml-2 pt-[2%] rounded text-sm">
-                      {publisher.name}
-                    </li>
+                    <Link to={`/publisher/${publisher.id}`}>
+                      <li className="w-auto ml-2 pt-[2%] rounded text-sm">
+                        {publisher.name}
+                      </li>
+                    </Link>
                   ))}
               </ul>
               {dataload && rdata.publishers.length > 3 && (

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.pt.ua.boardgameshub.dao.response_body.PreferredCategoryResponse;
 import com.pt.ua.boardgameshub.domain.Category;
 import com.pt.ua.boardgameshub.domain.PreferredCategory;
 import com.pt.ua.boardgameshub.domain.User;
@@ -27,7 +26,7 @@ public class PreferredCategoriesImpl implements PreferredCategoryService{
     }
 
     @Override
-    public PreferredCategoryResponse addPreferredCategory(long category_id) {
+    public Category addPreferredCategory(long category_id) {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Category category = categoryRepository.findById(category_id).orElse(null);
         if(category != null){
@@ -35,7 +34,7 @@ public class PreferredCategoriesImpl implements PreferredCategoryService{
             preferredCategoryed.setCategory(category);
             preferredCategoryed.setUser(user);
             PreferredCategory saved = preferredCategoryRepository.save(preferredCategoryed);
-            return new PreferredCategoryResponse(saved.getCategory());
+            return saved.getCategory();
         }
         return null;
     }
@@ -48,13 +47,13 @@ public class PreferredCategoriesImpl implements PreferredCategoryService{
     }
 
     @Override
-    public List<PreferredCategoryResponse> getPreferredCategories(){
+    public List<Category> getPreferredCategories(){
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<PreferredCategory> preferredCategory = preferredCategoryRepository.findByUserIdOrderByCategoryNameDesc(user.getId());
-        List<PreferredCategoryResponse> preferredCategoryResponse = new ArrayList<>();
+        List<Category> categories = new ArrayList<>();
         for(PreferredCategory preferredCategoryed: preferredCategory){
-            preferredCategoryResponse.add(new PreferredCategoryResponse(preferredCategoryed.getCategory()));
+            categories.add(preferredCategoryed.getCategory());
         }
-        return preferredCategoryResponse;
+        return categories;
     }
 }
