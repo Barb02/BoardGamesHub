@@ -7,6 +7,7 @@ import { useInterval } from "../../hooks";
 import { useUserStore } from "../../stores/useUserStore";
 import accountService from "../../services/accountService";
 import { FaCheck } from "react-icons/fa";
+import placeholder from "../../static/placeholder.jpg"
 
 function Product() {
 
@@ -75,6 +76,14 @@ function Product() {
     })
   }
 
+  const addPlaceholders = (e) => {
+    const imgTags = [];
+    for (let index = 0; index < 4; index++) {
+      imgTags.push(<img className="object-cover rounded-3xl w-[20%]" src={placeholder} />);
+    }
+
+    return imgTags;
+  }
   
   useInterval(()=>{
     if(lowesPriceLoad){
@@ -128,7 +137,7 @@ function Product() {
           <div className="max-w-sm pt-[3%] inline-block">
             <img
               className="object-cover rounded-3xl h-[400px] shadow-image"
-              src={rdata.image}
+              src={rdata.image || placeholder}
             />
           </div>
 
@@ -276,9 +285,9 @@ function Product() {
         {/* Product images display area */}
         <div className="w-full flex mt-[7%] pb-[10%] h-[300px]">
           <div className="flex justify-around ml-[1%] mr-[1%]">
-            {dataload && rdata.images.slice(0, 4).map((ik, index) => (
+            {dataload && rdata.images.length !== 0 && rdata.images.slice(0, 4).map((ik, index) => (
                   <img className="object-cover rounded-3xl w-[20%]" src={ik} />
-                ))}
+                )) || dataload && addPlaceholders()}
           </div>
         </div>
       </div>
