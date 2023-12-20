@@ -4,6 +4,8 @@ import { useState,useEffect } from "react";
 import { TbLogout } from "react-icons/tb";
 import { MdEditSquare,MdSave,MdSearch,MdClose } from "react-icons/md";
 import { FaPlus } from "react-icons/fa";
+import accountService from "../../services/accountService";
+import gameService from "../../services/gameService";
 import { Link } from "react-router-dom";
 
 function UserBar({deactivateUser}){
@@ -13,6 +15,23 @@ function UserBar({deactivateUser}){
     const [listOpen,setListOpen] = useState(false);
     const [filter,setFilter] = useState("");
     const [userCategorys,setUserCategorys] = useState([]);
+    const [categories,setCategories] = useState([]);
+
+
+    useEffect(()=>{
+        gameService.getCategories().then((data)=>{
+            setCategories(data);
+        })
+        accountService.getCategories().then((data)=>{
+            setUserCategorys(data);
+        })
+    },[])
+
+    const saveCategories = ()=>{
+        accountService.setCategories(userCategorys).then((data)=>{
+            setUserCategorys(data)
+        });
+    }
 
     const addCat = (cat)=>{
         if (!userCategorys.includes(cat)){
@@ -20,6 +39,8 @@ function UserBar({deactivateUser}){
             copy.push(cat)
             setUserCategorys(copy)
         }
+        setListOpen(false);
+        setFilter("");
     }
 
     const removeCat = (cat)=>{
@@ -30,12 +51,6 @@ function UserBar({deactivateUser}){
             }
             setUserCategorys(copy)
     }
-
-    const categorys = ["Fantasy","Adventure","Area Control","Card Game","Tower Defense","Collectible","Miniatures","4X",
-                       "Worker Placement","Strategy","Family"]
-
-      
-
 
     return(
             <motion.div 
@@ -52,16 +67,13 @@ function UserBar({deactivateUser}){
                     <div className="text-center text-text text-2xl">Categorias</div>
                     <div className="flex text-text justify-end gap-2 h-8">
                         { editMode &&
-                        <div className="flex-grow pb-[300px] overflow-hidden z-20 pointer-events-none">
+                        <div className="flex-grow pb-[300px] overflow-hidden z-20 pointer-events-none" onMouseLeave={(e)=>{setListOpen(false);setFilter("");}}>
                             <div className="bg-primary rounded-lg px-3 py-1 flex place-items-center gap-1 z-40 pointer-events-auto">
                                 <MdSearch/>
                                 <input 
                                     className="text-black rounded-md bg-loginInput flex-grow z-40" 
                                     onFocus={()=>setListOpen(true)}
-                                    onBlur={()=>setTimeout(function() {
-                                        setListOpen(false)
-                                        setFilter("")
-                                    }, 40)}
+                                    
                                     onChange={(e)=>setFilter(e.target.value)}
                                 ></input>
                             </div>
@@ -73,13 +85,13 @@ function UserBar({deactivateUser}){
                                         exit={{y:-200,opacity:0,scale:0}}
                                         transition={{ease:"easeInOut"}}
                                     >
-                                        {categorys.filter(str => str.toLowerCase().startsWith(filter.toLowerCase())).map((cat,index)=>(
+                                        {categories.filter(str => str.name.toLowerCase().startsWith(filter.toLowerCase())).map((cat,index)=>(
                                             <div 
-                                              key={index}
+                                              key={cat.id}
                                               className="bg-primary hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
                                               onClick={()=>addCat(cat)}
                                             >
-                                                <FaPlus className="text-sm"/>{cat}
+                                                <FaPlus className="text-sm"/>{cat.name}
                                             </div>
                                         ))}
                                     </motion.div>
@@ -88,7 +100,7 @@ function UserBar({deactivateUser}){
                         </div>
                         }
                         {editMode && <button className="bg-primary rounded-lg px-3 py-1 flex place-items-center gap-1"
-                                             onClick={()=>{setEditMode(false)}}
+                                             onClick={()=>{setEditMode(false);saveCategories();}}
                                      ><MdSave/>Save</button>}
                         {!editMode && <button className="bg-primary rounded-lg px-3 py-1 flex place-items-center gap-1"
                                         onClick={()=>{setEditMode(true)}}
@@ -97,11 +109,11 @@ function UserBar({deactivateUser}){
                     <div className="bg-white bg-opacity-5 w-auto flex-grow rounded-lg p-3">
                         <div className="flex flex-wrap gap-2 text-text text-lg">
                             {userCategorys.map((cat,index)=>(
-                                <div key={index} className="bg-primary rounded-lg px-3 flex place-items-center gap-1">
+                                <div key={cat.id} className="bg-primary rounded-lg px-3 flex place-items-center gap-1">
                                     {editMode && <MdClose
                                         onClick={()=>removeCat(cat)}
                                     />}
-                                    {cat}
+                                    {cat.name}
                                 </div>
                             ))}
                         </div>  

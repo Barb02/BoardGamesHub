@@ -33,6 +33,9 @@ const gameService = {
         return await client.get(`/game?orderBy=yearPublished&publisher=${publisher}&order=${order}`)
     },
 
+    async getCategories(){
+        return await client.get(`/game/categories`)
+    },
     async getPublisher(id){
         return await client.get(`/publisher/${id}`)
     }

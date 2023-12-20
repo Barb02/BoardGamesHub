@@ -9,6 +9,14 @@ const accountService = {
         return await client.post("/auth/signin",data)
     },
 
+    async getCategories(){
+        return await client.get("/user/categories")
+    },
+
+    async setCategories(data){
+        return await client.put("/user/categories",data)
+
+    },
     async getWishlist(query){
         return await client.get(`/user/wishlist?q=${query}`)
     },
