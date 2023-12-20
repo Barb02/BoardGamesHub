@@ -25,6 +25,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import com.pt.ua.boardgameshub.service.*;
 import com.pt.ua.boardgameshub.dao.request_body.*;
+import com.pt.ua.boardgameshub.dao.response_body.GameCount;
 import com.pt.ua.boardgameshub.domain.*;
 
 
@@ -164,4 +165,17 @@ public class GameController {
         }
     }
 
+    @Operation(summary = "Get number of games")
+    @GetMapping("game/count")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "OK",content = @Content),
+        @ApiResponse(responseCode = "404", description = "No Games Found", content = @Content)})
+    public GameCount getNumberOfGames(){
+        try{
+            return gameService.getNumberOfGames();
+        }
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Games Found");
+        }
+    }
 }

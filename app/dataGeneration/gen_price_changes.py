@@ -16,11 +16,12 @@ topic = 'bgh'
 prices = {}
 
 def check_game_endpoint():
-    url = 'http://springboot:8080/api/v1/price/1/1'
+    url = 'http://springboot:8080/api/v1/game/count'
 
     while(True):
         try:
             response = requests.get(url)
+            NUM_GAMES = response.json()["count"]
             break
         except requests.RequestException as e:
             print("Not Available")
@@ -65,6 +66,9 @@ def send_click_message():
 
 def run():
     while True:
+        response = requests.get("http://springboot:8080/api/v1/game/count")
+        NUM_GAMES = response.json()["count"]
+        print("num_games",NUM_GAMES)
         send_price_message()
         send_click_message()
             

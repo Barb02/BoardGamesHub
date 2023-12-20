@@ -1,6 +1,5 @@
 package com.pt.ua.boardgameshub.repository;
 
-import com.pt.ua.boardgameshub.dao.response_body.WishlistPrice;
 import com.pt.ua.boardgameshub.domain.Wishlisted;
 
 import org.springframework.data.jpa.repository.JpaRepository;
