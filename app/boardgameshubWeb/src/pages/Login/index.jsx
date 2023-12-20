@@ -32,7 +32,7 @@ function Login() {
                 "email": emailInput.current.value,
                 "password": passordInput.current.value,
             }).then((data)=>{
-                Login(data.token,data.username)
+                Login(data.token, data.username, emailInput.current.value)
                 navigate("/")
             })
         }else{
