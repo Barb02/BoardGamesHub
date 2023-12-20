@@ -39,6 +39,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request
                 .requestMatchers("/api/v1/user/**").authenticated()
                 .requestMatchers(HttpMethod.DELETE, "/api/v1/game/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/v1/game/**").hasAuthority("ADMIN")
+                .requestMatchers( "/api/v1/store").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/v1/price/**").hasAuthority("ADMIN")
                 .anyRequest().permitAll())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
