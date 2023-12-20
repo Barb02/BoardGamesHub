@@ -45,7 +45,8 @@ function Product() {
 
 
   useEffect(() => {
-    checkGameInWishlist()
+    if (logged)
+      checkGameInWishlist()
 
     gameService.getGame(id).then((data) => {
       setRdata(data || {});
@@ -298,15 +299,6 @@ function Product() {
           onClick={() => setExtra("Store")}
         >
           Store
-        </div>
-        <div
-          className={
-            `w-40 text-center rounded-t-lg cursor-pointer` +
-            (extra === "Expansions" ? " bg-primary" : " ")
-          }
-          onClick={() => setExtra("Expansions")}
-        >
-          Expansions
         </div>
       </div>
 

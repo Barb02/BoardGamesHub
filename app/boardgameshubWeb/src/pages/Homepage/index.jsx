@@ -11,18 +11,20 @@ import Carousel from "../../components/Carrosel";
 
 function Homepage() {
   const [games, setGames] = useState({});
-  const [hotGames, setHotGames] = useState({});
-  const [newGames, setNewGames] = useState({});
   const [loaded,setLoaded] = useState(false);
   const [prices, setPrices] = useState({});
+
+  const [hotGames, setHotGames] = useState({});
+  const [newGames, setNewGames] = useState({});
   const [hotPrices,setHotPrices] = useState({})
   const [newPrices,setNewPrices] = useState({})
-  const [extra, setExtra] = useState("Popular");
+
+  const [view, setView] = useState("Popular");
 
   useEffect(() => {
     gameService.getPopularGames(20).then((data) => {
       setHotGames(data);
-      if (extra === "Popular")
+      if (view === "Popular")
         setGames(data);
 
       const promises = data.map((game) => {
@@ -31,15 +33,14 @@ function Homepage() {
 
       Promise.all(promises).then((price) => {     
         setHotPrices(price || []);
-        if (extra === "Popular")
+        if (view === "Popular")
           setPrices(price);
-        setLoaded(true);
       }); 
     });
 
     gameService.getNewGames().then((data) => {
       setNewGames(data);
-      if (extra === "New")
+      if (view === "New")
         setGames(data);
 
       const promises = data.map((game) => {
@@ -48,7 +49,7 @@ function Homepage() {
 
       Promise.all(promises).then((price) => {     
         setNewPrices(price || []);
-        if (extra === "New")
+        if (view === "New")
           setPrices(price);
         setLoaded(true);
       }); 
@@ -136,12 +137,12 @@ function Homepage() {
           </div>
 
         <div className="flex max-w-5xl mx-auto text-xl">
-          <div className={`w-[10%] text-center rounded-t-lg cursor-pointer pt-1` + (extra === "New" ? " bg-primary" : " ")} 
-          onClick={() => { setExtra("New"); setGames(newGames); setPrices(newPrices); }}>
+          <div className={`w-[10%] text-center rounded-t-lg cursor-pointer pt-1` + (view === "New" ? " bg-primary" : " ")} 
+          onClick={() => { setView("New"); setGames(newGames); setPrices(newPrices); }}>
             New
           </div>
-          <div className={`w-40 text-center rounded-t-lg cursor-pointer pt-1` + (extra === "Popular" ? " bg-primary" : " ")}
-            onClick={() => { setExtra("Popular"); setGames(hotGames); setPrices(hotPrices); }}>
+          <div className={`w-40 text-center rounded-t-lg cursor-pointer pt-1` + (view === "Popular" ? " bg-primary" : " ")}
+            onClick={() => { setView("Popular"); setGames(hotGames); setPrices(hotPrices); }}>
             Popular
           </div>
         </div>
