@@ -50,7 +50,7 @@ def send_price_message():
             new_price = prices[key]
     else:
         prices[key] = current_price
-        new_price = current_price
+        new_price = current_price - (current_price * (random.randint(MIN_DISCOUNT, MAX_DISCOUNT) / 100))
 
     message['game_id'] = game_id
     message['store_id'] = store_id

@@ -8,24 +8,19 @@ import org.springframework.stereotype.Component;
 import com.pt.ua.boardgameshub.service.ClickService;
 import com.pt.ua.boardgameshub.service.GameService;
 import com.pt.ua.boardgameshub.service.PriceService;
-import com.pt.ua.boardgameshub.service.StoreService;
 import com.pt.ua.boardgameshub.domain.Click;
-import com.pt.ua.boardgameshub.domain.Game;
 import com.pt.ua.boardgameshub.domain.Price;
-import com.pt.ua.boardgameshub.domain.Store;
 
 @Component
 public class KafkaConsumer {
 
     private final GameService gameService;
-    private final StoreService storeService;
     private final PriceService priceService;
     private final ClickService clickService;
 
     @Autowired
-    public KafkaConsumer(GameService gameService, StoreService storeService, PriceService priceService, ClickService clickService){
+    public KafkaConsumer(GameService gameService, PriceService priceService, ClickService clickService){
         this.gameService = gameService;
-        this.storeService = storeService;
         this.priceService = priceService;
         this.clickService = clickService;
     }
@@ -43,9 +38,7 @@ public class KafkaConsumer {
     
             Price newPrice = new Price();
             newPrice.setPrice(price);
-            Store store = storeService.getStoreById(Long.valueOf(store_id));
-            Game game = gameService.getGameById(Long.valueOf(game_id));
-            this.priceService.addPrice(newPrice, game, store);
+            this.priceService.addPrice(newPrice, game_id, store_id);
         }
         if(message_type.equals("CLICK")){
             int game_id = obj.getInt("game_id");

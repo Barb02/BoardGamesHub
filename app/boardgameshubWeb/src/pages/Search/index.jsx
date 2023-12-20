@@ -15,13 +15,12 @@ function Search() {
     /////////////////
 
     // FILTER STATES //
-    const [categories, setCategories] = useState([]); // none selected
+    const [categories, setCategories] = useState(""); // none selected
     const [players, setPlayers] = useState([10, 10]); // any, any
     const [playtimes, setPlaytimes] = useState([0, 11]); // 15mins, 6 hours
     const [complexities, setComplexities] = useState([0, 4]); // light, heavy
     const [prices, setPrices] = useState(["1", "900"]);
     ////////////////////
-
 
     const navigate = useNavigate();
     
@@ -30,7 +29,8 @@ function Search() {
         const query = queryParams.get('q');
         const category = queryParams.get('categories');
 
-        setCategories([category]);
+        if (category != null)
+            setCategories([category]);
 
         setQuery(query);
         setRquery(query);
@@ -68,7 +68,7 @@ function Search() {
                                   prices={prices} setPrices={setPrices}
                     />
                     <span className="mr-3 text-sortByText text-sm ml-4 w-[10%]">Sort by</span>
-                    <SortSearch currentSort={currentSort} setSort={setSort} setOrder={setOrder} />                         
+                    <SortSearch currentSort={currentSort} setSort={setSort} currentOrder={currentOrder} setOrder={setOrder} />                         
                 </div>
             </div>
             <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">

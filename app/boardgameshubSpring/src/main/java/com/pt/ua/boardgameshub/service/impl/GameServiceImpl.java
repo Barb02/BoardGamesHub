@@ -159,7 +159,7 @@ public class GameServiceImpl implements GameService{
     
         // Sorting
         String orderBy = q.getOrderBy();
-        Expression<Double> lowestPriceFunction = criteriaBuilder.function("getlowestpriceforgame", Double.class, root.get("id"));
+        Expression<Double> lowestPriceFunction = criteriaBuilder.function("GetLowestPriceValueForGame", Double.class, root.get("id"));
         List<String> sortFields = getSortFields(Game.class);
         sortFields.add("price");
         if (orderBy != null && !orderBy.isEmpty() && sortFields.contains(orderBy)) {
@@ -175,6 +175,10 @@ public class GameServiceImpl implements GameService{
                 criteriaQuery.orderBy(criteriaBuilder.asc(result));
             else if(q.getOrder().toLowerCase().equals("desc"))
                 criteriaQuery.orderBy(criteriaBuilder.desc(result));
+            
+            if(q.getOrder().isEmpty()){
+                criteriaQuery.orderBy(criteriaBuilder.asc(result));
+            }
         }
     
         // Filtering
@@ -197,8 +201,8 @@ public class GameServiceImpl implements GameService{
                             predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplayers"), value.getMax()));
                             break;
                         case "playtime":
-                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("minplaytime"), value.getMin()));
-                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("maxplaytime"), value.getMax()));
+                            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("minplaytime"), value.getMin()));
+                            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("maxplaytime"), value.getMax()));
                             break;
                         default:
                             predicates.add(criteriaBuilder.between(root.get(fname), value.getMin(), value.getMax()));

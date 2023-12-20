@@ -6,6 +6,7 @@ import { Notification,PricesGraph } from "../../components";
 import { useInterval } from "../../hooks";
 import { useUserStore } from "../../stores/useUserStore";
 import accountService from "../../services/accountService";
+import { FaCheck } from "react-icons/fa";
 
 function Product() {
 
@@ -26,11 +27,27 @@ function Product() {
   const [lowesPriceLoad,setLowestPriceLoad] = useState(false);
   const logged = useUserStore((state)=>state.logged)
 
-  const addGameWishlist = ()=>{
-    accountService.addGameWishlist(id);
+  const [disabled, setDisable] = useState(false);
+
+  const addGameWishlist = () => {
+    if (!disabled){
+      accountService.addGameWishlist(id);
+      setTimeout(()=>checkGameInWishlist(),10000);
+      setDisable(true);
+    }
   }
 
+  const checkGameInWishlist = () => {
+    accountService.getGameWishlist(id).then((data)=>{
+      setDisable(data.inWishlist)
+    });
+  }
+
+
   useEffect(() => {
+    if (logged)
+      checkGameInWishlist()
+
     gameService.getGame(id).then((data) => {
       setRdata(data || {});
       setDataload(true);
@@ -118,11 +135,11 @@ function Product() {
           <div className="ml-[7%] max-w-[20%] mr-[7%]">
             <h1 className="text-4xl font-title">{rdata.name}</h1>
             <div>
-              <button 
-                className={"mt-[10%] inline-block pr-2 pl-2 bg-primary rounded "+ (!logged ? " cursor-not-allowed":"")}
+              <button
+                className={"mt-[10%] flex pr-2 pl-2 bg-primary rounded"+ (!logged ? " cursor-not-allowed":"")}
                 onClick={()=>{logged && addGameWishlist()}}
               >
-                + ADD TO WISHLIST
+                <div className="flex items-center">{!disabled ? "+ ADD TO WISHLIST" : <><FaCheck className="mr-2"/>In Wishlist</>}</div>
               </button>
               {!logged && <div className="text-[12px]">You need to be logged in</div>}
             </div>
@@ -282,15 +299,6 @@ function Product() {
           onClick={() => setExtra("Store")}
         >
           Store
-        </div>
-        <div
-          className={
-            `w-40 text-center rounded-t-lg cursor-pointer` +
-            (extra === "Expansions" ? " bg-primary" : " ")
-          }
-          onClick={() => setExtra("Expansions")}
-        >
-          Expansions
         </div>
       </div>
 

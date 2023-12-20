@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 
 
 const SortSearch = ( {currentSort, setSort, setOrder} ) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [button,setButton] = useState(<div>{currentSort}</div>)
 
     const expandSort = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -22,7 +23,7 @@ const SortSearch = ( {currentSort, setSort, setOrder} ) => {
     return (
         <div className="mr-4">
             <button id="main_button" className="flex w-[180px] rounded-xl p-4 pt-2 pb-2 justify-start bg-primary" onClick={expandSort}>
-                {currentSort}
+                {button}
                 <span className="ml-auto self-end pl-2"><IoIosArrowDown size={23}/></span>
             </button>
 
@@ -43,14 +44,29 @@ const SortSearch = ( {currentSort, setSort, setOrder} ) => {
                     >
                         <div className="dropdown-content flex flex-col bg-primary absolute w-[180px] rounded-b-lg">
                             <motion.button initial={{}}className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
-                                            onClick={() => { setSort("Name"); setOrder("asc"); expandSort(); }}>Name
+                                            onClick={(e) => { setSort("Name"); setOrder("asc"); 
+                                                                expandSort(); setButton(<div>Name</div>); }}>Name
                             </motion.button>
                             <motion.button className="py-2 bg-primary hover:opacity-80 hover:bg-gray-500" 
-                                            onClick={() => { setSort("Score"); setOrder("desc"); expandSort(); }}>Score
+                                            onClick={() => { setSort("Score"); setOrder("desc"); 
+                                                                expandSort(); setButton(<div>Score</div>); }}>Score
+                            </motion.button>
+                            <motion.button className="flex justify-center place-items-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Price"); setOrder("asc"); 
+                                                                expandSort(); 
+                                                                setButton(<div className="flex place-items-center justify-center">Price <IoMdArrowUp className="ml-1"/></div>); }}>
+                                                <div>Price</div> <IoMdArrowUp className="ml-1"/>
+                            </motion.button>
+                            <motion.button className="flex place-items-center justify-center py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
+                                            onClick={() => { setSort("Price"); setOrder("desc"); 
+                                                                expandSort(); setButton(<div className="flex place-items-center justify-center">Price <IoMdArrowDown className="ml-1"/></div>); }}>
+                                            <div>Price</div> <IoMdArrowDown className="ml-1"/>
                             </motion.button>
                             <motion.button className="py-2 bg-primary rounded-b-lg hover:opacity-80 hover:bg-gray-500" 
-                                            onClick={() => { setSort("Release Date"); setOrder("desc"); expandSort(); }}>Release Date
+                                            onClick={() => { setSort("Release Date"); setOrder("desc"); 
+                                                            expandSort(); setButton(<div>Release Date</div>); }}>Release Date
                             </motion.button>
+
                         </div>
                 </motion.div>
                 }

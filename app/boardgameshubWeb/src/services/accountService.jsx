@@ -27,6 +27,10 @@ const accountService = {
 
     async addGameWishlist(id){
         return await client.post(`/user/wishlist/${id}`)
+    },
+
+    async getGameWishlist(id){
+        return await client.get(`/user/wishlist/${id}`);
     }
 }
 
