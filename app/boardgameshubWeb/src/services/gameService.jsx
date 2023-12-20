@@ -37,6 +37,10 @@ const gameService = {
         return await client.get(`/game?orderBy=yearPublished&publisher=${publisher}&order=${order}`)
     },
 
+    async getCategories(){
+        return await client.get(`/game/categories`)
+    },
+
     // This get should probably be in it's own Service, but for now we'll leave them here
     async getPublisher(id){
         return await client.get(`/publisher/${id}`)

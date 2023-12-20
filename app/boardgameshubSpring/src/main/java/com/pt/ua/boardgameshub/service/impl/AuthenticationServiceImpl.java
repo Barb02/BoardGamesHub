@@ -29,7 +29,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User(request, passwordEncoder);
         userRepository.save(user);
         String jwt = jwtService.generateToken(user);
-        return SignUpResponse.builder().token(jwt).build();
+        return SignUpResponse.builder().token(jwt).role(user.getRole()).build();
     }
 
     @Override
@@ -39,6 +39,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
         String jwt = jwtService.generateToken(user);
-        return SignInResponse.builder().token(jwt).username(user.getName()).build();
+        return SignInResponse.builder().token(jwt).username(user.getName()).role(user.getRole()).build();
     }
 }
