@@ -23,6 +23,10 @@ const accountService = {
 
     async getGameWishlist(id){
         return await client.get(`/user/wishlist/${id}`);
+    },
+
+    async getPricesWishlist(){
+        return await client.get(`/user/wishlist/prices`)
     }
 }
 
