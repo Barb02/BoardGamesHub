@@ -26,12 +26,12 @@ function NotificationSpace(){
                 if (pricesWishlist.length > 0){
                     data.map((element)=>{
                         let found = pricesWishlist.find(a=>a.game_id == element.game_id)
-                        if (found.price != element.price){
-                            add({id:element.game_id,name:`Game ${element.name} changed price!!!`});
+                        if (found && element.price < found.price){
+                            let price = (Math.round(Math.abs(found.price - element.price) * 100) / 100).toFixed(2)
+                            add({id:element.game_id,name:`Game ${element.name} went down in price by ${price}$!`});
                         }
                     })
                 }
-                console.log(data);
                 setPricesWhislis(data);
             })
         }
