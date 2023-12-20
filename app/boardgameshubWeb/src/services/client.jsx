@@ -23,6 +23,14 @@ client.interceptors.response.use(
 
   }, 
   function(error){
+
+    const { response, config } = error;
+    const logout = useUserStore.getState().logout
+
+    if (response.data.message === "User not found"){
+      logout()
+    }
+
     return Promise.reject(error);
   }
 )

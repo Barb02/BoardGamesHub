@@ -61,7 +61,6 @@ function Homepage() {
     if(logged){
       accountService.getRecomendations(7).then((data)=>{
         setRecomendations(data);
-        console.log(data);
       })
     }
 
@@ -147,7 +146,7 @@ function Homepage() {
             </div>  
           </div>
 
-          {logged && <div className="w-full h-auto mt-10" style={{background: "linear-gradient(180deg, rgba(34, 34, 34, 0.00) 0%, rgba(0, 0, 0, 0.30) 6.25%, rgba(0, 0, 0, 0.00) 81.25%)"}}>
+          {recommendations.length > 0 && <div className="w-full h-auto mt-10" style={{background: "linear-gradient(180deg, rgba(34, 34, 34, 0.00) 0%, rgba(0, 0, 0, 0.30) 6.25%, rgba(0, 0, 0, 0.00) 81.25%)"}}>
             <div className="max-w-6xl w-full mx-auto pt-[2%]">
               <div className="text-2xl ml-[5%] mb-[1%]">
                 Recommendations:
