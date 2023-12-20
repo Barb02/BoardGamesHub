@@ -35,6 +35,10 @@ const accountService = {
 
     async getPricesWishlist(){
         return await client.get(`/user/wishlist/prices`)
+    },
+
+    async getRecomendations(limit){
+        return await client.get(`/user/game/recommended?limit=${limit}`)
     }
 }
 
