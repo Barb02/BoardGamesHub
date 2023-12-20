@@ -53,7 +53,12 @@ public class PriceServiceImpl implements PriceService{
     @Override
     public PriceResponse getPriceByStoreIdAndGameId(Long store_id, Long game_id) {
         Price price = priceRepository.findFirstByStoreIdAndGameId(store_id, game_id, Sort.by(Sort.Direction.DESC, "timestamp"));
-        return new PriceResponse(price);
+        if(price != null){
+            return new PriceResponse(price);
+        }
+        else{
+            return null;
+        }
     }
 
     public List<PriceHistory> getHistory(Long game_id){

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -145,6 +146,21 @@ public class GameController {
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categories not found");
+        }
+    }
+
+    @Operation(summary = "Remove game by id (ADMIN ROLE REQUIRED)")
+    @DeleteMapping("game/{id}")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "OK",content = @Content),
+        @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
+        @ApiResponse(responseCode = "403", description = "Not signed in as admin", content = @Content)})
+    public void deleteGame(@PathVariable long id){
+        try{
+            gameService.removeGame(id);
+        }
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
     }
 

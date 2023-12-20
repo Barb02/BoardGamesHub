@@ -259,6 +259,11 @@ public class GameServiceImpl implements GameService{
         return gameRepository.findAllGamesOrderByClickCountDesc(limit, publisher);
     }
 
+    @Override
+    public void removeGame(long game_id) throws IllegalArgumentException{
+        gameRepository.deleteById(game_id);
+    }
+
     /* @Override
     public Game addGameAuto(Long id){
         try {
