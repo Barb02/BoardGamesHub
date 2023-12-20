@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { Layout, Homepage, Search, Product, Login, Wishlist, Publisher, Register } from './pages'
+import { Layout, Homepage, Search, Product, Login, Wishlist, Publisher, Register, Admin } from './pages'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { useUserStore } from "./stores/useUserStore";
+
+
+const AdminHandling = () => {
+  const admin = useUserStore((state) => state.logged && state.admin);
+
+  return admin ? <Admin /> : <Homepage />;
+};
 
 const router = createBrowserRouter([
   {
@@ -19,10 +27,12 @@ const router = createBrowserRouter([
       { path: "/login", element:<Login/>},
       { path: "/register", element:<Register/>},
       { path: "/wishlist", element:<Wishlist/>},
-      { path: "/publisher", element:<Publisher/>},
+      { path: "/publisher/:id", element:<Publisher/>},
+      { path: '/admin', element: <AdminHandling /> },
     ]
   },
 ]);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

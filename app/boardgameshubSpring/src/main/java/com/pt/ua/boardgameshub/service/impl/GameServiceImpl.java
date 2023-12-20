@@ -1,11 +1,18 @@
 package com.pt.ua.boardgameshub.service.impl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 /* import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,6 +29,9 @@ import org.w3c.dom.Node; */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
 import com.pt.ua.boardgameshub.dao.request_body.CategoryRequest;
@@ -68,7 +78,7 @@ public class GameServiceImpl implements GameService{
         Game game = new Game(gamerequest);
         Set<Designer> designers = new HashSet<>();
         for(DeveloperRequest request: gamerequest.getDesigners()){
-            Designer designer = designerRepository.findById(request.getId()).orElse(null);
+            Designer designer = designerRepository.findByName(request.getName()).orElse(null);
             if (designer == null){
                 Designer newDesigner = new Designer(request);
                 designerRepository.save(newDesigner);
@@ -80,7 +90,7 @@ public class GameServiceImpl implements GameService{
         }
         Set<Publisher> publishers = new HashSet<>();
         for(DeveloperRequest request: gamerequest.getPublishers()){
-            Publisher pub = publisherRepository.findById(request.getId()).orElse(null);
+            Publisher pub = publisherRepository.findByName(request.getName()).orElse(null);
             if (pub == null){
                 Publisher newPublisher = new Publisher(request);
                 publisherRepository.save(newPublisher);
@@ -92,7 +102,7 @@ public class GameServiceImpl implements GameService{
         }
         Set<Artist> artists = new HashSet<>();
         for(ArtistRequest request: gamerequest.getArtists()){
-            Artist artist = artistRepository.findById(request.getId()).orElse(null);
+            Artist artist = artistRepository.findByName(request.getName()).orElse(null);
             if (artist == null){
                 Artist newArtist = new Artist(request);
                 artistRepository.save(newArtist);
@@ -104,7 +114,7 @@ public class GameServiceImpl implements GameService{
         }
         Set<Category> categories = new HashSet<>();
         for(CategoryRequest request: gamerequest.getCategories()){
-            Category cat = categoryRepository.findById(request.getId()).orElse(null);
+            Category cat = categoryRepository.findByName(request.getName()).orElse(null);
             if (cat == null){
                 Category newCategory = new Category(request);
                 categoryRepository.save(newCategory);
@@ -268,42 +278,42 @@ public class GameServiceImpl implements GameService{
 
     /* @Override
     public Game addGameAuto(Long id){
-        try {
-            URL url = new URL("https://boardgamegeek.com/xmlapi2/thing?stats=1&id=" + id);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
+    try {
+    URL url = new URL("https://boardgamegeek.com/xmlapi2/thing?stats=1&id=" + id);
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setRequestMethod("GET");
 
-            int responseCode = connection.getResponseCode();
+    int responseCode = connection.getResponseCode();
 
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
+    if (responseCode == HttpURLConnection.HTTP_OK) {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    StringBuilder response = new StringBuilder();
+    String line;
+    while ((line = reader.readLine()) != null) {
+    response.append(line);
+    }
                 reader.close();
 
-                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder builder = factory.newDocumentBuilder();
-                Document doc = builder.parse(url.openStream());
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    Document doc = builder.parse(url.openStream());
 
-                NodeList itemList = doc.getElementsByTagName("item");
-                Element item = (Element) itemList.item(0);
-    
-                String name = item.getElementsByTagName("name").item(0).getAttributes().getNamedItem("value").getNodeValue();
+    NodeList itemList = doc.getElementsByTagName("item");
+    Element item = (Element) itemList.item(0);
+                
+    String name = item.getElementsByTagName("name").item(0).getAttributes().getNamedItem("value").getNodeValue();
                 String image = item.getElementsByTagName("image").item(0).getTextContent();
                 String description = item.getElementsByTagName("description").item(0).getTextContent();
 
                 
             } else {
                 System.out.println("HTTP error: " + responseCode);
-            }
+    }
             connection.disconnect();
-        } 
+    } 
         catch (Exception e) {
-            e.printStackTrace();
-        } 
+    e.printStackTrace();
+    } 
     } */
 
 }

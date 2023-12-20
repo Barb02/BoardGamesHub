@@ -1,8 +1,7 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { WishList } from "../../components";
 import { Form } from 'react-router-dom';
-import { useEffect, useState } from "react";
-import accountService from "../../services/accountService";
+import { useState } from "react";
 
 function Wishlist() {
     const [query,setQuery] = useState("");

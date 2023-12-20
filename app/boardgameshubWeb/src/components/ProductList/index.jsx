@@ -18,6 +18,15 @@ function ProductList({ query, sort, order, categories, players, complexities, pl
         document.getElementById(node.id + "_hover").style.display = 'block';
     }
 
+    function shrinkProductView(e) {
+        let node = e.target;
+        while(node.id === ""){
+            node = node.parentNode;
+        }
+        node.style.display = 'none';
+        document.getElementById(node.id.split("_hover")[0]).style.display = '';
+    }
+
     useEffect(() => {
         if (query || query === ""){
             let playerNum = [];
@@ -93,7 +102,8 @@ function ProductList({ query, sort, order, categories, players, complexities, pl
                     
                     {/* Hover game for more details */}
 
-                    <div id={game.id + "_hover"} className="flex flex-col rounded-xl w-full h-[250px] bg-searchProductBackgroundHover mb-4" style={{display: "none"}}>
+                    <div id={game.id + "_hover"} className="flex flex-col rounded-xl w-full h-[250px] bg-searchProductBackgroundHover mb-4" 
+                        style={{display: "none"}} onMouseLeave={shrinkProductView}>
                     <div className="w-full flex h-[50%]">
                         <img alt="boardgame_cover" className="object-cover mt-3 ml-3 rounded-lg h-[90%] w-[120px]" src={game.image} />
                         <div className="flex flex-col pl-3 w-[60%]">

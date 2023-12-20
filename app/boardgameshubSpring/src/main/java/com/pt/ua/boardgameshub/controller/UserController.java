@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-import com.pt.ua.boardgameshub.dao.response_body.PreferredCategoryResponse;
+import com.pt.ua.boardgameshub.dao.response_body.WishlistPrice;
 import com.pt.ua.boardgameshub.dao.response_body.WishlistedResponse;
 import com.pt.ua.boardgameshub.domain.Game;
+import com.pt.ua.boardgameshub.domain.Category;
 import com.pt.ua.boardgameshub.dao.response_body.InWishlist;
 import com.pt.ua.boardgameshub.service.WishlistedService;
 import com.pt.ua.boardgameshub.service.GameService;
@@ -123,22 +124,22 @@ public class UserController {
     @Operation(summary = "Edit user's preferred categories (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Preferred categories were updated",
-            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = PreferredCategoryResponse.class))}),
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Category.class))}),
             @ApiResponse(responseCode = "404", description = "Categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
             @ApiResponse(responseCode = "500", description = "Couldn't update categories", content = @Content)})
     @PutMapping("categories")
-    public List<PreferredCategoryResponse> editPreferredCategories(@RequestBody List<PreferredCategoryResponse> updatedCategories) {
-        List<PreferredCategoryResponse> currentCategories = preferredCategoryService.getPreferredCategories();
+    public List<Category> editPreferredCategories(@RequestBody List<Category> updatedCategories) {
+        List<Category> currentCategories = preferredCategoryService.getPreferredCategories();
         if(currentCategories != null && updatedCategories != null){
-            for(PreferredCategoryResponse current: currentCategories){
+            for(Category current: currentCategories){
                 if(!updatedCategories.contains(current)){
-                    preferredCategoryService.removePreferredCategory(current.getCategory().getId());
+                    preferredCategoryService.removePreferredCategory(current.getId());
                 }
             }
-            for(PreferredCategoryResponse updated: updatedCategories){
+            for(Category updated: updatedCategories){
                 if(!currentCategories.contains(updated)){
-                    preferredCategoryService.addPreferredCategory(updated.getCategory().getId());
+                    preferredCategoryService.addPreferredCategory(updated.getId());
                 }
             }
             return preferredCategoryService.getPreferredCategories();
@@ -151,12 +152,12 @@ public class UserController {
     @Operation(summary = "Get user's preferred categories (AUTHENTICATION REQUIRED)")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK",
-                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PreferredCategoryResponse.class)))}),
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Category.class)))}),
             @ApiResponse(responseCode = "404", description = "Preferred categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
     @GetMapping("categories")
-    public List<PreferredCategoryResponse> getPreferredCategories() {
-        List<PreferredCategoryResponse> preferredCategoryResponse = preferredCategoryService.getPreferredCategories();
+    public List<Category> getPreferredCategories() {
+        List<Category> preferredCategoryResponse = preferredCategoryService.getPreferredCategories();
         if(preferredCategoryResponse != null){
             return preferredCategoryResponse;
         }
@@ -186,6 +187,23 @@ public class UserController {
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        }
+    }
+    
+    @Operation(summary = "Get user's wishlisted games with price (AUTHENTICATION REQUIRED)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = WishlistedResponse.class)))}),
+            @ApiResponse(responseCode = "404", description = "Wishlist not found", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
+    @GetMapping("wishlist/prices")
+    public List<WishlistPrice> getWishlistPrices() {
+        List<WishlistPrice> wishlistPrice = wishlistedService.getWishlistPrices();
+        if(wishlistPrice != null){
+            return wishlistPrice;
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wishlist not found");
         }
     }
 

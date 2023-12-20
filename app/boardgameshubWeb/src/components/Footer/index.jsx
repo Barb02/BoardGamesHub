@@ -8,9 +8,6 @@ function Footer() {
         </span>
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
             <li>
-                <a href="/about" class="hover:underline me-4 md:me-6">About</a>
-            </li>
-            <li>
                 <a href="https://github.com/Barb02/BoardGamesHub"><FaGithub /></a>
             </li>
         </ul>
