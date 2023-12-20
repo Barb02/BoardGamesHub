@@ -22,17 +22,15 @@ function UserBar({deactivateUser}){
         gameService.getCategories().then((data)=>{
             setCategories(data);
         })
-        fetchCategories();
-    },[])
-
-    const fetchCategories = ()=>{
         accountService.getCategories().then((data)=>{
             setUserCategorys(data);
         })
-    }
+    },[])
 
     const saveCategories = ()=>{
-        accountService.setCategories(userCategorys);
+        accountService.setCategories(userCategorys).then((data)=>{
+            setUserCategorys(data)
+        });
     }
 
     const addCat = (cat)=>{
@@ -41,6 +39,8 @@ function UserBar({deactivateUser}){
             copy.push(cat)
             setUserCategorys(copy)
         }
+        setListOpen(false);
+        setFilter("");
     }
 
     const removeCat = (cat)=>{
@@ -51,12 +51,6 @@ function UserBar({deactivateUser}){
             }
             setUserCategorys(copy)
     }
-
-    const categorys = ["Fantasy","Adventure","Area Control","Card Game","Tower Defense","Collectible","Miniatures","4X",
-                       "Worker Placement","Strategy","Family"]
-
-      
-
 
     return(
             <motion.div 
@@ -73,16 +67,13 @@ function UserBar({deactivateUser}){
                     <div className="text-center text-text text-2xl">Categorias</div>
                     <div className="flex text-text justify-end gap-2 h-8">
                         { editMode &&
-                        <div className="flex-grow pb-[300px] overflow-hidden z-20 pointer-events-none">
+                        <div className="flex-grow pb-[300px] overflow-hidden z-20 pointer-events-none" onMouseLeave={(e)=>{setListOpen(false);setFilter("");}}>
                             <div className="bg-primary rounded-lg px-3 py-1 flex place-items-center gap-1 z-40 pointer-events-auto">
                                 <MdSearch/>
                                 <input 
                                     className="text-black rounded-md bg-loginInput flex-grow z-40" 
                                     onFocus={()=>setListOpen(true)}
-                                    onBlur={()=>setTimeout(function() {
-                                        setListOpen(false)
-                                        setFilter("")
-                                    }, 40)}
+                                    
                                     onChange={(e)=>setFilter(e.target.value)}
                                 ></input>
                             </div>

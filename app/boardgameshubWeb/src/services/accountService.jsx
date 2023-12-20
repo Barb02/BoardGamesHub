@@ -14,7 +14,7 @@ const accountService = {
     },
 
     async setCategories(data){
-        return await client.punt("/user/categories",data)
+        return await client.put("/user/categories",data)
 
     },
     async getWishlist(query){
