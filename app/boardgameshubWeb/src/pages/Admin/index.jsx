@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import gameService from "../../services/gameService";
+import storeService from "../../services/storeService";
+import priceService from "../../services/priceService";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 
@@ -10,16 +12,13 @@ function Admin() {
     const players = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
     const playtimes = ["15 minutes", "30 minutes", "45 minutes", "60 minutes", "1.5 hours", "2 hours", "2.5 hours", "3 hours",
                          "3.5 hours", "4 hours", "5 hours", "6 hours"];
+    const numberStores = 4;
+
+    // CREATE GAME LOGIC //
 
     const [view, setView] = useState("Create");
     const [createView, setCreateView] = useState(true);
     const [deleteView, setDeleteView] = useState(false);
-
-    const [name, setName] = useState();
-    const [shortDescription, setShortDescription] = useState();
-    const [description, setDescription] = useState();
-    const [score, setScore] = useState();
-    const [ratings, setRatings] = useState();
 
     const [minList, setMinList] = useState(false);
     const [playerMin, setPlayerMin] = useState();
@@ -38,6 +37,116 @@ function Admin() {
 
     const [maxPlaytimeList, setMaxPlaytimeList] = useState(false);
     const [maxPlaytime, setMaxPlaytime] = useState();
+
+    const [stores, setStores] = useState();
+    const [loaded, setLoaded] = useState(false);
+
+    const [storeList, setStoreList] = useState({
+        store_1: false,
+        store_2: false,
+        store_3: false,
+        store_4: false,
+    });
+    const [store, setStore] = useState({
+        text_1: "",
+        text_2: "",
+        text_3: "",
+        text_4: "",
+    });
+
+    const [priceData, setPriceData] = useState({
+        price_1: "",
+        shop_1: "",
+        price_2: "",
+        shop_2: "",
+        price_3: "",
+        shop_3: "",
+        price_4: "",
+        shop_4: "",
+    });
+
+    const [gameData, setGameData] = useState({
+        name: "",
+        shortDescription: "",
+        description: "",
+        designers: [],
+        publishers: [],
+        complexity: "",
+        minplayers: "",
+        maxplayers: "",
+        yearPublished: "",
+        minage: "",
+        minplaytime: "",
+        maxplaytime: "",
+        score: "",
+        numRatings: "",
+        image: "",
+        images: [],
+        categories: [],
+        artist: []
+    });
+
+
+    useEffect(() => {
+        storeService.getStores().then((store) => {
+            setStores(store);
+            setLoaded(true);
+        })
+    }, []);
+
+    const submit = () => {
+        handleArrays();
+        handlePlaytime();
+
+        gameService.createGame(JSON.stringify(gameData));
+        for (let index = 1; index <= numberStores; index++) {
+            const price = `price_${index}`;
+            const shop = `shop_${index}`;
+
+            priceService.addPrice(priceData[price], priceData[shop]);
+        }
+    };
+
+    const handleArrays = () => {
+        const designers = [];
+        const publishers = [];
+        const categories = [];
+        const artist = [];
+
+        // Designers
+        gameData.designers.split(",").forEach(element => {
+            designers.push({"name": element, "image": ""});
+        });
+        gameData.designers = designers;
+
+        // Publishers
+        gameData.publishers.split(",").forEach(element => {
+            publishers.push({"name": element, "image": ""});
+        });
+        gameData.publishers = publishers;
+
+        // Categories
+        gameData.categories.split(",").forEach(element => {
+            categories.push({"name": element});
+        });
+        gameData.categories = categories;
+
+        // Artists
+        gameData.artist.split(",").forEach(element => {
+            artist.push({"name": element});
+        });
+        gameData.artist = artist;
+    }
+
+
+    const handlePlaytime = () => {
+        const playtimeMins = [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 300, 360];
+        const min = gameData.minplaytime;
+        const max = gameData.maxplaytime;
+
+        gameData.minplaytime = playtimeMins[playtimes.indexOf(min)];
+        gameData.maxplaytime = playtimeMins[playtimes.indexOf(max)];
+    }
 
 
     // DELETE GAME LOGIC //
@@ -76,23 +185,28 @@ function Admin() {
                     <div className="w-[40%] mr-[20%]">
                         <div className="flex flex-col">
                             <span>Name:</span>
-                            <input placeholder="Game name..." className="text-black" onChange={(e) => setName(e.target.value)}/>
+                            <input placeholder="Game name..." className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "name": e.target.value})}/>
                         </div>
                         <div className="flex flex-col">
                             <span>Short Description:</span>
-                            <input placeholder="Short description..." className="text-black" onChange={(e) => setShortDescription(e.target.value)}/>
+                            <input placeholder="Short description..." className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "shortDescription": e.target.value})}/>
                         </div>
                         <div className="flex flex-col">
                             Description:
-                            <textarea placeholder="Long description..." className="text-black" onChange={(e) => setDescription(e.target.value)}/>
+                            <textarea placeholder="Long description..." className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "description": e.target.value})}/>
                         </div>
                         <div className="flex flex-col">
                             Designers:
-                            <input placeholder="Designers..."/>
+                            <input placeholder="Designer 1,Designer 2, ..." className="text-black"
+                                    onChange={(e) => setGameData({...gameData, "designers": e.target.value})}/>
                         </div>
                         <div className="flex flex-col">
                             Publishers:
-                            <input placeholder="Publishers..."/>
+                            <input placeholder="Publisher 1,Publisher 2, ..." className="text-black"
+                                    onChange={(e) => setGameData({...gameData, "publishers": e.target.value})}/>
                         </div>
                     </div>
 
@@ -121,7 +235,7 @@ function Admin() {
                                     <div 
                                     key={index}
                                     className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                    onClick={() => {setComplexity(complexity); }}
+                                    onClick={() => {setComplexity(complexity); setGameData({...gameData, "complexity": complexity}) }}
                                     >
                                         {complexity}
                                     </div>
@@ -153,7 +267,7 @@ function Admin() {
                                     <div 
                                     key={index}
                                     className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                    onClick={() => {setPlayerMin(player); }}
+                                    onClick={() => {setPlayerMin(player); setGameData({...gameData, "minplayers": player})}}
                                     >
                                         {player}
                                     </div>
@@ -185,7 +299,7 @@ function Admin() {
                                     <div 
                                     key={index}
                                     className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                    onClick={() => {setPlayerMax(player); }}
+                                    onClick={() => {setPlayerMax(player); setGameData({...gameData, "maxplayers": player}) }}
                                     >
                                         {player}
                                     </div>
@@ -194,10 +308,7 @@ function Admin() {
                             }
                             </AnimatePresence>
                         </div>
-                        <div className="flex flex-col">
-                            Year Published:
-                            <input placeholder="Year published..." className="text-black" onChange={(e) => setName(e.target.value)}/>
-                        </div>
+
                         <div className="flex flex-col">
                             Min Age:
                             <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[85px] place-items-center gap-1 z-40 pointer-events-auto">
@@ -221,7 +332,7 @@ function Admin() {
                                     <div 
                                     key={index}
                                     className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                    onClick={() => {setPlayerAge(age); }}
+                                    onClick={() => {setPlayerAge(age); setGameData({...gameData, "minage": age})}}
                                     >
                                         {age}+
                                     </div>
@@ -236,8 +347,38 @@ function Admin() {
                 <div className="flex max-w-5xl mx-auto text-xl pt-[5%]">
                     <div className="w-[40%] mr-[20%]">
                     <div className="flex flex-col">
+                            Year Published:
+                            <input placeholder="[1000-2023]" className="text-black" onChange={(e) => setGameData({...gameData, "yearPublished": e.target.value})}/>
+                        </div>
+                    
+                        <div className="flex flex-col">
+                            Score:
+                            <input placeholder="[1-10]" className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "score": e.target.value})}/>
+                        </div>
+                        <div className="flex flex-col">
+                            Number Ratings:
+                            <input placeholder="[0-9999999]" className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "numRatings": e.target.value})}/>
+                        </div>
+                        <div className="flex flex-col">
+                            Categories:
+                            <input placeholder="Category 1,Category 2, ..." className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "categories": e.target.value})}/>
+                        </div>
+                        <div className="flex flex-col">
+                            Artists:
+                            <input placeholder="Artist 1,Artist 2, ..." className="text-black" 
+                                    onChange={(e) => setGameData({...gameData, "artist": e.target.value})}/>
+                        </div>
+                    </div>
+
+
+
+                    <div className="w-[40%]">
+                    <div className="flex flex-col">
                             Min Playtime:
-                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[350px] place-items-center gap-1 z-40 pointer-events-auto">
+                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[210px] place-items-center gap-1 z-40 pointer-events-auto">
                                 <button 
                                     className="text-black rounded-md bg-loginInput h-[25px] w-[200px] z-40" 
                                     onClick={() => setMinPlaytimeList(true) }
@@ -258,7 +399,7 @@ function Admin() {
                                     <div 
                                     key={index}
                                     className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                    onClick={() => {setMinPlaytime(playtime); }}
+                                    onClick={() => {setMinPlaytime(playtime); setGameData({...gameData, "minplaytime": playtime}) }}
                                     >
                                         {playtime}
                                     </div>
@@ -269,7 +410,7 @@ function Admin() {
                         </div>
                         <div className="flex flex-col">
                             Max Playtime:
-                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[350px] place-items-center gap-1 z-40 pointer-events-auto">
+                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[210px] place-items-center gap-1 z-40 pointer-events-auto">
                                 <button 
                                     className="text-black rounded-md bg-loginInput h-[25px] w-[200px] z-40" 
                                     onClick={() => setMaxPlaytimeList(true) }
@@ -286,11 +427,11 @@ function Admin() {
                                 exit={{y:-200,opacity:0,scale:0}}
                                 transition={{ease:"easeInOut"}}
                             >
-                            {playtimes.map((playtime, index)=>(
+                            {loaded && playtimes.map((playtime, index)=>(
                                     <div 
                                     key={index}
                                     className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
-                                    onClick={() => {setMaxPlaytime(playtime); }}
+                                    onClick={() => {setMaxPlaytime(playtime); setGameData({...gameData, "maxplaytime": playtime})}}
                                     >
                                         {playtime}
                                     </div>
@@ -299,32 +440,191 @@ function Admin() {
                             }
                             </AnimatePresence>
                         </div>
+                    </div>
+                </div>
+
+                {/* SHOP 1, 2 AND PRICE 1, 2*/}
+                <div className="flex max-w-5xl mx-auto text-xl pt-[5%]">
+                    <div className="w-[22%]">
                         <div className="flex flex-col">
-                            Score:
-                            <input placeholder="[1-10]" className="text-black" onChange={(e) => setScore(e.target.value)}/>
-                        </div>
-                        <div className="flex flex-col">
-                            Number Ratings:
-                            <input placeholder="..." className="text-black" onChange={(e) => setRatings(e.target.value)}/>
+                            Store:
+                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[150px] place-items-center gap-1 z-40 pointer-events-auto">
+                                <button 
+                                    className="text-black rounded-md bg-loginInput h-[25px] w-[150px] z-40" 
+                                    onClick={() => setStoreList({...storeList, "store_1": true}) }
+                                    onBlur={()=>setTimeout(function() {
+                                        setStoreList({...storeList, "store_1": false})
+                                    }, 40)}                        
+                                >{store.text_1}</button>
+                            </div>
+                            <AnimatePresence>
+                            {storeList.store_1 && 
+                                <motion.div className="rounded-lg overflow-hidden max-h-[100px] w-[150px] ml-2 overflow-y-scroll z-50 pointer-events-auto"
+                                initial={{y:-200,opacity:0,scale:0}}
+                                animate={{y:0,opacity:1,scale:1}}
+                                exit={{y:-200,opacity:0,scale:0}}
+                                transition={{ease:"easeInOut"}}
+                            >
+                                {loaded && stores.map((s, index)=>(
+                                        <div 
+                                        key={index}
+                                        className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
+                                        onClick={() => {setStore({... store, "text_1": s.name}); 
+                                                        setPriceData({... priceData, "shop_1": index})}}
+                                        >
+                                            {s.name}
+                                        </div>
+                                ))}
+                            </motion.div>
+                            }
+                            </AnimatePresence>
                         </div>
                     </div>
-
-
-
-                    <div className="w-[40%]">
+                    <div className="w-[15%] mr-[20%]">
                         <div className="flex flex-col">
-                            Categories:
-                        </div>
-                        <div className="flex flex-col">
-                            Artists:
-                        </div>
-                        <div className="flex flex-col">
-                            Cover Image:
-                        </div>
-                        <div className="flex flex-col">
-                            Extra Images:
+                            Price:
+                            <input placeholder="[0.99-999.99]" className="text-black" 
+                                    onChange={(e) => setPriceData({... priceData, "price_1": e.target.value})}/>
                         </div>
                     </div>
+                    <div className="w-[22%]">
+                        <div className="flex flex-col">
+                            Store:
+                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[150px] place-items-center gap-1 z-40 pointer-events-auto">
+                                <button 
+                                    className="text-black rounded-md bg-loginInput h-[25px] w-[150px] z-40" 
+                                    onClick={() => setStoreList({...storeList, "store_2": true}) }
+                                    onBlur={()=>setTimeout(function() {
+                                        setStoreList({...storeList, "store_2": false})
+                                    }, 40)}                        
+                                >{store.text_2}</button>
+                            </div>
+                            <AnimatePresence>
+                            {storeList.store_2 && 
+                                <motion.div className="rounded-lg overflow-hidden max-h-[100px] w-[150px] ml-2 overflow-y-scroll z-50 pointer-events-auto"
+                                initial={{y:-200,opacity:0,scale:0}}
+                                animate={{y:0,opacity:1,scale:1}}
+                                exit={{y:-200,opacity:0,scale:0}}
+                                transition={{ease:"easeInOut"}}
+                            >
+                                {loaded && stores.map((s, index)=>(
+                                        <div 
+                                        key={index}
+                                        className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
+                                        onClick={() => {setStore({... store, "text_2": s.name});
+                                                        setPriceData({... priceData, "shop_2": index})}}
+                                        >
+                                            {s.name}
+                                        </div>
+                                ))}
+                            </motion.div>
+                            }
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                    <div className="w-[15%]">
+                        <div className="flex flex-col">
+                            Price:
+                            <input placeholder="[0.99-999.99]" className="text-black" 
+                                    onChange={(e) => setPriceData({... priceData, "price_2": e.target.value})}/>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* SHOP 3, 4 AND PRICE 3, 4 */}
+                <div className="flex max-w-5xl mx-auto text-xl pt-[5%]">
+                    <div className="w-[22%]">
+                        <div className="flex flex-col">
+                            Store:
+                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[150px] place-items-center gap-1 z-40 pointer-events-auto">
+                                <button 
+                                    className="text-black rounded-md bg-loginInput h-[25px] w-[150px] z-40" 
+                                    onClick={() => setStoreList({...storeList, "store_3": true}) }
+                                    onBlur={()=>setTimeout(function() {
+                                        setStoreList({...storeList, "store_3": false})
+                                    }, 40)}                        
+                                >{store.text_3}</button>
+                            </div>
+                            <AnimatePresence>
+                            {storeList.store_3 && 
+                                <motion.div className="rounded-lg overflow-hidden max-h-[100px] w-[150px] ml-2 overflow-y-scroll z-50 pointer-events-auto"
+                                initial={{y:-200,opacity:0,scale:0}}
+                                animate={{y:0,opacity:1,scale:1}}
+                                exit={{y:-200,opacity:0,scale:0}}
+                                transition={{ease:"easeInOut"}}
+                            >
+                                {loaded && stores.map((s, index)=>(
+                                        <div 
+                                        key={index}
+                                        className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
+                                        onClick={() => {setStore({... store, "text_3": s.name});
+                                                        setPriceData({... priceData, "shop_3": index})}}
+                                        >
+                                            {s.name}
+                                        </div>
+                                ))}
+                            </motion.div>
+                            }
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                    <div className="w-[15%] mr-[20%]">
+                        <div className="flex flex-col">
+                            Price:
+                            <input placeholder="[0.99-999.99]" className="text-black" 
+                                    onChange={(e) => setPriceData({... priceData, "price_3": e.target.value})}/>
+                        </div>
+                    </div>
+                    <div className="w-[22%]">
+                        <div className="flex flex-col">
+                            Store:
+                            <div className="bg-primary ml-2 rounded-lg px-1 py-1 flex w-[150px] place-items-center gap-1 z-40 pointer-events-auto">
+                                <button 
+                                    className="text-black rounded-md bg-loginInput h-[25px] w-[150px] z-40" 
+                                    onClick={() => setStoreList({...storeList, "store_4": true}) }
+                                    onBlur={()=>setTimeout(function() {
+                                        setStoreList({...storeList, "store_4": false})
+                                    }, 40)}                        
+                                >{store.text_4}</button>
+                            </div>
+                            <AnimatePresence>
+                            {storeList.store_4 && 
+                                <motion.div className="rounded-lg overflow-hidden max-h-[100px] w-[150px] ml-2 overflow-y-scroll z-50 pointer-events-auto"
+                                initial={{y:-200,opacity:0,scale:0}}
+                                animate={{y:0,opacity:1,scale:1}}
+                                exit={{y:-200,opacity:0,scale:0}}
+                                transition={{ease:"easeInOut"}}
+                            >
+                                {loaded && stores.map((s, index)=>(
+                                        <div 
+                                        key={index}
+                                        className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
+                                        onClick={() => {setStore({... store, "text_4": s.name});
+                                                        setPriceData({... priceData, "shop_4": index})}}
+                                        >
+                                            {s.name}
+                                        </div>
+                                ))}
+                            </motion.div>
+                            }
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                    <div className="w-[15%]">
+                        <div className="flex flex-col">
+                            Price:
+                            <input placeholder="[0.99-999.99]" className="text-black" 
+                                    onChange={(e) => setPriceData({... priceData, "price_4": e.target.value})}/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="flex max-w-5xl mx-auto text-xl pt-[5%] pb-[3%]">
+                    <button className="self-center mx-auto rounded-xl p-3 pt-2 pb-2 bg-primary text-text" 
+                            onClick={submit}>
+                        Create Game
+                    </button>
                 </div>
             </div>
             }

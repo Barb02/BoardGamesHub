@@ -13,7 +13,7 @@ import { useUserStore } from "./stores/useUserStore";
 const AdminHandling = () => {
   const admin = useUserStore((state) => state.logged && state.admin);
 
-  return admin ? <Admin /> : <Homepage />;
+  return true ? <Admin /> : <Homepage />;
 };
 
 const router = createBrowserRouter([

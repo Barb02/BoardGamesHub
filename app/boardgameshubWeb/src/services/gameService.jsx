@@ -5,6 +5,10 @@ const gameService = {
         return await client.get(`/game/${id}`)
     },
 
+    async createGame(data){
+        return await client.post(`/game/manual`, data)
+    },
+
     async deleteGame(id){
         return await client.delete(`/game/${id}`)
     },
@@ -33,9 +37,11 @@ const gameService = {
         return await client.get(`/game?orderBy=yearPublished&publisher=${publisher}&order=${order}`)
     },
 
+    // This get should probably be in it's own Service, but for now we'll leave them here
     async getPublisher(id){
         return await client.get(`/publisher/${id}`)
-    }
+    },
+
 }
 
 export default gameService;
