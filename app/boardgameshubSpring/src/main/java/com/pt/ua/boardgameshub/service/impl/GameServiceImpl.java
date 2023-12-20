@@ -275,6 +275,10 @@ public class GameServiceImpl implements GameService{
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return gameRepository.findGamesByPreferredCategoryOrderByClickCountDesc(limit, user.getId());
     }
+    @Override
+    public void removeGame(long game_id) throws IllegalArgumentException{
+        gameRepository.deleteById(game_id);
+    }
 
     /* @Override
     public Game addGameAuto(Long id){

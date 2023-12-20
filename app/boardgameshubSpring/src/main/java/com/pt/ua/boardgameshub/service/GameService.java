@@ -13,4 +13,5 @@ public interface GameService {
     public List<Game> getFilteredGames(GameQuery query);
     public List<Game> getTopGames(int limit, String publisher);
     public List<Game> getRecommendedGames(int limit);
+    public void removeGame(long id);
 }

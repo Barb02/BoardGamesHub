@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import com.pt.ua.boardgameshub.domain.Role;
+
 @Data
 @Builder
 @AllArgsConstructor
 public class SignInResponse {
-    String token;
-    String username;
+    private String token;
+    private String username;
+    private Role role;
 }
