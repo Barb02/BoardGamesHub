@@ -15,6 +15,7 @@ function Admin() {
     const numberStores = 4;
 
     // CREATE GAME LOGIC //
+    const [submitted, setSubmitted] = useState(false);
 
     const [view, setView] = useState("Create");
     const [createView, setCreateView] = useState(true);
@@ -98,13 +99,17 @@ function Admin() {
         handleArrays();
         handlePlaytime();
 
-        gameService.createGame(JSON.stringify(gameData));
-        for (let index = 1; index <= numberStores; index++) {
-            const price = `price_${index}`;
-            const shop = `shop_${index}`;
+        gameService.createGame(gameData).then((game) =>{
+            for (let index = 1; index <= numberStores; index++) {
+                const price = `price_${index}`;
+                const shop = `shop_${index}`;
+                const data = {"price": priceData[price]};
+    
+                priceService.addPrice(game.id, priceData[shop], data);
+            }
+        });
 
-            priceService.addPrice(priceData[price], priceData[shop]);
-        }
+
     };
 
     const handleArrays = () => {
@@ -160,7 +165,7 @@ function Admin() {
         })
     },[query])
 
-    const removeGame = (id,index)=>{
+    const removeGame = (id, index)=>{
         gameService.deleteGame(id);
         setGames([...games].splice(index,1))
         //setTimeout(()=>fetchWishlist(),4*1000);
@@ -470,7 +475,7 @@ function Admin() {
                                         key={index}
                                         className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
                                         onClick={() => {setStore({... store, "text_1": s.name}); 
-                                                        setPriceData({... priceData, "shop_1": index})}}
+                                                        setPriceData({... priceData, "shop_1": (index + 1)})}}
                                         >
                                             {s.name}
                                         </div>
@@ -512,7 +517,7 @@ function Admin() {
                                         key={index}
                                         className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
                                         onClick={() => {setStore({... store, "text_2": s.name});
-                                                        setPriceData({... priceData, "shop_2": index})}}
+                                                        setPriceData({... priceData, "shop_2": (index + 1)})}}
                                         >
                                             {s.name}
                                         </div>
@@ -558,7 +563,7 @@ function Admin() {
                                         key={index}
                                         className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
                                         onClick={() => {setStore({... store, "text_3": s.name});
-                                                        setPriceData({... priceData, "shop_3": index})}}
+                                                        setPriceData({... priceData, "shop_3": (index + 1)})}}
                                         >
                                             {s.name}
                                         </div>
@@ -600,7 +605,7 @@ function Admin() {
                                         key={index}
                                         className=" bg-white text-black hover:bg-gray-500 flex place-items-center gap-2 border-t-[1px] py-[1px] px-2 cursor-default"
                                         onClick={() => {setStore({... store, "text_4": s.name});
-                                                        setPriceData({... priceData, "shop_4": index})}}
+                                                        setPriceData({... priceData, "shop_4": (index + 1)})}}
                                         >
                                             {s.name}
                                         </div>
@@ -622,9 +627,10 @@ function Admin() {
 
                 <div className="flex max-w-5xl mx-auto text-xl pt-[5%] pb-[3%]">
                     <button className="self-center mx-auto rounded-xl p-3 pt-2 pb-2 bg-primary text-text" 
-                            onClick={submit}>
-                        Create Game
+                            onClick={() => {submit(); setSubmitted(true)}}>
+                        Create Game 
                     </button>
+                    {submitted && <div>Submitted successfully!</div>}
                 </div>
             </div>
             }
@@ -645,7 +651,8 @@ function Admin() {
                             </ul>
                         </div>
                         <div className="ml-auto w-[25%] flex">
-                            <button id={index} className="self-center ml-auto mr-5 p-5" onClick={(e)=>{e.preventDefault();removeGame(game.id,e.currentTarget.id)}}><FaRegTrashAlt size={24}/></button>
+                            <button id={index} className="self-center ml-auto mr-5 p-5" 
+                                    onClick={(e)=>{e.preventDefault();removeGame(game.id, e.currentTarget.id)}}><FaRegTrashAlt size={24}/></button>
                         </div>
                     </div>
                 ))}
