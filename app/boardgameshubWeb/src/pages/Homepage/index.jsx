@@ -8,6 +8,8 @@ import fantasy from "../../static/fantasy.webp";
 import horror from "../../static/horror.webp";
 import { Link } from 'react-router-dom';
 import Carousel from "../../components/Carrosel";
+import accountService from "../../services/accountService";
+import { useUserStore } from "../../stores/useUserStore";
 
 function Homepage() {
   const [games, setGames] = useState({});
@@ -18,6 +20,8 @@ function Homepage() {
   const [newGames, setNewGames] = useState({});
   const [hotPrices,setHotPrices] = useState({})
   const [newPrices,setNewPrices] = useState({})
+  const [recommendations,setRecomendations] = useState([]);
+  const logged = useUserStore((state)=>state.logged)
 
   const [view, setView] = useState("Popular");
 
@@ -54,6 +58,12 @@ function Homepage() {
         setLoaded(true);
       }); 
     });
+    if(logged){
+      accountService.getRecomendations(7).then((data)=>{
+        setRecomendations(data);
+      })
+    }
+
   }, []);
 
   function getPrice(index) {
@@ -136,7 +146,22 @@ function Homepage() {
             </div>  
           </div>
 
-        <div className="flex max-w-5xl mx-auto text-xl">
+          {recommendations.length > 0 && <div className="w-full h-auto mt-10" style={{background: "linear-gradient(180deg, rgba(34, 34, 34, 0.00) 0%, rgba(0, 0, 0, 0.30) 6.25%, rgba(0, 0, 0, 0.00) 81.25%)"}}>
+            <div className="max-w-6xl w-full mx-auto pt-[2%]">
+              <div className="text-2xl ml-[5%] mb-[1%]">
+                Recommendations:
+              </div>
+              <Carousel buttons={true} width={210} >
+                {recommendations.map((game,index)=>(
+                  <Link to={`/product/${game.id}`}>
+                    <img src={game.image} className="min-w-[230px] max-w-[230px] rounded-lg min-h-[230px] max-h-[230px]"/>
+                  </Link>
+                ))}
+              </Carousel>
+            </div>
+          </div>}
+
+        <div className="flex max-w-5xl mx-auto text-xl mt-10">
           <div className={`w-[10%] text-center rounded-t-lg cursor-pointer pt-1` + (view === "New" ? " bg-primary" : " ")} 
           onClick={() => { setView("New"); setGames(newGames); setPrices(newPrices); }}>
             New
