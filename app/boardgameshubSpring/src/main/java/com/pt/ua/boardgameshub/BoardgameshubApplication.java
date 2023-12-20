@@ -1,10 +1,8 @@
 package com.pt.ua.boardgameshub;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -16,12 +14,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class BoardgameshubApplication {
 
     @Value("${admin.password}")
     String adminPassword;
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public BoardgameshubApplication(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(BoardgameshubApplication.class, args);
@@ -34,14 +41,34 @@ public class BoardgameshubApplication {
 			return;
 		}
 
-        String token = signup();
-        if(token != null){
-            int bgcount = loadBoardGames(token);
-            loadStores(token);
-            loadPrices(token);
-            loadClicks(bgcount);
-        }
+        signup();
+        int bgcount = loadBoardGames();
+        loadStores();
+        loadPrices();
+        loadClicks(bgcount);
+        loadUDFs();
+        
 	}
+
+    @Transactional
+    public void loadUDFs() {
+        try {
+            String fileName = "udfs.sql";
+            ClassLoader classLoader = getClass().getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream(fileName);
+            if (inputStream != null) {
+                String sql = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+                String[] udfs = sql.split("(?=CREATE FUNCTION)");
+                for(String udf : udfs)
+                    jdbcTemplate.execute(udf.trim());
+            } else {
+                throw new IOException("File not found: " + fileName);
+            }
+        } catch (IOException e) {
+            // Handle file reading or execution errors
+            e.printStackTrace();
+        }
+    }
 
     public boolean signin() {
         boolean siginSuccess = false;
@@ -64,12 +91,6 @@ public class BoardgameshubApplication {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 System.out.println("POST request sent successfully");
-                InputStreamReader in = new InputStreamReader(connection.getInputStream());
-                BufferedReader br = new BufferedReader(in);
-                String output = br.readLine();
-                JSONObject response = new JSONObject(output);
-                String token = response.getString("token");
-                System.out.println(token);
                 siginSuccess = true;
             } else {
                 System.out.println("POST request failed: " + responseCode);
@@ -81,8 +102,7 @@ public class BoardgameshubApplication {
         return siginSuccess;
     }
 
-    public String signup() {
-        String token = null;
+    public void signup() {
         try{
             String jsonString = "{\"username\":\"admin\",\"email\":\"admin@gmail.com\",\"password\":\""+adminPassword+"\"}";
             JSONObject request = new JSONObject(jsonString);
@@ -102,12 +122,6 @@ public class BoardgameshubApplication {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 System.out.println("POST request sent successfully");
-                
-                InputStreamReader in = new InputStreamReader(connection.getInputStream());
-                BufferedReader br = new BufferedReader(in);
-                String output = br.readLine();
-                JSONObject response = new JSONObject(output);
-                token = response.getString("token");
             } else {
                 System.out.println("POST request failed");
             }
@@ -115,8 +129,8 @@ public class BoardgameshubApplication {
         catch(Exception e){
             e.printStackTrace();
         }
-        return token;
     }
+
 
     public void loadClicks(int n){
         for(int i = 1; i <= n; i++){
@@ -134,7 +148,7 @@ public class BoardgameshubApplication {
 
     }
 
-    public int loadBoardGames(String token) {
+    public int loadBoardGames() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/board_games.json");
@@ -147,7 +161,7 @@ public class BoardgameshubApplication {
                 for (int i = 0; i < boardGames.length(); i++) {
                     JSONObject boardGame = boardGames.getJSONObject(i);
                     URL url = new URL("http://localhost:8080/api/v1/game/manual");
-                    sendRequest(url, boardGame, token);
+                    sendRequest(url, boardGame);
                 }
                 return boardGames.length();
             }
@@ -157,7 +171,7 @@ public class BoardgameshubApplication {
         return -1;
     }
 
-    public void loadStores(String token) {
+    public void loadStores() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/stores.json");
@@ -170,7 +184,7 @@ public class BoardgameshubApplication {
                 for (int i = 0; i < stores.length(); i++) {
                     JSONObject store = stores.getJSONObject(i);
                     URL url = new URL("http://localhost:8080/api/v1/store");
-                    sendRequest(url, store, token);
+                    sendRequest(url, store);
                 }
             }
         } catch (IOException e) {
@@ -178,7 +192,7 @@ public class BoardgameshubApplication {
         }
     }
 
-    public void loadPrices(String token) {
+    public void loadPrices() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/prices.json");
@@ -196,7 +210,7 @@ public class BoardgameshubApplication {
                     }
                     JSONObject store = stores.getJSONObject(i);
                     URL url = new URL("http://localhost:8080/api/v1/price/" + game_id + "/" + store_id);
-                    sendRequest(url, store, token);
+                    sendRequest(url, store);
                 }
             }
         } catch (IOException e) {
@@ -204,12 +218,11 @@ public class BoardgameshubApplication {
         }
     }
 
-    public void sendRequest(URL url, JSONObject object, String token){
+    public void sendRequest(URL url, JSONObject object){
         try{
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Authorization", "Bearer " + token);
             connection.setDoOutput(true);
 
             String jsonInputString = object.toString();

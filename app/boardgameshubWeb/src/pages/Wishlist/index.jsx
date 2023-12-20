@@ -1,10 +1,13 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { WishList } from "../../components";
 import { Form } from 'react-router-dom';
+import { useState } from "react";
 
 function Wishlist() {
-    function displayOptions(){
-        
+    const [query,setQuery] = useState("");
+
+    function updateQuery(q){
+        setQuery(q)
     }
 
     return (
@@ -16,18 +19,18 @@ function Wishlist() {
                 <div className="max-w-5xl mx-auto">
                     <div className="bg-primary h-14 rounded-t-xl flex text-xl w-[70%]">
                         <span className="mr-3 ml-4 w-[20%] self-center">Sort by:</span>
-                        <button onClick={displayOptions} className="flex rounded-xl items-center self-center mr-5">
+                        <button className="flex rounded-xl items-center self-center mr-5">
                             Name
                             <span className="pl-1 self-end"><IoIosArrowDown size={35}/></span>
                         </button>
                         <Form className="flex w-full h-full items-center" method="get">
-                            <input placeholder="Search by name or tag" name="q" className="mr-3 pl-4 text-xl text-black bg-loginInput rounded-md w-full h-[70%] outline-none" autoComplete="off"></input>
+                            <input onChange={(e)=>{updateQuery(e.currentTarget.value)}}placeholder="Search by name or tag" name="q" className="mr-3 pl-4 text-xl text-black bg-loginInput rounded-md w-full h-[70%] outline-none" autoComplete="off"></input>
                         </Form> 
                     </div>
                 </div>
 
                 <div className="bg-primary bg-gradient-to-t from-gradient to-100% h-auto min-h-[800px]">
-                    < WishList query={"yes"} />
+                    < WishList query={query} />
                 </div>
             </div>
         </div>

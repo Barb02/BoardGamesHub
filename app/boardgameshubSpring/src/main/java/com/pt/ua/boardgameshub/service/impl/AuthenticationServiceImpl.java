@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 import com.pt.ua.boardgameshub.dao.request_body.SignInRequest;
-import com.pt.ua.boardgameshub.dao.response_body.JwtAuthenticationResponse;
+import com.pt.ua.boardgameshub.dao.response_body.SignUpResponse;
+import com.pt.ua.boardgameshub.dao.response_body.SignInResponse;
 import com.pt.ua.boardgameshub.domain.User;
 import com.pt.ua.boardgameshub.repository.UserRepository;
 import com.pt.ua.boardgameshub.service.AuthenticationService;
@@ -24,20 +25,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public JwtAuthenticationResponse signup(SignUpRequest request) {
+    public SignUpResponse signup(SignUpRequest request) {
         User user = new User(request, passwordEncoder);
         userRepository.save(user);
-        var jwt = jwtService.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+        String jwt = jwtService.generateToken(user);
+        return SignUpResponse.builder().token(jwt).role(user.getRole()).build();
     }
 
     @Override
-    public JwtAuthenticationResponse signin(SignInRequest request) {
+    public SignInResponse signin(SignInRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        var user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
-        var jwt = jwtService.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+        String jwt = jwtService.generateToken(user);
+        return SignInResponse.builder().token(jwt).username(user.getName()).role(user.getRole()).build();
     }
 }

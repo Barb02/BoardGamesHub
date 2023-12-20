@@ -1,23 +1,34 @@
 import { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
-import placeholder from "../../static/placeholder.png";
+import exploration from "../../static/exploration.webp";
+import adventure from "../../static/adventure.webp";
+import miniatures from "../../static/miniatures.webp";
+import cardgame from "../../static/card_game.webp";
+import fantasy from "../../static/fantasy.webp";
+import horror from "../../static/horror.webp";
 import { Link } from 'react-router-dom';
 import Carousel from "../../components/Carrosel";
+import accountService from "../../services/accountService";
+import { useUserStore } from "../../stores/useUserStore";
 
 function Homepage() {
   const [games, setGames] = useState({});
-  const [hotGames, setHotGames] = useState({});
-  const [newGames, setNewGames] = useState({});
   const [loaded,setLoaded] = useState(false);
   const [prices, setPrices] = useState({});
+
+  const [hotGames, setHotGames] = useState({});
+  const [newGames, setNewGames] = useState({});
   const [hotPrices,setHotPrices] = useState({})
   const [newPrices,setNewPrices] = useState({})
-  const [extra, setExtra] = useState("Popular");
+  const [recommendations,setRecomendations] = useState([]);
+  const logged = useUserStore((state)=>state.logged)
+
+  const [view, setView] = useState("Popular");
 
   useEffect(() => {
     gameService.getPopularGames(20).then((data) => {
       setHotGames(data);
-      if (extra === "Popular")
+      if (view === "Popular")
         setGames(data);
 
       const promises = data.map((game) => {
@@ -26,15 +37,14 @@ function Homepage() {
 
       Promise.all(promises).then((price) => {     
         setHotPrices(price || []);
-        if (extra === "Popular")
+        if (view === "Popular")
           setPrices(price);
-        setLoaded(true);
       }); 
     });
 
     gameService.getNewGames().then((data) => {
       setNewGames(data);
-      if (extra === "New")
+      if (view === "New")
         setGames(data);
 
       const promises = data.map((game) => {
@@ -43,11 +53,17 @@ function Homepage() {
 
       Promise.all(promises).then((price) => {     
         setNewPrices(price || []);
-        if (extra === "New")
+        if (view === "New")
           setPrices(price);
         setLoaded(true);
       }); 
     });
+    if(logged){
+      accountService.getRecomendations(7).then((data)=>{
+        setRecomendations(data);
+      })
+    }
+
   }, []);
 
   function getPrice(index) {
@@ -68,12 +84,16 @@ function Homepage() {
         <div className="flex max-w-7xl mx-auto pt-[50px] h-[650px] justify-between">
           <div className="w-[30%] h-full place-self-center">
             <p className="text-text font-hot italic text-[48px] h-[10%] whitespace-nowrap font-extrabold textShadow-shtitle -rotate-6 translate-y-4 -translate-x-5" style={{textShadow:"9px 7px 0px #000"}}>GAME OF THE WEEK</p>
-            <img src={loaded && hotGames[0].image} className=" w-full rounded-[20px] aspect-square shadow-image object-cover"></img>
-            <p className="text-text text-right font-mono text-[40px] pt-4 h-[10%]">{loaded && (Math.round(prices[0] * 100) / 100).toFixed(2)}$</p>
+            <Link to={loaded && `/product/${hotGames[0].id}`}>
+              <img src={loaded && hotGames[0].image} className=" w-full rounded-[20px] aspect-square shadow-image object-cover" />
+            </Link>
+            <p className="text-text text-right font-mono text-[40px] pt-4 h-[10%]">{loaded && (Math.round(hotPrices[0] * 100) / 100).toFixed(2)}$</p>
             <p className="text-text text-right font-mono text-[16px]">current lowest price</p>
           </div>
           <div className="flex flex-col shadow-divDistact w-[60%] rounded-[20px] h-[85%] place-self-center px-10 py-5 bg-black bg-opacity-20">
-              <div className="text-text font-title text-[40px]">{loaded && hotGames[0].name}</div>
+              <Link to={loaded && `/product/${hotGames[0].id}`}>
+                <div className="text-text font-title text-[40px]">{loaded && hotGames[0].name}</div>
+              </Link>
               <div className="text-text font-mono text-[20px]">{loaded && hotGames[0].shortDescription}</div>
               <div className="flex justify-around ml-[1%] mr-[1%] mt-auto mb-3">
                 {loaded && hotGames[0].images.slice(0, 2).map((ik, index) => (
@@ -90,37 +110,64 @@ function Homepage() {
                 Categories:
               </div>
 
-              <Carousel buttons={true} width={230} >
-                  <div className="w-[230px]">
-                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+              <Carousel buttons={true} width={210} >
+                  <Link to={`/search?q=&categories=Exploration`}>
+                    <div className="w-[230px] rounded-md h-[160px]" style={{background: "linear-gradient(180deg, rgba(255, 0, 0, 0.00) 39.06%, #F00 100%), url(" + exploration + "), lightgray 50%" }}>
+                      <span className="h-full flex text-3xl items-end justify-center">Exploration</span>
+                    </div>
+                  </Link>
+                  <Link to={`/search?q=&categories=Adventure`}>
+                    <div className="w-[230px] rounded-md h-[160px]" style={{background: "linear-gradient(180deg, rgba(255, 0, 0, 0.00) 39.06%, #0500FF 100%), url(" + adventure + "), lightgray 50%" }}>
+                      <span className="h-full flex text-3xl items-end justify-center">Adventure</span>
+                    </div>
+                  </Link>
+                  <Link to={`/search?q=&categories=Horror`}>
+                    <div className="w-[230px] rounded-md h-[160px]" style={{background: "linear-gradient(180deg, rgba(255, 0, 0, 0.00) 39.06%, #157419 100%), url(" + horror + "), lightgray 50%" }}>
+                      <span className="h-full flex text-3xl items-end justify-center">Horror</span>
+                    </div>
+                  </Link>
+                  <Link to={`/search?q=&categories=Card Game`}>
+                    <div className="w-[230px] rounded-md h-[160px]" style={{background: "linear-gradient(180deg, rgba(255, 0, 0, 0.00) 39.06%, #909C07 100%), url(" + cardgame + "), lightgray 50%" }}>
+                      <span className="h-full flex text-3xl items-end justify-center">Card Game</span>
+                    </div>
+                  </Link>
+                  <Link to={`/search?q=&categories=Miniatures`}>
+                  <div className="w-[230px] rounded-md h-[160px]" style={{background: "linear-gradient(180deg, rgba(255, 0, 0, 0.00) 39.06%, #30948C 100%), url(" + miniatures + "), lightgray 50%" }}>
+                    <span className="h-full flex text-3xl items-end justify-center">Miniatures</span>
                   </div>
-                  <div className="w-[230px]">
-                    <img src={ placeholder } className="rounded-md h-[160px]"/>
+                  </Link>
+                  <Link to={`/search?q=&categories=Fantasy`}>
+                  <div className="w-[230px] rounded-md h-[160px]" style={{background: "linear-gradient(180deg, rgba(255, 0, 0, 0.00) 39.06%, #109D0F 100%), url(" + fantasy + "), lightgray 50%" }}>
+                    <span className="h-full flex text-3xl items-end justify-center">Fantasy</span>
                   </div>
-                  <div className="w-[230px]">
-                    <img src={ placeholder } className="rounded-md h-[160px]"/>
-                  </div>
-                  <div className="w-[230px]">
-                    <img src={ placeholder } className="rounded-md h-[160px]"/>
-                  </div>
-                  <div className="w-[230px]">
-                    <img src={ placeholder } className="rounded-md h-[160px]"/>
-                  </div>
-                  <div className="w-[230px]">
-                    <img src={ placeholder } className="rounded-md h-[160px]"/>
-                  </div>
+                  </Link>
               </Carousel>
 
             </div>  
           </div>
 
-        <div className="flex max-w-5xl mx-auto text-xl">
-          <div className={`w-[10%] text-center rounded-t-lg cursor-pointer pt-1` + (extra === "New" ? " bg-primary" : " ")} 
-          onClick={() => { setExtra("New"); setGames(newGames); setPrices(newPrices); }}>
+          {recommendations.length > 0 && <div className="w-full h-auto mt-10" style={{background: "linear-gradient(180deg, rgba(34, 34, 34, 0.00) 0%, rgba(0, 0, 0, 0.30) 6.25%, rgba(0, 0, 0, 0.00) 81.25%)"}}>
+            <div className="max-w-6xl w-full mx-auto pt-[2%]">
+              <div className="text-2xl ml-[5%] mb-[1%]">
+                Recommendations:
+              </div>
+              <Carousel buttons={true} width={210} >
+                {recommendations.map((game,index)=>(
+                  <Link to={`/product/${game.id}`}>
+                    <img src={game.image} className="min-w-[230px] max-w-[230px] rounded-lg min-h-[230px] max-h-[230px]"/>
+                  </Link>
+                ))}
+              </Carousel>
+            </div>
+          </div>}
+
+        <div className="flex max-w-5xl mx-auto text-xl mt-10">
+          <div className={`w-[10%] text-center rounded-t-lg cursor-pointer pt-1` + (view === "New" ? " bg-primary" : " ")} 
+          onClick={() => { setView("New"); setGames(newGames); setPrices(newPrices); }}>
             New
           </div>
-          <div className={`w-40 text-center rounded-t-lg cursor-pointer pt-1` + (extra === "Popular" ? " bg-primary" : " ")}
-            onClick={() => { setExtra("Popular"); setGames(hotGames); setPrices(hotPrices); }}>
+          <div className={`w-40 text-center rounded-t-lg cursor-pointer pt-1` + (view === "Popular" ? " bg-primary" : " ")}
+            onClick={() => { setView("Popular"); setGames(hotGames); setPrices(hotPrices); }}>
             Popular
           </div>
         </div>

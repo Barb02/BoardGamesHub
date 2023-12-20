@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
 
-function ProductList({ query }) {
+function ProductList({ query, sort, order, categories, players, complexities, playtimes, prices }) {
     const [rdata, setRdata] = useState([]);
     const [rprices, setRprices] = useState();
     const [rdataload, setDataLoad] = useState(false);
@@ -18,9 +18,25 @@ function ProductList({ query }) {
         document.getElementById(node.id + "_hover").style.display = 'block';
     }
 
+    function shrinkProductView(e) {
+        let node = e.target;
+        while(node.id === ""){
+            node = node.parentNode;
+        }
+        node.style.display = 'none';
+        document.getElementById(node.id.split("_hover")[0]).style.display = '';
+    }
+
     useEffect(() => {
         if (query || query === ""){
-            gameService.getGames(query).then((data) => {
+            let playerNum = [];
+            let complexityNum = [];
+            let playtimeNum = [];
+            sort = sort.toLowerCase();
+
+            handleExceptions(playerNum, complexityNum, playtimeNum, categories);
+
+            gameService.getGames(query, sort, order, categories, playerNum, complexityNum, playtimeNum, prices).then((data) => {
                 setRdata(data || []);
 
                 const promises = data.map((game) => {
@@ -33,7 +49,26 @@ function ProductList({ query }) {
                 }); 
             });   
         }
-    }, [query]);
+    }, [query, sort, order, categories, players, complexities, playtimes, prices]);
+
+    function handleExceptions(player, complexity, playtime, categories) {
+        const playtimeMins = [15, 30, 45, 60, 90, 120, 150, 180, 210, 240, 300, 360];
+        if (sort === "release date")
+            sort = "yearPublished";
+
+        player[0] = players[0] === 10 ? "any" : players[0] + 1;
+        player[1] = players[1] === 10 ? "any" : players[1] + 1;
+
+        complexity[0] = complexities[0] + 1;
+        complexity[1] = complexities[1] + 1;
+
+        playtime[0] = playtimeMins[playtimes[0]];
+        playtime[1] = playtimeMins[playtimes[1]];
+
+        if (categories.length === 0)
+            categories = "";
+
+    }
 
     function getPrice(index) {
         return (Math.round(rprices[index] * 100) / 100).toFixed(2);
@@ -67,7 +102,8 @@ function ProductList({ query }) {
                     
                     {/* Hover game for more details */}
 
-                    <div id={game.id + "_hover"} className="flex flex-col rounded-xl w-full h-[250px] bg-searchProductBackgroundHover mb-4" style={{display: "none"}}>
+                    <div id={game.id + "_hover"} className="flex flex-col rounded-xl w-full h-[250px] bg-searchProductBackgroundHover mb-4" 
+                        style={{display: "none"}} onMouseLeave={shrinkProductView}>
                     <div className="w-full flex h-[50%]">
                         <img alt="boardgame_cover" className="object-cover mt-3 ml-3 rounded-lg h-[90%] w-[120px]" src={game.image} />
                         <div className="flex flex-col pl-3 w-[60%]">

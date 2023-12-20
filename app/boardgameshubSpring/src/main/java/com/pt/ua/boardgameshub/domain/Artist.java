@@ -1,6 +1,8 @@
 package com.pt.ua.boardgameshub.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -15,6 +17,7 @@ import com.pt.ua.boardgameshub.dao.request_body.ArtistRequest;
 @Table(name = "artist")
 public class Artist {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -28,7 +31,6 @@ public class Artist {
     }
 
     public Artist(ArtistRequest ar){
-        this.id = ar.getId();        
         this.name = ar.getName();
     }
 

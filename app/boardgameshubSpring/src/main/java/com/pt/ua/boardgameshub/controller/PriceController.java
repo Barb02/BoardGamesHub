@@ -11,69 +11,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.pt.ua.boardgameshub.service.GameService;
 import com.pt.ua.boardgameshub.service.PriceService;
-import com.pt.ua.boardgameshub.service.StoreService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.*;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-import com.pt.ua.boardgameshub.domain.Store;
 import com.pt.ua.boardgameshub.dao.response_body.PriceHistory;
 import com.pt.ua.boardgameshub.dao.response_body.PriceResponse;
-import com.pt.ua.boardgameshub.dao.response_body.ShortPrice;
-import com.pt.ua.boardgameshub.domain.Game;
 import com.pt.ua.boardgameshub.domain.Price;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1")
 public class PriceController {
     private final PriceService priceService;
-    private final GameService gameService;
-    private final StoreService storeService;
 
     @Autowired
-    public PriceController(PriceService priceService, GameService gameService, StoreService storeService) {
+    public PriceController(PriceService priceService) {
         this.priceService = priceService;
-        this.gameService = gameService;
-        this.storeService = storeService;
     }
 
     @Operation(summary = "Add a new price for a game in the specified store")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Created",
             content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Price.class)))}),
-            @ApiResponse(responseCode = "404", description = "Game or store not found", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Game and/or store not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Couldn't add price", content = @Content)})
     @PostMapping("price/{game_id}/{store_id}")
     public Price addPrice(@RequestBody Price price, @PathVariable long game_id, @PathVariable long store_id){
-        Game game = gameService.getGameById(game_id);
-        Store store = storeService.getStoreById(store_id);
-        if (game == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
-        }
-        if (store == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
-        }
-        Price newPrice = priceService.addPrice(price, game, store);
+        Price newPrice = priceService.addPrice(price, game_id, store_id);
         if (newPrice != null) {
             return newPrice;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't add game (manual)");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game and/or store not found.");
         }
     }
 
@@ -84,10 +59,9 @@ public class PriceController {
             @ApiResponse(responseCode = "404", description = "Price not found", content = @Content)})
     @GetMapping("price/{game_id}/{store_id}")
     public PriceResponse getCurrentPrice(@PathVariable long game_id, @PathVariable long store_id){
-        Price price = priceService.getPriceByStoreIdAndGameId(store_id, game_id);
-        PriceResponse priceResponse = new PriceResponse(price);
+        PriceResponse price = priceService.getPriceByStoreIdAndGameId(store_id, game_id);
         if (price != null) {
-            return priceResponse;
+            return price;
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found");
@@ -101,14 +75,8 @@ public class PriceController {
             @ApiResponse(responseCode = "404", description = "Prices not found", content = @Content)})
     @GetMapping("price/{game_id}")
     public List<PriceResponse> getCurrentPrices(@PathVariable long game_id){
-        List<Store> stores = storeService.getStores();
-        List<PriceResponse> prices = new ArrayList<>();
-        for (Store store : stores) {
-            Price price = priceService.getPriceByStoreIdAndGameId(store.getId(), game_id);
-            PriceResponse priceResponse = new PriceResponse(price);
-            prices.add(priceResponse);
-        }
-        if ( ! prices.isEmpty()) {
+        List<PriceResponse> prices = priceService.getCurrentPrices(game_id);
+        if ( !prices.isEmpty()) {
             return prices;
         }
         else{
@@ -123,57 +91,28 @@ public class PriceController {
             @ApiResponse(responseCode = "404", description = "Price not found", content = @Content)})
     @GetMapping("price/lowest/{game_id}")
     public PriceResponse getCurrentLowestPrice(@PathVariable long game_id){
-        List<PriceResponse> prices = getCurrentPrices(game_id);
-        PriceResponse lowestPrice = prices.stream().min(Comparator.comparing(PriceResponse::getPrice)).orElse(null);
+        PriceResponse lowestPrice = priceService.getLowerPrice(game_id);
         if (lowestPrice != null) {
             return lowestPrice;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prices not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Price not found");
         }
     }
 
-    @Operation(summary = "Get current price for a game in the specified store")
+    @Operation(summary = "Get the price history for a game for each store")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+            content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PriceHistory.class)))}),
+            @ApiResponse(responseCode = "404", description = "Prices not found", content = @Content)})
     @GetMapping("price/history/{game_id}")
     public List<PriceHistory> priceHistory(@PathVariable long game_id){
-        List<Price> history = priceService.getHistory(game_id);
-        List<PriceHistory> result = new ArrayList<>();
-        Map<String, Integer> visited = new HashMap<>();
-        Map<String, String> colors = new HashMap<>() {{
-            put("worten", "hsl(0, 100%, 50%)");
-            put("amazon", "hsl(32, 100%, 57%)");
-            put("fnac", "hsl(106, 100%, 57%)");
-            put("zatu", "hsl(289, 100%, 57%)");
-        }};
-        int index = 0;
-        for(Price p : history){
-            Double price = p.getPrice();
-            String store = p.getStore().getName();
-            Timestamp timestamp = p.getTimestamp();
-            Date date = new Date(timestamp.getTime());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
-            String formatted_timestamp = dateFormat.format(date);
-            if(visited.keySet().contains(store)){
-                int key = visited.get(store);
-                ShortPrice sp = new ShortPrice();
-                sp.setY(price);
-                sp.setX(formatted_timestamp);
-                result.get(key).getData().add(sp);
-            }
-            else{
-                PriceHistory ph = new PriceHistory();
-                List<ShortPrice> data = new ArrayList<>();
-                ShortPrice sp = new ShortPrice();
-                sp.setY(price);
-                sp.setX(formatted_timestamp);
-                data.add(sp);
-                ph.setId(store);
-                ph.setData(data);
-                ph.setColor(colors.get(store.toLowerCase()));
-                result.add(ph);
-                visited.put(store, index++);
-            }
+        List<PriceHistory> priceHistory = priceService.getHistory(game_id);
+        if (priceHistory != null) {
+            return priceHistory;
         }
-        return result;
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Prices not found");
+        }
     }
 }

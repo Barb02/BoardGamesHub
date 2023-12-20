@@ -6,11 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.EnumType;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -21,8 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.pt.ua.boardgameshub.dao.request_body.SignUpRequest;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.List;
 
 
@@ -46,20 +40,6 @@ public class User implements UserDetails{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToMany(cascade = { CascadeType.MERGE })
-    @JoinTable(
-        name = "wishlist", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "game_id"))
-    private Set<Game> wishlist = new HashSet<>();
-
-    @ManyToMany(cascade = { CascadeType.MERGE })
-    @JoinTable(
-        name = "preferred_categories", 
-        joinColumns = @JoinColumn(name = "user_id"), 
-        inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> preferredCategories = new HashSet<>();
-
     public User() {
     }
     
@@ -67,7 +47,12 @@ public class User implements UserDetails{
         this.name = request.getUsername();
         this.password = passwordEncoder.encode(request.getPassword());
         this.email = request.getEmail();
-        this.role = Role.USER;
+        if(this.name.equals("admin")){
+            this.role = Role.ADMIN;
+        }
+        else{
+            this.role = Role.USER;
+        }
     }
 
     @Override
@@ -98,21 +83,6 @@ public class User implements UserDetails{
 
     public String getEmail() {
         return email;
-    }
-
-    public Set<Game> getWishlist() {
-        return wishlist;
-    }
-
-    public void setWishlist(Set<Game> wishlist) {
-        this.wishlist = wishlist;
-    }
-    public Set<Category> getPreferredCategories() {
-        return preferredCategories;
-    }
-
-    public void setPreferredCategories(Set<Category> preferredCategories) {
-        this.preferredCategories = preferredCategories;
     }
 
     public void setRole(Role role) {
