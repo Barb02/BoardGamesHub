@@ -84,7 +84,7 @@ function Admin() {
         image: "",
         images: [],
         categories: [],
-        artist: []
+        artists: []
     });
 
 
@@ -116,7 +116,7 @@ function Admin() {
         const designers = [];
         const publishers = [];
         const categories = [];
-        const artist = [];
+        const artists = [];
 
         // Designers
         gameData.designers.split(",").forEach(element => {
@@ -137,10 +137,10 @@ function Admin() {
         gameData.categories = categories;
 
         // Artists
-        gameData.artist.split(",").forEach(element => {
-            artist.push({"name": element});
+        gameData.artists.split(",").forEach(element => {
+            artists.push({"name": element});
         });
-        gameData.artist = artist;
+        gameData.artists = artists;
     }
 
 
@@ -160,15 +160,19 @@ function Admin() {
     const [query, setQuery] = useState();
 
     useEffect(()=>{
-        gameService.getGames(query).then((data)=>{
-            setGames(data);
-        })
+        fetchGames(query);
     },[query])
 
     const removeGame = (id, index)=>{
         gameService.deleteGame(id);
         setGames([...games].splice(index,1))
-        //setTimeout(()=>fetchWishlist(),4*1000);
+        setTimeout(()=>fetchGames(), 1000); 
+    }
+
+    const fetchGames = (query) => {
+        gameService.getGames(query).then((data)=>{
+            setGames(data);
+        })
     }
 
 
@@ -374,7 +378,7 @@ function Admin() {
                         <div className="flex flex-col">
                             Artists:
                             <input placeholder="Artist 1,Artist 2, ..." className="text-black" 
-                                    onChange={(e) => setGameData({...gameData, "artist": e.target.value})}/>
+                                    onChange={(e) => setGameData({...gameData, "artists": e.target.value})}/>
                         </div>
                     </div>
 
