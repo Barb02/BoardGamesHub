@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/user")
 public class UserController {
     private final WishlistedService wishlistedService;
     private final PreferredCategoryService preferredCategoryService;
@@ -54,7 +54,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
             @ApiResponse(responseCode = "500", description = "Couldn't add game to wishlist", content = @Content)})
-    @PostMapping("user/wishlist/{game_id}")
+    @PostMapping("wishlist/{game_id}")
     public WishlistedResponse addGameToWishlist(@PathVariable long game_id) {
         WishlistedResponse game;
         try{
@@ -77,7 +77,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
             @ApiResponse(responseCode = "500", description = "Couldn't remove from wishlist", content = @Content)})
-    @DeleteMapping("user/wishlist/{game_id}")
+    @DeleteMapping("wishlist/{game_id}")
     public void removeGameFromWishlist(@PathVariable long game_id) {
         try{
             wishlistedService.removeFromWishlist(game_id);
@@ -93,7 +93,7 @@ public class UserController {
                     content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = WishlistedResponse.class)))}),
             @ApiResponse(responseCode = "404", description = "Wishlist not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
-    @GetMapping("user/wishlist")
+    @GetMapping("wishlist")
     public List<WishlistedResponse> getWishlist(@RequestParam(name="q", defaultValue = "") String filter) {
         List<WishlistedResponse> wishlistResponse = wishlistedService.getWishlist(filter);
         if(wishlistResponse != null){
@@ -110,7 +110,7 @@ public class UserController {
                     content = {@Content(mediaType = "application/json", schema = @Schema(implementation = InWishlist.class))}),
             @ApiResponse(responseCode = "404", description = "Game not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
-    @GetMapping("user/wishlist/{game_id}")
+    @GetMapping("wishlist/{game_id}")
     public InWishlist inWishlist(@PathVariable long game_id) {
         try{
             return new InWishlist(wishlistedService.inWishlist(game_id));
@@ -127,7 +127,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "Categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
             @ApiResponse(responseCode = "500", description = "Couldn't update categories", content = @Content)})
-    @PutMapping("user/categories")
+    @PutMapping("categories")
     public List<PreferredCategoryResponse> editPreferredCategories(@RequestBody List<PreferredCategoryResponse> updatedCategories) {
         List<PreferredCategoryResponse> currentCategories = preferredCategoryService.getPreferredCategories();
         if(currentCategories != null && updatedCategories != null){
@@ -154,7 +154,7 @@ public class UserController {
                     content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = PreferredCategoryResponse.class)))}),
             @ApiResponse(responseCode = "404", description = "Preferred categories not found", content = @Content),
             @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
-    @GetMapping("user/categories")
+    @GetMapping("categories")
     public List<PreferredCategoryResponse> getPreferredCategories() {
         List<PreferredCategoryResponse> preferredCategoryResponse = preferredCategoryService.getPreferredCategories();
         if(preferredCategoryResponse != null){
@@ -165,9 +165,28 @@ public class UserController {
         }
     }
 
-    @GetMapping("user/game/recommended")
-    public List<Game> getRecommendedGames(@RequestParam( defaultValue = "10", required = false) String limit){
-        return gameService.getRecommendedGames(Integer.parseInt(limit));
+    @Operation(summary = "Get users's recommended games based on their preferred categories, ordered by clicks (AUTHENTICATION REQUIRED)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Game.class)))}),
+            @ApiResponse(responseCode = "404", description = "Games not found", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content),
+            @ApiResponse(responseCode = "422", description = "Parameter 'limit' must be an integer", content = @Content)})
+    @GetMapping("game/recommended")
+    public List<Game> getRecommendedGames(@RequestParam(defaultValue = "10", required = false) String limit){
+        List<Game> games;
+        try{
+            games = gameService.getRecommendedGames(Integer.parseInt(limit));
+        }
+        catch(Exception e){
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Parameter 'limit' must be an integer");
+        }
+        if(games != null){
+            return games;
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Games not found");
+        }
     }
 
 }
