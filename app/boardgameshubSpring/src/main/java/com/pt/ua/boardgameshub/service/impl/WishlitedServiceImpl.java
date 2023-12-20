@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.pt.ua.boardgameshub.dao.response_body.WishlistPrice;
 import com.pt.ua.boardgameshub.dao.response_body.WishlistedResponse;
 import com.pt.ua.boardgameshub.domain.Game;
 import com.pt.ua.boardgameshub.domain.User;
@@ -65,6 +66,22 @@ public class WishlitedServiceImpl implements WishlistedService{
     public boolean inWishlist(long game_id) throws IllegalArgumentException{
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return wishlistedRepository.existsByGameIdAndUserId(game_id, user.getId());
+    }
+
+    @Override
+    public List<WishlistPrice> getWishlistPrices() {
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Object[]> result = wishlistedRepository.findWishlistedGamesWithPriceByUserId(user.getId());
+        List<WishlistPrice> prices = new ArrayList<>();
+        for (Object[] row : result) {
+            Long gameId = (Long) row[0]; 
+            String gameName = (String) row[1]; 
+            Double lowestPrice = (Double) row[2];
+        
+            WishlistPrice wishlistPrice = new WishlistPrice(gameId, gameName, lowestPrice);
+            prices.add(wishlistPrice);
+        }
+        return prices;
     }
 
 }
