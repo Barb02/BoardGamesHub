@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navbar,Footer,ScrollToTop,UserBar } from "../../components";
 import { Outlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import NotificationSpace from "../../components/NotificationSpace";
 
 
 
@@ -18,6 +19,7 @@ function Layout() {
         <AnimatePresence>
           {showSidePanel && <UserBar deactivateUser={()=>setShowSidePanel(false)}/>}
         </AnimatePresence>
+        <NotificationSpace/>
         <ScrollToTop />
         <Navbar activateUser={()=>setShowSidePanel(true)}/>
         <div className="bg-background min-h-screen"><Outlet/></div>
