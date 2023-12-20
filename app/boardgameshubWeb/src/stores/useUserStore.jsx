@@ -7,19 +7,15 @@ export const useUserStore = create(
       token: null,
       username: null,
       logged: false,
-      admin: false,
+      role: null,
 
-      login: (token, username, email) => {
+      login: (token, username, role) => {
         set(() => ({
           token: token,
           username: username,
           logged: true,
+          role: role
         }));
-        console.log(email);
-        if (email === "admin@gmail.com")
-          set(() => ({
-            admin: true,
-          }));
       },
 
       logout: () => {

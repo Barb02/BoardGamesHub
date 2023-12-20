@@ -11,7 +11,7 @@ import { useUserStore } from "./stores/useUserStore";
 
 
 const AdminHandling = () => {
-  const admin = useUserStore((state) => state.logged && state.admin);
+  const admin = useUserStore((state) => state.logged && (state.role === "ADMIN"));
 
   return admin ? <Admin /> : <Homepage />;
 };
