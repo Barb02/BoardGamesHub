@@ -27,6 +27,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node; */
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -269,6 +270,11 @@ public class GameServiceImpl implements GameService{
         return gameRepository.findAllGamesOrderByClickCountDesc(limit, publisher);
     }
 
+    @Override
+    public List<Game> getRecommendedGames(int limit){
+        User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return gameRepository.findGamesByPreferredCategoryOrderByClickCountDesc(limit, user.getId());
+    }
     @Override
     public void removeGame(long game_id) throws IllegalArgumentException{
         gameRepository.deleteById(game_id);
