@@ -7,6 +7,7 @@ export const useUserStore = create(
       token: null,
       username: null,
       logged: false,
+      admin: false,
 
       login: (token, username) => {
         set(() => ({
