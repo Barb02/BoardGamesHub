@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
+import com.pt.ua.boardgameshub.dao.response_body.WishlistPrice;
 import com.pt.ua.boardgameshub.dao.response_body.WishlistedResponse;
 import com.pt.ua.boardgameshub.domain.Category;
 import com.pt.ua.boardgameshub.dao.response_body.InWishlist;
@@ -158,6 +159,23 @@ public class UserController {
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categories not found");
+        }
+    }
+
+    @Operation(summary = "Get user's wishlisted games with price (AUTHENTICATION REQUIRED)")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK",
+                    content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = WishlistedResponse.class)))}),
+            @ApiResponse(responseCode = "404", description = "Wishlist not found", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Not signed in", content = @Content)})
+    @GetMapping("user/wishlist/prices")
+    public List<WishlistPrice> getWishlistPrices() {
+        List<WishlistPrice> wishlistPrice = wishlistedService.getWishlistPrices();
+        if(wishlistPrice != null){
+            return wishlistPrice;
+        }
+        else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wishlist not found");
         }
     }
 

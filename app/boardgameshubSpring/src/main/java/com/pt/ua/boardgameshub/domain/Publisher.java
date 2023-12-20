@@ -1,6 +1,8 @@
 package com.pt.ua.boardgameshub.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -16,6 +18,7 @@ import jakarta.persistence.Column;
 @Table(name = "publisher")
 public class Publisher {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -32,7 +35,6 @@ public class Publisher {
     }
 
     public Publisher(DeveloperRequest pr){
-        this.id = pr.getId();        
         this.name = pr.getName();
         this.image = pr.getImage();
     }

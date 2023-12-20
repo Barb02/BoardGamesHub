@@ -5,7 +5,11 @@ const gameService = {
         return await client.get(`/game/${id}`)
     },
 
-    async getGames(query="", sort="name", order="asc", categories="", players, complexities="", playtimes, price){
+    async deleteGame(id){
+        return await client.delete(`/game/${id}`)
+    },
+
+    async getGames(query="", sort="name", order="asc", categories="", players=["any","any"], complexities=["1", "5"], playtimes=["15", "360"], price=["1", "900"]){
         return await client.get(`/game?q=${query}&orderBy=${sort}&order=${order}&categories=${categories}&players=${players[0]}_${players[1]}&complexity=${complexities[0]}_${complexities[1]}&playtime=${playtimes[0]}_${playtimes[1]}&price=${price[0]}_${price[1]}`)
     },
 
@@ -31,6 +35,9 @@ const gameService = {
 
     async getCategories(){
         return await client.get(`/game/categories`)
+    },
+    async getPublisher(id){
+        return await client.get(`/publisher/${id}`)
     }
 }
 
