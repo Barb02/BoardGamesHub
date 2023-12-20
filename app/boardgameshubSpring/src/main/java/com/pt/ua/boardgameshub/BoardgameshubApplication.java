@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -19,6 +20,9 @@ import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class BoardgameshubApplication {
+
+    @Value("${admin.password}")
+    String adminPassword;
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -33,10 +37,11 @@ public class BoardgameshubApplication {
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
 
-		if( ! checkDatabaseEmpty()){
+		if(signin()){
 			return;
 		}
 
+        signup();
         int bgcount = loadBoardGames();
         loadStores();
         loadPrices();
@@ -65,21 +70,67 @@ public class BoardgameshubApplication {
         }
     }
 
-    public boolean checkDatabaseEmpty(){
-        try {
-            URL url = new URL("http://localhost:8080/api/v1/game/1");
+    public boolean signin() {
+        boolean siginSuccess = false;
+        try{
+            String jsonString = "{\"email\":\"admin@gmail.com\",\"password\":\""+adminPassword+"\"}";
+            JSONObject request = new JSONObject(jsonString);
+            URL url = new URL("http://localhost:8080/api/v1/auth/signin");
+            
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            int responseCode = connection.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
-                    return false;
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            String jsonInputString = request.toString();
+            byte[] jsonBytes = jsonInputString.getBytes(StandardCharsets.UTF_8);
+            try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
+                outputStream.write(jsonBytes);
+                outputStream.flush();
             }
-            connection.disconnect();
-        } catch (IOException e) {
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("POST request sent successfully");
+                siginSuccess = true;
+            } else {
+                System.out.println("POST request failed: " + responseCode);
+            }
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
-        return true;
+        return siginSuccess;
     }
+
+    public void signup() {
+        try{
+            String jsonString = "{\"username\":\"admin\",\"email\":\"admin@gmail.com\",\"password\":\""+adminPassword+"\"}";
+            JSONObject request = new JSONObject(jsonString);
+            URL url = new URL("http://localhost:8080/api/v1/auth/signup");
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            String jsonInputString = request.toString();
+            byte[] jsonBytes = jsonInputString.getBytes(StandardCharsets.UTF_8);
+            try (DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream())) {
+                outputStream.write(jsonBytes);
+                outputStream.flush();
+            }
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("POST request sent successfully");
+            } else {
+                System.out.println("POST request failed");
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     public void loadClicks(int n){
         for(int i = 1; i <= n; i++){

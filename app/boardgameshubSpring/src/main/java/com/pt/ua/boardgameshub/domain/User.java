@@ -47,7 +47,12 @@ public class User implements UserDetails{
         this.name = request.getUsername();
         this.password = passwordEncoder.encode(request.getPassword());
         this.email = request.getEmail();
-        this.role = Role.USER;
+        if(this.name.equals("admin")){
+            this.role = Role.ADMIN;
+        }
+        else{
+            this.role = Role.USER;
+        }
     }
 
     @Override
