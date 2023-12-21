@@ -1,8 +1,10 @@
 package com.pt.ua.boardgameshub;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -41,10 +43,10 @@ public class BoardgameshubApplication {
 			return;
 		}
 
-        signup();
-        int bgcount = loadBoardGames();
-        loadStores();
-        loadPrices();
+        String token = signup();
+        int bgcount = loadBoardGames(token);
+        loadStores(token);
+        loadPrices(token);
         loadClicks(bgcount);
         loadUDFs();
         
@@ -102,7 +104,8 @@ public class BoardgameshubApplication {
         return siginSuccess;
     }
 
-    public void signup() {
+    public String signup() {
+        String token = null;
         try{
             String jsonString = "{\"username\":\"admin\",\"email\":\"admin@gmail.com\",\"password\":\""+adminPassword+"\"}";
             JSONObject request = new JSONObject(jsonString);
@@ -122,6 +125,11 @@ public class BoardgameshubApplication {
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 System.out.println("POST request sent successfully");
+                InputStreamReader in = new InputStreamReader(connection.getInputStream());
+                BufferedReader br = new BufferedReader(in);
+                String output = br.readLine();
+                JSONObject response = new JSONObject(output);
+                token = response.getString("token");
             } else {
                 System.out.println("POST request failed");
             }
@@ -129,6 +137,7 @@ public class BoardgameshubApplication {
         catch(Exception e){
             e.printStackTrace();
         }
+        return token;
     }
 
 
@@ -148,7 +157,7 @@ public class BoardgameshubApplication {
 
     }
 
-    public int loadBoardGames() {
+    public int loadBoardGames(String token) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/board_games.json");
@@ -161,7 +170,7 @@ public class BoardgameshubApplication {
                 for (int i = 0; i < boardGames.length(); i++) {
                     JSONObject boardGame = boardGames.getJSONObject(i);
                     URL url = new URL("http://localhost:8080/api/v1/game/manual");
-                    sendRequest(url, boardGame);
+                    sendRequest(url, boardGame, token);
                 }
                 return boardGames.length();
             }
@@ -171,7 +180,7 @@ public class BoardgameshubApplication {
         return -1;
     }
 
-    public void loadStores() {
+    public void loadStores(String token) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/stores.json");
@@ -184,7 +193,7 @@ public class BoardgameshubApplication {
                 for (int i = 0; i < stores.length(); i++) {
                     JSONObject store = stores.getJSONObject(i);
                     URL url = new URL("http://localhost:8080/api/v1/store");
-                    sendRequest(url, store);
+                    sendRequest(url, store, token);
                 }
             }
         } catch (IOException e) {
@@ -192,7 +201,7 @@ public class BoardgameshubApplication {
         }
     }
 
-    public void loadPrices() {
+    public void loadPrices(String token) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream("db/prices.json");
@@ -210,7 +219,7 @@ public class BoardgameshubApplication {
                     }
                     JSONObject store = stores.getJSONObject(i);
                     URL url = new URL("http://localhost:8080/api/v1/price/" + game_id + "/" + store_id);
-                    sendRequest(url, store);
+                    sendRequest(url, store, token);
                 }
             }
         } catch (IOException e) {
@@ -218,11 +227,12 @@ public class BoardgameshubApplication {
         }
     }
 
-    public void sendRequest(URL url, JSONObject object){
+    public void sendRequest(URL url, JSONObject object, String token){
         try{
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
             connection.setDoOutput(true);
 
             String jsonInputString = object.toString();
