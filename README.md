@@ -11,11 +11,12 @@ Software used:
 * Agile Board - Github
 
 # Project team
-* Team Manager: Pedro Pinho
-* Product Owner: Bárbara Galiza
-* Architect: João Andrade
-* DevOps Master: Tomás Victal
+* Team Manager: Pedro Pinho (109986)
+* Product Owner: Bárbara Galiza (105937)
+* Architect: João Andrade (107969)
+* DevOps Master: Tomás Victal (109018)
 
 # Architecture Diagram
+![Architecture diagram](architecture.png "Architecture diagram")
 
 # Bookmarks
