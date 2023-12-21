@@ -28,6 +28,18 @@ cd app/
 
 docker-compose up
 
+## Access 
+
+Website: localhost:3000/
+
+API: localhost:8080/api/v1/<endpoint>
+
+# How to access the deployed version
+
+Website: deti-ies-11:3000/
+
+API: deti-ies-11:8080/api/v1/<endpoint>
+
 # Admin Credentials
 email: admin@gmail.com
 
