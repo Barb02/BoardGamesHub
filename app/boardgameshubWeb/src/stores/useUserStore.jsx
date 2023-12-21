@@ -23,6 +23,7 @@ export const useUserStore = create(
           token: null,
           username: null,
           logged: false,
+          role: null,
         }));
       },
     }),

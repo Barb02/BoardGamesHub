@@ -7,14 +7,14 @@ const Navbar = ({activateUser}) => {
   const navigate = useNavigate();
   const logged = useUserStore((state) => state.logged);
   const username = useUserStore((state) => state.username);
-  const logout = useUserStore((state)=> state.logout)
+  var buttons = null;
 
   const handleSearch = (e) => {
     navigate(`/search?query=${encodeURI(e.target[0].value)}`);
   }
 
   if (!logged) {
-    var buttons = (
+    buttons = (
       <div className="flex">
         <Link to="/login">
           <button className="rounded-xl flex p-4 pt-2 pb-2 mr-4 justify-center items-center bg-primary text-text">
@@ -29,8 +29,13 @@ const Navbar = ({activateUser}) => {
       </div>
     );
   } else {
-    var buttons = (
+    buttons = (
       <div className="flex">
+        <Link to="/admin">
+          <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">
+            Tools
+          </button>
+        </Link>
         <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text"
              onClick={activateUser}
         >
