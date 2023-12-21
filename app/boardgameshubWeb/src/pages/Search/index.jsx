@@ -19,7 +19,7 @@ function Search() {
     const [players, setPlayers] = useState([10, 10]); // any, any
     const [playtimes, setPlaytimes] = useState([0, 11]); // 15mins, 6 hours
     const [complexities, setComplexities] = useState([0, 4]); // light, heavy
-    const [prices, setPrices] = useState(["1", "900"]);
+    const [prices, setPrices] = useState(["0", "900"]);
     ////////////////////
 
     const navigate = useNavigate();

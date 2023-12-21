@@ -63,7 +63,7 @@ const FilterSearch = ( {categories, setCategories, players, setPlayers, playtime
 
         // check if given string only has numbers, if not then set value to 1
         if (!(/^\d+$/.test(pricesFilter[0])))
-            pricesFilter[0] = 1;
+            pricesFilter[0] = 0;
 
         // check if given string only has numbers, if not then set value to 900
         if (!(/^\d+$/.test(pricesFilter[1])))
