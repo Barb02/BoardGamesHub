@@ -22,3 +22,13 @@ Software used:
 # Bookmarks
 * Api documentation: <host>:8080/apidoc (IEETA: deti-ies-11:8080/apidoc)
 * Agile Board: https://github.com/users/Barb02/projects/1/views/1
+
+# How to run locally
+cd app/
+
+docker-compose up
+
+# Admin Credentials
+email: admin@gmail.com
+
+password: a72js91clrp!e
