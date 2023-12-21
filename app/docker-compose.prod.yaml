@@ -1,0 +1,69 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: boardgameshub-db
+    environment:
+      POSTGRES_DB: boardgameshub-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./boardgameshubSpring/src/main/resources/db/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+  
+  kafka:
+    image: confluentinc/cp-kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+  
+  web:
+    image: tvictal/boardgameshubweb:1.0
+    build:
+      context: ./boardgameshubWeb
+      dockerfile: .docker/dockerfile.prod
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - springboot
+
+  springboot:
+    depends_on:
+      - postgres
+    image: tvictal/boardgameshubspring:1.0
+    build: 
+      context: ./boardgameshubSpring
+      dockerfile: dockerfile.prod
+    ports:
+      - 8080:8080
+  python_script:
+    image: tvictal/boardgameshubpython:1.0
+    build:
+      context: ./dataGeneration
+      dockerfile: dockerfile.prod
+    
+volumes:
+  pgdata:
+    driver: local
+

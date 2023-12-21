@@ -1,36 +1,15 @@
 import user_group_icon from "../../static/user_group_icon.svg";
-import logo_worten from "../../static/logo_worten.jpg";
 import React, { useEffect, useState } from "react";
 import gameService from "../../services/gameService";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Notification,PricesGraph } from "../../components";
 import { useInterval } from "../../hooks";
+import { useUserStore } from "../../stores/useUserStore";
+import accountService from "../../services/accountService";
+import { FaCheck } from "react-icons/fa";
+import placeholder from "../../static/placeholder.jpg"
 
 function Product() {
-  const data = [
-    {
-      id: "japan",
-      color: "hsl(12, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 196,
-        },
-        {
-          x: "helicopter",
-          y: 1,
-        },
-        {
-          x: "boat",
-          y: 30,
-        },
-        {
-          x: "train",
-          y: 285,
-        },
-      ],
-    },
-  ];
 
   let { id } = useParams();
   const [showAllCats, setShowAllCats] = useState(false);
@@ -42,22 +21,54 @@ function Product() {
 
   const [rdata, setRdata] = useState({});
   const [rprices, setRprices] = useState([]);
+  const [historyPrice,setHistoryPrice] = useState([]);
   const [lowesPrice,setLowestPrice] = useState({});
   const [dataload, setDataload] = useState(false);
   const [priceload, setPriceload] = useState(false);
   const [lowesPriceLoad,setLowestPriceLoad] = useState(false);
+  const logged = useUserStore((state)=>state.logged)
+
+  const [disabled, setDisable] = useState(false);
+
+  const addGameWishlist = () => {
+    if (!disabled){
+      accountService.addGameWishlist(id);
+      setTimeout(()=>checkGameInWishlist(),10000);
+      setDisable(true);
+    }
+  }
+
+  const checkGameInWishlist = () => {
+    accountService.getGameWishlist(id).then((data)=>{
+      setDisable(data.inWishlist)
+    });
+  }
+
 
   useEffect(() => {
+    if (logged)
+      checkGameInWishlist()
+
     gameService.getGame(id).then((data) => {
       setRdata(data || {});
       setDataload(true);
     });
+    gameService.getHistoryPriceGraph(id).then((data) =>{
+      setHistoryPrice(data)
+    });
   }, []);
 
+  useEffect(() => {
+    gameService.getLastPrices(id).then((data) => {
+      setRprices(data || []);
+      setPriceload(true);
+    });
+    loadLowestPrice(id,false)
+  }, []);
+  
   const loadLowestPrice = (id,checkUpdate)=>{
     gameService.getLowestPrice(id).then((data)=>{
-      console.log(data.price,lowesPrice.price)
-      if (checkUpdate && (lowesPrice.price != data.price || lowesPrice.store.name != data.store.name)){
+      if (checkUpdate && (lowesPrice.price !== data.price || lowesPrice.store.name !== data.store.name)){
         setNotification(true);
       }
       setLowestPrice(data || {})
@@ -65,22 +76,22 @@ function Product() {
     })
   }
 
+  const addPlaceholders = (e) => {
+    const imgTags = [];
+    for (let index = 0; index < 4; index++) {
+      imgTags.push(<img className="object-cover rounded-3xl w-[20%]" src={placeholder} />);
+    }
+
+    return imgTags;
+  }
   
   useInterval(()=>{
     if(lowesPriceLoad){
       loadLowestPrice(id,true)
-    }else{
-      loadLowestPrice(id,false)
     }
   },2000)
 
 
-  useEffect(() => {
-    gameService.getLastPrices(id).then((data) => {
-      setRprices(data || []);
-      setPriceload(true);
-    });
-  }, []);
 
   function abbrNum(number, decPlaces) {
     // 2 decimal places => 100, 3 => 1000, etc
@@ -126,14 +137,20 @@ function Product() {
           <div className="max-w-sm pt-[3%] inline-block">
             <img
               className="object-cover rounded-3xl h-[400px] shadow-image"
-              src={rdata.image}
+              src={rdata.image || placeholder}
             />
           </div>
 
           <div className="ml-[7%] max-w-[20%] mr-[7%]">
             <h1 className="text-4xl font-title">{rdata.name}</h1>
-            <div className="mt-[10%] inline-block pr-2 pl-2 bg-primary rounded">
-              <button>+ ADD TO WISHLIST</button>
+            <div>
+              <button
+                className={"mt-[10%] flex pr-2 pl-2 bg-primary rounded"+ (!logged ? " cursor-not-allowed":"")}
+                onClick={()=>{logged && addGameWishlist()}}
+              >
+                <div className="flex items-center">{!disabled ? "+ ADD TO WISHLIST" : <><FaCheck className="mr-2"/>In Wishlist</>}</div>
+              </button>
+              {!logged && <div className="text-[12px]">You need to be logged in</div>}
             </div>
             {/* Tags display area */}
             <h2 className="pt-[10%] text-lg mt-1 ml-1 mr-1">Tags</h2>
@@ -172,8 +189,8 @@ function Product() {
               <div className="inline-block pl-8 text-sm text-center">
                 Playtime
                 <p>
-                  {rdata.minplaytime}
-                  {rdata.minplaytime}-{rdata.maxplaytime} min
+                  {rdata.minplaytime === rdata.maxplaytime? rdata.maxplaytime: `${rdata.minplaytime} - ${rdata.maxplaytime}`}
+                    min
                 </p>
               </div>
             </div>
@@ -208,7 +225,7 @@ function Product() {
             <div className=" pb-[15%]">
               <h2 className="text-2xl bg-designers rounded px-2">Current Lowest Price</h2>
               <div className="text-xl mt-[4%] px-2">
-                {lowesPriceLoad && lowesPrice.price + " $ " + lowesPrice.store.name}
+                {lowesPriceLoad && (Math.round(lowesPrice.price * 100) / 100).toFixed(2) + " $ " + lowesPrice.store.name}
               </div>
             </div>
             {/* Designers display area */}
@@ -247,9 +264,11 @@ function Product() {
                     ? rdata.publishers
                     : rdata.publishers.slice(0, 3)
                   ).map((publisher, index) => (
-                    <li className="w-auto ml-2 pt-[2%] rounded text-sm">
-                      {publisher.name}
-                    </li>
+                    <Link to={`/publisher/${publisher.id}`}>
+                      <li className="w-auto ml-2 pt-[2%] rounded text-sm">
+                        {publisher.name}
+                      </li>
+                    </Link>
                   ))}
               </ul>
               {dataload && rdata.publishers.length > 3 && (
@@ -266,9 +285,9 @@ function Product() {
         {/* Product images display area */}
         <div className="w-full flex mt-[7%] pb-[10%] h-[300px]">
           <div className="flex justify-around ml-[1%] mr-[1%]">
-            {dataload && rdata.images.slice(0, 4).map((ik, index) => (
+            {dataload && rdata.images.length !== 0 && rdata.images.slice(0, 4).map((ik, index) => (
                   <img className="object-cover rounded-3xl w-[20%]" src={ik} />
-                ))}
+                )) || dataload && addPlaceholders()}
           </div>
         </div>
       </div>
@@ -292,15 +311,6 @@ function Product() {
         >
           Store
         </div>
-        <div
-          className={
-            `w-40 text-center rounded-t-lg cursor-pointer` +
-            (extra === "Expansions" ? " bg-primary" : " ")
-          }
-          onClick={() => setExtra("Expansions")}
-        >
-          Expansions
-        </div>
       </div>
 
       <div className=" bg-gradient-to-b from-primary from-10% to-background">
@@ -314,14 +324,14 @@ function Product() {
             <div className="bg-black w-[19%] bg-opacity-20 rounded-[30px] p-[25px] text-lg shadow-divDistact">
               {priceload &&
                 rprices.map((price, index) => (
-                  <div className="grid grid-cols-2 justify-items-start gap-[15%]">
-                    <div className=" justify-self-end">{price.price} $</div>
+                  <div className="grid grid-cols-2 justify-items-start gap-[10%]">
+                    <div className=" justify-self-end">{(Math.round(price.price * 100) / 100).toFixed(2)} $</div>
                     <div className=" justify-self-end">{price.store.name}</div>
                   </div>
                 ))}
             </div>
             <div className="w-[79%] bg-black bg-opacity-20 rounded-[30px] shadow-divDistact">
-              <PricesGraph className={"h-[400px] w-[80%"} data={data} />
+              <PricesGraph className={"h-[400px] w-[80%"} data={historyPrice} />
             </div>
           </div>}
         </div>

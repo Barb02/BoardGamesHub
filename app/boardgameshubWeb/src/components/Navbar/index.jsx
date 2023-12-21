@@ -1,14 +1,43 @@
-import logo from "../../static/logo.svg"
+import logo from "../../static/logo.svg";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useUserStore } from "../../stores/useUserStore";
 
-const Navbar = () => {
-  const [query, setQuery] = useState('');
+const Navbar = ({activateUser}) => {
   const navigate = useNavigate();
+  const logged = useUserStore((state) => state.logged);
+  const username = useUserStore((state) => state.username);
+  const logout = useUserStore((state)=> state.logout)
 
-  const handleSearch = () => {
-    navigate(`/search?query=${encodeURI(query)}`);
+  const handleSearch = (e) => {
+    navigate(`/search?query=${encodeURI(e.target[0].value)}`);
+  }
+
+  if (!logged) {
+    var buttons = (
+      <div className="flex">
+        <Link to="/login">
+          <button className="rounded-xl flex p-4 pt-2 pb-2 mr-4 justify-center items-center bg-primary text-text">
+            Login
+          </button>
+        </Link>
+        <Link to="/register">
+          <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">
+            Register
+          </button>
+        </Link>
+      </div>
+    );
+  } else {
+    var buttons = (
+      <div className="flex">
+        <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text"
+             onClick={activateUser}
+        >
+          {username}
+        </button>
+      </div>
+    );
   }
 
     return (
@@ -20,11 +49,10 @@ const Navbar = () => {
                   <div className="bg-white flex w-auto pt-2 pb-2 pr-3 pl-3 rounded-lg mr-10">
                     <span className="self-center"><CiSearch /></span>
                     <form onSubmit={handleSearch}>
-                      <input onChange={(e) => setQuery(e.target.value)} name="q" type="text" className="ml-2 text-black w-auto outline-none" placeholder="Search..." autoComplete="off"></input>
+                      <input name="q" type="text" className="ml-2 text-black w-auto outline-none" placeholder="Search..." autoComplete="off"></input>
                     </form>
                   </div>
-                  <Link to="/login"><button className="rounded-xl flex p-4 pt-2 pb-2 mr-4 justify-center items-center bg-primary text-text">Login</button></Link>
-                  <button className="rounded-xl flex p-3 pt-2 pb-2 mr-2 justify-center items-center bg-primary text-text">Register</button>
+                  {buttons}
                 </div>
             </div>
           </div>

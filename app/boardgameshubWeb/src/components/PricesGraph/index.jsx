@@ -1,12 +1,14 @@
 import { ResponsiveLine } from "@nivo/line";
 
 function PricesGraph({ className,data }) {
+
   return (
     <div className={` h-1 ${className}`}>
       <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: "point" }}
+        xScale={{ format: "%b %d %Y %H:00", type: "time" }}
+        xFormat="time:%b %d %Y %H:00"
         yScale={{
           type: "linear",
           min: "auto",
@@ -15,7 +17,7 @@ function PricesGraph({ className,data }) {
           reverse: false,
         }}
         yFormat=" >-.2f"
-        curve="stepAfter"
+        curve="linear"
         axisTop={null}
         axisRight={null}
         theme={
@@ -23,13 +25,32 @@ function PricesGraph({ className,data }) {
                 "container": {
                     "background": "#000"
                 }
-            }}
+            },
+             "axis":{
+              "legend":{
+                "text":{
+                  "fill":"#ffffff"
+                }
+              },
+              "ticks":{
+                "text":{
+                  "fill":"#ffffff"
+                }
+              }
+             },
+             "legends":{
+                "text":{
+                  "fill":"#ffffff"
+                }
+             }
+          }
         }
         axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "transportation",
+          //tickSize: 5,
+          //tickPadding: 5,
+          //tickRotation: 0,
+          format: "%b %d",
+          legend: "Date",
           legendOffset: 36,
           legendPosition: "middle",
         }}
@@ -37,7 +58,7 @@ function PricesGraph({ className,data }) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "count",
+          legend: "Price",
           legendOffset: -40,
           legendPosition: "middle",
         }}
